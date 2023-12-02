@@ -1,9 +1,11 @@
-import Image from 'next/image'
+import Header from '@/components/common/header'
+import MainPage from '@/components/pages/mainPage'
 
 export default function Home() {
   return (
-    <main>
-      
-    </main>
+    <div className='w-screen'>
+      <Header />
+      <MainPage />
+    </div>
   )
 }

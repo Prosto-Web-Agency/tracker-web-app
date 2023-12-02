@@ -13,6 +13,7 @@ const config: Config = {
       },
       colors: {
         'tag-gray': '#8C8C8C',
+        'bg-gray': '#F3F3F1',
       },
       backgroundPosition: {
         top_bg: 'top -60px',
@@ -46,7 +47,7 @@ const config: Config = {
         'heading-ss': ['18px', { fontWeight: '500' }],
         'heading-ss-bold': ['18px', { fontWeight: '700' }],
         'heading-s': ['20px', { fontWeight: '600', lineHeight: '24px' }],
-        'heading-m': ['24px', { fontWeight: '600' }],
+        'heading-m': ['25px', { fontWeight: '600' }],
         'heading-xm': ['28px', { fontWeight: '600' }],
         'rem-heading-xm': ['1.5rem', { fontWeight: '600' }],
         'rem-heading-s': ['1.2rem', { fontWeight: '600' }],
@@ -62,7 +63,7 @@ const config: Config = {
         'text-ss': ['10px', { fontWeight: '400' }],
         'text-sss': ['8px', { fontWeight: '400' }],
         'text-m': ['16px', { lineHeight: '20px', fontWeight: '400' }],
-        'text-m-bold': ['16px', { fontWeight: '700' }],
+        'text-m-bold': ['16px', { fontWeight: '600' }],
         'text-l': ['18px', { lineHeight: '22px' }],
         'accent-l': ['18px', { fontWeight: '500' }],
 
@@ -100,6 +101,9 @@ const config: Config = {
         // => @media (max-width: 1279px) { ... }
 
         lg: { max: '1023px' },
+        // => @media (max-width: 1023px) { ... }
+
+        s_lg: { max: '850px' },
         // => @media (max-width: 1023px) { ... }
 
         lg_min: { min: '767px', max: '1023px' },
