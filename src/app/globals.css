@@ -93,6 +93,11 @@ body {
     background: white;
 }
 
+.scroll-hidden::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+}
+
 .container {
     position: absolute;
     z-index: 100;
@@ -114,4 +119,9 @@ canvas {
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.bg-orange-class {
+    border-radius: 24px;
+    background: linear-gradient(270deg, #FEA50F 0%, #E01D31 100%);
 }
