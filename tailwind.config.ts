@@ -103,6 +103,9 @@ const config: Config = {
         big: { min: '1023px', max: '1279px' },
         // => @media (max-width: 1279px) { ... }
 
+        xx_lg: { max: '1300px' },
+        // => @media (max-width: 1023px) { ... }
+
         lg: { max: '1023px' },
         // => @media (max-width: 1023px) { ... }
 

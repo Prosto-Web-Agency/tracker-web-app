@@ -125,3 +125,12 @@ canvas {
     border-radius: 24px;
     background: linear-gradient(270deg, #FEA50F 0%, #E01D31 100%);
 }
+
+.bg-tr04 {
+    background: rgba(0, 0, 0, 0.4);
+}
+
+.raiting-top-one:first-child {
+    background: linear-gradient(90deg, #E12031 0%, #FEA310 98.1%);
+    color: white
+}

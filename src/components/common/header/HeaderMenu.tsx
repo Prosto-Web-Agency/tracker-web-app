@@ -28,7 +28,7 @@ export default function HeaderMenu() {
             <div className="flex flex-col items-end gap-4 text-15_600">
                 {
                     TABS.map(({link, title}: TTabs) => (
-                        <Link href={`${link}`}>
+                        <Link key={link + title} href={`${link}`}>
                             {title}
                         </Link>
                     ))

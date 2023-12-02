@@ -1,12 +1,14 @@
 import Image from "next/image"
 
-type TCard = {
+export type TCardInsait = {
     header: string
     name: string
     text: string
+    open?: boolean
+    setModalData?: any
 }
 
-export default function InsaitCard({ header, name, text }: TCard) {
+export default function InsaitCard({ header, name, text }: TCardInsait) {
     return (
         <div className="h-[192px] w-[330px] min-w-[330px] bg-orange-class px-5 pt-4 pb-6 text-white">
             <h4 className="text-heading-ss-bold">
