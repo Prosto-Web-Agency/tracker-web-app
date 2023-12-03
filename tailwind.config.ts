@@ -68,8 +68,10 @@ const config: Config = {
         'accent-l': ['18px', { fontWeight: '500' }],
 
         '13_600': ['13px', { lineHeight: '18px', fontWeight: '600' }],
+        '16_700': ['16px', { lineHeight: '19px', fontWeight: '700' }],
         '15_600': ['15px', { lineHeight: '18px', fontWeight: '600' }],
         '12_500': ['12px', { lineHeight: '17px', fontWeight: '500' }],
+        '15_500': ['15px', { lineHeight: '17px', fontWeight: '500' }],
         '18': ['18px', { lineHeight: '20px', fontWeight: '500' }],
         '20': ['20px', { lineHeight: '22px', fontWeight: '500' }],
       },
@@ -101,32 +103,17 @@ const config: Config = {
       screens: {
         large: { min: '1279px', max: '1311px' },
         big: { min: '1023px', max: '1279px' },
-        // => @media (max-width: 1279px) { ... }
-
-        xx_lg: { max: '1300px' },
-        // => @media (max-width: 1023px) { ... }
-
+        xx_lg: { max: '1379px' },
         lg: { max: '1023px' },
-        // => @media (max-width: 1023px) { ... }
-
+        ps_lg: { max: '940px' },
         s_lg: { max: '850px' },
-        // => @media (max-width: 1023px) { ... }
-
         lg_min: { min: '767px', max: '1023px' },
-
         md: { max: '767px' },
-        // => @media (max-width: 767px) { ... }
-
         md_min: { min: '639px', max: '767px' },
-
         sm_max: { min: '640px' },
-
         sm: { max: '639px' },
-
         sm_min: { min: '518px', max: '639px' },
-
         minn: { min: '318px', max: '518px' },
-        // => @media (max-width: 639px) { ... }
       },
       borderRadius: {
         1: '2px',

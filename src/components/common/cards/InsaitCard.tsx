@@ -10,7 +10,7 @@ export type TCardInsait = {
 
 export default function InsaitCard({ header, name, text }: TCardInsait) {
     return (
-        <div className="h-[192px] w-[330px] min-w-[330px] bg-orange-class px-5 pt-4 pb-6 text-white">
+        <div className="h-[192px] w-[330px] min-w-[330px] bg-orange-class px-5 pt-4 pb-6 text-white border-2 duration-100 hover:border-0 border-white">
             <h4 className="text-heading-ss-bold">
                 {header}
             </h4>

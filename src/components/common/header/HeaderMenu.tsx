@@ -26,8 +26,11 @@ export default function HeaderMenu() {
             animate='visible'
         >
             <div className="flex flex-col items-end gap-4 text-15_600">
+                <Link href={'/personalOffice'}>
+                    Профиль
+                </Link>
                 {
-                    TABS.map(({link, title}: TTabs) => (
+                    TABS.map(({ link, title }: TTabs) => (
                         <Link key={link + title} href={`${link}`}>
                             {title}
                         </Link>

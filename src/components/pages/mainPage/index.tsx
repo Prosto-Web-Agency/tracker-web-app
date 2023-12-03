@@ -1,3 +1,5 @@
+import AchievmentField from "@/components/common/fields/AchievementField";
+import ChatField from "@/components/common/fields/ChatField";
 import InsaitField from "@/components/common/fields/InsiteField";
 import NewsField from "@/components/common/fields/NewsField";
 import RateField from "@/components/common/fields/RateField";
@@ -13,12 +15,10 @@ export default function MainPage() {
                     <NewsField />
                 </div>
 
-                <div className="flex gap-6 mt-6">
+                <div className="flex lg:flex-col gap-6 mt-6">
                     <RateField />
-                    
-                    <div className="w-full bg-white">
-                        sadf
-                    </div>
+                    <AchievmentField />
+                    <ChatField />
                 </div>
             </div>
         </section>

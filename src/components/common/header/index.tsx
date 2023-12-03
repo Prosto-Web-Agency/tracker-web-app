@@ -12,21 +12,18 @@ export type TTabs = {
 }
 
 export const TABS: TTabs[] = [
-    {
-        link: '/personalOffice',
-        title: 'Профиль',
-    },
+
     {
         link: '/personalOffice/dataAnalysis',
+        title: 'Подписка',
+    },
+    {
+        link: '/personalOffice',
         title: 'Трекер',
     },
     {
         link: '/personalOffice',
-        title: 'Профиль',
-    },
-    {
-        link: '/personalOffice',
-        title: 'Профиль',
+        title: 'Гайды',
     },
 ]
 
@@ -76,9 +73,25 @@ export default function Header({ title, isUnAuth }: { title?: string, isUnAuth?:
                         </h1>
                     </div>
 
+                    <div className="flex gap-6 pr-6 items-center s_lg:hidden">
+                        <div className="flex flex-row-reverse gap-6 items-center">
+                            {
+                                TABS.map(({ link, title }: TTabs) => (
+                                    <Link className="py-2 w-[135px] text-heading-ss-bold flex justify-center rounded-full bg-bg-gray hoveredMenu items-center" key={link + title} href={`${link}`}>
+                                        {title}
+                                    </Link>
+                                ))
+                            }
+                        </div>
+                        <Link href={'/personalOffice'}>
+                            <Image height={48} width={48} src={'/delete/person.png'} alt='person' />
+                        </Link>
+                    </div>
+
+
                     <button
                         onClick={() => changeMenuState(!openMenu)}
-                        className="hidden h-[90px] z-[20] justify-center items-center pr-[30px] lg:flex">
+                        className="hidden h-[90px] z-[20] justify-center items-center pr-[30px] s_lg:flex">
 
                         <svg width='25' height='25' viewBox='0 0 24 24'>
                             <motion.path
