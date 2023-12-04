@@ -4,9 +4,13 @@ const url = 'http://v2224385.hosted-by-vdsina.ru/'
 
 export const registrationApi = {
     getTokenRequest(id) {
-        return axios.get(url + `gettoken`, 
-        {
+        return axios.get(url + `gettoken`,{
+        headers: {
+            
+        }, 
+        params: {
             id: id
+        }
         })
             .then(response => {
                 console.log(response)
