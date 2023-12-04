@@ -1,6 +1,6 @@
 'use client'
 
-import InsaitCard, { TCardInsait } from "../../cards/InsaitCard";
+import InsaitCard, { TCardInsait } from "../../cards/mainPageCards/InsaitCard";
 import ModalInsait from "../../modal";
 import { useState } from "react";
 

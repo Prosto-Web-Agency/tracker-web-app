@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { TCardInsait } from "../cards/InsaitCard"
+import { TCardInsait } from "../cards/mainPageCards/InsaitCard"
 
 export default function ModalInsait({ header, name, text, open, setModalData }: TCardInsait) {
     return (

@@ -1,4 +1,4 @@
-import AchievmentCard from "../../cards/AchievmentCard";
+import AchievmentCard from "../../cards/mainPageCards/AchievmentCard";
 
 export default function AchievmentField() {
     return (

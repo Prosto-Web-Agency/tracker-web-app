@@ -1,4 +1,4 @@
-import NewsCard from "../../cards/NewsCard";
+import NewsCard from "../../cards/mainPageCards/NewsCard";
 
 export default function NewsField() {
     return (

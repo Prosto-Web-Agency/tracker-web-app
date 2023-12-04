@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from "react";
-import NewsCard from "../../cards/NewsCard";
+import NewsCard from "../../cards/mainPageCards/NewsCard";
 
 const ws = new WebSocket(`ws://v2224385.hosted-by-vdsina.ru/ws/chat/?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoiMSIsImV4cCI6MTcwMTY5MDcxOSwic3ViIjoiYWNjZXNzIn0.iM2-HJ5mYdW2RsXYvHsioCFD3GYoAMYfs5lWMYZD88Q`)
 
