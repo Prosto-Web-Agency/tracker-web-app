@@ -1,4 +1,4 @@
-import RateCard from "../cards/RateCard";
+import RateCard from "../../cards/RateCard";
 
 export default function RateField() {
     return (

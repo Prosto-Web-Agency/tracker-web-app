@@ -1,7 +1,7 @@
 'use client'
 
-import InsaitCard, { TCardInsait } from "../cards/InsaitCard";
-import ModalInsait from "../modal";
+import InsaitCard, { TCardInsait } from "../../cards/InsaitCard";
+import ModalInsait from "../../modal";
 import { useState } from "react";
 
 export default function InsaitField() {

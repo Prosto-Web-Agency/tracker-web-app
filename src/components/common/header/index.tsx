@@ -66,12 +66,12 @@ export default function Header({ title, isUnAuth }: { title?: string, isUnAuth?:
         <>
             <header className="bg-transparent s_lg:bg-bg-gray w-full h-[100px] bg-black sm:h-[75px] overflow-hidden">
                 <div className="mx-auto w-full max-w-[1400px] h-full flex justify-between items-center">
-                    <div className="flex items-center gap-2 px-6">
+                    <Link href={'/'} className="flex items-center gap-2 px-6">
                         <Image className="md:h-[27px] md:w-[27px]" height={48} width={48} src={'/logo.svg'} alt='RECs' />
                         <h1 className="RECsText text-heading-m md:text-text-m-bold">
                             Rec’s Tracker
                         </h1>
-                    </div>
+                    </Link>
 
                     <div className="flex gap-6 pr-6 items-center s_lg:hidden">
                         <div className="flex flex-row-reverse gap-6 items-center">
