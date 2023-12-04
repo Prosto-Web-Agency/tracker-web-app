@@ -143,3 +143,10 @@ canvas {
     background: linear-gradient(90deg, #E22132 0%, #FFA411 100%);
     color: white;
 }
+
+.coloredText {
+    background: linear-gradient(90deg, #E01D31 0.78%, #FEA50F 100.48%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}

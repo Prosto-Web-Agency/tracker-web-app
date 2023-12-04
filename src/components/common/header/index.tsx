@@ -77,7 +77,7 @@ export default function Header({ title, isUnAuth }: { title?: string, isUnAuth?:
                         <div className="flex flex-row-reverse gap-6 items-center">
                             {
                                 TABS.map(({ link, title }: TTabs) => (
-                                    <Link className="py-2 w-[135px] text-heading-ss-bold flex justify-center rounded-full bg-bg-gray hoveredMenu items-center" key={link + title} href={`${link}`}>
+                                    <Link className="py-2 duration-300 hover:scale-[1.03] w-[135px] text-heading-ss-bold flex justify-center rounded-full bg-bg-gray hoveredMenu items-center" key={link + title} href={`${link}`}>
                                         {title}
                                     </Link>
                                 ))
