@@ -69,7 +69,7 @@ export default function Header({ title, isUnAuth }: { title?: string, isUnAuth?:
                     <Link href={'/'} className="flex items-center gap-2 px-6">
                         <Image className="md:h-[27px] md:w-[27px]" height={48} width={48} src={'/logo.svg'} alt='RECs' />
                         <h1 className="RECsText text-heading-m md:text-text-m-bold">
-                            Rec’s Tracker
+                            Rec’s Traker
                         </h1>
                     </Link>
 

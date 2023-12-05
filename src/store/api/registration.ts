@@ -1,9 +1,10 @@
+import { storage } from "@/utils/localStorage";
 import axios from "axios";
 
 const url = 'http://v2224385.hosted-by-vdsina.ru/'
 
 export const registrationApi = {
-    getTokenRequest(id) {
+    getTokenRequest(id: string) {
         return axios.get(url + `gettoken`,{
         headers: {
             
@@ -14,6 +15,7 @@ export const registrationApi = {
         })
             .then(response => {
                 console.log(response)
+                storage.set('AccessToken', response.data.token)
                 // if (response.data.statusCode === null) {
                 //     console.log(response.data)
                 //     config = { ...config, headers: { ...config.headers, Authorization: `Bearer ${response.data}` } }
