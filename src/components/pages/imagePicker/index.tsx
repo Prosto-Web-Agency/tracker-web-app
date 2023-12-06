@@ -14,6 +14,11 @@ import { useDebounceEffect } from "./useDubounceEffect";
 
 import "react-image-crop/dist/ReactCrop.css";
 
+export type TImgPicker = {
+    show: boolean
+    setImgPicker: any
+}
+
 // This is to demonstate how to make and center a % aspect crop
 // which is a bit trickier so we use some helper functions.
 function centerAspectCrop(
@@ -36,7 +41,7 @@ function centerAspectCrop(
     );
 }
 
-export default function ImagePicker() {
+export default function ImagePicker({ show, setImgPicker }: TImgPicker) {
     const [imgSrc, setImgSrc] = useState("");
     const previewCanvasRef = useRef<HTMLCanvasElement>(null);
     const imgRef = useRef<HTMLImageElement>(null);
@@ -113,7 +118,7 @@ export default function ImagePicker() {
         // console.log(blob);
         // console.log(image);
         // console.log(completedCrop);
-        
+
         hiddenAnchorRef.current!.href = blobUrlRef.current;
         hiddenAnchorRef.current!.click();
     }
@@ -157,8 +162,9 @@ export default function ImagePicker() {
     }
 
     return (
-        <div className="App w-full h-full bg-white">
+        <div className={`App w-full h-full bg-white ${show ? 'flex' : 'hidden'} absolute top-[100px] s_lg:top-[75px] left-0`}>
             <div className="Crop-Controls">
+                <button onClick={() => setImgPicker(false)}>Закрыть</button>
                 <input type="file" accept="image/*" onChange={onSelectFile} />
                 <div>
                     <label htmlFor="scale-input">Приближение: </label>
@@ -197,7 +203,7 @@ export default function ImagePicker() {
                     aspect={aspect}
                     // minWidth={400}
                     minHeight={100}
-                    
+
                 // circularCrop
                 >
                     <img

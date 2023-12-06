@@ -74,6 +74,10 @@ const config: Config = {
         '15_500': ['15px', { lineHeight: '17px', fontWeight: '500' }],
         '18': ['18px', { lineHeight: '20px', fontWeight: '500' }],
         '20': ['20px', { lineHeight: '22px', fontWeight: '500' }],
+        '20_700': ['20px', { lineHeight: '22px', fontWeight: '700' }],
+        '11_400': ['11px', { lineHeight: '14px', fontWeight: '400' }],
+        '11_500': ['11px', { lineHeight: '14px', fontWeight: '500' }],
+        '17_400': ['17px', { lineHeight: '22px', fontWeight: '400' }],
       },
       filter: {
         'white-icon': 'brightness(0) invert(1)',

@@ -126,6 +126,10 @@ canvas {
     background: linear-gradient(270deg, #FEA50F 0%, #E01D31 100%);
 }
 
+.bg-orange-class-rounded {
+    background: linear-gradient(270deg, #FEA50F 0%, #E01D31 100%);
+}
+
 .bg-tr04 {
     background: rgba(0, 0, 0, 0.4);
 }
@@ -146,6 +150,13 @@ canvas {
 
 .coloredText {
     background: linear-gradient(90deg, #E01D31 0.78%, #FEA50F 100.48%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.coloredTextTwo {
+    background: linear-gradient(270deg, #FEA50F 22.5%, #E01D31 99.97%);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

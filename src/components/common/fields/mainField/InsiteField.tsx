@@ -1,7 +1,7 @@
 'use client'
 
 import InsaitCard, { TCardInsait } from "../../cards/mainPageCards/InsaitCard";
-import ModalInsait from "../../modal";
+import ModalInsait from "../../modal/ModalInsait";
 import { useState } from "react";
 
 export type TDataInsaits = {
@@ -9,7 +9,7 @@ export type TDataInsaits = {
 }
 
 export default function InsaitField({ dataInsaits }: TDataInsaits) {
-    const [modalData, setModalData] = useState({
+    const [modalDataInsait, setModalDataInsait] = useState({
         header: '',
         name: '',
         text: '',
@@ -22,7 +22,7 @@ export default function InsaitField({ dataInsaits }: TDataInsaits) {
 
                 {
                     dataInsaits.map((e: string) => (
-                        <div key={e} onClick={() => setModalData(
+                        <div key={e} onClick={() => setModalDataInsait(
                             {
                                 header: 'Insait',
                                 name: "Name",
@@ -37,11 +37,11 @@ export default function InsaitField({ dataInsaits }: TDataInsaits) {
 
             </div>
 
-            <ModalInsait header={modalData.header}
-                name={modalData.name}
-                text={modalData.text}
-                open={modalData.open}
-                setModalData={setModalData}
+            <ModalInsait header={modalDataInsait.header}
+                name={modalDataInsait.name}
+                text={modalDataInsait.text}
+                open={modalDataInsait.open}
+                setModalDataInsait={setModalDataInsait}
             />
         </div>
     )

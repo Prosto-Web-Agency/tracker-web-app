@@ -5,7 +5,7 @@ export type TCardInsait = {
     name: string
     text: string
     open?: boolean
-    setModalData?: any
+    setModalDataInsait?: any
 }
 
 export default function InsaitCard({ header, name, text }: TCardInsait) {

@@ -5,7 +5,6 @@ import ChatField from "@/components/common/fields/mainField/ChatField";
 import InsaitField from "@/components/common/fields/mainField/InsiteField";
 import NewsField from "@/components/common/fields/mainField/NewsField";
 import RateField from "@/components/common/fields/mainField/RateField";
-import Image from "next/image";
 import { registrationApi } from '@/store/api/registration'
 import { useEffect } from "react";
 import { getInsaitsDataThunk, getLeadersDataThunk } from "@/store/thunks/mainPageThunk";
@@ -27,8 +26,8 @@ export default function MainPage() {
     }, []);
 
     return (
-        <section className="min-h-screen w-full overflow-hidden">
-            <div className="min-h-full w-full bg-bg-gray  rounded-t-9 s_lg: p-10 max-w-[1400px] mx-auto s_lg:rounded-t-[0px] s_lg:pt-0 s_lg:p-6">
+        <section className="w-full overflow-hidden">
+            <div className="min-h-full w-full bg-bg-gray  rounded-t-9 s_lg: p-10 max-w-[1400px] mx-auto s_lg:rounded-t-[0px] s_lg:pt-0 s_lg:p-6 pb-12 s_lg:pb-12">
 
                 <div className="h-[552px] flex gap-6 s_lg:flex-col-reverse s_lg:h-auto">
                     <InsaitField dataInsaits={main_insaits} />

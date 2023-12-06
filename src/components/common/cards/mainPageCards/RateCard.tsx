@@ -1,8 +1,10 @@
 import Image from "next/image"
 
 export type TCardRate = {
-    name: string,
+    name: string
     position: string
+    open?: boolean
+    setModalData?: any
 }
 
 export default function RateCard({name, position}: TCardRate) {
