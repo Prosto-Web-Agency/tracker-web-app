@@ -26,8 +26,8 @@ export default function DiagrammsPhoneField() {
             </h5>
             <div className="w-full h-full grid grid-cols-3 pt-6 gap-6">
                 {
-                    COLORS.map((e) => (
-                        <DoughnutChart name={'Продуктивность'}
+                    COLORS.map((e, index) => (
+                        <DoughnutChart key={e.color1 + index} name={'Продуктивность'}
                             plugins={{
                                 id: '80%',
                                 //@ts-ignore

@@ -10,7 +10,8 @@ interface ProtectedRoutePropsI {
 }
 
 function ProtectedRoute({ onlyUnAuth = false, UnAuth = false, children }: ProtectedRoutePropsI) {
-    const { isAuthChecked, data } = useAppSelector(state => state.user.user);
+    //@ts-ignore
+    const { isAuthChecked, data } = useAppSelector(state => state?.user?.user);
     const router = useRouter();
 
     // TODO: сплеш скрин приложения

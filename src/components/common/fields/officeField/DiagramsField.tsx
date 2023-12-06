@@ -43,8 +43,8 @@ export default function DiagramsFieldOffice() {
 
             <div className="w-full h-full grid grid-cols-2 gap-9">
                 {
-                    COLORS.map((e) => (
-                        <DoughnutChart name={'Продуктивность'}
+                    COLORS.map((e, index) => (
+                        <DoughnutChart key={e.color2 + index} name={'Продуктивность'}
                             plugins={{
                                 id: '80%',
                                 //@ts-ignore

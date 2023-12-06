@@ -4,8 +4,6 @@ import Script from "next/script";
 import NewsCard from "../../cards/mainPageCards/NewsCard";
 // import TelegramWidget from "../../TgWidget";
 import Head from "next/head";
-import MyDocument from "../../TgWidget";
-import Headee from "../../TgWTwo";
 
 export default function NewsField() {
 
