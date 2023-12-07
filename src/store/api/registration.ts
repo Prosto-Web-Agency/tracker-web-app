@@ -1,7 +1,7 @@
 import { storage } from "@/utils/localStorage";
 import axios from "axios";
 
-const url = 'http://v2224385.hosted-by-vdsina.ru/'
+const url = 'https://v2224385.hosted-by-vdsina.ru/'
 
 export const registrationApi = {
     getTokenRequest(id: string) {

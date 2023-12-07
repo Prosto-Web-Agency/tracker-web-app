@@ -9,7 +9,7 @@ export type TAchievCard = {
 export default function AchievmentCard({image, name, achieveName}: TAchievCard) {
     return (
         <div className="w-[230px] min-w-[230px] pt-2 pb-6 h-[240px] flex flex-col justify-between items-center">
-            <Image width={90} height={90} src={'/delete/person.png'} alt='person' />
+            <Image width={90} height={90} src={'/delete/mn.png'} alt='person' />
             <div className="text-white text-16_700 py-2">
                 <h5>Поздравляем</h5>
                 <p>{name}</p>

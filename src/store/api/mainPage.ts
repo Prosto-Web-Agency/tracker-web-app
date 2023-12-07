@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const url = 'http://v2224385.hosted-by-vdsina.ru/'
+const url = 'https://v2224385.hosted-by-vdsina.ru/'
 
 // /live_insight/
 

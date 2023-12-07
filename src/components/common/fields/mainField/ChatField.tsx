@@ -7,7 +7,7 @@ import ChatCard, { TChatCard } from "../../cards/mainPageCards/ChatCard";
 import ChatTextField from "../../textFields/ChatTextField";
 import Image from "next/image";
 
-const ws = new WebSocket(`ws://v2224385.hosted-by-vdsina.ru/ws/chat/?token=${storage.get('AccessToken')}`)
+const ws = new WebSocket(`wss://v2224385.hosted-by-vdsina.ru/ws/chat/?token=${storage.get('AccessToken')}`)
 
 export default function ChatField() {
     const [messages, setMessages] = useState<object[]>([])

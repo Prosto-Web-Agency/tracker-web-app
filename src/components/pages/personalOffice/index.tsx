@@ -50,18 +50,18 @@ export default function PersonalOffice() {
 
 
                 <div className="sx_lg:hidden flex flex-col gap-6 row-span-3 min-w-[384px]">
-                    <GraphFieldOffice name="Назавние графика" params={[]} />
-                    <GraphFieldOffice name="Назавние графика" params={[]} />
-                    <GraphFieldOffice name="Назавние графика" params={[]} />
+                    <GraphFieldOffice name="Название графика" params={[]} />
+                    <GraphFieldOffice name="Название графика" params={[]} />
+                    <GraphFieldOffice name="Название графика" params={[]} />
                 </div>
 
             </div>
 
             <div className="sx_lg:grid grid-cols-2 px-10 bg-bg-gray p-6 pt-0 hidden flex-col gap-6 row-span-3 min-w-[384px] ss_lg:hidden">
                 <MetrisFieldOffice />
-                <GraphFieldOffice name="Назавние графика" params={[]} />
-                <GraphFieldOffice name="Назавние графика" params={[]} />
-                <GraphFieldOffice name="Назавние графика" params={[]} />
+                <GraphFieldOffice name="Название графика" params={[]} />
+                <GraphFieldOffice name="Название графика" params={[]} />
+                <GraphFieldOffice name="Название графика" params={[]} />
             </div>
 
             <div className="hidden ss_lg:block bg-bg-gray w-full px-4 pb-6">
