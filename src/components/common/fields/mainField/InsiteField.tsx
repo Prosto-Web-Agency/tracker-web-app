@@ -27,13 +27,13 @@ export default function InsaitField({ dataInsaits }: TDataInsaits) {
                     dataInsaits.map((e: string, index) => (
                         <div key={e} onClick={() => setModalDataInsait(
                             {
-                                header: 'Insait',
+                                header: 'Инсайт',
                                 name: NAMES[index],
                                 text: e,
                                 open: true
                             }
                         )}>
-                            <InsaitCard header='Insait' name={NAMES[index]} text={e}/>
+                            <InsaitCard header='Инсайт' name={NAMES[index]} text={e}/>
                         </div>
                     ))
                 }
