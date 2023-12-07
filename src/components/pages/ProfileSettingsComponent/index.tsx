@@ -33,7 +33,7 @@ export default function ProfileSettingsComponent() {
 
         <div className="bg-white rounded-6 w-[588px] h-[441px] flex s_lg:bg-bg-gray s_lg:flex-col s_lg:w-full s_lg:h-full s_lg:p-6">
             <button onClick={() => setImgPicker(!imgPicker)} className="s_lg:bg-white s_lg:rounded-6 s_lg:flex">
-                <Image className="s_lg:h-[225px] s_lg:w-[169px]" width={282} height={441} src={'/delete/manDl.png'} alt="man" />
+                <Image className="w-[282px] h-[440px] rounded-4 s_lg:h-[225px] s_lg:w-[169px] object-cover" width={282} height={441} src={'/delete/person.jpeg'} alt="man" />
                 <Image className="duration-300 hover:scale-[1.05] absolute mt-[-430px] ml-[225px] s_lg:hidden" width={46} height={46} src={'/addPhotoLogo.svg'} alt="camera logo" />
                 <div className="w-full h-full justify-center items-center hidden s_lg:flex">
                     <Image className="duration-300 hover:scale-[1.05]" width={46} height={46} src={'/addPhotoLogo.svg'} alt="camera logo" />

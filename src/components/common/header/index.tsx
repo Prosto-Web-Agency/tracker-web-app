@@ -84,7 +84,7 @@ export default function Header({ title, isUnAuth }: { title?: string, isUnAuth?:
                             }
                         </div>
                         <Link href={'/personalOffice'}>
-                            <Image height={48} width={48} src={'/delete/person.png'} alt='person' />
+                            <Image className="w-[48px] h-[48px] rounded-10" height={48} width={48} src={'/delete/person.jpeg'} alt='person' />
                         </Link>
                     </div>
 

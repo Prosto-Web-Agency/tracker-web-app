@@ -8,10 +8,10 @@ export default function AchievmentField() {
             </h3>
 
             <div className="w-full pl-4 h-full gap-2 overflow-x-scroll flex scroll-hidden">
-                <AchievmentCard image="f" name="Иван Иванович" achieveName="Новое достижение"/>
-                <AchievmentCard image="f" name="Иван Иванович" achieveName="Новое достижение"/>
-                <AchievmentCard image="f" name="Иван Иванович" achieveName="Новое достижение"/>
-                <AchievmentCard image="f" name="Иван Иванович" achieveName="Новое достижение"/>
+                <AchievmentCard image="f" name="Анвар Кайратович" achieveName="Новый ранг ( --- )"/>
+                <AchievmentCard image="f" name="Стас Ли" achieveName="Новый ранг ( --- )"/>
+                <AchievmentCard image="f" name="Лев Лавров" achieveName="Новый ранг ( --- )"/>
+                <AchievmentCard image="f" name="Илья Налимов" achieveName="Новый ранг ( --- )"/>
             </div>
         </div>
     )

@@ -18,6 +18,8 @@ const COLORS: TColors[] = [
     },
 ]
 
+const DIAGRAM_TITLES = ['productive', 'positive', 'result', 'strongest', 'beauty', 'limitless']
+
 export default function DiagrammsPhoneField() {
     return (
         <div className="w-full h-[185px] p-4 bg-white rounded-6">
@@ -39,7 +41,7 @@ export default function DiagrammsPhoneField() {
                                     ctx.fillStyle = 'black';
                                     ctx.textAlign = 'center';
                                     ctx.textBaseline = 'middle';
-                                    ctx.fillText('text', chart.getDatasetMeta(0).data[0].x, chart.getDatasetMeta(0).data[0].y)
+                                    ctx.fillText(DIAGRAM_TITLES[index], chart.getDatasetMeta(0).data[0].x, chart.getDatasetMeta(0).data[0].y)
                                 }
                             }}
                             data={

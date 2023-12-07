@@ -34,6 +34,8 @@ const COLORS: TColors[] = [
     },
 ]
 
+const DIAGRAM_TITLES = ['productive', 'positive', 'result', 'strongest', 'beauty', 'limitless']
+
 export default function DiagramsFieldOffice() {
     return (
         <div className="bg-white rounded-6 h-[732px] sx_lg:h-[944px] p-6 ">
@@ -44,7 +46,7 @@ export default function DiagramsFieldOffice() {
             <div className="w-full h-full grid grid-cols-2 gap-9">
                 {
                     COLORS.map((e, index) => (
-                        <DoughnutChart key={e.color2 + index} name={'Продуктивность'}
+                        <DoughnutChart key={e.color2 + index} name={''}
                             plugins={{
                                 id: '80%',
                                 //@ts-ignore
@@ -56,7 +58,7 @@ export default function DiagramsFieldOffice() {
                                     ctx.fillStyle = 'black';
                                     ctx.textAlign = 'center';
                                     ctx.textBaseline = 'middle';
-                                    ctx.fillText('text', chart.getDatasetMeta(0).data[0].x, chart.getDatasetMeta(0).data[0].y)
+                                    ctx.fillText(DIAGRAM_TITLES[index], chart.getDatasetMeta(0).data[0].x, chart.getDatasetMeta(0).data[0].y)
                                 }
                             }}
                             data={
