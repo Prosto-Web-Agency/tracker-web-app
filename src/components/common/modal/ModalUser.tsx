@@ -17,7 +17,7 @@ export default function ModalUser({ name, position, open, setModalData }: TCardR
                     <Image height={27} width={27} src={'/close.svg'} alt='person' />
                 </h4>
                 <div className="py-3 flex flex-col gap-1 items-center">
-                    <Image height={90} width={90} src={'/delete/person.png'} alt='person' />
+                    <Image className="rounded-4 h-[90px] w-[90px] object-cover" height={90} width={90} src={'/delete/person.jpeg'} alt='person' />
                     <p className="text-20_700">{name}</p>
                 </div>
                 <p className="h-auto text-12_500">

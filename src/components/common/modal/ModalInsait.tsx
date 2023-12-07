@@ -18,7 +18,7 @@ export default function ModalInsait({ header, name, text, open, setModalDataInsa
                     <Image height={27} width={27} src={'/close.svg'} alt='person' />
                 </h4>
                 <div className="py-3 flex gap-1 items-center">
-                    <Image height={27} width={27} src={'/delete/person.png'} alt='person' />
+                    <Image className="rounded-4 h-[27px] w-[27px] object-cover" height={27} width={27} src={'/delete/person.jpeg'} alt='person' />
                     <p className="text-13_600">{name}</p>
                 </div>
                 <p className="h-auto text-12_500">
