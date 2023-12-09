@@ -161,3 +161,8 @@ canvas {
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+
+.clmp {
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+}

@@ -7,7 +7,7 @@ export default function AchievmentField() {
                 Ачивки
             </h3>
 
-            <div className="w-full pl-4 h-full gap-2 overflow-x-scroll flex scroll-hidden">
+            <div className="w-full pl-4 h-[450px] gap-2 overflow-x-scroll flex scroll-hidden">
                 <AchievmentCard image="f" name="Анвар Кайратович" achieveName="Новый ранг ( --- )"/>
                 <AchievmentCard image="f" name="Стас Ли" achieveName="Новый ранг ( --- )"/>
                 <AchievmentCard image="f" name="Лев Лавров" achieveName="Новый ранг ( --- )"/>

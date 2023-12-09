@@ -38,12 +38,12 @@ const DIAGRAM_TITLES = ['productive', 'positive', 'result', 'strongest', 'beauty
 
 export default function DiagramsFieldOffice() {
     return (
-        <div className="bg-white rounded-6 h-[732px] sx_lg:h-[944px] p-6 ">
+        <div className="bg-white rounded-6 h-[527px] sx_lg:h-[740px] p-6 pt-3">
             <h4 className="text-heading-ss-bold">
                 Диаграммы отчёта
             </h4>
 
-            <div className="w-full h-full grid grid-cols-2 gap-9">
+            <div className="w-full h-full grid grid-cols-2 gap-3 pt-3">
                 {
                     COLORS.map((e, index) => (
                         <DoughnutChart key={e.color2 + index} name={''}

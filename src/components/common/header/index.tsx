@@ -64,7 +64,7 @@ export default function Header({ title, isUnAuth }: { title?: string, isUnAuth?:
 
     return (
         <>
-            <header className="bg-transparent s_lg:bg-bg-gray w-full h-[100px] bg-black sm:h-[75px] overflow-hidden">
+            <header className="bg-transparent s_lg:bg-bg-gray w-full h-[90px] bg-black sm:h-[75px] overflow-hidden">
                 <div className="mx-auto w-full max-w-[1400px] h-full flex justify-between items-center">
                     <Link href={'/'} className="flex items-center gap-2 px-6">
                         <Image className="md:h-[27px] md:w-[27px]" height={48} width={48} src={'/logo.svg'} alt='RECs' />

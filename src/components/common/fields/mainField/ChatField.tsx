@@ -47,7 +47,7 @@ export default function ChatField() {
     }, [messages])
     return (
         <div className="min-w-[282px] w-[390px] rounded-6 lg:w-full h-[300px] bg-white overflow-hidden">
-            <h3 className="mt-3 ml-4 absolute text-heading-s s_lg:text-heading-ss-bold">
+            <h3 className="mt-3 ml-3 absolute text-heading-s s_lg:text-heading-ss-bold bg-white p-2 rounded-4">
                 Чат
             </h3>
 
