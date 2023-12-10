@@ -26,7 +26,7 @@ export default function HeaderMenu() {
             animate='visible'
         >
             <div className="flex flex-col items-end gap-4 text-15_600">
-                <Link href={'/personalOffice'}>
+                <Link href={'/profile'}>
                     Профиль
                 </Link>
                 {

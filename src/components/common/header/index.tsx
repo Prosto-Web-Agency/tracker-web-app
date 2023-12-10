@@ -14,16 +14,20 @@ export type TTabs = {
 export const TABS: TTabs[] = [
 
     {
-        link: '/personalOffice',
+        link: '/profile',
         title: 'Подписка',
     },
     {
-        link: '/personalOffice',
+        link: '/profile',
         title: 'Трекер',
     },
     {
-        link: '/personalOffice',
+        link: '/profile',
         title: 'Гайды',
+    },
+    {
+        link: '/balance',
+        title: 'Баланс',
     },
 ]
 
@@ -83,7 +87,7 @@ export default function Header({ title, isUnAuth }: { title?: string, isUnAuth?:
                                 ))
                             }
                         </div>
-                        <Link href={'/personalOffice'}>
+                        <Link href={'/profile'}>
                             <Image className="w-[48px] h-[48px] rounded-10" height={48} width={48} src={'/delete/person.jpeg'} alt='person' />
                         </Link>
                     </div>

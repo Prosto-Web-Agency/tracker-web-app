@@ -1,11 +1,39 @@
 import SwiperComponent from "@/components/common/swiper";
+import {useEffect, useState} from "react";
+import classNames from "classnames";
 
 export default function AchievmentField() {
+    const [hover, setHover] = useState(false);
+
+    useEffect(() => {
+        console.log('h')
+    }, [hover])
+
     return (
-        <div className="w-[282px] relative lg:w-full h-[300px] bg-white overflow-hidden bg-orange-class">
+        <div
+            onMouseOver={() => setHover(true)}
+            onMouseLeave={() => setHover(false)}
+            className="w-[282px] relative lg:w-full h-[300px] bg-white overflow-hidden bg-orange-class"
+        >
             <h3 className="text-heading-s mt-3 ml-4 text-white s_lg:text-heading-ss-bold pb-2">
                 Ранги
             </h3>
+
+            <button
+                id="next-button"
+                className={classNames("z-[900] transition bg-white rounded-5 top-[calc(50%-20px)] right-[2%] absolute w-[40px] h-[40px]", {
+                    ['opacity-1']: hover,
+                    ['opacity-0']: !hover
+                })}
+            />
+
+            <button
+                id="prev-button"
+                className={classNames("z-[900] transition bg-white rounded-5 top-[calc(50%-20px)] left-[2%] absolute w-[40px] h-[40px]", {
+                    ['opacity-1']: hover,
+                    ['opacity-0']: !hover
+                })}
+            />
 
             <SwiperComponent
                 swiperCards={[
@@ -31,8 +59,7 @@ export default function AchievmentField() {
                     },
                 ]}
                 cardType="achievement"
-            >
-            </SwiperComponent>
+            />
         </div>
     )
 }

@@ -14,23 +14,15 @@ import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
 export default function SwiperComponent<T>({ swiperCards, cardType }: { swiperCards: T[], cardType: 'achievement' }) {
-    const swiper = useSwiper();
-
     return (
         <>
-            <button
-                className="z-[900] bg-white rounded-5 top-[calc(50%-20px)] right-[2%] absolute w-[40px] h-[40px]"
-                onClick={() => swiper.slideNext()}
-            />
-
-            <button
-                className="z-[900] bg-white rounded-5 top-[calc(50%-20px)] left-[2%] absolute w-[40px] h-[40px]"
-                onClick={() => swiper.slidePrev()}
-            />
-
             <Swiper
                 // install Swiper modules
                 modules={[Navigation, Pagination, Scrollbar, A11y]}
+                navigation={{
+                    nextEl: '#next-button',
+                    prevEl: '#prev-button'
+                }}
                 spaceBetween={20}
                 slidesPerView={1}
                 loop={true}
