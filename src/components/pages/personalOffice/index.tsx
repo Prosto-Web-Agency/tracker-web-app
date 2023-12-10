@@ -49,17 +49,17 @@ export default function PersonalOffice() {
 
 
                 <div className="sx_lg:hidden flex flex-col gap-6 row-span-3 min-w-[384px]">
-                    <GraphFieldOffice name="Название графика" params={[]} />
-                    <GraphFieldOffice name="Название графика" params={[]} />
-                    <GraphFieldOffice name="Название графика" params={[]} />
+                    <GraphFieldOffice color={'#6ABDDB'} name="График продуктивности" params={[]} />
+                    <GraphFieldOffice color={'#97C263'} name="График отдыха" params={[]} />
+                    <GraphFieldOffice color={'#F6CC56'} name="Эмоциональное состояние" params={[]} />
                 </div>
             </div>
 
             <div className="sx_lg:grid grid-cols-2 px-10 bg-bg-gray p-6 pt-0 hidden flex-col gap-6 row-span-3 min-w-[384px] ss_lg:hidden">
                 <MetrisFieldOffice />
-                <GraphFieldOffice name="Название графика" params={[]} />
-                <GraphFieldOffice name="Название графика" params={[]} />
-                <GraphFieldOffice name="Название графика" params={[]} />
+                <GraphFieldOffice color={'#6ABDDB'} name="График продуктивности" params={[]} />
+                <GraphFieldOffice color={'#97C263'} name="График отдыха" params={[]} />
+                <GraphFieldOffice color={'#F6CC56'} name="Эмоциональное состояние" params={[]} />
             </div>
 
             <div className="hidden ss_lg:block bg-bg-gray w-full px-4 pb-6">

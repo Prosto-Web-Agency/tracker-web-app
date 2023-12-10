@@ -31,25 +31,25 @@ enum Tabs {
   Volume = "Volume",
 }
 
-function getGradient() {
+function getGradient(color: string) {
   const canvas = document.getElementById("canvas") as HTMLCanvasElement;
 
   const ctx = canvas.getContext("2d");
   if (!ctx) return;
   const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-  gradient.addColorStop(0, "rgba(161, 88, 255, 0.52)");
-  gradient.addColorStop(1, "rgba(78, 79, 255, .03)");
+  gradient.addColorStop(0, color);
+  gradient.addColorStop(1, color + '01');
 
   return gradient;
 }
 
-const options = {
+const options = (color: string) => ({
   plugins: {
     legend: true,
     tooltip: {
       enabled: false,
       position: "nearest",
-      external: externalTooltipHandler,
+      external: (context: any) => externalTooltipHandler(context, color),
     },
   },
   interaction: {
@@ -70,7 +70,7 @@ const options = {
       display: false,
     },
   },
-};
+});
 
 const LABELS: Array<string> = [];
 LABELS.length = 29;
@@ -81,17 +81,17 @@ const POINTS = [
   8, 10, 17, 16, 24, 34, 22, 25, 23, 27,
 ];
 
-const CHART_DATASET = () => ({
+const CHART_DATASET = (color: string) => ({
   labels: LABELS,
   datasets: [
     {
       data: POINTS,
       fill: "start",
-      pointHoverBackgroundColor: "rgba(78, 79, 255, 1)",
+      pointHoverBackgroundColor: color,
       pointHoverBorderColor: "rgba(255, 255, 255, 1)",
-      backgroundColor: getGradient(),
+      backgroundColor: getGradient(color),
       hoverBorderWidth: 0.1,
-      borderColor: "#9D5AFF",
+      borderColor: color,
       borderWidth: 1,
       tension: 0.5,
       pointDotRadius: 1,
@@ -102,13 +102,13 @@ const CHART_DATASET = () => ({
   ],
 });
 
-export function ChartComponent() {
+export function ChartComponent({ color }: { color: string }) {
   const [chartData, setChartData] = useState<any>({ datasets: [] });
   const [chartOptions, setChartOptions] = useState<any>({});
 
   useEffect(() => {
-    setChartData(CHART_DATASET());
-    setChartOptions(options);
+    setChartData(CHART_DATASET(color));
+    setChartOptions(options(color));
   }, []);
 
   return (

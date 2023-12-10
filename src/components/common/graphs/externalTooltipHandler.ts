@@ -27,14 +27,14 @@ export const getOrCreateTooltip = (chart: any) => {
   return tooltipEl;
 };
 
-const pointElement = () => {
+const pointElement = (color: string) => {
   const point = document.createElement("div");
   point.style.width = "18px";
   point.style.height = "18px";
   point.style.borderRadius = "9px";
   point.style.transition = "1s";
   point.style.border = "2px solid white";
-  point.style.background = "rgba(78, 79, 255, 1)";
+  point.style.background = color;
   point.style.position = "absolute";
   point.style.top = 62 + "px";
   point.style.left = 80 + "px";
@@ -42,7 +42,7 @@ const pointElement = () => {
   return point;
 };
 
-export const externalTooltipHandler = (context: any) => {
+export const externalTooltipHandler = (context: any, color: string) => {
   // Tooltip Element
   const { chart, tooltip } = context;
   const tooltipEl = getOrCreateTooltip(chart);
@@ -105,7 +105,7 @@ export const externalTooltipHandler = (context: any) => {
     tableRoot.appendChild(tableBody);
 
     tableRoot.appendChild(
-      pointElement()
+      pointElement(color)
     );
   }
 
