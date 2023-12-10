@@ -39,10 +39,10 @@ export default function InsaitField({ dataInsaits }: TDataInsaits) {
             </div>
 
             <ModalInsait header={modalDataInsait.header}
-                name={modalDataInsait.name}
-                text={modalDataInsait.text}
-                open={modalDataInsait.open}
-                setModalDataInsait={setModalDataInsait}
+                         name={modalDataInsait.name}
+                         text={modalDataInsait.text}
+                         open={modalDataInsait.open}
+                         setModalDataInsait={setModalDataInsait}
             />
         </div>
     )

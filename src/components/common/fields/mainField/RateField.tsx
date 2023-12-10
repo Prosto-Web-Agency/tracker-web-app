@@ -22,11 +22,9 @@ export default function RateField({ rateData }: TRateData) {
             </h3>
 
             <div className="flex flex-wrap rounded-t-5 w-full h-full pb-12 s_lg:pb-5 justify-between overflow-y-scroll gap-4 scroll-hidden xx_lg:justify-center">
-
-
                 {
                     rateData.map((e, index) => (
-                        <button key={e + index} className="w-full max-w-[278px] xx_lg:max-w-full" onClick={() => (
+                        <button key={e + index} className="w-full" onClick={() => (
                             setModalDataUser({
                                 name: e,
                                 position: (String(index + 1)),

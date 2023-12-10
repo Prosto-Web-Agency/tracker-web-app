@@ -11,8 +11,7 @@ export default function PersonalOffice() {
     return (
 
         <section className="min-h-[screen] mx-auto max-w-[1400px] w-full overflow-hidden">
-            <div className="w-full ss_lg:flex ss_lg:flex-col gap-6 h-[calc(100%-85px)] bg-bg-gray grid grid-cols-3 sx_lg:grid-cols-2 rounded-9 sx_lg:rounded-[0] sx_lg:rounded-t-9 s_lg: p-6 sx_lg:pb-6 max-w-[1400px] mx-auto s_lg:rounded-t-[0px] s_lg:pt-0 s_lg:p-6 ss_lg:p-4 ss_lg:gap-4">
-
+            <div className="w-full ss_lg:flex ss_lg:flex-col gap-6 h-[calc(100vh-90px)] relative bg-bg-gray grid grid-cols-3 sx_lg:grid-cols-2 rounded-9 sx_lg:rounded-[0] sx_lg:rounded-t-9 s_lg: p-6 sx_lg:pb-6 max-w-[1400px] mx-auto s_lg:rounded-t-[0px] s_lg:pt-0 s_lg:p-6 ss_lg:p-4 ss_lg:gap-4">
                 <div className="row-span-3 flex flex-col gap-6">
                     <div className="w-full">
                         <PersonField />
@@ -54,7 +53,6 @@ export default function PersonalOffice() {
                     <GraphFieldOffice name="Название графика" params={[]} />
                     <GraphFieldOffice name="Название графика" params={[]} />
                 </div>
-
             </div>
 
             <div className="sx_lg:grid grid-cols-2 px-10 bg-bg-gray p-6 pt-0 hidden flex-col gap-6 row-span-3 min-w-[384px] ss_lg:hidden">
