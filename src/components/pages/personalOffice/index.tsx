@@ -1,3 +1,5 @@
+'use client'
+
 import AchieveFieldOffice from "@/components/common/fields/officeField/AchieveFieldOffice";
 import DiagrammsPhoneField from "@/components/common/fields/officeField/DiagrammsPhoneField";
 import DiagramsFieldOffice from "@/components/common/fields/officeField/DiagramsField";
@@ -5,9 +7,22 @@ import GraphFieldOffice from "@/components/common/fields/officeField/GrapgFieldO
 import MetrisFieldOffice from "@/components/common/fields/officeField/MetricsField";
 import PersonField from "@/components/common/fields/officeField/PersonField";
 import SeccessGraphPhoneOffice from "@/components/common/fields/officeField/SuccessGraphOfficePhone";
+import { getProductivityThunk } from "@/store/thunks/officeThunk";
 import Link from "next/link";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function PersonalOffice() {
+    const dispatch = useDispatch();
+
+    //@ts-ignore
+    const productivity = useSelector(state => state.OfficePage?.productivuty)
+
+    useEffect(() => {
+        //@ts-ignore
+        dispatch(getProductivityThunk())
+    }, []);
+    
     return (
 
         <section className="min-h-[screen] mx-auto max-w-[1400px] w-full overflow-hidden">
@@ -49,17 +64,17 @@ export default function PersonalOffice() {
 
 
                 <div className="sx_lg:hidden flex flex-col gap-6 row-span-3 min-w-[384px]">
-                    <GraphFieldOffice color={'#6ABDDB'} name="График продуктивности" params={[]} />
-                    <GraphFieldOffice color={'#97C263'} name="График отдыха" params={[]} />
-                    <GraphFieldOffice color={'#F6CC56'} name="Эмоциональное состояние" params={[]} />
+                    <GraphFieldOffice color={'#6ABDDB'} name="График продуктивности" params={productivity} />
+                    <GraphFieldOffice color={'#97C263'} name="График отдыха" params={productivity} />
+                    <GraphFieldOffice color={'#F6CC56'} name="Эмоциональное состояние" params={productivity} />
                 </div>
             </div>
 
             <div className="sx_lg:grid grid-cols-2 px-10 bg-bg-gray p-6 pt-0 hidden flex-col gap-6 row-span-3 min-w-[384px] ss_lg:hidden">
                 <MetrisFieldOffice />
-                <GraphFieldOffice color={'#6ABDDB'} name="График продуктивности" params={[]} />
-                <GraphFieldOffice color={'#97C263'} name="График отдыха" params={[]} />
-                <GraphFieldOffice color={'#F6CC56'} name="Эмоциональное состояние" params={[]} />
+                <GraphFieldOffice color={'#6ABDDB'} name="График продуктивности" params={productivity} />
+                <GraphFieldOffice color={'#97C263'} name="График отдыха" params={productivity} />
+                <GraphFieldOffice color={'#F6CC56'} name="Эмоциональное состояние" params={productivity} />
             </div>
 
             <div className="hidden ss_lg:block bg-bg-gray w-full px-4 pb-6">

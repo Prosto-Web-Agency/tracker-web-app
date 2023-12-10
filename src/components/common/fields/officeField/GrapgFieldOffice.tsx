@@ -1,9 +1,12 @@
-import {ChartComponent} from "@/components/common/graphs/Chart";
+'use client'
+
+import { ChartComponent } from "@/components/common/graphs/Chart";
+import React, { useEffect, useState } from "react";
 
 export type TGraphField = {
     name: string;
     color: string;
-    params: []
+    params: { label: [], data: [] }
 }
 
 export default function GraphFieldOffice({ name, params, color }: TGraphField) {
@@ -13,9 +16,9 @@ export default function GraphFieldOffice({ name, params, color }: TGraphField) {
                 {name}
             </h4>
 
-            <div>
-                <ChartComponent color={color} />
-            </div>
+            {
+                params.data.length ? <ChartComponent params={params} color={color} /> : null
+            }
         </div>
     )
 }

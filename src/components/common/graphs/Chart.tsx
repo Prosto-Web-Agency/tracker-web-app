@@ -16,13 +16,13 @@ import { externalTooltipHandler } from "./externalTooltipHandler";
 import Image from "next/image";
 
 ChartJS.register(
-    CategoryScale, // x-axis
-    LinearScale, // y-axis
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Filler
+  CategoryScale, // x-axis
+  LinearScale, // y-axis
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Filler
 );
 
 enum Tabs {
@@ -72,14 +72,8 @@ const options = (color: string) => ({
   },
 });
 
-const LABELS: Array<string> = [];
-LABELS.length = 29;
-LABELS.fill("Mar 7, 2023, 12:");
-
-const POINTS = [
-  9, 10, 12, 19, 10, 8, 10, 17, 16, 24, 34, 22, 25, 23, 27, 9, 10, 12, 19, 10,
-  8, 10, 17, 16, 24, 34, 22, 25, 23, 27,
-];
+let LABELS: Array<string> = [];
+let POINTS: Array<number> = [];
 
 const CHART_DATASET = (color: string) => ({
   labels: LABELS,
@@ -102,27 +96,39 @@ const CHART_DATASET = (color: string) => ({
   ],
 });
 
-export function ChartComponent({ color }: { color: string }) {
+export function ChartComponent({ color, params }: { color: string, params: {label: [], data: []} }) {
   const [chartData, setChartData] = useState<any>({ datasets: [] });
   const [chartOptions, setChartOptions] = useState<any>({});
 
   useEffect(() => {
     setChartData(CHART_DATASET(color));
     setChartOptions(options(color));
+    // setDataGraph({
+    //   label: [...params?.label],
+    //   data: [...params?.data],
+    // })
+    //@ts-ignore
+    LABELS = [...params?.label]
+    //@ts-ignore
+    POINTS = [...params?.data]
   }, []);
 
+  useEffect(() => {
+    setChartData(CHART_DATASET(color));
+  }, [LABELS]);
+
   return (
-      <section className="relative flex h-full max-h-[574px] min-h-[210px] w-full shrink items-end justify-center rounded-2 bg-secondary">
-        <Line id={"canvas"} data={chartData} options={chartOptions} />
-        <section className="absolute -z-[1] h-full w-full overflow-hidden">
-          <Image
-              className="w-full"
-              src="/chartBackground.svg"
-              alt="chart"
-              width={1000}
-              height={1000}
-          />
-        </section>
+    <section className="relative flex h-full max-h-[574px] min-h-[210px] w-full shrink items-end justify-center rounded-2 bg-secondary">
+      <Line id={"canvas"} data={chartData} options={chartOptions} />
+      <section className="absolute -z-[1] h-full w-full overflow-hidden">
+        <Image
+          className="w-full"
+          src="/chartBackground.svg"
+          alt="chart"
+          width={1000}
+          height={1000}
+        />
       </section>
+    </section>
   );
 }
