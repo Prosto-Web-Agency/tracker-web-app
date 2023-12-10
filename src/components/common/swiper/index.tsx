@@ -3,9 +3,9 @@ import 'swiper/css';
 import AchievmentCard from "@/components/common/cards/mainPageCards/AchievmentCard";
 
 // import Swiper core and required modules
-import { Navigation, Pagination, Scrollbar, A11y } from 'swiper/modules';
+import { Navigation, Pagination, Scrollbar, A11y, Autoplay } from 'swiper/modules';
 
-import {Swiper, SwiperSlide, useSwiper} from 'swiper/react';
+import {Swiper, SwiperSlide } from 'swiper/react';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -18,11 +18,12 @@ export default function SwiperComponent<T>({ swiperCards, cardType }: { swiperCa
         <>
             <Swiper
                 // install Swiper modules
-                modules={[Navigation, Pagination, Scrollbar, A11y]}
+                modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
                 navigation={{
                     nextEl: '#next-button',
                     prevEl: '#prev-button'
                 }}
+                autoplay={true}
                 spaceBetween={20}
                 slidesPerView={1}
                 loop={true}
