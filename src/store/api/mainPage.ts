@@ -11,4 +11,12 @@ export const mainPageApi = {
         return axios.get(url + `top_user`)
             .then((response) => (response))
     },
+    getUserDataApi(slack: string) {
+        return axios.get(url + 'get_user_personal_data', {
+            params: {
+                login: slack
+            }
+        })
+            .then(res => res)
+    }
 }

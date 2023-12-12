@@ -16,20 +16,14 @@ import { externalTooltipHandler } from "./externalTooltipHandler";
 import Image from "next/image";
 
 ChartJS.register(
-  CategoryScale, // x-axis
-  LinearScale, // y-axis
+  CategoryScale,
+  LinearScale,
   PointElement,
   LineElement,
   Title,
   Tooltip,
   Filler
 );
-
-enum Tabs {
-  Price = "Price",
-  TVL = "TVL",
-  Volume = "Volume",
-}
 
 function getGradient(color: string) {
   const canvas = document.getElementById("canvas") as HTMLCanvasElement;

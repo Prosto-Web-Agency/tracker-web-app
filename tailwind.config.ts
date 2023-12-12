@@ -14,6 +14,7 @@ const config: Config = {
       colors: {
         'tag-gray': '#8C8C8C',
         'bg-gray': '#F3F3F1',
+        gradient: 'linear-gradient(90.18deg, #E01D31 0.78%, #FEA50F 100.48%)',
       },
       backgroundPosition: {
         top_bg: 'top -60px',

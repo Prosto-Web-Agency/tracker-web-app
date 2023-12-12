@@ -7,7 +7,7 @@ import NewsField from "@/components/common/fields/mainField/NewsField";
 import RateField from "@/components/common/fields/mainField/RateField";
 import { registrationApi } from '@/store/api/registration'
 import { useEffect } from "react";
-import { getInsaitsDataThunk, getLeadersDataThunk } from "@/store/thunks/mainPageThunk";
+import { getInsaitsDataThunk, getLeadersDataThunk, getUserDataBySlack } from "@/store/thunks/mainPageThunk";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function MainPage() {
@@ -18,11 +18,13 @@ export default function MainPage() {
     const { main_leaderboard } = useSelector(state => state.mainPage)
 
     useEffect(() => {
-        registrationApi.getTokenRequest('1')
+        // registrationApi.getTokenRequest('1')
         //@ts-ignore
         dispatch(getInsaitsDataThunk())
         //@ts-ignore
         dispatch(getLeadersDataThunk())
+        //@ts-ignore
+        dispatch(getUserDataBySlack('lunivilen'))
     }, []);
 
     return (
