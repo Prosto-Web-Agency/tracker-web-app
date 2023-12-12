@@ -5,7 +5,6 @@ import ChatField from "@/components/common/fields/mainField/ChatField";
 import InsaitField from "@/components/common/fields/mainField/InsiteField";
 import NewsField from "@/components/common/fields/mainField/NewsField";
 import RateField from "@/components/common/fields/mainField/RateField";
-import { registrationApi } from '@/store/api/registration'
 import { useEffect } from "react";
 import { getInsaitsDataThunk, getLeadersDataThunk, getUserDataBySlack } from "@/store/thunks/mainPageThunk";
 import { useDispatch, useSelector } from "react-redux";

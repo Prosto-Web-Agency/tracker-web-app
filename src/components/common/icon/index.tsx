@@ -3,6 +3,8 @@ import React from 'react';
 export const TRIcons = {
     tg: '/icons/tg.svg',
     inst: '/icons/inst.svg',
+    tg_white: '/icons/tg-white.svg',
+    inst_white: '/icons/inst-white.svg',
     adviser: '/icons/ranks/adviser.svg',
     ambassador: '/icons/ranks/ambassador.svg',
     expert: '/icons/ranks/expert.svg',

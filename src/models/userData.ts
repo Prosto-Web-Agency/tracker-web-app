@@ -1,10 +1,9 @@
 export type TUserData = {
     first_name: string;
-    instagram: string;
-    rank_color: string;
-    rank_name: string;
     surname: string;
+    instagram: string;
     tg_username: string;
+    login: string;
 };
 
 export type TUserCommonData = {

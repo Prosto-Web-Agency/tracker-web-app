@@ -36,7 +36,8 @@ const config: Config = {
         'tag-gray': '#8C8C8C',
       },
       backgroundImage: {
-        'card-hover': 'linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8))'
+        'card-hover': 'linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8))',
+        gradient: 'linear-gradient(90deg, #E12131 0%, #FEA310 100%)'
       },
       borderColor: {
         orange: 'rgba(255, 100, 51, 1)',

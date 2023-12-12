@@ -2,12 +2,12 @@
 
 import { thunk } from "redux-thunk"
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import MainPageReducer from "./reducers/MainPagereducer";
+import MainPageReducer from "./reducers/MainPageReducer";
 import OfficeReducer from "./reducers/OfficeReducer";
 
 let reducers = combineReducers({
     mainPage: MainPageReducer,
-    OfficePage: OfficeReducer,
+    officePage: OfficeReducer,
 });
 
 export const store = configureStore({

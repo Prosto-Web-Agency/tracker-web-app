@@ -1,4 +1,5 @@
 import Image from "next/image"
+import SecondaryButton from "../../buttons/secondary"
 
 export default function PersonField() {
     return (
@@ -9,14 +10,15 @@ export default function PersonField() {
                     LVL: King
                 </div>
             </div>
+
             <div className="flex flex-col justify-between p-6">
                 <div className="text-heading-ss">
                     <p>Лев</p>
                     <p>Лавров</p>
                 </div>
-                <div className="text-text-sm">
-                    <p>Tg: @Lion_arr</p>
-                    <p>inst: @levlavrov</p>
+                <div className="flex flex-col gap-1">
+                    <SecondaryButton className="flex gap-1 rounded-5 px-4 justify-center items-center h-10" onClick={() => undefined} leftIcon="tg_white" text="tg" />
+                    <SecondaryButton className="flex gap-1 rounded-5 px-4 justify-center items-center h-10" onClick={() => undefined} leftIcon="inst_white" text="inst" />
                 </div>
             </div>
         </div>

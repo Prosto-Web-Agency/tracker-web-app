@@ -16,7 +16,7 @@ export default function PersonalOffice() {
     const dispatch = useDispatch();
 
     //@ts-ignore
-    const productivity = useSelector(state => state.OfficePage?.productivuty)
+    const productivity = useSelector(state => state.officePage?.productivuty)
 
     useEffect(() => {
         //@ts-ignore

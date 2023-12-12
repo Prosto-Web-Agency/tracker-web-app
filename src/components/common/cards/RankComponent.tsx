@@ -20,9 +20,12 @@ enum Ranks {
 
 export default function RankComponent({ rank }: TRank) {
     return (
-        <div className="w-full flex justify-center bg-white items-center pr-6 h-[71px] rounded-full border-2 border-white">
-            <TRIcon iconName={rank} edgeLength={32} />
-            <h4 className="text-heading-ss-bold text-black">
+        <div className="w-full flex justify-center relative bg-white items-center py-2 h-[82px] rounded-full">
+            <div className="absolute left-2">
+                <TRIcon iconName={rank} edgeLength={68} />
+            </div>
+
+            <h4 className="text-heading-s text-black">
                 { Ranks[rank] }
             </h4>
         </div>
