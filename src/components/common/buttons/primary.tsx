@@ -1,10 +1,6 @@
 import React from 'react';
 import TRIcon, { TRIcons } from '../icon';
 
-interface TRIcons {
-    [key: string]: React.ReactNode;
-}
-
 interface PrimaryButtonProps {
     text: string;
     onClick: () => void;
@@ -15,10 +11,6 @@ interface PrimaryButtonProps {
 }
 
 const PrimaryButton: React.FC<PrimaryButtonProps> = ({ text, onClick, className, edgeLength, leftIcon, rightIcon }) => {
-    const TRIcons: TRIcons = {
-        // Define your TRIcons here
-    };
-
     return (
         <button className={`h-[50px] w-full rounded-4 bg-white ${className}`} onClick={onClick}>
             {leftIcon && <TRIcon edgeLength={edgeLength} iconName={leftIcon}/>}

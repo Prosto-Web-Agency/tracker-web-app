@@ -1,16 +1,28 @@
 import Image from "next/image"
 import PrimaryButton from "../buttons/primary"
+import Link from "next/link";
 
 interface IModalUser {
     name: string;
     position: string;
+    tg_username: string;
+    instagram: string;
     open?: boolean;
     setModalData?: any;
     userStatus: string;
     userAchievements: string[];
 }
 
-export default function ModalUser({ name, position, open, setModalData, userStatus, userAchievements }: IModalUser) {
+export default function ModalUser({
+    name,
+    position,
+    tg_username,
+    instagram,
+    open,
+    setModalData,
+    userStatus,
+    userAchievements
+}: IModalUser) {
 
     return (
         <div
@@ -54,20 +66,24 @@ export default function ModalUser({ name, position, open, setModalData, userStat
                     </p>
 
                     <div className="flex gap-2 pt-3">
-                        <PrimaryButton
-                            text=""
-                            edgeLength={32}
-                            leftIcon="tg"
-                            className="px-6 rounded-6"
-                            onClick={() => setModalData({ name: '', position: '', open: false })}
-                        />
-                        <PrimaryButton
-                            text=""
-                            edgeLength={32}
-                            leftIcon="inst"
-                            className="px-6 rounded-6"
-                            onClick={() => setModalData({ name: '', position: '', open: false })}
-                        />
+                        <Link href={`https://t.me/${tg_username}`}>
+                            <PrimaryButton
+                                text=""
+                                edgeLength={32}
+                                leftIcon="tg"
+                                className="px-6 rounded-6"
+                                onClick={() => undefined}
+                            />
+                        </Link>
+                        <Link href={`https://www.instagram.com/${instagram}`}>
+                            <PrimaryButton
+                                text=""
+                                edgeLength={32}
+                                leftIcon="inst"
+                                className="px-6 rounded-6"
+                                onClick={() => undefined}
+                            />
+                        </Link>
                     </div>
                 </div>
 

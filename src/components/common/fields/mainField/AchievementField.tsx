@@ -13,9 +13,9 @@ export default function AchievmentField() {
         <div
             onMouseOver={() => setHover(true)}
             onMouseLeave={() => setHover(false)}
-            className="w-[282px] relative lg:w-full h-[300px] bg-white overflow-hidden bg-orange-class"
+            className="w-[33%] relative lg:w-full h-[300px] py-6 bg-white overflow-hidden bg-orange-class"
         >
-            <h3 className="text-heading-s mt-3 ml-4 text-white s_lg:text-heading-ss-bold pb-2">
+            <h3 className="text-heading-s px-6 text-white s_lg:text-heading-ss-bold">
                 Ранги
             </h3>
 

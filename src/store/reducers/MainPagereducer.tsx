@@ -1,5 +1,8 @@
+import { TUserData } from "@/models/userData";
+
 const SET_INSAITS = 'SET_INSAITS';
 const SET_LEADERBOARD = 'SET_LEADERBOARD';
+const SET_SELECTED_USER_DATA = 'SET_SELECTED_USER_DATA';
 
 type MainPageT = {
     main_leaderboard: string[],
@@ -7,6 +10,7 @@ type MainPageT = {
     main_insaits: string[];
     main_live_success_feed: object[];
     main_live_chat_flood: object[];
+    selectedUserData: TUserData | object;
 }
 
 const initialState: MainPageT = {
@@ -29,6 +33,7 @@ const initialState: MainPageT = {
     ],
     main_live_success_feed: [],
     main_live_chat_flood: [],
+    selectedUserData: {}
 };
 
 let MainPageReducer = (state = initialState, action: any) => {
@@ -43,6 +48,11 @@ let MainPageReducer = (state = initialState, action: any) => {
                 ...state,
                 main_leaderboard: [...action.data]
             }
+        case 'SET_SELECTED_USER_DATA':
+            return {
+                ...state,
+                selectedUserData: action.data
+            }
         default:
             return state
     }
@@ -50,5 +60,6 @@ let MainPageReducer = (state = initialState, action: any) => {
 
 export let updateInsaits = (data: []) => ({ type: SET_INSAITS, data })
 export let updateLeaderboard = (data: []) => ({ type: SET_LEADERBOARD, data })
+export let setSelectedUserData = (data: TUserData | object) => ({ type: SET_SELECTED_USER_DATA, data })
 
 export default MainPageReducer;

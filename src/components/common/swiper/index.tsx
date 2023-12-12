@@ -24,9 +24,14 @@ export default function SwiperComponent<T>({ swiperCards, cardType }: { swiperCa
                     prevEl: '#prev-button'
                 }}
                 autoplay={true}
-                spaceBetween={20}
+                spaceBetween={24}
                 slidesPerView={1}
                 loop={true}
+                style={{
+                    paddingLeft: '24px',
+                    paddingRight: '24px',
+                    height: '100%'
+                }}
             >
                 {
                     swiperCards.map((card, index) => (

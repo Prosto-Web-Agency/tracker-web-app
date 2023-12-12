@@ -8,13 +8,16 @@ export type TAchievCard = {
 
 export default function AchievmentCard({image, name, achieveName}: TAchievCard) {
     return (
-        <div className="w-[230px] min-w-[230px] pt-2 pb-6 h-[240px] flex flex-col justify-between items-center">
-            <Image width={90} height={90} src={'/delete/mn.png'} alt='person' />
-            <div className="text-white text-center text-16_700 py-2">
-                <h5>Поздравляем</h5>
-                <p>{name}</p>
+        <div className="w-full min-w-[230px] pt-2 pb-6 h-full flex flex-col justify-between items-center">
+            <div className="flex flex-col items-center gap-2">
+                <Image width={90} height={90} src={'/delete/mn.png'} alt='person' />
+                <div className="text-white text-center text-16_700 py-2">
+                    <h5>Поздравляем</h5>
+                    <p>{name}</p>
+                </div>
             </div>
-            <div className="bg-white h-[50px] rounded-full text-17_500 flex justify-center items-center px-9">
+
+            <div className="bg-white w-full h-[50px] rounded-full text-17_500 flex justify-center items-center px-9">
                 {achieveName}
             </div>
         </div>

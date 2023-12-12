@@ -11,12 +11,32 @@ export const mainPageApi = {
         return axios.get(url + `top_user`)
             .then((response) => (response))
     },
-    getUserDataApi(slack: string) {
+    getUserPersonalDataApi(slack: string) {
         return axios.get(url + 'get_user_personal_data', {
             params: {
                 login: slack
             }
         })
-            .then(res => res)
-    }
+            .then(res => {
+                if (res.status === 200) {
+                    return res.data
+                }
+
+                return undefined;
+            })
+    },
+    getUserCommonDataApi(slack: string) {
+        return axios.get(url + 'user_pop_up', {
+            params: {
+                login: slack
+            }
+        })
+            .then(res => {
+                if (res.status === 200) {
+                    return res.data[0]
+                }
+
+                return undefined;
+            })
+        }
 }

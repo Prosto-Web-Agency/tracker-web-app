@@ -1,11 +1,9 @@
 'use client'
 
 import { useEffect, useState, useRef } from "react";
-import NewsCard from "../../cards/mainPageCards/NewsCard";
+
 import { storage } from "@/utils/localStorage";
 import ChatCard, { TChatCard } from "../../cards/mainPageCards/ChatCard";
-import ChatTextField from "../../textFields/ChatTextField";
-import Image from "next/image";
 
 const ws = new WebSocket(`wss://v2224385.hosted-by-vdsina.ru/ws/chat/?token=${storage.get('AccessToken')}`)
 
@@ -53,18 +51,19 @@ export default function ChatField() {
 
             <div className="px-4 overflow-y-scroll pb-12 flex flex-col-reverse gap-4 scroll-hidden h-full w-full s_lg:gap-2">
                 {
-                    //@ts-ignore
                     messages.map((e, index) => (
-                        //@ts-ignore
-                        <ChatCard key={e.username + e.created_at + index} username={e.username} text={e.text} created_at={normDate(e.created_at)} />
+                        <ChatCard
+                            //@ts-ignore
+                            key={e.username + e.created_at + index}
+                            //@ts-ignore
+                            username={e.username}
+                            //@ts-ignore
+                            text={e.text}
+                            //@ts-ignore
+                            created_at={normDate(e.created_at)}
+                        />
                     ))
                 }
-            </div>
-            <div className="mt-1 px-4 pt-2 rounded-t-3 flex h-[50px] relative bg-white bottom-12">
-                <ChatTextField onChange={(mess) => setUserMessage(mess)} value={userMessage} type="text" />
-                <button onClick={sendMessage} className="pl-2 flex">
-                    <Image className="hover:scale-105 active:scale-[1.1] scale-1 duration-300" width={34} height={34} src={'/sendMessage.svg'} alt="send" />
-                </button>
             </div>
         </div>
     )

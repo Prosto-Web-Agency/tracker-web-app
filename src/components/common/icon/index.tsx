@@ -3,6 +3,11 @@ import React from 'react';
 export const TRIcons = {
     tg: '/icons/tg.svg',
     inst: '/icons/inst.svg',
+    adviser: '/icons/ranks/adviser.svg',
+    ambassador: '/icons/ranks/ambassador.svg',
+    expert: '/icons/ranks/expert.svg',
+    headliner: '/icons/ranks/headliner.svg',
+    resident: '/icons/ranks/resident.svg',
 }
 
 interface TRIconProps {

@@ -1,6 +1,6 @@
-import { log } from "console";
+import { TUserCommonData } from "@/models/userData";
 import { mainPageApi } from "../api/mainPage"
-import { updateInsaits, updateLeaderboard } from "../reducers/MainPagereducer";
+import { setSelectedUserData, updateInsaits, updateLeaderboard } from "../reducers/MainPagereducer";
 
 export const getInsaitsDataThunk = () => (dispatch: any) => {
     mainPageApi.getInsaitsApi()
@@ -17,8 +17,12 @@ export const getLeadersDataThunk = () => (dispatch: any) => {
 }
 
 export const getUserDataBySlack = (slack: string) => (dispatch: any) => {
-    mainPageApi.getUserDataApi(slack)
-        .then((res) => {
-            console.log(res);
+    mainPageApi.getUserCommonDataApi(slack)
+        .then((res: TUserCommonData | undefined) => {
+            if (res) {
+                dispatch(setSelectedUserData(res))
+            } else {
+                dispatch(setSelectedUserData({}))
+            }
         })
 }

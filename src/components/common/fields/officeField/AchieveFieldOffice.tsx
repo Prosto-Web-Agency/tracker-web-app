@@ -1,4 +1,4 @@
-import AchieveOfficeCard from "../../cards/OfficeCards/AchieveOfficeCard";
+import RankComponent from "../../cards/RankComponent";
 import RateCard from "../../cards/mainPageCards/RateCard";
 
 export default function AchieveFieldOffice() {
@@ -8,7 +8,7 @@ export default function AchieveFieldOffice() {
                 Ранги
             </h3>
             <div className="flex flex-col pt-10 rounded-t-5 w-full h-full pb-12 s_lg:pb-5 overflow-y-scroll gap-4 scroll-hidden justify-start">
-                <AchieveOfficeCard image="null" name="Название ранга" />
+                <RankComponent rank="expert" />
             </div>
         </div>
     )
