@@ -85,7 +85,7 @@ export const externalTooltipHandler = (context: any, color: string) => {
       td.style.borderWidth = String(0);
       td.style.fontSize = "14px";
 
-      const text = document.createTextNode("Price: " + body);
+      const text = document.createTextNode("Результат: " + body);
 
       td.appendChild(text);
       tr.appendChild(td);

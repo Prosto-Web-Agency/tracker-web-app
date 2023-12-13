@@ -13,7 +13,6 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 import { externalTooltipHandler } from "./externalTooltipHandler";
-import Image from "next/image";
 
 ChartJS.register(
   CategoryScale,
@@ -30,7 +29,7 @@ function getGradient(color: string) {
 
   const ctx = canvas.getContext("2d");
   if (!ctx) return;
-  const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+  const gradient = ctx.createLinearGradient(0, 0, 0, 170);
   gradient.addColorStop(0, color);
   gradient.addColorStop(1, color + '01');
 
@@ -39,7 +38,7 @@ function getGradient(color: string) {
 
 const options = (color: string) => ({
   plugins: {
-    legend: true,
+    legend: false,
     tooltip: {
       enabled: false,
       position: "nearest",
@@ -97,10 +96,6 @@ export function ChartComponent({ color, params }: { color: string, params: {labe
   useEffect(() => {
     setChartData(CHART_DATASET(color));
     setChartOptions(options(color));
-    // setDataGraph({
-    //   label: [...params?.label],
-    //   data: [...params?.data],
-    // })
     //@ts-ignore
     LABELS = [...params?.label]
     //@ts-ignore
@@ -112,17 +107,8 @@ export function ChartComponent({ color, params }: { color: string, params: {labe
   }, [LABELS]);
 
   return (
-    <section className="relative flex h-full max-h-[574px] min-h-[210px] w-full shrink items-end justify-center rounded-2 bg-secondary">
-      <Line id={"canvas"} data={chartData} options={chartOptions} />
-      <section className="absolute -z-[1] h-full w-full overflow-hidden">
-        <Image
-          className="w-full"
-          src="/chartBackground.svg"
-          alt="chart"
-          width={1000}
-          height={1000}
-        />
-      </section>
+    <section className="relative flex h-full max-h-[574px] min-h-[210px] pb-[70px] w-full shrink items-end justify-center rounded-2 bg-secondary">
+      <Line title="" id={"canvas"} data={chartData} options={chartOptions} />
     </section>
   );
 }
