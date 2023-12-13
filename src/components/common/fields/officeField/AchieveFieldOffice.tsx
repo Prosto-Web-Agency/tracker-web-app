@@ -1,5 +1,4 @@
 import RankComponent from "../../cards/RankComponent";
-import RateCard from "../../cards/mainPageCards/RateCard";
 
 export default function AchieveFieldOffice() {
     return (

@@ -14,7 +14,7 @@ export type TTabs = {
 export const TABS: TTabs[] = [
 
     {
-        link: '/profile',
+        link: '/subscription',
         title: 'Подписка',
     },
     {
