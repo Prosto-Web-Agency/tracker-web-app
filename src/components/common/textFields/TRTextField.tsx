@@ -1,9 +1,9 @@
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField from '@mui/material/TextField';
 import { type ReactElement } from 'react';
-import { type QUTextFieldProps } from './QUTextFieldProps';
+import { type TRTextFieldProps } from './TRTextFieldProps';
 
-export default function QUTextField({
+export default function TRTextField({
   value,
   onChange,
   validationRule,
@@ -16,7 +16,7 @@ export default function QUTextField({
   style,
   className,
   ...params
-}: QUTextFieldProps): ReactElement {
+}: TRTextFieldProps): ReactElement {
   return (
     <TextField
       {...params}

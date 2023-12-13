@@ -78,6 +78,16 @@ body {
     color: white !important;
 }
 
+.animate__animated.animate__shakeX {
+    --animate-duration: 2s;
+}
+
+/* This changes all the animations globally */
+:root {
+    --animate-duration: 800ms;
+    --animate-delay: 0.9s;
+}
+
 ::-webkit-scrollbar {
     height: 12px;
     width: 5px;

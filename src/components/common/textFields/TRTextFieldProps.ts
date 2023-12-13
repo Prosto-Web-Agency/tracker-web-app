@@ -4,7 +4,7 @@ import {
   type ReactElement,
 } from 'react';
 
-export interface QUTextFieldProps {
+export interface TRTextFieldProps {
   value?: string;
   onChange?: (changedValue: string, changedIsValid: boolean) => void;
   validationRule?: (value: string) => boolean;

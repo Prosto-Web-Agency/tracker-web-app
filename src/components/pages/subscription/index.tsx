@@ -7,7 +7,7 @@ import ScratchedTitle from "@/components/common/titles/ScratchedTitle"
 export default function SubscriptionPage() {
 
     return (
-        <section className="flex gap-6 bg-bg-gray p-10 rounded-6 w-full min-h-[calc(100vh-90px)] h-[calc(100vh-90px)] relative mx-auto max-w-[1400px] w-full overflow-hidden">
+        <section className="flex gap-6 bg-bg-gray p-10 rounded-9 min-h-[calc(100vh-90px)] h-[calc(100vh-90px)] relative mx-auto max-w-[1400px] w-full overflow-hidden">
             <div className="flex flex-col gap-6 w-[30%] h-full relative">
                 <BasePrimaryCard title="TRAKERstart" className="min-h-[calc(50%-12px)] justify-between">
                     <ul className="flex flex-col gap-3 list-disc px-3">

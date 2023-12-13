@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react';
-import QUTextField from "@/components/common/textFields/QUTextField";
+import TRTextField from "@/components/common/textFields/TRTextField";
 import Image from "next/image";
 import ImagePicker from "../imagePicker";
 import SecondaryButton from "@/components/common/buttons/secondary";
@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { editUserPersonalData } from '@/store/reducers/OfficeReducer';
 import { storage } from '@/utils/localStorage';
 import { LOGIN_ACCOUNT, TEST_USER } from '@/consts/profile';
+import classNames from "classnames";
 
 export default function ProfileSettingsComponent() {
     // @ts-ignore
@@ -19,6 +20,7 @@ export default function ProfileSettingsComponent() {
     const dispatch = useDispatch();
 
     const [name, setName] = useState<string>('')
+    const [nameError, setNameError] = useState(false)
     const [surname, setSurname] = useState<string>('')
     const [telegram, setTelegram] = useState<string>('')
     const [inst, setInst] = useState<string>('')
@@ -59,6 +61,9 @@ export default function ProfileSettingsComponent() {
                 instagram: inst,
                 login: String(storage.get(LOGIN_ACCOUNT, TEST_USER)).replace(/\+/g, '')
             }));
+        } else if (!nameError) {
+            setNameError(true);
+            setTimeout(() => setNameError(false), 1000);
         }
     }
 
@@ -93,30 +98,34 @@ export default function ProfileSettingsComponent() {
             </button>
 
             <div className="w-[306px] text-15_600 p-6  h-[441px] flex flex-col justify-around s_lg:w-full s_lg:p-0 s_lg:pt-10 s_lg:h-auto s_lg:gap-4">
-                <QUTextField
-                    type="text"
-                    placeholder="Имя"
-                    value={name}
-                    onChange={(name) => setName(name)}
-                />
-                <QUTextField
+                <div className={classNames('animate__animated', {
+                    ['animate__shakeX']: nameError
+                })}>
+                    <TRTextField
+                        type="text"
+                        placeholder="Имя"
+                        value={name}
+                        onChange={(name) => setName(name)}
+                    />
+                </div>
+                <TRTextField
                     type="text"
                     placeholder="Фамилия"
                     value={surname}
                     onChange={(surname) => setSurname(surname)}
                 />
-                <QUTextField
+                <TRTextField
                     type="text"
-                    placeholder="Телеграм"
+                    placeholder="Ник телеграм"
                     value={telegram}
                     onChange={(tg) => {
                         setTelegram(tg);
                         handleChanges();
                     }}
                 />
-                <QUTextField
+                <TRTextField
                     type="text"
-                    placeholder="Инстаграм"
+                    placeholder="Ник Инстаграм"
                     value={inst}
                     onChange={(inst) => {
                         setTelegram(inst);

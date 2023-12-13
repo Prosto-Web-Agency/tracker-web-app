@@ -22,7 +22,7 @@ export const TABS: TTabs[] = [
         title: 'Трекер',
     },
     {
-        link: '/profile',
+        link: '/guides',
         title: 'Гайды',
     },
     {
