@@ -16,13 +16,13 @@ export default function PersonalOffice() {
     const dispatch = useDispatch();
 
     //@ts-ignore
-    const productivity = useSelector(state => state.officePage?.productivuty)
+    const { productivity } = useSelector(state => state.officePage)
 
     useEffect(() => {
         //@ts-ignore
         dispatch(getProductivityThunk())
     }, []);
-    
+
     return (
 
         <section className="min-h-[screen] mx-auto max-w-[1400px] w-full overflow-hidden">

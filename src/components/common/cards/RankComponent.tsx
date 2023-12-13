@@ -1,10 +1,4 @@
-import Image from "next/image";
 import TRIcon from "../icon";
-
-export type TAchieveOfficeCard = {
-    image: string
-    name: string
-}
 
 type TRank = {
     rank: "adviser" | "ambassador" | "expert" | "headliner" | "resident";

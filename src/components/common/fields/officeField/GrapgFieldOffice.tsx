@@ -2,6 +2,7 @@
 
 import { ChartComponent } from "@/components/common/graphs/Chart";
 import React, { useEffect, useState } from "react";
+import TRIcon from "@/components/common/icon";
 
 export type TGraphField = {
     name: string;
@@ -17,7 +18,13 @@ export default function GraphFieldOffice({ name, params, color }: TGraphField) {
             </h4>
 
             {
-                params.data.length ? <ChartComponent params={params} color={color} /> : null
+                params?.data.length ? (
+                    <ChartComponent params={params} color={color} />
+                ) : (
+                    <div className="flex justify-center items-center w-full h-full">
+                        <TRIcon iconName="loader" edgeLength={48} className="animate-spin" />
+                    </div>
+                )
             }
         </div>
     )

@@ -27,7 +27,7 @@ let OfficeReducer = (state = initialState, action: any) => {
         case SET_PRODUCTIVITY:
             return {
                 ...state,
-                productivuty: {
+                productivity: {
                     data: [...action.data],
                     label: [...action.label]
                 }
@@ -42,17 +42,7 @@ let OfficeReducer = (state = initialState, action: any) => {
     }
 }
 
-export const setProductivity = (array: []) => {
-    const label: [] = [];
-    const data: [] = [];
-
-    array.map(({report_date, task_count}: any) => {
-        //@ts-ignore
-        label.push(report_date)
-        //@ts-ignore
-        data.push(task_count)
-    })
-    
+export const setProductivity = ({ data, label }: { data: number[], label: string[] }) => {
     return { type: SET_PRODUCTIVITY, data, label }
 }
 
