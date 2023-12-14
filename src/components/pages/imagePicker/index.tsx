@@ -164,8 +164,8 @@ export default function ImagePicker({ show, setImgPicker }: TImgPicker) {
     }
 
     return (
-        <div className={`App w-full min-h-full ${show ? 'flex' : 'hidden'} backdrop-blur-sm bg-tr04 flex-col justify-center items-center absolute top-[80px] s_lg:top-[75px] left-0 p-6`}>
-            <div className="w-[500px] min-h-[300px]  ss_lg:w-[300px]  bg-bg-gray rounded-6 flex justify-start gap-3 items-center flex-col">
+        <div className={`App w-full h-[calc(100vh-80px)] ${show ? 'flex' : 'hidden'} backdrop-blur-sm bg-tr04 flex-col justify-center s_lg:justify-start items-center absolute top-[80px] s_lg:top-[75px] left-0 p-6`}>
+            <div className="w-[500px] min-h-[300px] max-h-[calc(100vh-80px)] ss_lg:w-full ss_lg:max-w-[500px]  bg-bg-gray rounded-6 flex justify-start gap-3 items-center flex-col">
 
                 <div className="Crop-Controls w-full">
 
@@ -225,7 +225,6 @@ export default function ImagePicker({ show, setImgPicker }: TImgPicker) {
                     {!!imgSrc && (
                         <ReactCrop
                             crop={crop}
-
                             onChange={(_, percentCrop) => setCrop(percentCrop)}
                             onComplete={(c) => setCompletedCrop(c)}
                             aspect={aspect}
@@ -238,7 +237,7 @@ export default function ImagePicker({ show, setImgPicker }: TImgPicker) {
                                 ref={imgRef}
                                 alt="Crop me"
                                 src={imgSrc}
-                                style={{ transform: `scale(${scale}) rotate(${rotate}deg)` }}
+                                style={{ transform: `scale(${scale}) rotate(${rotate}deg)`, maxHeight: '430px' }}
                                 onLoad={onImageLoad}
                             />
                         </ReactCrop>
