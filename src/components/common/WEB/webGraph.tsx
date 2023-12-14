@@ -9,7 +9,6 @@ import {
     Legend,
 } from 'chart.js';
 import { Radar } from 'react-chartjs-2';
-import Image from 'next/image';
 
 ChartJS.register(
     RadialLinearScale,
