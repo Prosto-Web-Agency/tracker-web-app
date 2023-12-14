@@ -3,7 +3,7 @@
 import { useSelector } from "react-redux";
 import RateCard from "../../cards/mainPageCards/RateCard";
 import ModalUser from "../../modal/ModalUser";
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { TUserCommonData } from "@/models/userData";
 
 export type TRateData = {

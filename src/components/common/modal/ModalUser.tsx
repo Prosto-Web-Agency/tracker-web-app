@@ -15,7 +15,6 @@ interface IModalUser {
 
 export default function ModalUser({
     name,
-    position,
     tg_username,
     instagram,
     open,
@@ -92,7 +91,10 @@ export default function ModalUser({
                         <div className="flex flex-col gap-3">
                             {
                                 userAchievements.map((achieve) => (
-                                    <div className="flex justify-center items-center w-full h-[50px] bg-white text-black rounded-6" key={achieve}>
+                                    <div
+                                        className="flex justify-center items-center w-full h-[50px] bg-white text-black rounded-6"
+                                        key={achieve}
+                                    >
                                         {achieve}
                                     </div>
                                 ))
