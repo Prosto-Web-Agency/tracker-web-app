@@ -3,14 +3,16 @@
 import { ChartComponent } from "@/components/common/graphs/Chart";
 import React, { useEffect, useState } from "react";
 import TRIcon from "@/components/common/icon";
+import {TChart} from "@/store/reducers/OfficeReducer";
 
 export type TGraphField = {
     name: string;
     color: string;
-    params: { label: [], data: [] }
+    params: TChart;
+    elementId: string;
 }
 
-export default function GraphFieldOffice({ name, params, color }: TGraphField) {
+export default function GraphFieldOffice({ name, params, color, elementId }: TGraphField) {
     return (
         <div className="bg-white h-[230px] big_screen_h:h-[310px] sx_lg:h-[300px] rounded-6 p-6 pt-3">
             <h4 className="text-heading-ss-bold">
@@ -19,7 +21,7 @@ export default function GraphFieldOffice({ name, params, color }: TGraphField) {
 
             {
                 params?.data.length ? (
-                    <ChartComponent params={params} color={color} />
+                    <ChartComponent params={params} color={color} elementId={elementId} />
                 ) : (
                     <div className="flex justify-center items-center w-full h-full">
                         <TRIcon iconName="loader" edgeLength={48} className="animate-spin" />

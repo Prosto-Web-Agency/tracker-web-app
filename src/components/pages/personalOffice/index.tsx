@@ -8,7 +8,7 @@ import GraphFieldOffice from "@/components/common/fields/officeField/GrapgFieldO
 import MetrisFieldOffice from "@/components/common/fields/officeField/MetricsField";
 import PersonField from "@/components/common/fields/officeField/PersonField";
 import SeccessGraphPhoneOffice from "@/components/common/fields/officeField/SuccessGraphOfficePhone";
-import { getProductivityThunk } from "@/store/thunks/officeThunk";
+import {getEmotionalChartData, getHolidaysChartData, getProductivityChartData} from "@/store/thunks/officeThunk";
 import Link from "next/link";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,11 +17,15 @@ export default function PersonalOffice() {
     const dispatch = useDispatch();
 
     //@ts-ignore
-    const { productivity } = useSelector(state => state.officePage)
+    const { productivityChart, emotionalChart, holidaysChart } = useSelector(state => state.officePage)
 
     useEffect(() => {
         //@ts-ignore
-        dispatch(getProductivityThunk())
+        dispatch(getProductivityChartData())
+        //@ts-ignore
+        dispatch(getEmotionalChartData())
+        //@ts-ignore
+        dispatch(getHolidaysChartData())
     }, [dispatch]);
 
     return (
@@ -56,7 +60,7 @@ export default function PersonalOffice() {
                 </div>
 
                 <div className="row-span-3 flex flex-col gap-6 min-w-[384px] ss_lg:hidden">
-                    <PrimaryButton text="" type="datePicker" onClick={() => {}} className="py-3" />
+                    {/*<PrimaryButton text="" type="datePicker" onClick={() => {}} className="py-3" />*/}
                     <DiagramsFieldOffice />
 
                     <div className="sx_lg:hidden">
@@ -66,18 +70,48 @@ export default function PersonalOffice() {
                 </div>
 
                 <div className="sx_lg:hidden flex flex-col gap-6 row-span-3 min-w-[384px]">
-                    <PrimaryButton text="" type="datePicker" onClick={() => {}} />
-                    <GraphFieldOffice color={'#6ABDDB'} name="График продуктивности" params={productivity} />
-                    <GraphFieldOffice color={'#97C263'} name="График отдыха" params={productivity} />
-                    <GraphFieldOffice color={'#F6CC56'} name="Эмоциональное состояние" params={productivity} />
+                    {/*<PrimaryButton text="" type="datePicker" onClick={() => {}} />*/}
+                    <GraphFieldOffice
+                        color={'#6ABDDB'}
+                        name="График продуктивности"
+                        params={productivityChart}
+                        elementId={'productivityChart'}
+                    />
+                    <GraphFieldOffice
+                        color={'#97C263'}
+                        name="График отдыха"
+                        params={holidaysChart}
+                        elementId={'holidaysChart'}
+                    />
+                    <GraphFieldOffice
+                        color={'#F6CC56'}
+                        name="Эмоциональное состояние"
+                        params={emotionalChart}
+                        elementId={'emotionalChart'}
+                    />
                 </div>
             </div>
 
             <div className="sx_lg:grid grid-cols-2 px-10 bg-bg-gray p-6 pt-0 hidden flex-col gap-6 row-span-3 min-w-[384px] ss_lg:hidden">
                 <MetrisFieldOffice />
-                <GraphFieldOffice color={'#6ABDDB'} name="График продуктивности" params={productivity} />
-                <GraphFieldOffice color={'#97C263'} name="График отдыха" params={productivity} />
-                <GraphFieldOffice color={'#F6CC56'} name="Эмоциональное состояние" params={productivity} />
+                <GraphFieldOffice
+                    color={'#6ABDDB'}
+                    name="График продуктивности"
+                    params={productivityChart}
+                    elementId={'productivityChart'}
+                />
+                <GraphFieldOffice
+                    color={'#97C263'}
+                    name="График отдыха"
+                    params={holidaysChart}
+                    elementId={'holidaysChart'}
+                />
+                <GraphFieldOffice
+                    color={'#F6CC56'}
+                    name="Эмоциональное состояние"
+                    params={emotionalChart}
+                    elementId={'emotionalChart'}
+                />
             </div>
 
             <div className="hidden ss_lg:block bg-bg-gray w-full px-4 pb-6">

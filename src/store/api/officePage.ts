@@ -6,7 +6,7 @@ import { storage } from "@/utils/localStorage";
 const endpoint = process.env.ENDPOINT
 
 export const OfficeAPI = {
-    getEmotionalGrowth() {
+    getEmotionalChartData() {
         const config: AxiosRequestConfig = {
             headers: {
                 Authorization: `Token ${storage.get(TOKEN)}`,
@@ -16,7 +16,7 @@ export const OfficeAPI = {
         return axios.get(endpoint + `get_emotional_growth`, config)
             .then((response) => (response))
     },
-    getProductivityGrowth() {
+    getProductivityChartData() {
         const config: AxiosRequestConfig = {
             headers: {
                 Authorization: `Token ${storage.get(TOKEN)}`,
@@ -26,7 +26,7 @@ export const OfficeAPI = {
         return axios.get(endpoint + `get_productivity_growth`, config)
             .then((response) => (response))
     },
-    getLifeBalanceGrowth() {
+    getHolidaysChartData() {
         const config: AxiosRequestConfig = {
             headers: {
                 Authorization: `Token ${storage.get(TOKEN)}`,
