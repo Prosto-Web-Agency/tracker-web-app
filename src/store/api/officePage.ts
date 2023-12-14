@@ -3,7 +3,7 @@ import type { TUserData } from "../../models/userData";
 import { TEST_TOKEN, TEST_USER, TOKEN } from "@/consts/profile";
 import { storage } from "@/utils/localStorage";
 
-const url = 'https://v2224385.hosted-by-vdsina.ru/'
+const endpoint = process.env.ENDPOINT
 
 export const OfficeAPI = {
     getEmotionalGrowth() {
@@ -13,7 +13,7 @@ export const OfficeAPI = {
             }
         };
 
-        return axios.get(url + `get_emotional_growth`, config)
+        return axios.get(endpoint + `get_emotional_growth`, config)
             .then((response) => (response))
     },
     getProductivityGrowth() {
@@ -23,7 +23,7 @@ export const OfficeAPI = {
             }
         };
 
-        return axios.get(url + `get_productivity_growth`, config)
+        return axios.get(endpoint + `get_productivity_growth`, config)
             .then((response) => (response))
     },
     getLifeBalanceGrowth() {
@@ -33,7 +33,7 @@ export const OfficeAPI = {
             }
         };
 
-        return axios.get(url + `get_life_balance_growth`, config)
+        return axios.get(endpoint + `get_life_balance_growth`, config)
             .then((response) => (response))
     },
     editUserPersonalDataApi(data: TUserData) {
@@ -41,7 +41,7 @@ export const OfficeAPI = {
             params: data
         };
 
-        return axios.post(url + 'change_user_personal_data', config)
+        return axios.post(endpoint + 'change_user_personal_data', config)
             .then(res => {
                 if (res.status === 200) {
                     return res.data

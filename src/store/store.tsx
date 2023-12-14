@@ -4,10 +4,12 @@ import { thunk } from "redux-thunk"
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import OfficeReducer from "./reducers/OfficeReducer";
 import TrakerReducer from "@/store/reducers/trakerReducer";
+import UserReducer from "@/store/reducers/userReducer";
 
-let reducers = combineReducers({
+const reducers = combineReducers({
     mainPage: TrakerReducer,
     officePage: OfficeReducer,
+    user: UserReducer
 });
 
 export const store = configureStore({

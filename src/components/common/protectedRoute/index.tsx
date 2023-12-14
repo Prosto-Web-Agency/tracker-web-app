@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+import { useSelector } from "react-redux";
 
 interface ProtectedRoutePropsI {
     onlyUnAuth?: boolean;
@@ -11,31 +12,33 @@ interface ProtectedRoutePropsI {
 
 function ProtectedRoute({ onlyUnAuth = false, UnAuth = false, children }: ProtectedRoutePropsI) {
     //@ts-ignore
-    // const { isAuthChecked, data } = useAppSelector(state => state?.user?.user);
-    const isAuthChecked = false;
+    const { isUserAuth, isAuthCheck } = useSelector(state => state.user)
     const router = useRouter();
 
     useEffect(() => {
-        // Вот пользователь заходит, мы проверяем есть ли токен и логин
-        // Если нет, то редиректим его на пасс с service=1
-        // Если есть, то пропускаем его
+        const searchParams = new URL(window.location.href).searchParams;
+        const params: { token?: string, login?: string } = {};
 
-        // if (!isAuthChecked) {
-        //     // Redirect to /start if not authenticated
-        //     router.push('/start');
-        // }
-    }, []);
+        const token = searchParams.get('token');
+        const login = searchParams.get('login');
 
-    // TODO: сплеш скрин приложения
-    if (!isAuthChecked) {
+        if (token) params['token'] = token;
+        if (login) params['login'] = login;
+
+        if (isAuthCheck && !isUserAuth) {
+            router.push(`/start${token ? '?token=' + token : ''}${login ? '&login=' + login : ''}`);
+        } else {
+            router.push('/');
+        }
+    }, [isUserAuth, isAuthCheck]);
+
+    if (!isUserAuth) {
         return (<></>);
     }
 
-    if (!onlyUnAuth && !UnAuth) {
-        router.push('/start');
-
-        return (<></>);
-    }
+    // if (!onlyUnAuth && !UnAuth) {
+    //     return (<></>);
+    // }
 
     return (
         <>

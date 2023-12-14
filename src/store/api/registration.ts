@@ -1,14 +1,14 @@
 import { storage } from "@/utils/localStorage";
 import axios from "axios";
 
-const url = 'https://v2224385.hosted-by-vdsina.ru/'
+const endpoint = process.env.ENDPOINT
 
 export const registrationApi = {
     getTokenRequest(id: string) {
-        return axios.get(url + `gettoken`,{
+        return axios.get(endpoint + `gettoken`,{
         headers: {
-            
-        }, 
+
+        },
         params: {
             id: id
         }

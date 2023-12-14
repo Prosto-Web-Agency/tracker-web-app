@@ -1,18 +1,18 @@
 import axios from "axios";
 
-const url = 'https://v2224385.hosted-by-vdsina.ru/'
+const endpoint = process.env.ENDPOINT
 
 export const mainPageApi = {
     getInsaitsApi() {
-        return axios.get(url + `live_insight`)
+        return axios.get(endpoint + `live_insight`)
             .then((response) => (response))
     },
     getLeadersApi() {
-        return axios.get(url + `top_user`)
+        return axios.get(endpoint + `top_user`)
             .then((response) => (response))
     },
     getUserPersonalDataApi(slack: string) {
-        return axios.get(url + 'get_user_personal_data', {
+        return axios.get(endpoint + 'get_user_personal_data', {
             params: {
                 login: slack
             }
@@ -26,7 +26,7 @@ export const mainPageApi = {
             })
     },
     getUserCommonDataApi(slack: string) {
-        return axios.get(url + 'user_pop_up', {
+        return axios.get(endpoint + 'user_pop_up', {
             params: {
                 login: slack
             }
