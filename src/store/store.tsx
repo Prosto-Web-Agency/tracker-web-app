@@ -2,11 +2,11 @@
 
 import { thunk } from "redux-thunk"
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import MainPageReducer from "@/store/reducers/MainPageReducer";
 import OfficeReducer from "./reducers/OfficeReducer";
+import TrakerReducer from "@/store/reducers/trakerReducer";
 
 let reducers = combineReducers({
-    mainPage: MainPageReducer,
+    mainPage: TrakerReducer,
     officePage: OfficeReducer,
 });
 

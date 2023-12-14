@@ -1,6 +1,6 @@
 import { TUserCommonData } from "@/models/userData";
 import { mainPageApi } from "../api/mainPage"
-import { setSelectedUserData, updateInsaits, updateLeaderboard } from "@/store/reducers/MainPageReducer";
+import { setSelectedUserData, updateInsaits, updateLeaderboard } from "@/store/reducers/trakerReducer";
 
 export const getInsaitsDataThunk = () => (dispatch: any) => {
     mainPageApi.getInsaitsApi()

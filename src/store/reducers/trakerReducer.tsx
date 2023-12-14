@@ -4,7 +4,7 @@ const SET_INSAITS = 'SET_INSAITS';
 const SET_LEADERBOARD = 'SET_LEADERBOARD';
 const SET_SELECTED_USER_DATA = 'SET_SELECTED_USER_DATA';
 
-type MainPageT = {
+type TTracker = {
     main_leaderboard: string[],
     main_important_news: object[],
     main_insaits: string[];
@@ -13,7 +13,7 @@ type MainPageT = {
     selectedUserData: TUserData | object;
 }
 
-const initialState: MainPageT = {
+const initialState: TTracker = {
     main_leaderboard: [
         'Матвей Иванович',
         'Александра Петрова',
@@ -36,7 +36,7 @@ const initialState: MainPageT = {
     selectedUserData: {}
 };
 
-const MainPageReducer = (state = initialState, action: any) => {
+const TrakerReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case SET_INSAITS:
             return {
@@ -62,4 +62,4 @@ export let updateInsaits = (data: []) => ({ type: SET_INSAITS, data })
 export let updateLeaderboard = (data: []) => ({ type: SET_LEADERBOARD, data })
 export let setSelectedUserData = (data: TUserData | object) => ({ type: SET_SELECTED_USER_DATA, data })
 
-export default MainPageReducer;
+export default TrakerReducer;
