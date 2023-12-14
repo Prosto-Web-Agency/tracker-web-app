@@ -17,6 +17,7 @@ function ProtectedRoute({ onlyUnAuth = false, UnAuth = false, children }: Protec
 
     useEffect(() => {
         const searchParams = new URL(window.location.href).searchParams;
+        const pathname = new URL(window.location.href).pathname;
         const params: { token?: string, login?: string } = {};
 
         const token = searchParams.get('token');
@@ -27,7 +28,7 @@ function ProtectedRoute({ onlyUnAuth = false, UnAuth = false, children }: Protec
 
         if (isAuthCheck && !isUserAuth) {
             router.push(`/start${token ? '?token=' + token : ''}${login ? '&login=' + login : ''}`);
-        } else {
+        } else if (pathname === 'start') {
             router.push('/');
         }
     }, [isUserAuth, isAuthCheck]);
