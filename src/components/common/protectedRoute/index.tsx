@@ -12,7 +12,7 @@ interface ProtectedRoutePropsI {
 function ProtectedRoute({ onlyUnAuth = false, UnAuth = false, children }: ProtectedRoutePropsI) {
     //@ts-ignore
     // const { isAuthChecked, data } = useAppSelector(state => state?.user?.user);
-    const isAuthChecked = false;
+    const isAuthChecked = true;
     const router = useRouter();
 
     useEffect(() => {
