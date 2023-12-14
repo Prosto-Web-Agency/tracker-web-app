@@ -2,7 +2,7 @@
 
 import { thunk } from "redux-thunk"
 import { combineReducers, configureStore } from '@reduxjs/toolkit'
-import MainPageReducer from "./reducers/MainPageReducer";
+import MainPageReducer from "@/store/reducers/MainPageReducer";
 import OfficeReducer from "./reducers/OfficeReducer";
 
 let reducers = combineReducers({
