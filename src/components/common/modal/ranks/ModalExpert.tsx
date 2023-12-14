@@ -26,7 +26,7 @@ const ModalExpert: React.FC<ModalExpertProps> = ({ open, onClose }) => {
                     30 день Трекинга подряд
                 </li>
                 <li className="w-full pb-3 text-15_600 border-b-[0.5px] border-white">
-                    10 раз отработать запросы Резидентов публично из своей экспертности в разделе "Публичная обратная связь"
+                    10 раз отработать запросы Резидентов публично из своей экспертности в разделе &quot;Публичная обратная связь&quot;
                 </li>
             </ul>
         </ModalComponent>

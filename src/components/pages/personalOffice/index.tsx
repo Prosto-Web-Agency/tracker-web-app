@@ -22,19 +22,18 @@ export default function PersonalOffice() {
     useEffect(() => {
         //@ts-ignore
         dispatch(getProductivityThunk())
-    }, []);
+    }, [dispatch]);
 
     return (
 
         <section className="min-h-[screen] mx-auto max-w-[1400px] w-full overflow-hidden">
-            <div className="w-full ss_lg:flex ss_lg:flex-col gap-6 h-[calc(100vh-90px)] relative bg-bg-gray grid grid-cols-3 sx_lg:grid-cols-2 rounded-9 sx_lg:rounded-[0] sx_lg:rounded-t-9 s_lg: p-6 sx_lg:pb-6 max-w-[1400px] mx-auto s_lg:rounded-t-[0px] s_lg:pt-0 s_lg:p-6 ss_lg:p-4 ss_lg:gap-4">
+            <div className="w-full ss_lg:flex ss_lg:flex-col gap-6 min-h-[calc(100vh-90px)] relative bg-bg-gray grid grid-cols-3 sx_lg:grid-cols-2 rounded-9 sx_lg:rounded-[0] sx_lg:rounded-t-9 s_lg: p-6 sx_lg:pb-6 max-w-[1400px] mx-auto s_lg:rounded-t-[0px] s_lg:pt-0 s_lg:p-6 ss_lg:p-4 ss_lg:gap-4">
                 <div className="row-span-3 flex flex-col gap-6">
                     <div className="w-full">
                         <PersonField />
                         <Link href={"/profile/profileSettings"} className="w-full hoveredMenu duration-300 hover:scale-[1.03] flex justify-center items-center rounded-4 mt-6 ss_lg:mt-4 min-w-[364px] py-5 ss_lg:min-w-full bg-white text-heading-ss-bold ss_lg:py-3">
                             Редактировать
                         </Link>
-                        <PrimaryButton text="" type="datePicker" onClick={() => {}} />
                     </div>
 
                     <div className="ss_lg:hidden">
@@ -57,15 +56,17 @@ export default function PersonalOffice() {
                 </div>
 
                 <div className="row-span-3 flex flex-col gap-6 min-w-[384px] ss_lg:hidden">
+                    <PrimaryButton text="" type="datePicker" onClick={() => {}} className="py-3" />
                     <DiagramsFieldOffice />
+
                     <div className="sx_lg:hidden">
                         <MetrisFieldOffice />
                     </div>
 
                 </div>
 
-
                 <div className="sx_lg:hidden flex flex-col gap-6 row-span-3 min-w-[384px]">
+                    <PrimaryButton text="" type="datePicker" onClick={() => {}} />
                     <GraphFieldOffice color={'#6ABDDB'} name="График продуктивности" params={productivity} />
                     <GraphFieldOffice color={'#97C263'} name="График отдыха" params={productivity} />
                     <GraphFieldOffice color={'#F6CC56'} name="Эмоциональное состояние" params={productivity} />

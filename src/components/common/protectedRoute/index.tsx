@@ -3,8 +3,6 @@
 import { useRouter } from 'next/navigation';
 import { useAppSelector } from "@/hooks/store";
 import { useEffect } from 'react';
-import { storage } from '@/utils/localStorage';
-import { LOGIN_ACCOUNT, TEST_TOKEN, TEST_USER, TOKEN } from '@/consts/profile';
 
 interface ProtectedRoutePropsI {
     onlyUnAuth?: boolean;
@@ -18,8 +16,9 @@ function ProtectedRoute({ onlyUnAuth = false, UnAuth = false, children }: Protec
     const router = useRouter();
 
     useEffect(() => {
-        storage.set(LOGIN_ACCOUNT, TEST_USER);
-        storage.set(TOKEN, TEST_TOKEN);
+        // Вот пользователь заходит, мы проверяем есть ли токен и логин
+        // Если нет, то редиректим его на пасс с service=1
+        // Если есть, то пропускаем его
     }, []);
 
     // TODO: сплеш скрин приложения

@@ -1,11 +1,11 @@
 import Header from '@/components/common/header'
-import MainPage from '@/components/pages/mainPage'
+import StartPage from '@/components/pages/startPage'
 
-export default function Home() {
+export default function Start() {
   return (
     <div className='w-screen h-screen relative'>
       <Header />
-      <MainPage />
+      <StartPage />
     </div>
   )
 }

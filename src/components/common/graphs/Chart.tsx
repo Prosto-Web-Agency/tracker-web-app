@@ -96,9 +96,8 @@ export function ChartComponent({ color, params }: { color: string, params: {labe
   useEffect(() => {
     setChartData(CHART_DATASET(color));
     setChartOptions(options(color));
-    //@ts-ignore
+
     LABELS = [...params?.label]
-    //@ts-ignore
     POINTS = [...params?.data]
   }, []);
 

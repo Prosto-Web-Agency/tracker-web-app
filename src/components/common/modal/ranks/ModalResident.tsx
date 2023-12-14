@@ -26,7 +26,7 @@ const ModalResident: React.FC<ModalResidentProps> = ({ open, onClose }) => {
                     21 день Трекинга подряд
                 </li>
                 <li className="w-full pb-3 text-15_600 border-b-[0.5px] border-white">
-                    X1 REC'S TOKEN
+                    X1 REC&apos;S TOKEN
                 </li>
             </ul>
         </ModalComponent>

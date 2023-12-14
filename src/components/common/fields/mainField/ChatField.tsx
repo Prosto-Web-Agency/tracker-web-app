@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 
 import { storage } from "@/utils/localStorage";
-import ChatCard, { TChatCard } from "../../cards/mainPageCards/ChatCard";
+import ChatCard from "../../cards/mainPageCards/ChatCard";
 import Image from "next/image";
 import ChatTextField from "../../textFields/ChatTextField";
 import Header from "../../header";
@@ -47,6 +47,7 @@ export default function ChatField() {
             messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
         }
     }, [messages])
+
     return (
         <>
             {

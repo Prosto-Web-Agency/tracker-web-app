@@ -8,6 +8,8 @@ import RateField from "@/components/common/fields/mainField/RateField";
 import { useEffect } from "react";
 import { getInsaitsDataThunk, getLeadersDataThunk, getUserDataBySlack } from "@/store/thunks/mainPageThunk";
 import { useDispatch, useSelector } from "react-redux";
+import { storage } from '@/utils/localStorage';
+import { LOGIN_ACCOUNT, TEST_TOKEN, TEST_USER, TOKEN } from '@/consts/profile';
 
 export default function MainPage() {
     const dispatch = useDispatch();
@@ -24,7 +26,10 @@ export default function MainPage() {
         dispatch(getLeadersDataThunk())
         //@ts-ignore
         dispatch(getUserDataBySlack('lunivilen'))
-    }, []);
+
+        storage.set(LOGIN_ACCOUNT, TEST_USER);
+        storage.set(TOKEN, TEST_TOKEN);
+    }, [dispatch]);
 
     return (
         <section className="w-full overflow-hidden">

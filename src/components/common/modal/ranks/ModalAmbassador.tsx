@@ -26,7 +26,7 @@ const ModalAmbassador: React.FC<ModalAmbassadorProps> = ({ open, onClose }) => {
                     100 деней Трекинга суммарно
                 </li>
                 <li className="w-full pb-3 text-15_600 border-b-[0.5px] border-white">
-                    50 раз Отработать запросы Резидентов публично из своей экспертности в разделе "Публичная обратная связь"
+                    50 раз Отработать запросы Резидентов публично из своей экспертности в разделе &quot;Публичная обратная связь&quot;
                 </li>
                 <li className="w-full pb-3 text-15_600 border-b-[0.5px] border-white">
                     30 Зафиксированных инсайтов
@@ -38,7 +38,7 @@ const ModalAmbassador: React.FC<ModalAmbassadorProps> = ({ open, onClose }) => {
                     Верификация 30 Отчётов Резидентов
                 </li>
                 <li className="w-full pb-3 text-15_600 border-b-[0.5px] border-white">
-                    Посешение разбора по технологии ProRec's
+                    Посешение разбора по технологии ProRec&apos;s
                 </li>
             </ul>
         </ModalComponent>

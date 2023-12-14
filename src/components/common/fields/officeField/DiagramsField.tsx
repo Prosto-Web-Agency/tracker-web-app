@@ -38,7 +38,7 @@ const DIAGRAM_TITLES = ['productive', 'positive', 'result', 'strongest', 'beauty
 
 export default function DiagramsFieldOffice() {
     return (
-        <div className="bg-white rounded-6 h-[527px] big_screen_h:h-[calc(70vh-114px)] sx_lg:h-[740px] p-6 pt-3">
+        <div className="bg-white rounded-6 h-[527px] big_screen_h:h-[680px] sx_lg:h-[740px] p-6 pt-3">
             <h4 className="text-heading-ss-bold">
                 Диаграммы отчёта
             </h4>

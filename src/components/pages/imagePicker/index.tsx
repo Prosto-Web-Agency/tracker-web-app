@@ -21,8 +21,6 @@ export type TImgPicker = {
     setImgPicker: any
 }
 
-// This is to demonstate how to make and center a % aspect crop
-// which is a bit trickier so we use some helper functions.
 function centerAspectCrop(
     mediaWidth: number,
     mediaHeight: number,
@@ -51,8 +49,8 @@ export default function ImagePicker({ show, setImgPicker }: TImgPicker) {
     const blobUrlRef = useRef("");
     const [crop, setCrop] = useState<Crop>();
     const [completedCrop, setCompletedCrop] = useState<PixelCrop>();
-    const [scale, setScale] = useState(1);
-    const [rotate, setRotate] = useState(0);
+    const [scale, _setScale] = useState(1);
+    const [rotate, _setRotate] = useState(0);
     const [aspect, setAspect] = useState<number | undefined>(4 / 5);
 
     function onSelectFile(e: React.ChangeEvent<HTMLInputElement>) {
@@ -80,9 +78,6 @@ export default function ImagePicker({ show, setImgPicker }: TImgPicker) {
             throw new Error("Crop canvas does not exist");
         }
 
-        // This will size relative to the uploaded image
-        // size. If you want to size according to what they
-        // are looking at on screen, remove scaleX + scaleY
         const scaleX = image.naturalWidth / image.width;
         const scaleY = image.naturalHeight / image.height;
 
@@ -133,8 +128,8 @@ export default function ImagePicker({ show, setImgPicker }: TImgPicker) {
                 imgRef.current &&
                 previewCanvasRef.current
             ) {
-                // We use canvasPreview as it's much faster than imgPreview.
-                canvasPreview(
+
+                void canvasPreview(
                     imgRef.current,
                     previewCanvasRef.current,
                     completedCrop,
@@ -230,8 +225,6 @@ export default function ImagePicker({ show, setImgPicker }: TImgPicker) {
                             aspect={aspect}
                             // minWidth={400}
                             minHeight={100}
-
-                        // circularCrop
                         >
                             <img
                                 ref={imgRef}

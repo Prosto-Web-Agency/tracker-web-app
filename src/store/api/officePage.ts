@@ -8,9 +8,6 @@ const url = 'https://v2224385.hosted-by-vdsina.ru/'
 export const OfficeAPI = {
     getEmotionalGrowth() {
         const config: AxiosRequestConfig = {
-            params: {
-                login: TEST_USER
-            },
             headers: {
                 Authorization: `Token ${storage.get(TOKEN)}`,
             }
@@ -21,9 +18,6 @@ export const OfficeAPI = {
     },
     getProductivityGrowth() {
         const config: AxiosRequestConfig = {
-            params: {
-                login: TEST_USER
-            },
             headers: {
                 Authorization: `Token ${storage.get(TOKEN)}`,
             }
@@ -34,9 +28,6 @@ export const OfficeAPI = {
     },
     getLifeBalanceGrowth() {
         const config: AxiosRequestConfig = {
-            params: {
-                login: TEST_USER
-            },
             headers: {
                 Authorization: `Token ${storage.get(TOKEN)}`,
             }
