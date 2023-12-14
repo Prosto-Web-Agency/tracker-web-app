@@ -5,8 +5,18 @@ import Image from "next/image";
 import Link from "next/link";
 import PrimaryButton from "@/components/common/buttons/primary";
 import ProtectedRoute from "@/components/common/protectedRoute";
+import {useDispatch} from "react-redux";
+import {useEffect} from "react";
+import {checkUserAuth} from "@/store/thunks/userThunk";
 
 export default function Guides() {
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        // @ts-ignore
+        dispatch(checkUserAuth());
+    });
+
     return (
         <ProtectedRoute>
             <div className='w-screen h-screen relative'>
