@@ -1,3 +1,5 @@
+'use client'
+
 import React, { useEffect } from 'react';
 import TRIcon, { TRIcons } from '../icon';
 import DatePickerComponent from '../datePickerComponent';
