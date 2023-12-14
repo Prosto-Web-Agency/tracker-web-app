@@ -8,7 +8,12 @@ import GraphFieldOffice from "@/components/common/fields/officeField/GrapgFieldO
 import MetrisFieldOffice from "@/components/common/fields/officeField/MetricsField";
 import PersonField from "@/components/common/fields/officeField/PersonField";
 import SeccessGraphPhoneOffice from "@/components/common/fields/officeField/SuccessGraphOfficePhone";
-import {getEmotionalChartData, getHolidaysChartData, getProductivityChartData} from "@/store/thunks/officeThunk";
+import {
+    getEmotionalChartData,
+    getFirstMetricsData,
+    getHolidaysChartData,
+    getProductivityChartData
+} from "@/store/thunks/officeThunk";
 import Link from "next/link";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -26,6 +31,8 @@ export default function PersonalOffice() {
         dispatch(getEmotionalChartData())
         //@ts-ignore
         dispatch(getHolidaysChartData())
+        //@ts-ignore
+        dispatch(getFirstMetricsData());
     }, [dispatch]);
 
     return (

@@ -1,6 +1,12 @@
 import { TUserData } from "@/models/userData";
 import { OfficeAPI } from "../api/officePage"
-import {setProductivity, editUserPersonalData, setEmotional, setHolidays} from "../reducers/OfficeReducer"
+import {
+    setProductivity,
+    editUserPersonalData,
+    setEmotional,
+    setHolidays,
+    setFirstMetrics
+} from "../reducers/OfficeReducer"
 
 export const getProductivityChartData = () => (dispatch: any) => {
     OfficeAPI
@@ -23,6 +29,14 @@ export const getHolidaysChartData = () => (dispatch: any) => {
         .getHolidaysChartData()
         .then((response) => {
             dispatch(setHolidays(response.data))
+        })
+}
+
+export const getFirstMetricsData = () => (dispatch: any) => {
+    OfficeAPI
+        .getFirstMetrics()
+        .then((response) => {
+            dispatch(setFirstMetrics(response.data))
         })
 }
 

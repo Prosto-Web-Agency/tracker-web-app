@@ -94,10 +94,6 @@ export function ChartComponent({ color, params, elementId }: { color: string, pa
     setChartOptions(options(color));
   }, [color, elementId, params.data, params.label]);
 
-  // useEffect(() => {
-  //   setChartData(CHART_DATASET(color, elementId));
-  // }, [LABELS]);
-
   return (
     <section className="relative flex h-full max-h-[574px] min-h-[210px] pb-[70px] w-full shrink items-end justify-center rounded-2 bg-secondary">
       <Line title={elementId} id={elementId} data={chartData} options={chartOptions} />
