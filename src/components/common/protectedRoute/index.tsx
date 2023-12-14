@@ -1,7 +1,6 @@
 'use client'
 
 import { useRouter } from 'next/navigation';
-import { useAppSelector } from "@/hooks/store";
 import { useEffect } from 'react';
 
 interface ProtectedRoutePropsI {
@@ -13,7 +12,7 @@ interface ProtectedRoutePropsI {
 function ProtectedRoute({ onlyUnAuth = false, UnAuth = false, children }: ProtectedRoutePropsI) {
     //@ts-ignore
     // const { isAuthChecked, data } = useAppSelector(state => state?.user?.user);
-    const isAuthChecked = true;
+    const isAuthChecked = false;
     const router = useRouter();
 
     useEffect(() => {
@@ -33,7 +32,7 @@ function ProtectedRoute({ onlyUnAuth = false, UnAuth = false, children }: Protec
     }
 
     if (!onlyUnAuth && !UnAuth) {
-        router.push('/login');
+        router.push('/start');
 
         return (<></>);
     }
