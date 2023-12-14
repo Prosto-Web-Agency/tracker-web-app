@@ -13,6 +13,8 @@ import { canvasPreview } from "./canvasPreview";
 import { useDebounceEffect } from "./useDubounceEffect";
 
 import "react-image-crop/dist/ReactCrop.css";
+import Image from "next/image";
+import SecondaryButton from "@/components/common/buttons/secondary";
 
 export type TImgPicker = {
     show: boolean
@@ -51,7 +53,7 @@ export default function ImagePicker({ show, setImgPicker }: TImgPicker) {
     const [completedCrop, setCompletedCrop] = useState<PixelCrop>();
     const [scale, setScale] = useState(1);
     const [rotate, setRotate] = useState(0);
-    const [aspect, setAspect] = useState<number | undefined>(1 / 1);
+    const [aspect, setAspect] = useState<number | undefined>(4 / 5);
 
     function onSelectFile(e: React.ChangeEvent<HTMLInputElement>) {
         if (e.target.files && e.target.files.length > 0) {
@@ -149,11 +151,11 @@ export default function ImagePicker({ show, setImgPicker }: TImgPicker) {
         if (aspect) {
             setAspect(undefined);
         } else {
-            setAspect(1 / 1);
+            setAspect(3 / 5);
 
             if (imgRef.current) {
                 const { width, height } = imgRef.current;
-                const newCrop = centerAspectCrop(width, height, 1 / 1);
+                const newCrop = centerAspectCrop(width, height, 3 / 5);
                 setCrop(newCrop);
                 // Updates the preview
                 setCompletedCrop(convertToPixelCrop(newCrop, width, height));
@@ -162,11 +164,35 @@ export default function ImagePicker({ show, setImgPicker }: TImgPicker) {
     }
 
     return (
-        <div className={`App w-full h-full bg-white ${show ? 'flex' : 'hidden'} absolute top-[100px] s_lg:top-[75px] left-0`}>
-            <div className="Crop-Controls">
-                <button onClick={() => setImgPicker(false)}>Закрыть</button>
-                <input type="file" accept="image/*" onChange={onSelectFile} />
-                <div>
+        <div className={`App w-full min-h-full ${show ? 'flex' : 'hidden'} backdrop-blur-sm bg-tr04 flex-col justify-center items-center absolute top-[80px] s_lg:top-[75px] left-0 p-6`}>
+            <div className="w-[500px] min-h-[300px]  ss_lg:w-[300px]  bg-bg-gray rounded-6 flex justify-start gap-3 items-center flex-col">
+
+                <div className="Crop-Controls w-full">
+
+
+                    <div className="flex p-6 pb-2 items-center justify-between w-full">
+                        <label htmlFor="add__photo">
+                            <Image
+                                className="duration-300 hover:scale-[1.05]"
+                                width={60}
+                                height={60}
+                                src={'/addPhotoLogo.svg'}
+                                alt="camera logo"
+                            />
+                        </label>
+                        <input type="file" accept="image/*" id="add__photo" onChange={onSelectFile} className="w-[0px] h-[0px]" />
+                        <button className="" onClick={() => setImgPicker(false)}>
+                            <Image
+                                className="duration-300 hover:scale-[1.05]"
+                                width={30}
+                                height={30}
+                                src={'/closeRed.svg'}
+                                alt="close"
+                            />
+                        </button>
+                    </div>
+
+                    {/* <div>
                     <label htmlFor="scale-input">Приближение: </label>
                     <input
                         id="scale-input"
@@ -176,8 +202,8 @@ export default function ImagePicker({ show, setImgPicker }: TImgPicker) {
                         disabled={!imgSrc}
                         onChange={(e) => setScale(Number(e.target.value))}
                     />
-                </div>
-                {/* <div>
+                </div> */}
+                    {/* <div>
                     <label htmlFor="rotate-input">Rotate: </label>
                     <input
                         id="rotate-input"
@@ -189,62 +215,76 @@ export default function ImagePicker({ show, setImgPicker }: TImgPicker) {
                         }
                     />
                 </div> */}
-                <div>
+                    {/* <div>
                     <button onClick={handleToggleAspectClick}>
                         Закрепить соотношение сторон: {aspect ? "да" : "нет"}
                     </button>
+                </div> */}
                 </div>
-            </div>
-            {!!imgSrc && (
-                <ReactCrop
-                    crop={crop}
-                    onChange={(_, percentCrop) => setCrop(percentCrop)}
-                    onComplete={(c) => setCompletedCrop(c)}
-                    aspect={aspect}
-                    // minWidth={400}
-                    minHeight={100}
+                <div className="">
+                    {!!imgSrc && (
+                        <ReactCrop
+                            crop={crop}
 
-                // circularCrop
-                >
-                    <img
-                        ref={imgRef}
-                        alt="Crop me"
-                        src={imgSrc}
-                        style={{ transform: `scale(${scale}) rotate(${rotate}deg)` }}
-                        onLoad={onImageLoad}
-                    />
-                </ReactCrop>
-            )}
-            {!!completedCrop && (
-                <>
-                    <div>
+                            onChange={(_, percentCrop) => setCrop(percentCrop)}
+                            onComplete={(c) => setCompletedCrop(c)}
+                            aspect={aspect}
+                            // minWidth={400}
+                            minHeight={100}
+
+                        // circularCrop
+                        >
+                            <img
+                                ref={imgRef}
+                                alt="Crop me"
+                                src={imgSrc}
+                                style={{ transform: `scale(${scale}) rotate(${rotate}deg)` }}
+                                onLoad={onImageLoad}
+                            />
+                        </ReactCrop>
+                    )}
+                </div>
+
+                {!!completedCrop && (
+                    <>
+                        {/* <div>
                         <canvas
                             ref={previewCanvasRef}
                             style={{
                                 border: "1px solid black",
+                                borderRadius: '20px',
                                 objectFit: "contain",
                                 width: completedCrop.width,
                                 height: completedCrop.height,
                             }}
                         />
-                    </div>
-                    <div>
-                        <button onClick={onDownloadCropClick}>Download Crop</button>
-                        <a
-                            href="#hidden"
-                            ref={hiddenAnchorRef}
-                            download
-                            style={{
-                                position: "absolute",
-                                top: "-200vh",
-                                visibility: "hidden",
-                            }}
-                        >
-                            Hidden download
-                        </a>
-                    </div>
-                </>
-            )}
+                    </div> */}
+                        {/* <div>
+                            <button onClick={onDownloadCropClick}>Download Crop</button>
+                            <a
+                                href="#hidden"
+                                ref={hiddenAnchorRef}
+                                download
+                                style={{
+                                    position: "absolute",
+                                    top: "-200vh",
+                                    visibility: "hidden",
+                                }}
+                            >
+                                Hidden download
+                            </a>
+                        </div> */}
+                        <div className="w-full px-4 pb-4">
+                            <SecondaryButton
+                                text="Сохранить"
+                                onClick={() => console.log('click')}
+                            />
+                        </div>
+
+                    </>
+                )}
+
+            </div>
         </div>
     );
 }

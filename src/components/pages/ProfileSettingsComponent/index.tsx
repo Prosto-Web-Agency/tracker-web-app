@@ -86,6 +86,7 @@ export default function ProfileSettingsComponent() {
                     alt="camera logo"
                 />
 
+                
                 <div className="w-full h-full justify-center items-center hidden s_lg:flex">
                     <Image
                         className="duration-300 hover:scale-[1.05]"
