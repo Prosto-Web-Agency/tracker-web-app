@@ -13,13 +13,14 @@ interface ProtectedRoutePropsI {
 function ProtectedRoute({ onlyUnAuth = false, UnAuth = false, children }: ProtectedRoutePropsI) {
     //@ts-ignore
     // const { isAuthChecked, data } = useAppSelector(state => state?.user?.user);
-    const isAuthChecked = false;
+    const isAuthChecked = true;
     const router = useRouter();
 
     useEffect(() => {
         // Вот пользователь заходит, мы проверяем есть ли токен и логин
         // Если нет, то редиректим его на пасс с service=1
         // Если есть, то пропускаем его
+
         if (!isAuthChecked) {
             // Redirect to /start if not authenticated
             router.push('/start');
