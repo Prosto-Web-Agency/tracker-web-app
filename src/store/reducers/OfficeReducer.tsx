@@ -42,7 +42,7 @@ let OfficeReducer = (state = initialState, action: any) => {
     }
 }
 
-export const setProductivity = ({ data, label }: { data: number[], label: string[] }) => {
+export const setProductivity = ({ tasks_count: data, report_date: label }: { tasks_count: number[], report_date: string[] }) => {
     return { type: SET_PRODUCTIVITY, data, label }
 }
 

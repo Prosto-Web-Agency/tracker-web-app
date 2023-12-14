@@ -5,7 +5,6 @@ import { setProductivity, editUserPersonalData } from "../reducers/OfficeReducer
 export const getProductivityThunk = () => (dispatch: any) => {
     OfficeAPI.getProductivityGrowth()
         .then((response) => {
-            console.log(response.data);
             dispatch(setProductivity(response.data))
         })
 }

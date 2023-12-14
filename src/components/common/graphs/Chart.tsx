@@ -55,8 +55,6 @@ const options = (color: string) => ({
   },
   scales: {
     y: {
-      min: 1,
-      max: 50,
       display: false,
     },
     x: {
