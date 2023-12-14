@@ -57,8 +57,8 @@ export default function ChatField() {
                     ? <> <div className="fixed top-0 right-0 w-screen z-[1000] bg-white"><Header /></div>
 
                         <div className="w-full h-[calc(100vh-80px)] max-h-[calc(100vh-80px)] mt-[80px] flex justify-center lg:mt-[75px] lg:h-[calc(100vh-75px)] items-cente lg:bg-white  bg-bg-gray py-10 px-5 z-[900] backdrop-blur-sm fixed top-0 left-0">
-                            <div className="min-w-[50%] w-[50%] px-10 pb-10 flex flex-col rounded-6 lg:w-full h-full bg-white overflow-hidden">
-                                <div className="text-heading-s relative s_lg:text-heading-ss-bold w-full min-h-[100px] h-[100px] flex justify-center items-center">
+                            <div className="min-w-[50%] w-[50%] px-10 pb-10 lg:pb-5 lg:px-0 flex flex-col rounded-6 lg:w-full h-full bg-white overflow-hidden">
+                                <div className="text-heading-s relative s_lg:text-heading-ss-bold w-full min-h-[100px] lg:max-h-[70px] lg:min-h-[70px] h-[100px] flex justify-center items-center">
                                     <button className="absolute left-5" onClick={() => setFullScreen(false)}>
                                         <Image className="hover:scale-105 active:scale-[1.1] scale-1 duration-300" width={30} height={30} src={'/chevron_left.svg'} alt="send" />
                                     </button>
@@ -84,7 +84,7 @@ export default function ChatField() {
                                     }
                                 </div>
 
-                                <div className="rounded-t-3 relative bottom-10 flex pt-6 h-[50px] bg-white bottom-12">
+                                <div className="rounded-t-3 relative flex pt-6 h-[50px] bg-white bottom-0">
                                     <ChatTextField onChange={(mess) => setUserMessage(mess)} value={userMessage} type="text" />
                                     <button onClick={sendMessage} className="pl-2 flex">
                                         <Image className="hover:scale-105 active:scale-[1.1] scale-1 duration-300" width={34} height={34} src={'/sendMessage.svg'} alt="send" />
