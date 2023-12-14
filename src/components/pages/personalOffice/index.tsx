@@ -1,5 +1,6 @@
 'use client'
 
+import PrimaryButton from "@/components/common/buttons/primary";
 import AchieveFieldOffice from "@/components/common/fields/officeField/AchieveFieldOffice";
 import DiagrammsPhoneField from "@/components/common/fields/officeField/DiagrammsPhoneField";
 import DiagramsFieldOffice from "@/components/common/fields/officeField/DiagramsField";
@@ -33,6 +34,7 @@ export default function PersonalOffice() {
                         <Link href={"/profile/profileSettings"} className="w-full hoveredMenu duration-300 hover:scale-[1.03] flex justify-center items-center rounded-4 mt-6 ss_lg:mt-4 min-w-[364px] py-5 ss_lg:min-w-full bg-white text-heading-ss-bold ss_lg:py-3">
                             Редактировать
                         </Link>
+                        <PrimaryButton text="" type="datePicker" onClick={() => {}} />
                     </div>
 
                     <div className="ss_lg:hidden">

@@ -4,7 +4,7 @@ import { useRouter } from 'next/navigation';
 import { useAppSelector } from "@/hooks/store";
 import { useEffect } from 'react';
 import { storage } from '@/utils/localStorage';
-import { LOGIN_ACCOUNT, TEST_USER } from '@/consts/profile';
+import { LOGIN_ACCOUNT, TEST_TOKEN, TEST_USER, TOKEN } from '@/consts/profile';
 
 interface ProtectedRoutePropsI {
     onlyUnAuth?: boolean;
@@ -19,6 +19,7 @@ function ProtectedRoute({ onlyUnAuth = false, UnAuth = false, children }: Protec
 
     useEffect(() => {
         storage.set(LOGIN_ACCOUNT, TEST_USER);
+        storage.set(TOKEN, TEST_TOKEN);
     }, []);
 
     // TODO: сплеш скрин приложения

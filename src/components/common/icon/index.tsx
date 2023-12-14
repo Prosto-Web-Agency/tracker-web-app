@@ -10,7 +10,8 @@ export const TRIcons = {
     expert: '/icons/ranks/expert.svg',
     headliner: '/icons/ranks/headliner.svg',
     resident: '/icons/ranks/resident.svg',
-    loader: '/icons/loader.svg'
+    loader: '/icons/loader.svg',
+    data: '/icons/data.svg',
 }
 
 interface TRIconProps {
