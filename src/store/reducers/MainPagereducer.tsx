@@ -36,7 +36,7 @@ const initialState: MainPageT = {
     selectedUserData: {}
 };
 
-let MainPageReducer = (state = initialState, action: any) => {
+const MainPageReducer = (state = initialState, action: any) => {
     switch (action.type) {
         case SET_INSAITS:
             return {
