@@ -1,6 +1,7 @@
 import Header from "@/components/common/header";
 import ProfileSettingsComponent from "@/components/pages/ProfileSettingsComponent";
 import 'animate.css';
+
 export default function ProfileSettings() {
     return (
         <div className="flex flex-col">

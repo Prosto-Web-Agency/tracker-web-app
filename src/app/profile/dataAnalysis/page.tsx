@@ -1,5 +1,3 @@
-'use client'
-
 import DataAnalysisComponent from "@/components/pages/dataAnalysis";
 
 export default function DataAnalysis() {
