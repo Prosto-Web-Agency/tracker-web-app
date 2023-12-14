@@ -14,7 +14,7 @@ export default function ChatField() {
     const [messages, setMessages] = useState<object[]>([])
     const [userMessage, setUserMessage] = useState<string>('')
     const messagesContainerRef = useRef<HTMLDivElement>(null);
-    const [fullScreen, setFullScreen] = useState<boolean>(true);
+    const [fullScreen, setFullScreen] = useState<boolean>(false);
 
     const sendMessage = () => {
         ws.send(JSON.stringify({ 'message': userMessage }))
@@ -42,8 +42,6 @@ export default function ChatField() {
                 } else return [...prev]
             })
         })
-
-        console.log(messages);
 
 
         if (messagesContainerRef.current) {
@@ -86,7 +84,7 @@ export default function ChatField() {
                                     }
                                 </div>
 
-                                <div className="rounded-t-3 flex pt-6 h-[50px] bg-white bottom-12">
+                                <div className="rounded-t-3 relative bottom-10 flex pt-6 h-[50px] bg-white bottom-12">
                                     <ChatTextField onChange={(mess) => setUserMessage(mess)} value={userMessage} type="text" />
                                     <button onClick={sendMessage} className="pl-2 flex">
                                         <Image className="hover:scale-105 active:scale-[1.1] scale-1 duration-300" width={34} height={34} src={'/sendMessage.svg'} alt="send" />
