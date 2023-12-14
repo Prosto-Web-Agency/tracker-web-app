@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 export type TChatCard = {
     username: string
     text: string
@@ -8,7 +10,7 @@ export default function ChatCard({ username, text, created_at }: TChatCard) {
     return (
         <>
             {
-                username === 'seniorl'
+                username === 'lunivilen'
                     ? <div className="w-full flex flex-col pl-[20%] text-white">
                         <div className="w-full py-3 px-5 bg-orange-class flex justify-between">
                             <div className="text-17_400">
@@ -20,8 +22,12 @@ export default function ChatCard({ username, text, created_at }: TChatCard) {
                         </div>
 
                     </div>
-                    : <div className="w-full pr-[20%] flex flex-col text-white">
-                        <div className="w-full py-3 rounded-6 px-5 bg-bg-gray flex flex-col">
+                    : <div className="w-full pr-[20%] flex text-white">
+                        <div className="flex items-end pb-1 pr-1">
+                            <Image height={32} width={32} src="/delete/Avatar.png" alt="avatar" />
+                        </div>
+
+                        <div className="w-full py-3 rounded-5 px-5 bg-bg-gray flex flex-col">
                             <div className="coloredTextTwo pb-1 text-11_500">
                                 {username}
                             </div>

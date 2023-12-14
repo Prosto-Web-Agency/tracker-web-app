@@ -9,10 +9,10 @@ interface ProtectedRoutePropsI {
     children: React.ReactNode;
 }
 
-function ProtectedRoute({ onlyUnAuth = false, UnAuth = false, children }: ProtectedRoutePropsI) {
+function ProtectedRoute({ onlyUnAuth = true, UnAuth = true, children }: ProtectedRoutePropsI) {
     //@ts-ignore
     // const { isAuthChecked, data } = useAppSelector(state => state?.user?.user);
-    const isAuthChecked = false;
+    const isAuthChecked = true;
     const router = useRouter();
 
     useEffect(() => {
