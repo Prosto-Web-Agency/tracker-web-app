@@ -7,8 +7,8 @@ import ScratchedTitle from "@/components/common/titles/ScratchedTitle"
 export default function SubscriptionPage() {
 
     return (
-        <section className="flex gap-6 bg-bg-gray p-10 rounded-9 min-h-[calc(100vh-90px)] h-[calc(100vh-90px)] relative mx-auto max-w-[1400px] w-full overflow-hidden">
-            <div className="flex flex-col gap-6 w-[30%] h-full relative">
+        <section className="flex gap-6 bg-bg-gray p-10 s_lg:rounded-[0px] rounded-9 min-h-[calc(100vh-90px)] lg:flex-col relative mx-auto max-w-[1400px] w-full overflow-hidden">
+            <div className="flex flex-col gap-6 w-[30%] lg:w-full h-full relative">
                 <BasePrimaryCard title="TRAKERstart" className="min-h-[calc(50%-12px)] justify-between">
                     <ul className="flex flex-col gap-3 list-disc px-3">
                         <li className="w-full pb-3 text-15_600 border-b-[0.5px] border-black">
@@ -56,7 +56,7 @@ export default function SubscriptionPage() {
                 </BasePrimaryCard>
             </div>
 
-            <div className="w-[calc(70%/3)] h-full">
+            <div className="w-[calc(70%/3)] lg:w-full h-full">
                 <BasePrimaryCard title="TRAKERbot" className="min-h-[50%] justify-between">
                     <ul className="flex flex-col gap-3 list-disc px-3">
                         <li className="w-full pb-3 text-15_600">
@@ -101,7 +101,7 @@ export default function SubscriptionPage() {
                 </BasePrimaryCard>
             </div>
 
-            <div className="w-[calc(70%/3)] h-full">
+            <div className="w-[calc(70%/3)] lg:w-full h-full">
                 <BasePrimaryCard title="TRAKERbot" className="min-h-[50%] justify-between">
                     <ul className="flex flex-col gap-3 list-disc px-3">
                         <li className="w-full pb-3 text-15_600">
@@ -156,7 +156,7 @@ export default function SubscriptionPage() {
                 </BasePrimaryCard>
             </div>
 
-            <div className="w-[calc(70%/3)] h-full">
+            <div className="w-[calc(70%/3)] lg:w-full h-full">
                 <BaseSecondaryCard title="Резиденство в REC's" className="min-h-[50%] justify-between">
                     <ul className="flex flex-col gap-3 list-disc px-3">
                         <li className="w-full pb-3 text-15_600 text-white">
