@@ -1,7 +1,7 @@
 import TRIcon from "../icon";
 import ModalHeadliner from "../modal/ranks/ModalHeadliner";
 
-type TRank = {
+export type TRank = {
     rank: "adviser" | "ambassador" | "expert" | "headliner" | "resident";
 }
 

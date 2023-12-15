@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import RankComponent from "../../cards/RankComponent";
+import RankComponent, {TRank} from "../../cards/RankComponent";
 import ModalAdvizer from "../../modal/ranks/ModalAdvizer";
 import ModalAmbassador from "../../modal/ranks/ModalAmbassador";
 import ModalExpert from "../../modal/ranks/ModalExpert";
 import ModalHeadliner from "../../modal/ranks/ModalHeadliner";
 import ModalResident from "../../modal/ranks/ModalResident";
 
-export default function AchieveFieldOffice() {
+type TRanksComponent = {
+    userRank: TRank['rank'];
+}
+export default function RanksComponent({ userRank }: TRanksComponent) {
     const [isExpertModalOpen, setExpertModalOpen] = useState(false);
     const [isAdvizerModalOpen, setAdvizerModalOpen] = useState(false);
     const [isAmbassadorModalOpen, setAmbassadorModalOpen] = useState(false);

@@ -3,11 +3,9 @@ const withImages = require('next-images'); // Для обработки изоб
 
 module.exports = withImages({
     env: {
-        ENDPOINT: process.env.ENDPOINT,
-        TEST_USER_LOGIN: process.env.TEST_USER_LOGIN,
-        TEST_USER_PASSWORD: process.env.TEST_USER_PASSWORD,
+        ENDPOINT: process.env.ENDPOINT
     },
     images: {
-        domains: ['prostoagency.storage.yandexcloud.net'],
+        domains: ['storage.yandexcloud.net'],
     },
 });

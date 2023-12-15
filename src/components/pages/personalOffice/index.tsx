@@ -1,12 +1,11 @@
 'use client'
 
-import PrimaryButton from "@/components/common/buttons/primary";
-import AchieveFieldOffice from "@/components/common/fields/officeField/AchieveFieldOffice";
+import RanksComponent from "@/components/common/fields/officeField/RanksComponent";
 import DiagrammsPhoneField from "@/components/common/fields/officeField/DiagrammsPhoneField";
 import DiagramsFieldOffice from "@/components/common/fields/officeField/DiagramsField";
 import GraphFieldOffice from "@/components/common/fields/officeField/GrapgFieldOffice";
 import MetrisFieldOffice from "@/components/common/fields/officeField/MetricsField";
-import PersonField from "@/components/common/fields/officeField/PersonField";
+import UserCard from "@/components/common/fields/officeField/UserCard";
 import SeccessGraphPhoneOffice from "@/components/common/fields/officeField/SuccessGraphOfficePhone";
 import {
     getEmotionalChartData,
@@ -14,15 +13,21 @@ import {
     getHolidaysChartData,
     getProductivityChartData
 } from "@/store/thunks/officeThunk";
-import Link from "next/link";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { getUserPersonalData } from "@/store/thunks/userThunk";
+import {TUserCommonData} from "@/models/userData";
+import {useRouter} from "next/navigation";
+import HoverGradientButton from "@/components/common/buttons/hoverGradient";
 
 export default function PersonalOffice() {
     const dispatch = useDispatch();
+    const router = useRouter();
 
     //@ts-ignore
     const { productivityChart, emotionalChart, holidaysChart } = useSelector(state => state.officePage)
+    //@ts-ignore
+    const { userData }: { userData: TUserCommonData | null } = useSelector(state => state.user)
 
     useEffect(() => {
         //@ts-ignore
@@ -33,7 +38,13 @@ export default function PersonalOffice() {
         dispatch(getHolidaysChartData())
         //@ts-ignore
         dispatch(getFirstMetricsData());
+        //@ts-ignore
+        dispatch(getUserPersonalData());
     }, [dispatch]);
+
+    function handleEditUserData() {
+        router.push('/profile/profileSettings');
+    }
 
     return (
 
@@ -41,20 +52,19 @@ export default function PersonalOffice() {
             <div className="w-full ss_lg:flex ss_lg:flex-col gap-6 min-h-[calc(100vh-90px)] relative bg-bg-gray grid grid-cols-3 sx_lg:grid-cols-2 rounded-9 sx_lg:rounded-[0] sx_lg:rounded-t-9 s_lg: p-6 sx_lg:pb-6 max-w-[1400px] mx-auto s_lg:rounded-t-[0px] s_lg:pt-0 s_lg:p-6 ss_lg:p-4 ss_lg:gap-4">
                 <div className="row-span-3 flex flex-col gap-6">
                     <div className="w-full">
-                        <PersonField />
-                        <Link href={"/profile/profileSettings"} className="w-full hoveredMenu duration-300 hover:scale-[1.03] flex justify-center items-center rounded-4 mt-6 ss_lg:mt-4 min-w-[364px] py-5 ss_lg:min-w-full bg-white text-heading-ss-bold ss_lg:py-3">
-                            Редактировать
-                        </Link>
+                        <UserCard userData={userData} />
+
+                        <HoverGradientButton text={'Редактировать'} onClick={handleEditUserData} />
                     </div>
 
                     <div className="ss_lg:hidden">
-                        <AchieveFieldOffice />
+                        <RanksComponent userRank={userData?.rank_name ?? "resident"} />
                     </div>
                 </div>
 
                 <div className="hidden gap-4 ss_lg:grid grid-cols-2 w-full">
                     <div>
-                        <AchieveFieldOffice />
+                        <RanksComponent userRank={userData?.rank_name ?? "resident"} />
                     </div>
                     <div className="flex flex-col gap-4">
                         <div>

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import TRIcon, { TRIcons } from '../icon';
+import classNames from "classnames";
 
 interface SecondaryButtonProps {
     text: string;
@@ -10,6 +11,7 @@ interface SecondaryButtonProps {
     leftIcon?: keyof typeof TRIcons;
     rightIcon?: keyof typeof TRIcons;
     edgeLength?: number;
+    size?: "small" | "default" | "big";
 }
 
 const SecondaryButton: React.FC<SecondaryButtonProps> = ({
@@ -18,11 +20,16 @@ const SecondaryButton: React.FC<SecondaryButtonProps> = ({
     className,
     edgeLength,
     leftIcon,
-    rightIcon
+    rightIcon,
+    size = "default"
 }) => {
     return (
         <button
-            className={`h-[50px] w-full rounded-4 bg-gradient ${className}`}
+            className={classNames(`w-full rounded-4 bg-gradient ${className}`, {
+                ['h-10']: size === 'small',
+                ['h-[50px]']: size === 'default',
+                ['h-[60px]']: size === 'big'
+            })}
             onClick={onClick}
         >
             {leftIcon && <TRIcon edgeLength={edgeLength} iconName={leftIcon}/>}

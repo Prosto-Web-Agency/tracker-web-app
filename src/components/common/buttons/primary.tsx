@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react';
 import TRIcon, { TRIcons } from '../icon';
 import DatePickerComponent from '../datePickerComponent';
+import classNames from "classnames";
 
 interface PrimaryButtonProps {
     text: string;
@@ -12,9 +13,19 @@ interface PrimaryButtonProps {
     rightIcon?: keyof typeof TRIcons;
     type?: "datePicker";
     edgeLength?: number;
+    size?: "small" | "default" | "big";
 }
 
-const PrimaryButton: React.FC<PrimaryButtonProps> = ({ text, onClick, className, edgeLength, leftIcon, rightIcon, type }) => {
+const PrimaryButton: React.FC<PrimaryButtonProps> = ({
+    text,
+    onClick,
+    className,
+    edgeLength,
+    leftIcon,
+    rightIcon,
+    type,
+    size = "default"
+}) => {
     const [title, setTitle] = React.useState<string>(text);
 
     useEffect(() => {
@@ -23,7 +34,11 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({ text, onClick, className,
 
     return (
         <button
-            className={`flex justify-between items-center px-4 h-[50px] w-full rounded-4 bg-white ${className}`}
+            className={classNames(`flex justify-between items-center px-4 w-full rounded-4 bg-white ${className}`, {
+                ['h-10']: size === 'small',
+                ['h-[50px]']: size === 'default',
+                ['h-[60px]']: size === 'big'
+            })}
             onClick={onClick}
         >
             {leftIcon && <TRIcon edgeLength={edgeLength} iconName={leftIcon}/>}

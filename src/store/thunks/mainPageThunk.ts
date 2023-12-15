@@ -15,14 +15,3 @@ export const getLeadersDataThunk = () => (dispatch: any) => {
             dispatch(updateLeaderboard(response.data.top_user_tg_id))
         })
 }
-
-export const getUserDataBySlack = (slack: string) => (dispatch: any) => {
-    mainPageApi.getUserCommonDataApi(slack)
-        .then((res: TUserCommonData | undefined) => {
-            if (res) {
-                dispatch(setSelectedUserData(res))
-            } else {
-                dispatch(setSelectedUserData({}))
-            }
-        })
-}

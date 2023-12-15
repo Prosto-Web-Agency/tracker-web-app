@@ -5,35 +5,7 @@ import React, { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFirstMetricsData } from "@/store/thunks/officeThunk";
 import TRIcon from "@/components/common/icon";
-import {CHART_COLORS} from "@/consts/chart";
-
-const MOCKS_CHARTS = [
-    {
-        data: [154, 421],
-        labels: ['Виктор', 'Анвар'],
-        name: 'респект друзьям'
-    },
-    {
-        data: [154, 421],
-        labels: ['Виктор', 'Анвар'],
-        name: 'респект друзьям'
-    },
-    {
-        data: [12, 22],
-        labels: ['Мама', 'Папа'],
-        name: 'Время с семьей'
-    },
-    {
-        data: [42, 122],
-        labels: ['Виктор', 'Анвар'],
-        name: 'Время с друзьями'
-    },
-    {
-        data: [45, 14],
-        labels: ['Горные лыжи', 'Теннис'],
-        name: 'Время на отдых'
-    },
-]
+import { CHART_COLORS, MOCKS_CHARTS } from "@/consts/chart";
 
 export default function DiagramsFieldOffice() {
     const dispatch = useDispatch();
