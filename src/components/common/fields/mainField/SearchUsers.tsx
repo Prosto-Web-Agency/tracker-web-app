@@ -10,13 +10,10 @@ export default function SearchUsers() {
     const dispatch = useDispatch();
     const [text, setText] = useState<string>("")
     //@ts-ignore
-    const {searchUsers} = useSelector(state => state.mainPage)
+    const { searchUsers } = useSelector(state => state.mainPage)
 
     const handleChange = (text: string) => {
         setText(text)
-        
-        console.log(searchUsers);
-        
         //@ts-ignore
         dispatch(getSearchUsersThunk(text))
     }
@@ -34,11 +31,31 @@ export default function SearchUsers() {
             {
                 text === ""
                     ? null
-                    : <div className="bg-white rounded-4 mt-6 min-h-[100px] max-h-[200px] w-full absolute">
+                    : <div className="bg-white p-6 rounded-4 flex flex-col gap-6 mt-6 min-h-[100px] max-h-[200px] overflow-y-scroll w-full absolute">
                         {
-                            searchUsers.map((e: string) => (
-                                <div>
-                                    {e}
+                            //@ts-ignore
+                            searchUsers.map((e, index) => (
+                                <div className="w-full h-9 px-3 flex justify-between" key={e.first_name + index}>
+                                    <div className="flex items-center gap-3">
+                                        <Image
+                                            className="hover:scale-105 active:scale-[1.1] scale-1 duration-300"
+                                            width={30}
+                                            height={30}
+                                            src={'/delete/Avatar.png'}
+                                            alt="search"
+                                        />
+                                        {e.first_name}
+                                    </div>
+
+                                    <div>
+                                        <Image
+                                            className="hover:scale-105 active:scale-[1.1] scale-1 duration-300"
+                                            width={30}
+                                            height={30}
+                                            src={'/add.svg'}
+                                            alt="search"
+                                        />
+                                    </div>
                                 </div>
                             ))
                         }
