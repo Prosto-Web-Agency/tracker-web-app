@@ -62,7 +62,7 @@ export default function PersonalOffice() {
                     </div>
                 </div>
 
-                <div className="hidden gap-4 ss_lg:grid grid-cols-2 w-full">
+                <div className="hidden gap-4 sm:grid-cols-1 ss_lg:grid grid-cols-2 w-full">
                     <div>
                         <RanksComponent userRank={userData?.rank_name ?? "resident"} />
                     </div>
