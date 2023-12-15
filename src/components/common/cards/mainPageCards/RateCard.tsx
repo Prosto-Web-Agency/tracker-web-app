@@ -10,7 +10,6 @@ export type TCardRate = TUserSmallData & {
 
 export default function RateCard({
     first_name,
-    surname,
     profile_image,
     task_count,
     position,
@@ -23,6 +22,7 @@ export default function RateCard({
             first_name,
             position: (String(index + 1)),
             open: true,
+            profile_image
         })
         setModalData(modalDataUser)
     }
@@ -58,7 +58,6 @@ export default function RateCard({
 
                 <h5 className="flex items-center text-13_600 h-[34px] overflow-hidden overflow-ellipsis -webkit-line-clamp-2 clmp">
                     {first_name}
-                    {surname}
                 </h5>
             </div>
 

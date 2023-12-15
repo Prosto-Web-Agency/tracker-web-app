@@ -15,6 +15,7 @@ export type TModalDataUser = {
     first_name: string;
     position: string;
     open: boolean;
+    profile_image?: string;
 }
 
 export default function RateField({ rateData }: TRateData) {
