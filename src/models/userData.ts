@@ -13,9 +13,17 @@ export type TUserCommonData = Omit<TUserData, "login"> & {
     rank_name: TRank['rank'];
 };
 
-export type TUserSmallData = Omit<TUserData, "login" | "tg_username" | "instagram"> & {
+export type TUserSmallData = Omit<TUserData, "login" | "tg_username" | "instagram" | "surname"> & {
     profile_image: string | null;
     task_count: number;
 }
 
 export type TUserSmallDataArray = TUserSmallData[];
+
+export type TUserSearchData = Omit<TUserData, "login" | "tg_username" | "instagram"> & {
+    image_url: string | null;
+    is_anon: number;
+    rank_name: TRank['rank'];
+}
+
+export type TUserSearchDataArray = TUserSearchData[];

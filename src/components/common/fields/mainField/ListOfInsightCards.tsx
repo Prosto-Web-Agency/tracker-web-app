@@ -36,7 +36,7 @@ export default function ListOfInsightCards({ listOfUserInsights }: TInsightCard)
                                                 open: true
                                             })}
                                     >
-                                        <InsightCard header='Инсайт' {...insightData} />
+                                        <InsightCard {...insightData} />
                                     </div>
                                 ))
                             }
@@ -50,7 +50,6 @@ export default function ListOfInsightCards({ listOfUserInsights }: TInsightCard)
             </div>
 
             <ModalInsight
-                header={modalDataInsight.header}
                 first_name={modalDataInsight.first_name}
                 text={modalDataInsight.text}
                 open={modalDataInsight.open}
