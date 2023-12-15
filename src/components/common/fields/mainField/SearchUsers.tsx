@@ -5,7 +5,7 @@ import SearchUsersField from "../../textFields/SearchUsersField"
 import Image from "next/image"
 import { useDispatch, useSelector } from "react-redux"
 import { getSearchUsersThunk } from "@/store/thunks/trakerThunk"
-import {TUserSearchDataArray} from "@/models/userData";
+import { TUserSearchDataArray } from "@/models/userData";
 
 export default function SearchUsers() {
     const dispatch = useDispatch();
