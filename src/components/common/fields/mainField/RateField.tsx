@@ -53,15 +53,13 @@ export default function RateField({ rateData }: TRateData) {
                 rank_color: "#808080"
                 rank_name: "Новый пользователь"
                 surname: "test"
-                tg_username: "lunivilen" 
+                tg_username: "lunivilen"
             */}
 
             {
                 selectedUserData ? (
                     <ModalUser
-                        userAchievements={[
-                            selectedUserData.achievement_name,
-                        ]}
+                        userAchievements={[]}
                         name={selectedUserData.first_name + ' ' + selectedUserData.surname}
                         tg_username={selectedUserData.tg_username}
                         instagram={selectedUserData.instagram}

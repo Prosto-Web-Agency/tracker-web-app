@@ -6,7 +6,7 @@ import InsaitField from "@/components/common/fields/mainField/InsiteField";
 import NewsField from "@/components/common/fields/mainField/NewsField";
 import RateField from "@/components/common/fields/mainField/RateField";
 import { useEffect } from "react";
-import { getInsaitsDataThunk, getLeadersDataThunk, getUserDataBySlack } from "@/store/thunks/mainPageThunk";
+import { getInsaitsDataThunk, getLeadersDataThunk } from "@/store/thunks/mainPageThunk";
 import { useDispatch, useSelector } from "react-redux";
 import { storage } from '@/utils/localStorage';
 import { LOGIN_ACCOUNT, TEST_TOKEN, TEST_USER, TOKEN } from '@/consts/profile';
@@ -19,13 +19,13 @@ export default function MainPage() {
     const { main_leaderboard } = useSelector(state => state.mainPage)
 
     useEffect(() => {
-        // registrationApi.getTokenRequest('1')
         //@ts-ignore
         dispatch(getInsaitsDataThunk())
         //@ts-ignore
         dispatch(getLeadersDataThunk())
-        //@ts-ignore
-        dispatch(getUserDataBySlack('lunivilen'))
+        // todo: разобраться, зачем я тут импортнул getUserDataBySlack
+        // //@ts-ignore
+        // dispatch(getUserDataBySlack('lunivilen'))
 
         storage.set(LOGIN_ACCOUNT, TEST_USER);
         storage.set(TOKEN, TEST_TOKEN);

@@ -1,24 +1,8 @@
 'use client'
 
 import { DoughnutChart } from "../../diagrams/DoughnutChart";
-import { TColors } from "./DiagramsField"
-
-const COLORS: TColors[] = [
-    {
-        color1: 'rgba(229, 44, 49, 1)',
-        color2: 'rgba(255, 201, 202, 0.38)'
-    },
-    {
-        color1: 'rgba(243, 108, 33, 1)',
-        color2: 'rgba(243, 108, 33, 0.18)'
-    },
-    {
-        color1: 'rgba(249, 209, 0, 1)',
-        color2: 'rgba(249, 209, 0, 0.18)'
-    },
-]
-
-const DIAGRAM_TITLES = ['productive', 'positive', 'result', 'strongest', 'beauty', 'limitless']
+import { CHART_COLORS, MOCKS_CHARTS } from "@/consts/chart";
+import React from "react";
 
 export default function DiagrammsPhoneField() {
     return (
@@ -28,42 +12,16 @@ export default function DiagrammsPhoneField() {
             </h5>
             <div className="w-full h-full grid grid-cols-3 pt-6 gap-6">
                 {
-                    COLORS.map((e, index) => (
-                        <DoughnutChart key={e.color1 + index} name={'Продуктивность'}
-                            plugins={{
-                                id: '80%',
-                                //@ts-ignore
-                                beforeDatasetDraw(chart, args, pluginOptions) {
-                                    const { ctx, data } = chart;
-
-                                    ctx.save();
-                                    ctx.font = 'bolder 10px sans-serif';
-                                    ctx.fillStyle = 'black';
-                                    ctx.textAlign = 'center';
-                                    ctx.textBaseline = 'middle';
-                                    ctx.fillText(DIAGRAM_TITLES[index], chart.getDatasetMeta(0).data[0].x, chart.getDatasetMeta(0).data[0].y)
-                                }
-                            }}
-                            data={
-                                {
-                                    datasets: [
-                                        {
-                                            label: '%',
-                                            data: [88, 12],
-                                            backgroundColor: [
-                                                e.color1,
-                                                e.color2,
-                                            ],
-                                            borderColor: [
-                                                e.color1,
-                                                e.color2,
-                                            ],
-                                            borderWidth: 1,
-                                            cutout: "80%"
-                                        },
-                                    ],
-                                }
-                            } />
+                    [MOCKS_CHARTS[0], MOCKS_CHARTS[1], MOCKS_CHARTS[2]].map(({ data, labels, name }, index) => (
+                        <DoughnutChart
+                            colors={[CHART_COLORS[index+1].color1, CHART_COLORS[index+1].color2]}
+                            key={name}
+                            name={name}
+                            percents={'50%'}
+                            id={'80%'}
+                            labels={labels}
+                            data={data}
+                        />
                     ))
                 }
             </div>
