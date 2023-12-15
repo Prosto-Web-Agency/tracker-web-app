@@ -8,7 +8,7 @@ export default function SubscriptionPage() {
 
     return (
         <section className="flex gap-6 bg-bg-gray p-10 s_lg:rounded-[0px] rounded-9 min-h-[calc(100vh-90px)] lg:flex-col relative mx-auto max-w-[1400px] w-full overflow-hidden">
-            <div className="flex flex-col gap-6 w-[30%] lg:w-full h-full relative">
+            <div className="flex flex-col gap-6 w-[30%] lg:w-full h-[calc(100vh-162px)] relative">
                 <BasePrimaryCard title="TRAKERstart" className="min-h-[calc(50%-12px)] justify-between">
                     <ul className="flex flex-col gap-3 list-disc px-3">
                         <li className="w-full pb-3 text-15_600 border-b-[0.5px] border-black">
@@ -48,7 +48,7 @@ export default function SubscriptionPage() {
                                 <p className="text-13_500 text-white">Навсегда</p>
                                 <div className="flex gap-2">
                                     <ScratchedTitle title="390р. " className="text-heading-s text-white" />
-                                    <p className="text-heading-s text-white">Free</p>
+                                    <p className="text-heading-s text-white">90р.</p>
                                 </div>
                             </div>
                         </BaseSecondaryCard>
@@ -56,8 +56,8 @@ export default function SubscriptionPage() {
                 </BasePrimaryCard>
             </div>
 
-            <div className="w-[calc(70%/3)] lg:w-full h-full">
-                <BasePrimaryCard title="TRAKERbot" className="min-h-[50%] justify-between">
+            <div className="w-[calc(70%/3)] lg:w-full h-[calc(100vh-162px)]">
+                <BasePrimaryCard title="smarTraker" className="min-h-[50%] justify-between">
                     <ul className="flex flex-col gap-3 list-disc px-3">
                         <li className="w-full pb-3 text-15_600">
                             Подбор от Ai индивидуальной фокус-группы для Трекеринга, повышения эффективности и Баланса
@@ -79,9 +79,9 @@ export default function SubscriptionPage() {
                                 <div className="flex flex-col">
                                     <p className="text-13_500 text-white">Месяц</p>
                                     <div className="flex gap-2">
-                                        <ScratchedTitle title="19900р. " className="text-heading-s text-white" />
+                                        <ScratchedTitle title="890р. " className="text-heading-s text-white" />
                                         <span className="text-heading-s text-white">
-                                            13 900р.
+                                            490р.
                                         </span>
                                     </div>
                                 </div>
@@ -89,9 +89,9 @@ export default function SubscriptionPage() {
                                 <div className="flex flex-col">
                                     <p className="text-13_500 text-white">Год</p>
                                     <div className="flex gap-2">
-                                        <ScratchedTitle title="89900р. " className="text-heading-s text-white" />
+                                        <ScratchedTitle title="8900р. " className="text-heading-s text-white" />
                                         <span className="text-heading-s text-white">
-                                            69 900р.
+                                            3900р.
                                         </span>
                                     </div>
                                 </div>
@@ -101,8 +101,8 @@ export default function SubscriptionPage() {
                 </BasePrimaryCard>
             </div>
 
-            <div className="w-[calc(70%/3)] lg:w-full h-full">
-                <BasePrimaryCard title="TRAKERbot" className="min-h-[50%] justify-between">
+            <div className="w-[calc(70%/3)] lg:w-full h-[calc(100vh-162px)]">
+                <BasePrimaryCard title="База RЕСомендаций" className="min-h-[50%] justify-between">
                     <ul className="flex flex-col gap-3 list-disc px-3">
                         <li className="w-full pb-3 text-15_600">
                             Обратная связь от психолога и коуча
@@ -156,7 +156,7 @@ export default function SubscriptionPage() {
                 </BasePrimaryCard>
             </div>
 
-            <div className="w-[calc(70%/3)] lg:w-full h-full">
+            <div className="w-[calc(70%/3)] lg:w-full h-[calc(100vh-162px)]">
                 <BaseSecondaryCard title="Резиденство в REC's" className="min-h-[50%] justify-between">
                     <ul className="flex flex-col gap-3 list-disc px-3">
                         <li className="w-full pb-3 text-15_600 text-white">

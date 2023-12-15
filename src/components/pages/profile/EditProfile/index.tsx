@@ -81,15 +81,17 @@ export default function EditProfilePage() {
                 {
                     userData ? (
                         <>
-                            userData?.image_url ? (
-                                <Image
-                                    className="w-[282px] h-[440px] rounded-4 s_lg:h-[225px] s_lg:w-[169px] object-cover"
-                                    width={282}
-                                    height={441}
-                                    src={userData.image_url}
-                                    alt="man"
-                                />
-                            ) : null
+                            {
+                                userData?.image_url ? (
+                                    <Image
+                                        className="w-[282px] h-[440px] rounded-4 s_lg:h-[225px] s_lg:w-[169px] object-cover"
+                                        width={282}
+                                        height={441}
+                                        src={userData.image_url}
+                                        alt="man"
+                                    />
+                                ) : null
+                            }
                         </>
                     ) : (
                         <div className="flex w-[282px] h-[440px] border-4 border-white border-solid bg-bg-gray rounded-4 justify-center items-center">

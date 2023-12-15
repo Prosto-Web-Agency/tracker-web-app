@@ -1,6 +1,6 @@
 import axios, { AxiosRequestConfig } from "axios";
-import type { TUserData } from "../../models/userData";
-import { TEST_TOKEN, TEST_USER, TOKEN } from "@/consts/profile";
+import type { TUserData } from "@/models/userData";
+import { TOKEN } from "@/consts/profile";
 import { storage } from "@/utils/localStorage";
 
 const endpoint = process.env.ENDPOINT
