@@ -4,6 +4,7 @@ import type { TInsightCardArray } from "@/models/traker";
 const SET_LIST_OF_INSIGHTS = 'SET_LIST_OF_INSIGHTS';
 const SET_LIST_OF_TOP_USES = 'SET_LIST_OF_TOP_USES';
 const SET_SELECTED_USER_DATA = 'SET_SELECTED_USER_DATA';
+const SET_SEARCH_USERS = 'SET_SEARCH_USERS';
 
 type TTracker = {
     listOfTopUsers: TUserSmallDataArray | null,
@@ -13,6 +14,7 @@ type TTracker = {
     main_live_success_feed: object[];
     main_live_chat_flood: object[];
     selectedUserData: TUserData | object;
+    searchUsers: [];
 }
 
 const initialState: TTracker = {
@@ -22,7 +24,8 @@ const initialState: TTracker = {
     main_important_news: [],
     main_live_success_feed: [],
     main_live_chat_flood: [],
-    selectedUserData: {}
+    selectedUserData: {},
+    searchUsers: [],
 };
 
 const TrakerReducer = (state = initialState, action: any) => {
@@ -37,10 +40,15 @@ const TrakerReducer = (state = initialState, action: any) => {
                 ...state,
                 listOfTopUsers: [...action.data]
             }
-        case 'SET_SELECTED_USER_DATA':
+        case SET_SELECTED_USER_DATA:
             return {
                 ...state,
                 selectedUserData: action.data
+            }
+        case SET_SEARCH_USERS:
+            return {
+                ...state,
+                searchUsers: action.data
             }
         default:
             return state
@@ -50,5 +58,6 @@ const TrakerReducer = (state = initialState, action: any) => {
 export let setListOfUserInsights = (data: TInsightCardArray) => ({ type: SET_LIST_OF_INSIGHTS, data })
 export let setListOfTopUsers = (data: TUserSmallDataArray) => ({ type: SET_LIST_OF_TOP_USES, data })
 export let setSelectedUserData = (data: TUserData | object) => ({ type: SET_SELECTED_USER_DATA, data })
+export let setSearchUsersData = (data: TUserData | object) => ({ type: SET_SEARCH_USERS, data })
 
 export default TrakerReducer;

@@ -10,6 +10,7 @@ import { getListOfUsersInsights, getListOfTopUsers } from "@/store/thunks/traker
 import { useDispatch, useSelector } from "react-redux";
 import { storage } from '@/utils/localStorage';
 import { LOGIN_ACCOUNT, TEST_TOKEN, TEST_USER, TOKEN } from '@/consts/profile';
+import SearchUsers from "@/components/common/fields/mainField/SearchUsers";
 
 export default function MainPage() {
     const dispatch = useDispatch();
@@ -35,7 +36,11 @@ export default function MainPage() {
         <section className="w-full overflow-hidden">
             <div className="min-h-[calc(100vh-90px)] relative w-full bg-bg-gray rounded-9 p-10 max-w-[1400px] mx-auto s_lg:rounded-t-[0px] s_lg:pt-0 s_lg:p-6 pb-3 s_lg:pb-12">
                 <div className="h-[432px] big_screen_h:h-[calc(65vh-130px)] flex gap-6 s_lg:flex-col-reverse s_lg:h-auto">
-                    <ListOfInsightCards listOfUserInsights={listOfUserInsights} />
+                    <div className="flex flex-col gap-6">
+                        <SearchUsers />
+                        <ListOfInsightCards listOfUserInsights={listOfUserInsights} />
+                    </div>
+
                     <NewsField />
                 </div>
 
