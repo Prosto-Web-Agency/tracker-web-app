@@ -20,4 +20,12 @@ export const mainPageApi = {
         return axios.get(endpoint + `top_user`, config)
             .then((response) => response)
     },
+    getSearchUsers(name: string) {
+        return axios.get(endpoint + `user_search?search=${name}`, config)
+            .then((response) => (response))
+    },
+    getNews() {
+        return axios.get(endpoint + `news?page=1&page_size=10`, config)
+            .then((response) => (response))
+    },
 }

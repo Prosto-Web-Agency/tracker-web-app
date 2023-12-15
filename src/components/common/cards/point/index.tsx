@@ -1,6 +1,5 @@
 'use client'
 
-import InsightCard from "../mainPageCards/InsightCard";
 import ModalInsight from "../../modal/ModalInsight";
 import { useState } from "react";
 
@@ -32,14 +31,13 @@ export default function InsaitField({ dataInsaits }: TDataInsights) {
                                 open: true
                             }
                         )}>
-                            <InsightCard header='Инсайт' first_name={NAMES[index]} text={e}/>
+                            {/*<InsightCard first_name={NAMES[index]} text={e}/>*/}
                         </div>
                     ))
                 }
             </div>
 
             <ModalInsight
-                header={modalDataInsight.header}
                 first_name={modalDataInsight.name}
                 text={modalDataInsight.text}
                 open={modalDataInsight.open}
