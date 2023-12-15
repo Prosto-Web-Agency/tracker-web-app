@@ -31,7 +31,7 @@ export default function SearchUsers() {
             {
                 text === ""
                     ? null
-                    : <div className="bg-white p-6 rounded-4 flex flex-col gap-6 mt-6 min-h-[100px] max-h-[200px] overflow-y-scroll w-full absolute">
+                    : <div className="bg-white p-6 rounded-4 flex flex-col gap-8 mt-6 min-h-[100px] max-h-[200px] overflow-y-scroll w-full absolute">
                         {
                             //@ts-ignore
                             searchUsers.map((e, index) => (
