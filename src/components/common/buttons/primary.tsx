@@ -34,7 +34,7 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
 
     return (
         <button
-            className={classNames(`flex justify-between items-center px-4 w-full rounded-4 bg-white ${className}`, {
+            className={classNames(`flex justify-between items-center hover:bg-bg-gray transition px-4 w-full rounded-4 bg-white ${className}`, {
                 ['h-10']: size === 'small',
                 ['h-[50px]']: size === 'default',
                 ['h-[60px]']: size === 'big'
@@ -42,7 +42,7 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
             onClick={onClick}
         >
             {leftIcon && <TRIcon edgeLength={edgeLength} iconName={leftIcon}/>}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#E01D31] to-[#FEA50F]">
+            <span className="text-transparent text-center w-full bg-clip-text bg-gradient-to-r from-[#E01D31] to-[#FEA50F]">
                 {title}
             </span>
             {rightIcon && <TRIcon edgeLength={edgeLength} iconName={rightIcon}/>}

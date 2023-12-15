@@ -1,21 +1,22 @@
 'use client'
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import TRTextField from "@/components/common/textFields/TRTextField";
 import Image from "next/image";
-import ImagePicker from "../imagePicker";
+import ImagePicker from "../../imagePicker";
 import SecondaryButton from "@/components/common/buttons/secondary";
 import PrimaryButton from "@/components/common/buttons/primary";
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
-import { editUserPersonalData } from '@/store/reducers/OfficeReducer';
-import { storage } from '@/utils/localStorage';
-import { LOGIN_ACCOUNT, TEST_USER } from '@/consts/profile';
 import classNames from "classnames";
+import { TUserCommonData } from "@/models/userData";
+import { editUserDataFetch } from "@/store/thunks/userThunk";
+import TRIcon from "@/components/common/icon";
+import { getUserPersonalData } from "@/store/thunks/userThunk";
 
-export default function ProfileSettingsComponent() {
+export default function EditProfilePage() {
     // @ts-ignore
-    const { userPersonalData } = useSelector(state => state.officePage);
+    const { userData }: { userData: TUserCommonData | null } = useSelector(state => state.user)
     // @ts-ignore
     const dispatch = useDispatch();
 
@@ -44,22 +45,28 @@ export default function ProfileSettingsComponent() {
     }
 
     useEffect(() => {
-        if (userPersonalData) {
-            setName(userPersonalData.first_name)
-            setSurname(userPersonalData.surname)
-            setTelegram(userPersonalData.tg_username)
-            setInst(userPersonalData.instagram)
+        //@ts-ignore
+        dispatch(getUserPersonalData());
+    }, [dispatch]);
+
+    useEffect(() => {
+        if (userData) {
+            setName(userData.first_name)
+            setSurname(userData.surname)
+            setTelegram(userData.tg_username)
+            setInst(userData.instagram)
         }
-    }, [userPersonalData]);
+    }, [userData]);
 
     function handleSendRequest() {
         if (name) {
-            dispatch(editUserPersonalData({
+            // @ts-ignore
+            dispatch(editUserDataFetch({
                 first_name: name,
                 surname: surname,
                 tg_username: telegram,
                 instagram: inst,
-                login: String(storage.get(LOGIN_ACCOUNT, TEST_USER)).replace(/\+/g, '')
+                login: ''
             }));
         } else if (!nameError) {
             setNameError(true);
@@ -71,13 +78,26 @@ export default function ProfileSettingsComponent() {
 
         <div className="bg-white rounded-6 w-[588px] h-[441px] flex s_lg:bg-bg-gray s_lg:flex-col s_lg:w-full s_lg:h-full s_lg:p-6">
             <button onClick={() => setImgPicker(!imgPicker)} className="s_lg:bg-white s_lg:rounded-6 s_lg:flex">
-                <Image
-                    className="w-[282px] h-[440px] rounded-4 s_lg:h-[225px] s_lg:w-[169px] object-cover"
-                    width={282}
-                    height={441}
-                    src={'/delete/person.jpeg'}
-                    alt="man"
-                />
+                {
+                    userData ? (
+                        <>
+                            userData?.image_url ? (
+                                <Image
+                                    className="w-[282px] h-[440px] rounded-4 s_lg:h-[225px] s_lg:w-[169px] object-cover"
+                                    width={282}
+                                    height={441}
+                                    src={userData.image_url}
+                                    alt="man"
+                                />
+                            ) : null
+                        </>
+                    ) : (
+                        <div className="flex w-[282px] h-[440px] border-4 border-white border-solid bg-bg-gray rounded-4 justify-center items-center">
+                            <TRIcon iconName="loader" edgeLength={48} className="animate-spin" />
+                        </div>
+                    )
+                }
+
                 <Image
                     className="duration-300 hover:scale-[1.05] absolute mt-[-430px] ml-[225px] s_lg:hidden"
                     width={46}
@@ -86,7 +106,6 @@ export default function ProfileSettingsComponent() {
                     alt="camera logo"
                 />
 
-                
                 <div className="w-full h-full justify-center items-center hidden s_lg:flex">
                     <Image
                         className="duration-300 hover:scale-[1.05]"

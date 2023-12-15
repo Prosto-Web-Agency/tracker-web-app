@@ -25,7 +25,7 @@ const SecondaryButton: React.FC<SecondaryButtonProps> = ({
 }) => {
     return (
         <button
-            className={classNames(`w-full rounded-4 bg-gradient ${className}`, {
+            className={classNames(`w-full rounded-4 bg-gradient hover:opacity-80 transition ${className}`, {
                 ['h-10']: size === 'small',
                 ['h-[50px]']: size === 'default',
                 ['h-[60px]']: size === 'big'

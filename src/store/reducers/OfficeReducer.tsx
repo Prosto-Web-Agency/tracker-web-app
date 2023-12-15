@@ -20,7 +20,6 @@ type TOfficePage = {
     emotionalChart: TChart,
     holidaysChart: TChart,
     firstMetrics: TChart,
-    userPersonalData: TUserData | object;
 }
 
 const initialState: TOfficePage = {
@@ -39,13 +38,6 @@ const initialState: TOfficePage = {
     firstMetrics: {
         label: [],
         data: []
-    },
-    userPersonalData: {
-        first_name: '',
-        surname: '',
-        tg_username: '',
-        instagram: '',
-        login: '',
     }
 };
 
@@ -82,11 +74,6 @@ let OfficeReducer = (state = initialState, action: any) => {
                     data: [...action.data],
                     label: [...action.label]
                 }
-            }
-        case EDIT_USER_PERSONAL_DATA:
-            return {
-                ...state,
-                userPersonalData: action.data
             }
         default:
             return state

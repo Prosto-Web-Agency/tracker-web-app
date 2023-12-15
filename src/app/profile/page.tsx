@@ -1,7 +1,7 @@
 'use client'
 
 import Header from "@/components/common/header";
-import PersonalOffice from "@/components/pages/personalOffice";
+import PersonalOffice from "@/components/pages/profile";
 import ProtectedRoute from "@/components/common/protectedRoute";
 import {useDispatch} from "react-redux";
 import {useEffect} from "react";

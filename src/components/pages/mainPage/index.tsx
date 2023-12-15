@@ -1,7 +1,7 @@
 'use client'
 
-import AchievmentField from "@/components/common/fields/mainField/AchievementField";
-import ChatField from "@/components/common/fields/mainField/ChatField";
+import RanksTopUser from "@/components/common/fields/mainField/RanksTopUser";
+import ChatSmallComponent from "@/components/common/fields/mainField/ChatSmallComponent";
 import InsaitField from "@/components/common/fields/mainField/InsiteField";
 import NewsField from "@/components/common/fields/mainField/NewsField";
 import RateField from "@/components/common/fields/mainField/RateField";
@@ -41,8 +41,8 @@ export default function MainPage() {
 
                 <div className="flex big_screen_h:h-[calc(35vh-40px)] lg:flex-col gap-6 mt-6">
                     <RateField rateData={main_leaderboard} />
-                    <AchievmentField />
-                    <ChatField />
+                    <RanksTopUser />
+                    <ChatSmallComponent />
                 </div>
             </div>
         </section>

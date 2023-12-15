@@ -3,7 +3,8 @@ const withImages = require('next-images'); // Для обработки изоб
 
 module.exports = withImages({
     env: {
-        ENDPOINT: process.env.ENDPOINT
+        ENDPOINT: process.env.ENDPOINT,
+        WEBSOCKET: process.env.WEBSOCKET,
     },
     images: {
         domains: ['storage.yandexcloud.net'],

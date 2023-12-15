@@ -1,13 +1,10 @@
 import SwiperComponent from "@/components/common/swiper";
-import {useEffect, useState} from "react";
+import { useState } from "react";
 import classNames from "classnames";
+import { RANKS_TOP_USER } from "@/consts/ranks";
 
-export default function AchievmentField() {
+export default function RanksTopUser() {
     const [hover, setHover] = useState(false);
-
-    useEffect(() => {
-        console.log('h')
-    }, [hover])
 
     return (
         <div
@@ -36,28 +33,7 @@ export default function AchievmentField() {
             />
 
             <SwiperComponent
-                swiperCards={[
-                    {
-                        image: "f",
-                        name: "Анвар Кайратович",
-                        achieveName: "Новый ранг"
-                    },
-                    {
-                        image: "f",
-                        name: "Анвар Кайратович",
-                        achieveName: "Новый ранг"
-                    },
-                    {
-                        image: "f",
-                        name: "Анвар Кайратович",
-                        achieveName: "Новый ранг"
-                    },
-                    {
-                        image: "f",
-                        name: "Анвар Кайратович",
-                        achieveName: "Новый ранг"
-                    },
-                ]}
+                swiperCards={RANKS_TOP_USER}
                 cardType="achievement"
             />
         </div>

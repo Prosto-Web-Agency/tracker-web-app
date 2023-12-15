@@ -39,10 +39,3 @@ export const getFirstMetricsData = () => (dispatch: any) => {
             dispatch(setFirstMetrics(response.data))
         })
 }
-
-export const editUserPersonalDataThunk = (data: TUserData) => (dispatch: any) => {
-    OfficeAPI.editUserPersonalDataApi(data)
-        .then((response) => {
-            dispatch(editUserPersonalData(response.data));
-        })
-}

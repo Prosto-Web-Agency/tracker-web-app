@@ -43,7 +43,7 @@ export default function PersonalOffice() {
     }, [dispatch]);
 
     function handleEditUserData() {
-        router.push('/profile/profileSettings');
+        router.push('/profile/edit');
     }
 
     return (
