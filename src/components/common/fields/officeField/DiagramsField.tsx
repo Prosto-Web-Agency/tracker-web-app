@@ -1,11 +1,39 @@
 'use client'
 
 import { DoughnutChart } from "../../diagrams/DoughnutChart";
-import { CHART_COLORS } from "@/consts/chart";
 import React, { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getFirstMetricsData } from "@/store/thunks/officeThunk";
 import TRIcon from "@/components/common/icon";
+import {CHART_COLORS} from "@/consts/chart";
+
+const MOCKS_CHARTS = [
+    {
+        data: [154, 421],
+        labels: ['Виктор', 'Анвар'],
+        name: 'респект друзьям'
+    },
+    {
+        data: [154, 421],
+        labels: ['Виктор', 'Анвар'],
+        name: 'респект друзьям'
+    },
+    {
+        data: [12, 22],
+        labels: ['Мама', 'Папа'],
+        name: 'Время с семьей'
+    },
+    {
+        data: [42, 122],
+        labels: ['Виктор', 'Анвар'],
+        name: 'Время с друзьями'
+    },
+    {
+        data: [45, 14],
+        labels: ['Горные лыжи', 'Теннис'],
+        name: 'Время на отдых'
+    },
+]
 
 export default function DiagramsFieldOffice() {
     const dispatch = useDispatch();
@@ -27,6 +55,7 @@ export default function DiagramsFieldOffice() {
                 {
                     firstMetrics.data.length ? (
                         <DoughnutChart
+                            colors={[CHART_COLORS[0].color1, CHART_COLORS[0].color2]}
                             name={'Занятость по проектам'}
                             percents={'50%'}
                             id={'80%'}
@@ -39,7 +68,22 @@ export default function DiagramsFieldOffice() {
                         </div>
                     )
                 }
+
+                {
+                    MOCKS_CHARTS.map(({ data, labels, name }, index) => (
+                        <DoughnutChart
+                            colors={[CHART_COLORS[index+1].color1, CHART_COLORS[index+1].color2]}
+                            key={name}
+                            name={name}
+                            percents={'50%'}
+                            id={'80%'}
+                            labels={labels}
+                            data={data}
+                        />
+                    ))
+                }
             </div>
+
         </div>
     )
 }
