@@ -153,7 +153,8 @@ canvas {
     transition: 300ms ease all;
 }
 
-.hoveredMenu:hover {
+.hoveredMenu:hover,
+.activeMenu {
     background: linear-gradient(90deg, #E22132 0%, #FFA411 100%);
     color: white;
 }

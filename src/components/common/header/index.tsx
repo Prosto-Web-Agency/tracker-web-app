@@ -3,8 +3,9 @@
 import { motion, useAnimation } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import HeaderMenu from "./HeaderMenu";
+import classNames from "classnames";
 
 export type TTabs = {
     link: string
@@ -12,7 +13,10 @@ export type TTabs = {
 }
 
 export const TABS: TTabs[] = [
-
+    {
+        link: '/',
+        title: 'Главная',
+    },
     {
         link: '/subscription',
         title: 'Подписка',
@@ -27,7 +31,7 @@ export const TABS: TTabs[] = [
     },
     {
         link: '/balance',
-        title: 'Баланс',
+        title: 'Чекап',
     },
 ]
 
@@ -46,6 +50,7 @@ const path03Variants = {
 
 export default function Header({ title, isUnAuth }: { title?: string, isUnAuth?: boolean }) {
     const [openMenu, setOpenMenu] = useState(false);
+    const [activeTab, setActiveTab] = useState('Главная');
     const [isOpen, setOpen] = useState(false);
     const path01Controls = useAnimation();
     const path02Controls = useAnimation();
@@ -66,6 +71,11 @@ export default function Header({ title, isUnAuth }: { title?: string, isUnAuth?:
         }
     };
 
+    useEffect(() => {
+        console.log(window.location.pathname)
+        TABS.map(({link, title}) => link === window.location.pathname && setActiveTab(title));
+    }, []);
+
     return (
         <>
             <header className="bg-transparent s_lg:bg-bg-gray w-full h-[90px] bg-black sm:h-[75px] overflow-hidden">
@@ -78,15 +88,22 @@ export default function Header({ title, isUnAuth }: { title?: string, isUnAuth?:
                     </Link>
 
                     <div className="flex gap-6 pr-6 items-center s_lg:hidden">
-                        <div className="flex flex-row-reverse gap-6 items-center">
+                        <div className="flex flex-row gap-6 items-center">
                             {
                                 TABS.map(({ link, title }: TTabs) => (
-                                    <Link className="py-2 duration-300 hover:scale-[1.03] w-[135px] text-heading-ss-bold flex justify-center rounded-full bg-bg-gray hoveredMenu items-center" key={link + title} href={`${link}`}>
+                                    <Link
+                                        className={classNames("py-2 max-h-[36px] duration-300 hover:scale-[1.03] w-[135px] text-heading-ss-bold flex justify-center rounded-full bg-bg-gray hoveredMenu items-center", {
+                                            ['activeMenu']: activeTab === title
+                                        })}
+                                        key={link + title}
+                                        href={`${link}`}
+                                    >
                                         {title}
                                     </Link>
                                 ))
                             }
                         </div>
+
                         <Link href={'/profile'}>
                             <Image className="w-[48px] h-[48px] rounded-10" height={48} width={48} src={'/delete/person.jpeg'} alt='person' />
                         </Link>
