@@ -1,17 +1,17 @@
 'use client'
 
-import InsaitCard, { TCardInsait } from "../../cards/mainPageCards/InsaitCard";
-import ModalInsait from "../../modal/ModalInsait";
+import InsightCard from "../mainPageCards/InsightCard";
+import ModalInsight from "../../modal/ModalInsight";
 import { useState } from "react";
 
-export type TDataInsaits = {
+export type TDataInsights = {
     dataInsaits: string[]
 }
 
 const NAMES = ['Анвар', 'Лев', 'Олег', 'Илья', 'Вадим', 'Камиль'];
 
-export default function InsaitField({ dataInsaits }: TDataInsaits) {
-    const [modalDataInsait, setModalDataInsait] = useState({
+export default function InsaitField({ dataInsaits }: TDataInsights) {
+    const [modalDataInsight, setModalDataInsight] = useState({
         header: '',
         name: '',
         text: '',
@@ -24,7 +24,7 @@ export default function InsaitField({ dataInsaits }: TDataInsaits) {
             <div className="h-full pb-6 w-full rounded-t-6 overflow-y-scroll scroll-hidden flex flex-col gap-4 s_lg:rounded-t-[0px] s_lg:overflow-y-hidden s_lg:w-screen s_lg:ml-[-24px] s_lg:pl-6 s_lg:overflow-x-scroll s_lg:flex-row">
                 {
                     dataInsaits.map((e: string, index) => (
-                        <div key={e} onClick={() => setModalDataInsait(
+                        <div key={e} onClick={() => setModalDataInsight(
                             {
                                 header: 'Инсайт',
                                 name: NAMES[index],
@@ -32,17 +32,18 @@ export default function InsaitField({ dataInsaits }: TDataInsaits) {
                                 open: true
                             }
                         )}>
-                            <InsaitCard header='Инсайт' name={NAMES[index]} text={e}/>
+                            <InsightCard header='Инсайт' first_name={NAMES[index]} text={e}/>
                         </div>
                     ))
                 }
             </div>
 
-            <ModalInsait header={modalDataInsait.header}
-                         name={modalDataInsait.name}
-                         text={modalDataInsait.text}
-                         open={modalDataInsait.open}
-                         setModalDataInsait={setModalDataInsait}
+            <ModalInsight
+                header={modalDataInsight.header}
+                first_name={modalDataInsight.name}
+                text={modalDataInsight.text}
+                open={modalDataInsight.open}
+                setModalDataInsight={setModalDataInsight}
             />
         </div>
     )

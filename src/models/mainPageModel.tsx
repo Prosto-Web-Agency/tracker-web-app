@@ -1,4 +1,4 @@
 export interface MainPageInfoI {
-    main_leaderboard: object[];
+    listOfTopUsers: object[];
     main_important_news: object[];
 }

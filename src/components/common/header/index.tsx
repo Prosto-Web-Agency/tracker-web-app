@@ -72,7 +72,6 @@ export default function Header({ title, isUnAuth }: { title?: string, isUnAuth?:
     };
 
     useEffect(() => {
-        console.log(window.location.pathname)
         TABS.map(({link, title}) => link === window.location.pathname && setActiveTab(title));
     }, []);
 

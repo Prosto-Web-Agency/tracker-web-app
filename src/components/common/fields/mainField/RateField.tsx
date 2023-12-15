@@ -3,15 +3,16 @@
 import { useSelector } from "react-redux";
 import RateCard from "../../cards/mainPageCards/RateCard";
 import ModalUser from "../../modal/ModalUser";
-import { useState } from 'react';
-import { TUserCommonData } from "@/models/userData";
+import React, { useState } from 'react';
+import {TUserCommonData, TUserSmallDataArray} from "@/models/userData";
+import TRIcon from "@/components/common/icon";
 
 export type TRateData = {
-    rateData: []
+    rateData: TUserSmallDataArray | null
 }
 
-type TModalDataUser = {
-    name: string;
+export type TModalDataUser = {
+    first_name: string;
     position: string;
     open: boolean;
 }
@@ -21,7 +22,7 @@ export default function RateField({ rateData }: TRateData) {
     const { selectedUserData }: { selectedUserData: TUserCommonData } = useSelector(state => state.mainPage);
 
     const [modalDataUser, setModalDataUser] = useState<TModalDataUser>({
-        name: '',
+        first_name: '',
         position: '',
         open: false,
     });
@@ -34,14 +35,24 @@ export default function RateField({ rateData }: TRateData) {
 
             <div className="flex flex-wrap rounded-t-5 w-full h-full pb-12 s_lg:pb-5 justify-between overflow-y-scroll gap-4 scroll-hidden xx_lg:justify-center">
                 {
-                    rateData.map((e, index) => (
-                        <RateCard
-                            setModalData={(data: TModalDataUser) => setModalDataUser(data)}
-                            key={e}
-                            name={e}
-                            position={index + 1}
-                        />
-                    ))
+                    rateData ? (
+                        <>
+                            {
+                                rateData.map((userSmallData, index) => (
+                                    <RateCard
+                                        setModalData={(data: TModalDataUser) => setModalDataUser(data)}
+                                        key={userSmallData.first_name + index}
+                                        position={index + 1}
+                                        {...userSmallData}
+                                    />
+                                ))
+                            }
+                        </>
+                    ) : (
+                        <div className="flex justify-center items-center w-full h-full">
+                            <TRIcon iconName="loader" edgeLength={48} className="animate-spin" />
+                        </div>
+                    )
                 }
             </div>
 

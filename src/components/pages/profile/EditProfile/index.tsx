@@ -52,7 +52,7 @@ export default function EditProfilePage() {
     useEffect(() => {
         if (userData) {
             setName(userData.first_name)
-            setSurname(userData.surname)
+            setSurname(userData.surname ?? '')
             setTelegram(userData.tg_username)
             setInst(userData.instagram)
         }
