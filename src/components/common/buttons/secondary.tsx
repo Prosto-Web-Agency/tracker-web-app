@@ -12,6 +12,7 @@ interface SecondaryButtonProps {
     rightIcon?: keyof typeof TRIcons;
     edgeLength?: number;
     size?: "small" | "default" | "big";
+    bg?: string;
 }
 
 const SecondaryButton: React.FC<SecondaryButtonProps> = ({
@@ -21,19 +22,25 @@ const SecondaryButton: React.FC<SecondaryButtonProps> = ({
     edgeLength,
     leftIcon,
     rightIcon,
-    size = "default"
+    size = "default",
+    bg
 }) => {
     return (
         <button
-            className={classNames(`w-full rounded-4 bg-gradient hover:opacity-80 transition ${className}`, {
+            className={classNames(`w-full rounded-4 hover:opacity-80 transition ${className}`, {
                 ['h-10']: size === 'small',
                 ['h-[50px]']: size === 'default',
-                ['h-[60px]']: size === 'big'
+                ['h-[60px]']: size === 'big',
+                ['bg-gradient']: !bg,
+                [String(bg)]: bg,
             })}
             onClick={onClick}
         >
             {leftIcon && <TRIcon edgeLength={edgeLength} iconName={leftIcon}/>}
-            <span className="text-white">
+            <span className={classNames({
+                ['text-white']: !bg,
+                ['text-black']: bg,
+            })}>
                 {text}
             </span>
             {rightIcon && <TRIcon edgeLength={edgeLength} iconName={rightIcon}/>}

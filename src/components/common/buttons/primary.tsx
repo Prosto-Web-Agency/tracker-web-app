@@ -34,7 +34,7 @@ const PrimaryButton: React.FC<PrimaryButtonProps> = ({
 
     return (
         <button
-            className={classNames(`flex justify-between items-center hover:bg-bg-gray transition px-4 w-full rounded-4 bg-white ${className}`, {
+            className={classNames(`flex justify-between border border-gradient border-solid items-center hover:bg-bg-gray transition px-4 w-full rounded-4 bg-white ${className}`, {
                 ['h-10']: size === 'small',
                 ['h-[50px]']: size === 'default',
                 ['h-[60px]']: size === 'big'

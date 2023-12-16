@@ -30,6 +30,7 @@ const config: Config = {
       },
       backgroundColor: {
         gray: '#8E8E93',
+        white: 'white',
         'base-gray': '#2D2D2D',
         blue: '#007FE0',
         'border-gray': 'rgba(140, 140, 140, 0.4)',
@@ -44,6 +45,7 @@ const config: Config = {
         border: 'rgba(31, 31, 31, 0.1)',
         disabled: 'rgba(31, 31, 31, 0.2)',
         'tag-gray': '#8C8C8C',
+        gradient: 'linear-gradient(90deg, #E12131 0%, #FEA310 100%)'
       },
       fontSize: {
         'heading-ss': ['18px', { fontWeight: '600' }],

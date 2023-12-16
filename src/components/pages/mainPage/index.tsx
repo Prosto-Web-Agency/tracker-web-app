@@ -28,8 +28,8 @@ export default function MainPage() {
         // dispatch(getUserDataBySlack('lunivilen'))
 
         // todo: переделать установление тестового токена
-        storage.set(LOGIN_ACCOUNT, TEST_USER);
-        storage.set(TOKEN, TEST_TOKEN);
+        // storage.set(LOGIN_ACCOUNT, TEST_USER);
+        // storage.set(TOKEN, TEST_TOKEN);
     }, [dispatch]);
 
     return (
