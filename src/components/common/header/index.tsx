@@ -111,14 +111,14 @@ export default function Header({ title, isUnAuth }: { title?: string, isUnAuth?:
 
                     <button
                         onClick={() => changeMenuState(!openMenu)}
-                        className="hidden h-[90px] z-[20] justify-center items-center pr-[30px] s_lg:flex">
+                        className="hidden h-[90px] z-[110] justify-center items-center pr-[30px] s_lg:flex">
 
                         <svg width='25' height='25' viewBox='0 0 24 24'>
                             <motion.path
                                 {...path01Variants.closed}
                                 animate={path01Controls}
                                 transition={{ duration: 0.7 }}
-                                stroke={`${!isOpen ? '#DF1A32' : '#ffffff'}`}
+                                stroke={`${!isOpen ? '#DF1A32' : '#DF1A32'}`}
                                 strokeWidth='2'
                                 strokeLinecap='round'
                             />
@@ -126,7 +126,7 @@ export default function Header({ title, isUnAuth }: { title?: string, isUnAuth?:
                                 {...path02Variants.closed}
                                 animate={path02Controls}
                                 transition={{ duration: 0.7 }}
-                                stroke={`${!isOpen ? '#DF1A32' : '#ffffff'}`}
+                                stroke={`${!isOpen ? '#DF1A32' : '#DF1A32'}`}
                                 strokeWidth='2'
                                 strokeLinecap='round'
                             />

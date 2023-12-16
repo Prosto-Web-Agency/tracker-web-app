@@ -20,7 +20,7 @@ export default function ListOfInsightCards({ listOfUserInsights }: TInsightCard)
 
     return (
         <div className="bg-white w-[384px] h-[calc(100%-88px)] rounded-6 flex flex-col gap-4 pb-0 p-6 s_lg:w-full s_lg:h-[192px] s_lg:bg-transparent s_lg:p-0">
-            <h3 className="text-heading-s s_lg:hidden pl-3">Ваши инсайты</h3>
+            <h3 className="text-heading-s s_lg:hidden pl-3">Инсайты пользователей</h3>
             <div className="h-full pb-6 w-full rounded-t-6 overflow-y-scroll scroll-hidden flex flex-col gap-4 s_lg:rounded-t-[0px] s_lg:overflow-y-hidden s_lg:w-screen s_lg:ml-[-24px] s_lg:pl-6 s_lg:overflow-x-scroll s_lg:flex-row">
                 {
                     listOfUserInsights ? (
