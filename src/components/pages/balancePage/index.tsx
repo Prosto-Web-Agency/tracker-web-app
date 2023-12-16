@@ -93,7 +93,7 @@ export default function BalancePage() {
                     <ThemeProvider theme={theme}>
                         {
                             BALANCE.map((e, index):any => (
-                                <SliderBalance name={e.name} image={e.image} key={e.name + index} />
+                                <SliderBalance name={e.name}  image={e.image} key={e.name + index} />
                             ))
                         }
                     </ThemeProvider>

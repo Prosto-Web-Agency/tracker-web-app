@@ -16,7 +16,7 @@ export default function SliderBalance({ name, image }: TSliderBalance) {
             <div className="w-full flex items-center mt-1">
                 <Slider
                     aria-label={name}
-                    defaultValue={30}
+                    defaultValue={0}
                     valueLabelDisplay="auto"
                     step={1}
                     min={0}
