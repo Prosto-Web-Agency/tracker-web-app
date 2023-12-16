@@ -5,10 +5,12 @@ import {TUserData} from "@/models/userData";
 
 const endpoint = process.env.ENDPOINT;
 
-const config: AxiosRequestConfig = {
-    headers: {
-        Authorization: `Token ${storage.get(TOKEN)}`,
-    }
+const config = (): AxiosRequestConfig => {
+    return ({
+        headers: {
+            Authorization: `Token ${storage.get(TOKEN)}`,
+        }
+    })
 };
 
 const configWithBody = (data: any): AxiosRequestConfig => {
@@ -29,7 +31,7 @@ export const userApi = {
         return new Promise((resolve) => resolve(false));
     },
     getUserPersonalDataApi() {
-        return axios.get(endpoint + 'get_user_personal_data', config)
+        return axios.get(endpoint + 'get_user_personal_data', config())
             .then(res => {
                 if (res.status === 200) {
                     return res.data

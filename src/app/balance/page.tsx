@@ -14,7 +14,7 @@ export default function Balance() {
     useEffect(() => {
         // @ts-ignore
         dispatch(checkUserAuth());
-    });
+    }, []);
 
     return (
         <ProtectedRoute>

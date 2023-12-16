@@ -3,18 +3,29 @@
 import Header from '@/components/common/header'
 import StartPage from '@/components/pages/startPage'
 import { useEffect } from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {checkUserAuth, getUserPersonalData} from "@/store/thunks/userThunk";
+import {storage} from "@/utils/localStorage";
+import {TOKEN} from "@/consts/profile";
 
 export default function Start() {
+    // @ts-ignore
+    const { isUserAuth } = useSelector(state => state.user);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
         // @ts-ignore
         dispatch(checkUserAuth());
-        // @ts-ignore
-        dispatch(getUserPersonalData());
-    });
+    }, []);
+
+    useEffect(() => {
+        if (isUserAuth) {
+            // @ts-ignore
+            dispatch(getUserPersonalData());
+        }
+    }, [isUserAuth]);
+
 
     return (
         <div className='w-screen h-screen relative'>

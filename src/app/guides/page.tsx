@@ -15,7 +15,7 @@ export default function Guides() {
     useEffect(() => {
         // @ts-ignore
         dispatch(checkUserAuth());
-    });
+    }, []);
 
     return (
         <ProtectedRoute>

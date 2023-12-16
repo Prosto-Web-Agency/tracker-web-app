@@ -13,7 +13,7 @@ export default function Profile() {
     useEffect(() => {
         // @ts-ignore
         dispatch(checkUserAuth());
-    });
+    }, []);
 
     return (
         <ProtectedRoute>

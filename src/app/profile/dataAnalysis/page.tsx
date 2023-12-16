@@ -12,7 +12,7 @@ export default function DataAnalysis() {
     useEffect(() => {
         // @ts-ignore
         dispatch(checkUserAuth());
-    });
+    }, []);
 
     return (
         <ProtectedRoute>
