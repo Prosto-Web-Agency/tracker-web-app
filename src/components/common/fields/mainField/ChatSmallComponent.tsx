@@ -128,7 +128,7 @@ export default function ChatSmallComponent() {
                                 </h3>
                             </div>
 
-                            <div className={classNames('absolute flex justify-center items-center top-0 left-0 transition bg-black h-full w-full', {
+                            <div className={classNames('absolute z-20 flex justify-center items-center top-0 left-0 transition bg-black h-full w-full', {
                                 ['opacity-20']: hover,
                                 ['opacity-0']: !hover
                             })}>

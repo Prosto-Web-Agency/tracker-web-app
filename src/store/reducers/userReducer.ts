@@ -3,17 +3,20 @@ import {TUserCommonData, TUserData} from "@/models/userData";
 const SET_USER_AUTH = 'SET_USER_AUTH';
 const SET_USER_DATA = 'SET_USER_DATA';
 const EDIT_USER_DATA = 'EDIT_USER_DATA';
+const SET_USER_SUBSCRIPTION = 'SET_USER_SUBSCRIPTION';
 
 type TUser = {
     isUserAuth: boolean;
     isAuthCheck: boolean;
     userData: TUserCommonData | null;
+    isUserSubscribed: boolean;
 }
 
 const initialState: TUser = {
     isUserAuth: false,
     isAuthCheck: false,
-    userData: null
+    userData: null,
+    isUserSubscribed: false
 };
 
 const userReducer = (state = initialState, action: any) => {
@@ -34,6 +37,11 @@ const userReducer = (state = initialState, action: any) => {
                 ...state,
                 userPersonalData: action.data
             }
+        case SET_USER_SUBSCRIPTION:
+            return {
+                ...state,
+                isUserSubscribed: action.data
+            }
         default:
             return state
     }
@@ -42,5 +50,7 @@ const userReducer = (state = initialState, action: any) => {
 export const setUserAuth = (data: boolean) => ({ type: SET_USER_AUTH, data })
 export const setUserData = (data: TUserCommonData | null) => ({ type: SET_USER_DATA, data })
 export const editUserData = (data: TUserData | null) => ({ type: EDIT_USER_DATA, data });
+export const setUserSubscription = (data: boolean) => ({ type: SET_USER_SUBSCRIPTION, data });
+
 
 export default userReducer;

@@ -3,37 +3,37 @@
 import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
 import { useSelector } from "react-redux";
+import {TUserCommonData} from "@/models/userData";
+import {handleGetTokenAndLogin} from "@/utils/setterToken";
+import {handleIsFullAuthComplete, handleUserFinishedAuth} from "@/utils/isFullAuthComplete";
 
 interface ProtectedRoutePropsI {
     onlyUnAuth?: boolean;
-    UnAuth?: boolean;
+    unAuth?: boolean;
     children: React.ReactNode;
 }
 
-function ProtectedRoute({ onlyUnAuth = true, UnAuth = true, children }: ProtectedRoutePropsI) {
+function ProtectedRoute({ onlyUnAuth = false, unAuth = false, children }: ProtectedRoutePropsI) {
+    const { isUserAuth, isAuthCheck, userData, isUserSubscribed }: {
+        isAuthCheck: boolean,
+        isUserAuth: boolean,
+        userData: TUserCommonData | null,
+        isUserSubscribed: boolean
     //@ts-ignore
-    const { isUserAuth, isAuthCheck } = useSelector(state => state.user)
+    } = useSelector(state => state.user);
     const router = useRouter();
 
     useEffect(() => {
-        const searchParams = new URL(window.location.href).searchParams;
-        const pathname = new URL(window.location.href).pathname;
-        const params: { token?: string, login?: string } = {};
+        const { token, login } = handleGetTokenAndLogin();
 
-        const token = searchParams.get('token');
-        const login = searchParams.get('login');
-
-        if (token) params['token'] = token;
-        if (login) params['login'] = login;
-
-        if (isAuthCheck && !isUserAuth) {
+        if (handleIsFullAuthComplete(isAuthCheck, isUserAuth, userData, isUserSubscribed, unAuth)) {
             router.push(`/start${token ? '?token=' + token : ''}${login ? '&login=' + login : ''}`);
-        } else if (pathname === 'start') {
+        } else if (handleUserFinishedAuth()) {
             router.push('/');
         }
-    }, [isUserAuth, isAuthCheck]);
+    }, [isUserAuth, isAuthCheck, isUserSubscribed, userData, unAuth, router]);
 
-    if (!isUserAuth) {
+    if (handleIsFullAuthComplete(isAuthCheck, isUserAuth, userData, isUserSubscribed, unAuth)) {
         return (<></>);
     }
 

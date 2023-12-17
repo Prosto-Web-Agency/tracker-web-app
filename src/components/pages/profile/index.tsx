@@ -42,6 +42,8 @@ export default function PersonalOffice() {
         dispatch(getUserPersonalData());
     }, [dispatch]);
 
+    useEffect(() => {}, [userData])
+
     function handleEditUserData() {
         router.push('/profile/edit');
     }

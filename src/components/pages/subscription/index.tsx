@@ -3,8 +3,33 @@
 import BasePrimaryCard from "@/components/common/cards/BasePrimaryCard"
 import BaseSecondaryCard from "@/components/common/cards/BaseSecondaryCard"
 import ScratchedTitle from "@/components/common/titles/ScratchedTitle"
+import {setUserSubscriptionFetch} from "@/store/thunks/userThunk";
+import {useDispatch, useSelector} from "react-redux";
+import {useRouter} from "next/navigation";
+import {useEffect} from "react";
+import {TUserCommonData} from "@/models/userData";
+import {storage} from "@/utils/localStorage";
+import {SUBSCRIPTION} from "@/consts/profile";
 
 export default function SubscriptionPage() {
+    const dispatch = useDispatch();
+    const router = useRouter();
+    const subscription = Boolean(storage.get(SUBSCRIPTION));
+    const { isUserSubscribed }: {
+        isUserSubscribed: boolean
+        //@ts-ignore
+    } = useSelector(state => state.user);
+
+    function handleSubscribe() {
+        // @ts-ignore
+        dispatch(setUserSubscriptionFetch(true))
+    };
+
+    useEffect(() => {
+        if (subscription !== isUserSubscribed) {
+            router.push('/');
+        }
+    }, [isUserSubscribed]);
 
     return (
         <section className="flex gap-6 bg-bg-gray p-10 s_lg:rounded-[0px] rounded-9 min-h-[calc(100vh-90px)] lg:flex-col relative mx-auto max-w-[1400px] w-full overflow-hidden">
@@ -22,7 +47,7 @@ export default function SubscriptionPage() {
                         </li>
                     </ul>
 
-                    <div className="flex">
+                    <div className="flex cursor-pointer hover:opacity-80" onClick={handleSubscribe}>
                         <BaseSecondaryCard>
                             <div className="flex flex-col gap-2">
                                 <p className="text-13_500 text-white">Навсегда</p>
@@ -42,7 +67,7 @@ export default function SubscriptionPage() {
                         </li>
                     </ul>
 
-                    <div className="flex">
+                    <div className="flex cursor-pointer hover:opacity-80" onClick={handleSubscribe}>
                         <BaseSecondaryCard>
                             <div className="flex flex-col gap-2">
                                 <p className="text-13_500 text-white">Навсегда</p>
@@ -73,7 +98,7 @@ export default function SubscriptionPage() {
                         </li>
                     </ul>
 
-                    <div className="flex">
+                    <div className="flex cursor-pointer hover:opacity-80" onClick={handleSubscribe}>
                         <BaseSecondaryCard>
                             <div className="flex flex-col gap-2">
                                 <div className="flex flex-col">
@@ -121,7 +146,7 @@ export default function SubscriptionPage() {
                         </li>
                     </ul>
 
-                    <div className="flex">
+                    <div className="flex cursor-pointer hover:opacity-80" onClick={handleSubscribe}>
                         <BaseSecondaryCard>
                             <div className="flex flex-col gap-2">
                                 <div className="flex flex-col">
@@ -176,7 +201,7 @@ export default function SubscriptionPage() {
                         </li>
                     </ul>
 
-                    <div className="flex">
+                    <div className="flex cursor-pointer hover:opacity-80" onClick={handleSubscribe}>
                         <BasePrimaryCard>
                             <div className="flex flex-col gap-2">
                                 <div className="flex flex-col">

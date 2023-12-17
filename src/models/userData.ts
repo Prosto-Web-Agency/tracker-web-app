@@ -9,8 +9,9 @@ export type TUserData = {
 };
 
 export type TUserCommonData = Omit<TUserData, "login"> & {
-    image_url: string;
+    image_url?: string;
     rank_name: TRank['rank'];
+    is_anon: number;
 };
 
 export type TUserSmallData = Omit<TUserData, "login" | "tg_username" | "instagram" | "surname"> & {

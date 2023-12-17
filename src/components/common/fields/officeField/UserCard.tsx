@@ -26,13 +26,21 @@ export default function UserCard({ userData }: TUserCard) {
                 userData ? (
                     <>
                         <div className="w-[193px]">
-                            <Image
-                                className="w-[200px] h-[225px] big_screen_h:h-[calc(40vh-114px)] object-cover rounded-4"
-                                width={193}
-                                height={265}
-                                src={userData.image_url}
-                                alt="man"
-                            />
+                            {
+                                userData.image_url ? (
+                                    <Image
+                                        className="w-[200px] h-[225px] big_screen_h:h-[calc(40vh-114px)] object-cover rounded-4"
+                                        width={193}
+                                        height={265}
+                                        src={userData.image_url}
+                                        alt="man"
+                                    />
+                                ) : (
+                                    <div className="w-[200px] h-[200px] big_screen_h:h-[calc(40vh-114px)] rounded-4 bg-bg-gray box-border border-4 border-solid border-white">
+
+                                    </div>
+                                )
+                            }
                             <div className="bg-orange-class absolute mt-[-50px] ml-13 text-white flex justify-center items-center py-2 px-5">
                                 LVL: King
                             </div>

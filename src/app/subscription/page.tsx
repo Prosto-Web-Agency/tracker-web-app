@@ -3,7 +3,7 @@ import SubscriptionPage from "@/components/pages/subscription";
 import ProtectedRoute from "@/components/common/protectedRoute";
 export default function Subscription() {
     return (
-        <ProtectedRoute>
+        <ProtectedRoute unAuth={true}>
             <Header />
             <SubscriptionPage />
         </ProtectedRoute>

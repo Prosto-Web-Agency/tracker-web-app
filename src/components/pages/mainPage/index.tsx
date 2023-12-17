@@ -8,8 +8,6 @@ import RateField from "@/components/common/fields/mainField/RateField";
 import { useEffect } from "react";
 import { getListOfUsersInsights, getListOfTopUsers } from "@/store/thunks/trakerThunk";
 import { useDispatch, useSelector } from "react-redux";
-import { storage } from '@/utils/localStorage';
-import { LOGIN_ACCOUNT, TEST_TOKEN, TEST_USER, TOKEN } from '@/consts/profile';
 import SearchUsers from "@/components/common/fields/mainField/SearchUsers";
 
 export default function MainPage() {

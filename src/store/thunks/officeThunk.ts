@@ -12,7 +12,8 @@ export const getProductivityChartData = () => (dispatch: any) => {
     OfficeAPI
         .getProductivityChartData()
         .then((response) => {
-            dispatch(setProductivity(response.data))
+            const { tasks_count = [], report_date = [] } = response.data;
+            dispatch(setProductivity({ tasks_count, report_date }))
         })
 }
 
@@ -20,7 +21,8 @@ export const getEmotionalChartData = () => (dispatch: any) => {
     OfficeAPI
         .getEmotionalChartData()
         .then((response) => {
-            dispatch(setEmotional(response.data))
+            const { report_emotional_condition = [], report_date = [] } = response.data;
+            dispatch(setEmotional({ report_emotional_condition, report_date }))
         })
 }
 
@@ -28,7 +30,8 @@ export const getHolidaysChartData = () => (dispatch: any) => {
     OfficeAPI
         .getHolidaysChartData()
         .then((response) => {
-            dispatch(setHolidays(response.data))
+            const { total_time_spent = [], report_date = [] } = response.data;
+            dispatch(setHolidays({ total_time_spent, report_date }))
         })
 }
 
