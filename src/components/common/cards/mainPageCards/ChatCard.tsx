@@ -1,4 +1,6 @@
 import Image from "next/image"
+import {TUserDataState} from "@/store/reducers/userReducer";
+import {useSelector} from "react-redux";
 
 export type TChatCard = {
     username: string
@@ -7,22 +9,26 @@ export type TChatCard = {
 }
 
 export default function ChatCard({ username, text, created_at }: TChatCard) {
+    // @ts-ignore
+    const { userData }: { userData: TUserDataState } = useSelector(state => state.user)
+
     return (
         <>
             {
-                username === 'lunivilen'
-                    ? <div className="w-full flex flex-col pl-[20%] text-white">
-                        <div className="w-full py-3 px-5 bg-orange-class flex justify-between">
-                            <div className="text-17_400">
-                                {text}
+                userData && userData.first_name === username ? (
+                        <div className="w-full flex flex-col pl-[20%] text-white">
+                            <div className="w-full py-3 px-5 bg-orange-class flex justify-between">
+                                <div className="text-17_400">
+                                    {text}
+                                </div>
+                                <div className="text-11_400 w-[40px] flex justify-end items-end text-white opacity-70">
+                                    {created_at}
+                                </div>
                             </div>
-                            <div className="text-11_400 w-[40px] flex justify-end items-end text-white opacity-70">
-                                {created_at}
-                            </div>
-                        </div>
 
-                    </div>
-                    : <div className="w-full pr-[20%] flex text-white">
+                        </div>
+                ) : (
+                    <div className="w-full pr-[20%] flex text-white">
                         <div className="flex items-end pb-1 pr-1">
                             <Image height={32} width={32} src="/delete/Avatar.png" alt="avatar" />
                         </div>
@@ -41,6 +47,7 @@ export default function ChatCard({ username, text, created_at }: TChatCard) {
                             </div>
                         </div>
                     </div>
+                )
             }
         </>
 

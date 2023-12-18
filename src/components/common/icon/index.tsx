@@ -12,6 +12,7 @@ export const TRIcons = {
     resident: '/icons/ranks/resident.svg',
     loader: '/icons/loader.svg',
     data: '/icons/data.svg',
+    arrowLeft: '/icons/arrow-left.svg'
 }
 
 interface TRIconProps {

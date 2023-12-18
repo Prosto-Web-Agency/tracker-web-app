@@ -12,7 +12,7 @@ import classNames from "classnames";
 import { editUserDataFetch } from "@/store/thunks/userThunk";
 import TRIcon from "@/components/common/icon";
 import { getUserPersonalData } from "@/store/thunks/userThunk";
-import {TUserDataState} from "@/store/reducers/userReducer";
+import type { TUserDataState } from "@/store/reducers/userReducer";
 
 export default function EditProfilePage() {
     // @ts-ignore
