@@ -8,10 +8,10 @@ import Header from "../../header";
 import classNames from "classnames";
 import TRIcon from "@/components/common/icon";
 
-const ws = new WebSocket(process.env.WEBSOCKET ?? '')
+const ws = new WebSocket(process.env.WEBSOCKET ?? '');
 
 export default function ChatSmallComponent() {
-    const [messages, setMessages] = useState<object[]>([])
+    const [messages, setMessages] = useState<{ text: string, [key: string]: string }[]>([])
     const [userMessage, setUserMessage] = useState<string>('')
     const messagesContainerRef = useRef<HTMLDivElement>(null);
     const [fullScreen, setFullScreen] = useState<boolean>(false);
@@ -37,23 +37,24 @@ export default function ChatSmallComponent() {
         return (hours + ":" + newMinutes);
     }
 
-    useEffect(() => {
-        ws.addEventListener('message', (e) => {
-            const newMessages = JSON.parse(e.data);
+    function handleGetMessage(message: MessageEvent<any>) {
+        const newMessages = JSON.parse(message.data);
 
-            setMessages((prev) => {//@ts-ignore
-                if (newMessages[0]?.text !== prev[0]?.text)
-                    //@ts-ignore
-                    return [...newMessages, ...prev]
+        setMessages((prev) => {
+            if (newMessages[0]?.text !== prev[0]?.text)
+                return [...newMessages, ...prev];
 
-                return [...prev]
-            })
+            return [...prev];
         })
+    }
+
+    useEffect(() => {
+        ws.onmessage = (message) => handleGetMessage(message);
 
         if (messagesContainerRef.current) {
             messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
         }
-    }, [messages])
+    }, [messages]);
 
     return (
         <>
@@ -61,10 +62,6 @@ export default function ChatSmallComponent() {
                 fullScreen ?
                     (
                         <>
-                            <div className="fixed top-0 right-0 w-screen z-[1000] bg-white">
-                                <Header />
-                            </div>
-
                             <div className="w-full h-[calc(100vh-80px)] max-h-[calc(100vh-80px)] mt-[80px] flex justify-center lg:mt-[75px] lg:h-[calc(100vh-75px)] items-cente lg:bg-white  bg-bg-gray py-10 px-5 z-[900] backdrop-blur-sm fixed top-0 left-0">
                                 <div className="min-w-[50%] w-[50%] px-10 pb-10 lg:pb-5 lg:px-0 flex flex-col rounded-6 lg:w-full h-full bg-white overflow-hidden">
                                     <div className="text-heading-s relative s_lg:text-heading-ss-bold w-full min-h-[100px] lg:max-h-[70px] lg:min-h-[70px] h-[100px] flex justify-center items-center">

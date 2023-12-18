@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import {TUserCommonData} from "@/models/userData";
 import {handleGetTokenAndLogin} from "@/utils/setterToken";
 import {handleIsFullAuthComplete, handleUserFinishedAuth} from "@/utils/isFullAuthComplete";
+import {TUserDataState} from "@/store/reducers/userReducer";
 
 interface ProtectedRoutePropsI {
     onlyUnAuth?: boolean;
@@ -17,7 +18,7 @@ function ProtectedRoute({ onlyUnAuth = false, unAuth = false, children }: Protec
     const { isUserAuth, isAuthCheck, userData, isUserSubscribed }: {
         isAuthCheck: boolean,
         isUserAuth: boolean,
-        userData: TUserCommonData | null,
+        userData: TUserDataState,
         isUserSubscribed: boolean
     //@ts-ignore
     } = useSelector(state => state.user);
@@ -33,7 +34,7 @@ function ProtectedRoute({ onlyUnAuth = false, unAuth = false, children }: Protec
         }
     }, [isUserAuth, isAuthCheck, isUserSubscribed, userData, unAuth, router]);
 
-    if (handleIsFullAuthComplete(isAuthCheck, isUserAuth, userData, isUserSubscribed, unAuth)) {
+    if (!isAuthCheck || handleIsFullAuthComplete(isAuthCheck, isUserAuth, userData, isUserSubscribed, unAuth)) {
         return (<></>);
     }
 

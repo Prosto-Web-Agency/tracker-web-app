@@ -5,8 +5,6 @@ import StartPage from '@/components/pages/startPage'
 import { useEffect } from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {checkUserAuth, getUserPersonalData} from "@/store/thunks/userThunk";
-import {storage} from "@/utils/localStorage";
-import {TOKEN} from "@/consts/profile";
 
 export default function Start() {
     // @ts-ignore
@@ -25,7 +23,6 @@ export default function Start() {
             dispatch(getUserPersonalData());
         }
     }, [isUserAuth]);
-
 
     return (
         <div className='w-screen h-screen relative'>

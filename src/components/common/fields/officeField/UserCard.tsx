@@ -4,9 +4,10 @@ import {TUserCommonData} from "@/models/userData";
 import TRIcon from "@/components/common/icon";
 import React from "react";
 import {useRouter} from "next/navigation";
+import {TUserDataState} from "@/store/reducers/userReducer";
 
 type TUserCard = {
-    userData: TUserCommonData | null;
+    userData: TUserDataState;
 };
 
 export default function UserCard({ userData }: TUserCard) {

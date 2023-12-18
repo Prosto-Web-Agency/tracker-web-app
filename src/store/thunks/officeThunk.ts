@@ -15,6 +15,7 @@ export const getProductivityChartData = () => (dispatch: any) => {
             const { tasks_count = [], report_date = [] } = response.data;
             dispatch(setProductivity({ tasks_count, report_date }))
         })
+        .catch(() => {})
 }
 
 export const getEmotionalChartData = () => (dispatch: any) => {
@@ -24,6 +25,7 @@ export const getEmotionalChartData = () => (dispatch: any) => {
             const { report_emotional_condition = [], report_date = [] } = response.data;
             dispatch(setEmotional({ report_emotional_condition, report_date }))
         })
+        .catch(() => {})
 }
 
 export const getHolidaysChartData = () => (dispatch: any) => {
@@ -33,6 +35,7 @@ export const getHolidaysChartData = () => (dispatch: any) => {
             const { total_time_spent = [], report_date = [] } = response.data;
             dispatch(setHolidays({ total_time_spent, report_date }))
         })
+        .catch(() => {})
 }
 
 export const getFirstMetricsData = () => (dispatch: any) => {
@@ -41,4 +44,5 @@ export const getFirstMetricsData = () => (dispatch: any) => {
         .then((response) => {
             dispatch(setFirstMetrics(response.data))
         })
+        .catch(() => {})
 }

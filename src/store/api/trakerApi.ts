@@ -17,15 +17,21 @@ export const mainPageApi = {
             .then((response) => response)
     },
     getListOfTopUsersApi() {
-        return axios.get(endpoint + `top_user`, config)
-            .then((response) => response)
+        try {
+            return axios.get(endpoint + `top_user`, config)
+                .then((response) => response)
+        } catch (e) {}
     },
     getSearchUsers(name: string) {
-        return axios.get(endpoint + `user_search?search=${name}`, config)
-            .then((response) => (response))
+        try {
+            return axios.get(endpoint + `user_search?search=${name}`, config)
+                .then((response) => (response))
+        } catch (e) {}
     },
     getNews() {
-        return axios.get(endpoint + `news?page=1&page_size=10`, config)
-            .then((response) => (response))
+        try {
+            return axios.get(endpoint + `news?page=1&page_size=10`, config)
+                .then((response) => (response))
+        } catch (e) {}
     },
 }

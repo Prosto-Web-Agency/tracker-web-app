@@ -13,10 +13,11 @@ import { TUserCommonData } from "@/models/userData";
 import { editUserDataFetch } from "@/store/thunks/userThunk";
 import TRIcon from "@/components/common/icon";
 import { getUserPersonalData } from "@/store/thunks/userThunk";
+import {TUserDataState} from "@/store/reducers/userReducer";
 
 export default function EditProfilePage() {
     // @ts-ignore
-    const { userData }: { userData: TUserCommonData | null } = useSelector(state => state.user)
+    const { userData }: { userData: TUserDataState } = useSelector(state => state.user)
     // @ts-ignore
     const dispatch = useDispatch();
 

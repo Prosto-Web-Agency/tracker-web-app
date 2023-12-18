@@ -1,9 +1,9 @@
-import {TUserCommonData} from "@/models/userData";
+import {TUserDataState} from "@/store/reducers/userReducer";
 
 export function handleIsFullAuthComplete(
     isAuthCheck: boolean,
     isUserAuth: boolean,
-    userData: TUserCommonData | null,
+    userData: TUserDataState,
     isUserSubscribed: boolean,
     unAuth: boolean
 ) {

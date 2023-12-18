@@ -5,17 +5,19 @@ const SET_USER_DATA = 'SET_USER_DATA';
 const EDIT_USER_DATA = 'EDIT_USER_DATA';
 const SET_USER_SUBSCRIPTION = 'SET_USER_SUBSCRIPTION';
 
+export type TUserDataState = TUserCommonData | null | undefined;
+
 type TUser = {
     isUserAuth: boolean;
     isAuthCheck: boolean;
-    userData: TUserCommonData | null;
+    userData: TUserDataState;
     isUserSubscribed: boolean;
 }
 
 const initialState: TUser = {
     isUserAuth: false,
     isAuthCheck: false,
-    userData: null,
+    userData: undefined,
     isUserSubscribed: false
 };
 
@@ -48,7 +50,7 @@ const userReducer = (state = initialState, action: any) => {
 }
 
 export const setUserAuth = (data: boolean) => ({ type: SET_USER_AUTH, data })
-export const setUserData = (data: TUserCommonData | null) => ({ type: SET_USER_DATA, data })
+export const setUserData = (data: TUserDataState) => ({ type: SET_USER_DATA, data })
 export const editUserData = (data: TUserData | null) => ({ type: EDIT_USER_DATA, data });
 export const setUserSubscription = (data: boolean) => ({ type: SET_USER_SUBSCRIPTION, data });
 

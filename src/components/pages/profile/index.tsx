@@ -19,6 +19,7 @@ import { getUserPersonalData } from "@/store/thunks/userThunk";
 import {TUserCommonData} from "@/models/userData";
 import {useRouter} from "next/navigation";
 import HoverGradientButton from "@/components/common/buttons/hoverGradient";
+import {TUserDataState} from "@/store/reducers/userReducer";
 
 export default function PersonalOffice() {
     const dispatch = useDispatch();
@@ -27,7 +28,7 @@ export default function PersonalOffice() {
     //@ts-ignore
     const { productivityChart, emotionalChart, holidaysChart } = useSelector(state => state.officePage)
     //@ts-ignore
-    const { userData }: { userData: TUserCommonData | null } = useSelector(state => state.user)
+    const { userData }: { userData: TUserDataState } = useSelector(state => state.user)
 
     useEffect(() => {
         //@ts-ignore

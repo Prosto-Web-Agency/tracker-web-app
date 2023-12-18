@@ -15,6 +15,7 @@ export default function SubscriptionPage() {
     const dispatch = useDispatch();
     const router = useRouter();
     const subscription = Boolean(storage.get(SUBSCRIPTION));
+
     const { isUserSubscribed }: {
         isUserSubscribed: boolean
         //@ts-ignore

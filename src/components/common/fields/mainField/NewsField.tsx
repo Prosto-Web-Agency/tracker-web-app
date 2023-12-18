@@ -19,11 +19,7 @@ export default function NewsField() {
     useEffect(() => {
         // @ts-ignore
         dispatch(getNews());
-    }, [])
-
-    useEffect(() => {
-        console.log(listOfNews)
-    }, [listOfNews])
+    }, [dispatch])
 
     return (
         <div className="bg-white rounded-6 h-full w-[calc(100%-384px)] p-6 pt-4 pb-0 overflow-hidden s_lg:w-full s_lg:h-[305px]">

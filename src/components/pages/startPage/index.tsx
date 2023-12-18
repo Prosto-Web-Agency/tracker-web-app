@@ -10,12 +10,13 @@ import Image from "next/image";
 import Link from "next/link";
 import SecondaryButton from "@/components/common/buttons/secondary";
 import TRIcon from "@/components/common/icon";
+import {TUserDataState} from "@/store/reducers/userReducer";
 
 const StartPage = () => {
     const router = useRouter();
 
     // @ts-ignore
-    const { userData }: { userData: TUserCommonData | null } = useSelector(state => state.user)
+    const { userData }: { userData: TUserDataState } = useSelector(state => state.user)
     // @ts-ignore
     const { isUserAuth, isAuthCheck } = useSelector(state => state.user);
     const [step, setStep] = useState(0);
