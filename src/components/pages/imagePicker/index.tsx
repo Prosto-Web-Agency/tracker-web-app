@@ -1,282 +1,80 @@
 'use client'
 
-import React, { useState, useRef } from "react";
-
-import ReactCrop, {
-    centerCrop,
-    makeAspectCrop,
-    Crop,
-    PixelCrop,
-    convertToPixelCrop,
-} from "react-image-crop";
-import { canvasPreview } from "./canvasPreview";
-import { useDebounceEffect } from "./useDubounceEffect";
-
-import "react-image-crop/dist/ReactCrop.css";
+import React from 'react';
+import ImageUploading, { type ImageListType } from 'react-images-uploading';
 import Image from "next/image";
-import SecondaryButton from "@/components/common/buttons/secondary";
 
-export type TImgPicker = {
-    show: boolean
-    setImgPicker: any
-}
+export default function ImagePicker({ onSetImage, profileImage}: { onSetImage: (image: File) => void, profileImage?: string | File }) {
+    const [image, setImage] = React.useState<{
+        url: string | null,
+        imageFile: string | File
+    }>({
+        url: typeof profileImage === 'string' ? profileImage : '',
+        imageFile: (profileImage && typeof profileImage !== 'string') ? profileImage : ''
+    });
 
-function centerAspectCrop(
-    mediaWidth: number,
-    mediaHeight: number,
-    aspect: number,
-) {
-    return centerCrop(
-        makeAspectCrop(
-            {
-                unit: "%",
-                width: 90,
-            },
-            aspect,
-            mediaWidth,
-            mediaHeight,
-        ),
-        mediaWidth,
-        mediaHeight,
-    );
-}
+    const [imageList, setImageList] = React.useState<ImageListType>([]);
+    const maxNumber = 1;
 
-export default function ImagePicker({ show, setImgPicker }: TImgPicker) {
-    const [imgSrc, setImgSrc] = useState("");
-    const previewCanvasRef = useRef<HTMLCanvasElement>(null);
-    const imgRef = useRef<HTMLImageElement>(null);
-    const hiddenAnchorRef = useRef<HTMLAnchorElement>(null);
-    const blobUrlRef = useRef("");
-    const [crop, setCrop] = useState<Crop>();
-    const [completedCrop, setCompletedCrop] = useState<PixelCrop>();
-    const [scale, _setScale] = useState(1);
-    const [rotate, _setRotate] = useState(0);
-    const [aspect, setAspect] = useState<number | undefined>(4 / 5);
-
-    function onSelectFile(e: React.ChangeEvent<HTMLInputElement>) {
-        if (e.target.files && e.target.files.length > 0) {
-            setCrop(undefined); // Makes crop preview update between images.
-            const reader = new FileReader();
-            reader.addEventListener("load", () =>
-                setImgSrc(reader.result?.toString() || ""),
-            );
-            reader.readAsDataURL(e.target.files[0]);
+    const onChange = (imageList: ImageListType, addUpdateIndex: unknown) => {
+        if (imageList[0].file) {
+            onSetImage(imageList[0].file);
+            setImage({
+                url: imageList[0].data_url,
+                imageFile: imageList[0].file
+            });
         }
-    }
-
-    function onImageLoad(e: React.SyntheticEvent<HTMLImageElement>) {
-        if (aspect) {
-            const { width, height } = e.currentTarget;
-            setCrop(centerAspectCrop(width, height, aspect));
-        }
-    }
-
-    async function onDownloadCropClick() {
-        const image = imgRef.current;
-        const previewCanvas = previewCanvasRef.current;
-        if (!image || !previewCanvas || !completedCrop) {
-            throw new Error("Crop canvas does not exist");
-        }
-
-        const scaleX = image.naturalWidth / image.width;
-        const scaleY = image.naturalHeight / image.height;
-
-        const offscreen = new OffscreenCanvas(
-            completedCrop.width * scaleX,
-            completedCrop.height * scaleY,
-        );
-        const ctx = offscreen.getContext("2d");
-        if (!ctx) {
-            throw new Error("No 2d context");
-        }
-
-        ctx.drawImage(
-            previewCanvas,
-            0,
-            0,
-            previewCanvas.width,
-            previewCanvas.height,
-            0,
-            0,
-            offscreen.width,
-            offscreen.height,
-        );
-        // You might want { type: "image/jpeg", quality: <0 to 1> } to
-        // reduce image size
-        const blob = await offscreen.convertToBlob({
-            type: "image/png",
-        });
-
-        if (blobUrlRef.current) {
-            URL.revokeObjectURL(blobUrlRef.current);
-        }
-        blobUrlRef.current = URL.createObjectURL(blob);
-        // console.log(blobUrlRef);
-        // console.log(blob);
-        // console.log(image);
-        // console.log(completedCrop);
-
-        hiddenAnchorRef.current!.href = blobUrlRef.current;
-        hiddenAnchorRef.current!.click();
-    }
-
-    useDebounceEffect(
-        async () => {
-            if (
-                completedCrop?.width &&
-                completedCrop?.height &&
-                imgRef.current &&
-                previewCanvasRef.current
-            ) {
-
-                void canvasPreview(
-                    imgRef.current,
-                    previewCanvasRef.current,
-                    completedCrop,
-                    scale,
-                    rotate,
-                );
-            }
-        },
-        100,
-        [completedCrop, scale, rotate],
-    );
-
-    function handleToggleAspectClick() {
-        if (aspect) {
-            setAspect(undefined);
-        } else {
-            setAspect(3 / 5);
-
-            if (imgRef.current) {
-                const { width, height } = imgRef.current;
-                const newCrop = centerAspectCrop(width, height, 3 / 5);
-                setCrop(newCrop);
-                // Updates the preview
-                setCompletedCrop(convertToPixelCrop(newCrop, width, height));
-            }
-        }
-    }
+    };
 
     return (
-        <div className={`App w-full h-[calc(100vh-80px)] ${show ? 'flex' : 'hidden'} backdrop-blur-sm bg-tr04 flex-col justify-center s_lg:justify-start items-center absolute top-[80px] s_lg:top-[75px] left-0 p-6`}>
-            <div className="w-[500px] min-h-[300px] max-h-[calc(100vh-80px)] ss_lg:w-full ss_lg:max-w-[500px]  bg-bg-gray rounded-6 flex justify-start gap-3 items-center flex-col">
-
-                <div className="Crop-Controls w-full">
-
-
-                    <div className="flex p-6 pb-2 items-center justify-between w-full">
-                        <label htmlFor="add__photo">
-                            <Image
-                                className="duration-300 hover:scale-[1.05]"
-                                width={60}
-                                height={60}
-                                src={'/addPhotoLogo.svg'}
-                                alt="camera logo"
-                            />
-                        </label>
-                        <input type="file" accept="image/*" id="add__photo" onChange={onSelectFile} className="w-[0px] h-[0px]" />
-                        <button className="" onClick={() => setImgPicker(false)}>
-                            <Image
-                                className="duration-300 hover:scale-[1.05]"
-                                width={30}
-                                height={30}
-                                src={'/closeRed.svg'}
-                                alt="close"
-                            />
+        <div className="w-full h-full relative">
+            <ImageUploading
+                value={imageList}
+                onChange={onChange}
+                maxNumber={maxNumber}
+                dataURLKey="data_url"
+            >
+                {({
+                      imageList,
+                      onImageUpload,
+                      onImageRemoveAll,
+                      onImageUpdate,
+                      onImageRemove,
+                      isDragging,
+                      dragProps,
+                  }) => (
+                    <div className="upload__image-wrapper w-full h-full">
+                        <button
+                            className="w-full h-full"
+                            style={isDragging ? { color: 'red' } : undefined}
+                            onClick={onImageUpload}
+                            {...dragProps}
+                        >
+                            {
+                                image.url ?
+                                    (
+                                        <img
+                                            className="object-cover h-full w-full rounded-4"
+                                            src={image.url}
+                                            alt="profile photo"
+                                            width="107"
+                                            height="107"
+                                        />
+                                    ) : (
+                                        <div className="relative flex justify-center items-center w-full h-full">
+                                            <Image
+                                                src={'/icons/plus.svg'}
+                                                alt={'plus'}
+                                                height={22}
+                                                width={22}
+                                            />
+                                        </div>
+                                    )
+                            }
                         </button>
                     </div>
-
-                    {/* <div>
-                    <label htmlFor="scale-input">Приближение: </label>
-                    <input
-                        id="scale-input"
-                        type="number"
-                        step="0.1"
-                        value={scale}
-                        disabled={!imgSrc}
-                        onChange={(e) => setScale(Number(e.target.value))}
-                    />
-                </div> */}
-                    {/* <div>
-                    <label htmlFor="rotate-input">Rotate: </label>
-                    <input
-                        id="rotate-input"
-                        type="number"
-                        value={rotate}
-                        disabled={!imgSrc}
-                        onChange={(e) =>
-                            setRotate(Math.min(180, Math.max(-180, Number(e.target.value))))
-                        }
-                    />
-                </div> */}
-                    {/* <div>
-                    <button onClick={handleToggleAspectClick}>
-                        Закрепить соотношение сторон: {aspect ? "да" : "нет"}
-                    </button>
-                </div> */}
-                </div>
-                <div className="">
-                    {!!imgSrc && (
-                        <ReactCrop
-                            crop={crop}
-                            onChange={(_, percentCrop) => setCrop(percentCrop)}
-                            onComplete={(c) => setCompletedCrop(c)}
-                            aspect={aspect}
-                            // minWidth={400}
-                            minHeight={100}
-                        >
-                            <img
-                                ref={imgRef}
-                                alt="Crop me"
-                                src={imgSrc}
-                                style={{ transform: `scale(${scale}) rotate(${rotate}deg)`, maxHeight: '430px' }}
-                                onLoad={onImageLoad}
-                            />
-                        </ReactCrop>
-                    )}
-                </div>
-
-                {!!completedCrop && (
-                    <>
-                        {/* <div>
-                        <canvas
-                            ref={previewCanvasRef}
-                            style={{
-                                border: "1px solid black",
-                                borderRadius: '20px',
-                                objectFit: "contain",
-                                width: completedCrop.width,
-                                height: completedCrop.height,
-                            }}
-                        />
-                    </div> */}
-                        {/* <div>
-                            <button onClick={onDownloadCropClick}>Download Crop</button>
-                            <a
-                                href="#hidden"
-                                ref={hiddenAnchorRef}
-                                download
-                                style={{
-                                    position: "absolute",
-                                    top: "-200vh",
-                                    visibility: "hidden",
-                                }}
-                            >
-                                Hidden download
-                            </a>
-                        </div> */}
-                        <div className="w-full px-4 pb-4">
-                            <SecondaryButton
-                                text="Сохранить"
-                                onClick={() => console.log('click')}
-                            />
-                        </div>
-
-                    </>
                 )}
-
-            </div>
+            </ImageUploading>
         </div>
     );
 }

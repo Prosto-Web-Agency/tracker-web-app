@@ -27,14 +27,14 @@ function ProtectedRoute({ onlyUnAuth = false, unAuth = false, children }: Protec
     useEffect(() => {
         const { token, login } = handleGetTokenAndLogin();
 
-        if (handleIsFullAuthComplete(isAuthCheck, isUserAuth, userData, isUserSubscribed, unAuth)) {
+        if (userData !== undefined && handleIsFullAuthComplete(isAuthCheck, isUserAuth, userData, isUserSubscribed, Boolean(unAuth))) {
             router.push(`/start${token ? '?token=' + token : ''}${login ? '&login=' + login : ''}`);
         } else if (handleUserFinishedAuth()) {
             router.push('/');
         }
     }, [isUserAuth, isAuthCheck, isUserSubscribed, userData, unAuth, router]);
 
-    if (!isAuthCheck || handleIsFullAuthComplete(isAuthCheck, isUserAuth, userData, isUserSubscribed, unAuth)) {
+    if (!isAuthCheck || handleIsFullAuthComplete(isAuthCheck, isUserAuth, userData, isUserSubscribed, Boolean(unAuth))) {
         return (<></>);
     }
 

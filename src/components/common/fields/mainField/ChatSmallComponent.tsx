@@ -7,8 +7,10 @@ import ChatTextField from "../../textFields/ChatTextField";
 import Header from "../../header";
 import classNames from "classnames";
 import TRIcon from "@/components/common/icon";
+import {storage} from "@/utils/localStorage";
+import {TOKEN} from "@/consts/profile";
 
-const ws = new WebSocket(process.env.WEBSOCKET ?? '');
+const ws = new WebSocket(process.env.WEBSOCKET + storage.get(TOKEN) ?? '');
 
 export default function ChatSmallComponent() {
     const [messages, setMessages] = useState<{ text: string, [key: string]: string }[]>([])

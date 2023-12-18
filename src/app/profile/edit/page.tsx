@@ -14,7 +14,7 @@ export default function EditProfile() {
     useEffect(() => {
         // @ts-ignore
         dispatch(checkUserAuth());
-    }, []);
+    }, [dispatch]);
 
     return (
         <ProtectedRoute>
