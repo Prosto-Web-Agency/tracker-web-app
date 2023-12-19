@@ -20,19 +20,19 @@ ChartJS.register(
 );
 
 
-export const data = {
+export const dataFull = (data: any) => ({
     labels: ['Саморазвитие', 'Отношения', 'Карьера', 'Отдых', 'Окружение', 'Доходы', 'Творчество', 'Здоровье'],
     datasets: [
         {
-            label: '# of Votes',
-            data: [1, 4, 5, 2, 7, 4, 8, 9],
+            label: '',
+            data: data,
             backgroundColor: 'rgba(255, 99, 132, 0.2)',
             borderColor: 'rgba(255, 99, 132, 1)',
             borderWidth: 1,
         },
     ],
-};
+});
 
-export function WebGraph() {
-    return <Radar data={data} />;
+export function WebGraph({balanceData}: any) {
+    return <Radar data={dataFull(balanceData)} />;
 }

@@ -9,10 +9,10 @@ import PrimaryButton from "@/components/common/buttons/primary";
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from "classnames";
-import {editUserDataFetch, editUserImageFetch} from "@/store/thunks/userThunk";
+import { editUserDataFetch, editUserImageFetch } from "@/store/thunks/userThunk";
 import TRIcon from "@/components/common/icon";
 import type { TUserDataState } from "@/store/reducers/userReducer";
-import {compressImage} from "@/utils/compressImage";
+import { compressImage } from "@/utils/compressImage";
 
 export default function EditProfilePage() {
     // @ts-ignore
@@ -53,9 +53,9 @@ export default function EditProfilePage() {
                 is_anon: 0
             }));
         } else if (imageFile !== userData?.image_url) {
-          // todo: переписать ручку
-          // @ts-ignore
-          dispatch(editUserImageFetch({ profile_image: imageFile ?? null }));
+            // todo: переписать ручку
+            // @ts-ignore
+            dispatch(editUserImageFetch({ profile_image: imageFile ?? null }));
         } else if (!nameError) {
             setNameError(true);
             setTimeout(() => setNameError(false), 1000);
@@ -132,7 +132,7 @@ export default function EditProfilePage() {
                 <Link href="/profile">
                     <PrimaryButton
                         text="Закрыть"
-                        onClick={() => {}}
+                        onClick={() => { }}
                     />
                 </Link>
             </div>

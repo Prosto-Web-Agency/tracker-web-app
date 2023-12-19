@@ -1,9 +1,13 @@
 'use client'
 
+import PrimaryButton from "@/components/common/buttons/primary";
 import SliderBalance, { TSliderBalance } from "@/components/common/slider/SliderBalance";
+import { updateUserWheelData } from "@/store/thunks/WheelThunk";
 import { Slider, ThemeProvider } from "@mui/material";
 import { createTheme } from '@mui/material/styles';
 import Image from "next/image";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const theme = createTheme({
     palette: {
@@ -15,6 +19,7 @@ const theme = createTheme({
         },
     },
 });
+
 
 // export const theme = createTheme({
 //     overrides: {
@@ -33,46 +38,68 @@ const theme = createTheme({
 //     },
 // })
 
-const BALANCE: TSliderBalance[] = [
-    {
-        name: "Саморазвитие",
-        image: '/balance/education.svg'
-    },
-    {
-        name: "Отношения",
-        image: '/balance/education.svg'
-    },
-    {
-        name: "Карьера",
-        image: '/balance/education.svg'
-    },
-    {
-        name: "Отдых",
-        image: '/balance/education.svg'
-    },
-    {
-        name: "Окружение",
-        image: '/balance/education.svg'
-    },
-    {
-        name: "Доходы",
-        image: '/balance/education.svg'
-    },
-    {
-        name: "Творчество",
-        image: '/balance/education.svg'
-    },
-    {
-        name: "Здоровье",
-        image: '/balance/education.svg'
-    }
-]
 
-export default function BalancePage() {
+
+export default function BalancePage({ }: any) {
+    const dispatch = useDispatch();
+    const handleBalanceWheel = () => {
+        //@ts-ignore
+        dispatch(updateUserWheelData(wheelData))
+    }
+    //@ts-ignore
+    const { slidersData } = useSelector(state => state.balanceWheel);
+
+    const [wheelData, setWheelData] = useState<any>(slidersData);
+
+    useEffect(() => {
+        setWheelData(slidersData)
+    }, [slidersData]);
+
+    const BALANCE: any[] = [
+        {
+            name: "Саморазвитие",
+            image: '/balance/education.svg',
+            handleData: (e: number) => { setWheelData({ ...wheelData, self_development: e }) }
+        },
+        {
+            name: "Отношения",
+            image: '/balance/education.svg',
+            handleData: (e: number) => { setWheelData({ ...wheelData, relationship: e }) }
+        },
+        {
+            name: "Карьера",
+            image: '/balance/education.svg',
+            handleData: (e: number) => { setWheelData({ ...wheelData, career: e }) }
+        },
+        {
+            name: "Отдых",
+            image: '/balance/education.svg',
+            handleData: (e: number) => { setWheelData({ ...wheelData, rest: e }) }
+        },
+        {
+            name: "Окружение",
+            image: '/balance/education.svg',
+            handleData: (e: number) => { setWheelData({ ...wheelData, environment: e }) }
+        },
+        {
+            name: "Доходы",
+            image: '/balance/education.svg',
+            handleData: (e: number) => { setWheelData({ ...wheelData, income: e }) }
+        },
+        {
+            name: "Творчество",
+            image: '/balance/education.svg',
+            handleData: (e: number) => { setWheelData({ ...wheelData, creation: e }) }
+        },
+        {
+            name: "Здоровье",
+            image: '/balance/education.svg',
+            handleData: (e: number) => { setWheelData({ ...wheelData, health: e }) }
+        }
+    ]
     return (
 
-
-        <div className="w-dull h-[calc(100%-90px)] bg-bg-gray flex justify-center items-center">
+        <div className="w-full h-[calc(100%-80px)] bg-bg-gray flex flex-col gap-6 justify-center items-center">
             <div className="bg-white rounded-6 h-[600px] w-[600px] flex flex-col p-6">
                 <div>
                     <div className="flex flex-col items-center px-6">
@@ -92,14 +119,24 @@ export default function BalancePage() {
                 <div className="flex flex-col gap-5 p-4 pt-10">
                     <ThemeProvider theme={theme}>
                         {
-                            BALANCE.map((e, index):any => (
-                                <SliderBalance name={e.name}  image={e.image} key={e.name + index} />
+                            BALANCE.map((e, index): any => (
+                                <SliderBalance setData={e.handleData} name={e.name} image={e.image} key={e.name + index} />
                             ))
                         }
                     </ThemeProvider>
                 </div>
 
+
             </div>
+
+            <div className="w-[600px]" onClick={handleBalanceWheel}>
+                <PrimaryButton
+                    text="Далее"
+                    className="text-16_700"
+                    onClick={() => { }}
+                />
+            </div>
+
         </div>
 
     )

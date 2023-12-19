@@ -4,9 +4,10 @@ import Image from "next/image";
 export type TSliderBalance = {
     name: string
     image: string
+    setData?: any
 }
 
-export default function SliderBalance({ name, image }: TSliderBalance) {
+export default function SliderBalance({ name, image, setData }: TSliderBalance) {
     return (
         <div className="flex gap-8 items-center pl-6">
             <div className="flex text-18 justify-end font-bold w-[230px] items-center gap-4">
@@ -21,6 +22,8 @@ export default function SliderBalance({ name, image }: TSliderBalance) {
                     step={1}
                     min={0}
                     max={10}
+                    //@ts-ignore
+                    onChange={(e) => setData(e.target.value)}
                 />
             </div>
         </div>
