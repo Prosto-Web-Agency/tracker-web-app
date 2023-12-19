@@ -53,3 +53,15 @@ export const setUserSubscriptionFetch = (data: boolean) => (dispatch: any) => {
     })
 }
 
+export const editUserImageFetch = (data: { profile_image: File | null }) => (dispatch: any) => {
+    userApi
+        .uploadUserImage(data)
+        .then((res) => {
+            if (res) {
+                getUserPersonalData();
+            }
+        })
+        .catch(() => {})
+}
+
+

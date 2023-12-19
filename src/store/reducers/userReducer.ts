@@ -4,6 +4,7 @@ const SET_USER_AUTH = 'SET_USER_AUTH';
 const SET_USER_DATA = 'SET_USER_DATA';
 const EDIT_USER_DATA = 'EDIT_USER_DATA';
 const SET_USER_SUBSCRIPTION = 'SET_USER_SUBSCRIPTION';
+const SET_USER_IMAGE = 'SET_USER_IMAGE';
 
 export type TUserDataState = TUserCommonData | null | undefined;
 

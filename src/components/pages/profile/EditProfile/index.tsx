@@ -9,10 +9,11 @@ import PrimaryButton from "@/components/common/buttons/primary";
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from "classnames";
-import { editUserDataFetch } from "@/store/thunks/userThunk";
+import {editUserDataFetch, editUserImageFetch} from "@/store/thunks/userThunk";
 import TRIcon from "@/components/common/icon";
 import { getUserPersonalData } from "@/store/thunks/userThunk";
 import type { TUserDataState } from "@/store/reducers/userReducer";
+import {compressImage} from "@/utils/compressImage";
 
 export default function EditProfilePage() {
     // @ts-ignore
@@ -27,48 +28,35 @@ export default function EditProfilePage() {
     const [inst, setInst] = useState<string>('')
     const [imageFile, setImage] = useState<string | File>('');
 
-    const handleChanges = () => {
-        if (inst[0] && inst[0] !== '@') {
-            setInst((prev) => ('@' + prev))
-        }
-
-        if (telegram[0] && telegram[0] !== '@') {
-            setTelegram((prev) => ('@' + prev))
-        }
-    }
-
-    const clearForms = () => {
-        setName('');
-        setSurname('');
-        setTelegram('');
-        setInst('');
-    }
-
-    useEffect(() => {
-        //@ts-ignore
-        dispatch(getUserPersonalData());
-    }, [dispatch]);
-
     useEffect(() => {
         if (userData) {
             setName(userData.first_name)
             setSurname(userData.surname ?? '')
-            setTelegram(userData.tg_username)
-            setInst(userData.instagram)
+            setTelegram(userData.tg_username ?? '')
+            setInst(userData.instagram ?? '')
             setImage(userData.image_url ?? '');
         }
     }, [userData]);
 
-    function handleSendRequest() {
-        if (name) {
+    async function handleSendRequest() {
+        if (
+            name !== userData?.first_name ||
+            surname !== (userData?.surname ?? '') ||
+            telegram !== (userData?.tg_username ?? '') ||
+            inst !== userData?.instagram
+        ) {
             // @ts-ignore
             dispatch(editUserDataFetch({
                 first_name: name,
                 surname: surname,
                 tg_username: telegram,
                 instagram: inst,
-                login: ''
+                is_anon: 0
             }));
+        } else if (imageFile !== userData?.image_url) {
+          // todo: переписать ручку
+          // @ts-ignore
+          dispatch(editUserImageFetch({ profile_image: await compressImage(imageFile) ?? null }));
         } else if (!nameError) {
             setNameError(true);
             setTimeout(() => setNameError(false), 1000);
@@ -78,10 +66,10 @@ export default function EditProfilePage() {
     return (
 
         <div className="bg-white rounded-6 w-[588px] h-[441px] flex s_lg:bg-bg-gray s_lg:flex-col s_lg:w-full s_lg:h-full s_lg:p-6">
-            <button className="s_lg:bg-white s_lg:rounded-6 s_lg:flex">
+            <div className="w-[282px] h-[440px] bg-bg-gray border-4 border-white border-solid box-border rounded-4">
                 {
                     userData ? (
-                        <div className="w-[282px] h-[440px] bg-bg-gray border-4 border-white border-solid box-border rounded-4">
+                        <>
                             {
                                 userData?.image_url ? (
                                     <Image
@@ -97,22 +85,14 @@ export default function EditProfilePage() {
                                     }} />
                                 )
                             }
-                        </div>
+                        </>
                     ) : (
                         <div className="flex w-[282px] h-[440px] border-4 border-white border-solid bg-bg-gray rounded-4 justify-center items-center">
                             <TRIcon iconName="loader" edgeLength={48} className="animate-spin" />
                         </div>
                     )
                 }
-
-                <Image
-                    className="duration-300 hover:scale-[1.05] absolute mt-[-430px] ml-[225px] s_lg:hidden"
-                    width={46}
-                    height={46}
-                    src={'/addPhotoLogo.svg'}
-                    alt="camera logo"
-                />
-            </button>
+            </div>
 
             <div className="w-[306px] text-15_600 p-6  h-[441px] flex flex-col justify-around s_lg:w-full s_lg:p-0 s_lg:pt-10 s_lg:h-auto s_lg:gap-4">
                 <div className={classNames('animate__animated', {
@@ -136,8 +116,9 @@ export default function EditProfilePage() {
                     placeholder="Ник телеграм"
                     value={telegram}
                     onChange={(tg) => {
-                        setTelegram(tg);
-                        handleChanges();
+                        if (!tg.includes('@'))
+                            setTelegram('@' + tg);
+                        else setTelegram(tg);
                     }}
                 />
                 <TRTextField
@@ -145,8 +126,9 @@ export default function EditProfilePage() {
                     placeholder="Ник Инстаграм"
                     value={inst}
                     onChange={(inst) => {
-                        setTelegram(inst);
-                        handleChanges();
+                        if (!inst.includes('@'))
+                            setTelegram('@' + inst);
+                        else setTelegram(inst);
                     }}
                 />
 
@@ -158,7 +140,7 @@ export default function EditProfilePage() {
                 <Link href="/profile">
                     <PrimaryButton
                         text="Закрыть"
-                        onClick={clearForms}
+                        onClick={() => {}}
                     />
                 </Link>
             </div>

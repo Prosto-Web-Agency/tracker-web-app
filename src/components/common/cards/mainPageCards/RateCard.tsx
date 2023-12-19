@@ -1,53 +1,63 @@
 import Image from "next/image"
 import { useState } from "react"
 import {TUserSmallData} from "@/models/userData";
+import classNames from "classnames";
 
 export type TCardRate = TUserSmallData & {
-    position: number
-    open?: boolean
-    setModalData?: any
+    position: number;
+    open?: boolean;
+    isTop: boolean;
+    setModalData?: any;
 }
 
 export default function RateCard({
     first_name,
-    profile_image,
+    image_url,
+    login,
     task_count,
     position,
+    isTop,
     setModalData
 }: TCardRate) {
-    const [modalDataUser, setModalDataUser] = useState({})
-
     const handleClick = (first_name: string, index: number) => {
-        setModalDataUser({
+        setModalData({
             first_name,
             position: (String(index + 1)),
             open: true,
-            profile_image
+            image_url
         })
-        setModalData(modalDataUser)
     }
 
     return (
         <div
-            className="w-full duration-100 cursor-pointer hover:border-2 border-white max-w-full h-[52px] items-center p-2 pr-5 rounded-full flex justify-between raiting-top-one"
+            className={classNames("w-full duration-100 cursor-pointer hover:border-2 border-white max-w-full h-[52px] items-center p-2 pr-5 rounded-full flex justify-between", {
+                ['bg-gradient']: isTop
+            })}
             onClick={() => handleClick(first_name, position)}
         >
-            <div className="flex h-[40px] justify-center items-center gap-2">
+            <div className="flex h-[40px] px-3 gap-3 justify-center items-center">
+                <p className={classNames("text-heading-ss", {
+                    ['text-white']: isTop
+                })}>
+                    {position}
+                </p>
+
                 {
-                    profile_image ? (
+                    image_url ? (
                         <Image
                             className="rounded-10 max-h-[36px] min-h-[36px] min-w-[36px] object-cover"
                             width={36}
                             height={36}
-                            src={profile_image}
+                            src={image_url}
                             alt='person'
                         />
                     ) : (
-                        <div className="w-[36px] h-[36px] rounded-4 bg-bg-gray">
+                        <div className="w-[36px] h-[36px] rounded-10 bg-bg-gray">
 
                         </div>
                     )
                 }
+
                 <Image
                     className="relative hidden visible"
                     width={9}
@@ -56,13 +66,17 @@ export default function RateCard({
                     alt='person'
                 />
 
-                <h5 className="flex items-center text-13_600 h-[34px] overflow-hidden overflow-ellipsis -webkit-line-clamp-2 clmp">
+                <h3 className={classNames("flex items-center text-13_600 h-[34px] overflow-hidden overflow-ellipsis -webkit-line-clamp-2 clmp", {
+                    ['text-white']: isTop
+                })}>
                     {first_name}
-                </h5>
+                </h3>
             </div>
-
-            <p className="text-heading-ss">
-                {position}
+            <p className={classNames("px-3 py-2 rounded-4 text-text-s", {
+                ['text-black bg-white']: isTop,
+                ['text-white bg-gradient']: !isTop
+            })}>
+                {task_count}
             </p>
         </div>
     )

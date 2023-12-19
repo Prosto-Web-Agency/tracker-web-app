@@ -49,6 +49,17 @@ export const userApi = {
 
                 return null;
             })
+            .catch((e) => {})
+    },
+    uploadUserImage(data: { profile_image: File | null }) {
+        return axios.post(endpoint + 'profile_image', configWithBody(data))
+            .then(res => {
+                if (res.status === 200) {
+                    return res.data
+                }
+
+                return null;
+            })
     }
 }
 

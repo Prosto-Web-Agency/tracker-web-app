@@ -41,6 +41,7 @@ export default function RateField({ rateData }: TRateData) {
                             {
                                 rateData.map((userSmallData, index) => (
                                     <RateCard
+                                        isTop={index < 3}
                                         setModalData={(data: TModalDataUser) => setModalDataUser(data)}
                                         key={userSmallData.first_name + index}
                                         position={index + 1}
