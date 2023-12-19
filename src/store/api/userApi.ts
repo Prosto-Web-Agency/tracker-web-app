@@ -13,12 +13,12 @@ const config = (): AxiosRequestConfig => {
     })
 };
 
-const configWithBody = (data: any): AxiosRequestConfig => {
+const configWithBody = (): AxiosRequestConfig => {
     return ({
         headers: {
             Authorization: `Token ${storage.get(TOKEN)}`,
-        },
-        data
+            'Content-Type': 'multipart/form-data',
+        }
     })
 };
 
@@ -41,7 +41,7 @@ export const userApi = {
             })
     },
     editUserPersonalDataApi(data: TUserData) {
-        return axios.post(endpoint + 'change_user_personal_data', configWithBody(data))
+        return axios.post(endpoint + 'change_user_personal_data', data, config())
             .then(res => {
                 if (res.status === 200) {
                     return res.data
@@ -52,7 +52,17 @@ export const userApi = {
             .catch((e) => {})
     },
     uploadUserImage(data: { profile_image: File | null }) {
-        return axios.post(endpoint + 'profile_image', configWithBody(data))
+        return axios.post(endpoint + 'profile_image', data, configWithBody())
+            .then(res => {
+                if (res.status === 200) {
+                    return res.data
+                }
+
+                return null;
+            })
+    },
+    getUserPopupData(login: string) {
+        return axios.get(endpoint + `user_pop_up?login=${login}`, config())
             .then(res => {
                 if (res.status === 200) {
                     return res.data

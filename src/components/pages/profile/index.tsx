@@ -61,13 +61,13 @@ export default function PersonalOffice() {
                     </div>
 
                     <div className="ss_lg:hidden">
-                        <RanksComponent userRank={userData?.rank_name ?? "resident"} />
+                        <RanksComponent userRank={userData?.rank_name ?? "empty"} />
                     </div>
                 </div>
 
                 <div className="hidden gap-4 sm:grid-cols-1 ss_lg:grid grid-cols-2 w-full">
                     <div>
-                        <RanksComponent userRank={userData?.rank_name ?? "resident"} />
+                        <RanksComponent userRank={userData?.rank_name ?? "empty"} />
                     </div>
                     <div className="flex flex-col gap-4">
                         <div>

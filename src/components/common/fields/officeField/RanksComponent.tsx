@@ -9,6 +9,9 @@ import ModalResident from "../../modal/ranks/ModalResident";
 type TRanksComponent = {
     userRank: TRank['rank'];
 }
+
+const USER_RANKS = ["empty", "new", "resident", "headliner", "expert", "ambassador", "adviser"];
+
 export default function RanksComponent({ userRank }: TRanksComponent) {
     const [isExpertModalOpen, setExpertModalOpen] = useState(false);
     const [isAdvizerModalOpen, setAdvizerModalOpen] = useState(false);
@@ -43,11 +46,11 @@ export default function RanksComponent({ userRank }: TRanksComponent) {
             </h3>
 
             <div className="flex flex-col pt-8 rounded-t-5 w-full h-full pb-12 s_lg:pb-5 overflow-y-scroll gap-4 scroll-hidden justify-start">
-                <RankComponent rank="headliner" onClick={() => setHeadlinerModalOpen(true)} />
-                <RankComponent rank="adviser" onClick={() => setAdvizerModalOpen(true)} />
-                <RankComponent rank="ambassador" onClick={() => setAmbassadorModalOpen(true)} />
-                <RankComponent rank="expert" onClick={() => setExpertModalOpen(true)} />
-                <RankComponent rank="resident" onClick={() => setResidentModalOpen(true)} />
+                <RankComponent active={USER_RANKS.indexOf(userRank) >= USER_RANKS.indexOf("headliner")} rank="headliner" onClick={() => setHeadlinerModalOpen(true)} />
+                <RankComponent active={USER_RANKS.indexOf(userRank) >= USER_RANKS.indexOf("adviser")} rank="adviser" onClick={() => setAdvizerModalOpen(true)} />
+                <RankComponent active={USER_RANKS.indexOf(userRank) >= USER_RANKS.indexOf("ambassador")} rank="ambassador" onClick={() => setAmbassadorModalOpen(true)} />
+                <RankComponent active={USER_RANKS.indexOf(userRank) >= USER_RANKS.indexOf("expert")} rank="expert" onClick={() => setExpertModalOpen(true)} />
+                <RankComponent active={USER_RANKS.indexOf(userRank) >= USER_RANKS.indexOf("resident")} rank="resident" onClick={() => setResidentModalOpen(true)} />
             </div>
 
             <ModalExpert open={isExpertModalOpen} onClose={handleCloseExpertModal} />

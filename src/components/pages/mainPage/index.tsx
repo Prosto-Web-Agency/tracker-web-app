@@ -21,13 +21,6 @@ export default function MainPage() {
         dispatch(getListOfUsersInsights())
         //@ts-ignore
         dispatch(getListOfTopUsers())
-        // todo: разобраться, зачем я тут импортнул getUserDataBySlack
-        // //@ts-ignore
-        // dispatch(getUserDataBySlack('lunivilen'))
-
-        // todo: переделать установление тестового токена
-        // storage.set(LOGIN_ACCOUNT, TEST_USER);
-        // storage.set(TOKEN, TEST_TOKEN);
     }, [dispatch]);
 
     return (

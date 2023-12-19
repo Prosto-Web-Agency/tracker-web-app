@@ -13,6 +13,14 @@ export type TUserCommonData = TUserData & {
     rank_name: TRank['rank'];
 };
 
+export type TUserPopupData = TUserData & {
+    image_url?: string;
+    rank_name: TRank['rank'];
+    hash_tag_header?: string;
+    achievements: { achievement_name: string }[];
+    login: string;
+};
+
 export type TUserSmallData = Omit<TUserData, | "tg_username" | "instagram"> & {
     image_url: string | null;
     task_count: number;

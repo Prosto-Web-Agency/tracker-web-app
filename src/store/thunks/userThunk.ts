@@ -2,11 +2,11 @@ import { userApi } from "@/store/api/userApi";
 import {
     editUserData,
     setUserAuth,
-    setUserData,
+    setUserData, setUserPopupData,
     setUserSubscription,
     TUserDataState
 } from "@/store/reducers/userReducer";
-import { TUserCommonData, TUserData } from "@/models/userData";
+import { TUserData, TUserPopupData } from "@/models/userData";
 import {storage} from "@/utils/localStorage";
 import {SUBSCRIPTION} from "@/consts/profile";
 
@@ -62,6 +62,19 @@ export const editUserImageFetch = (data: { profile_image: File | null }) => (dis
             }
         })
         .catch(() => {})
+}
+
+export const getUserPopupData = (login: string) => (dispatch: any) => {
+    try {
+        userApi
+            .getUserPopupData(login)
+            .then((res: TUserPopupData) => {
+                dispatch(setUserPopupData(res));
+            })
+            .catch(() => {})
+    } catch (e) {
+        console.error('error ', e);
+    }
 }
 
 

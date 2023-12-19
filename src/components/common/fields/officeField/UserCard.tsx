@@ -26,7 +26,7 @@ export default function UserCard({ userData }: TUserCard) {
             {
                 userData ? (
                     <>
-                        <div className="w-[193px]">
+                        <div className="w-[193px] relative flex justify-center items-center">
                             {
                                 userData.image_url ? (
                                     <Image
@@ -37,12 +37,15 @@ export default function UserCard({ userData }: TUserCard) {
                                         alt="man"
                                     />
                                 ) : (
-                                    <div className="w-[200px] h-[200px] big_screen_h:h-[calc(40vh-114px)] rounded-4 bg-bg-gray box-border border-4 border-solid border-white">
-
+                                    <div className="flex justify-center items-center w-[200px] h-[225px] big_screen_h:h-[calc(40vh-114px)] rounded-4 bg-bg-gray box-border border-4 border-solid border-white">
+                                        <div className="flex justify-center items-center w-[100px] h-[100px] rounded-10 bg-bg-gray">
+                                            <TRIcon iconName={'emptyProfile'} edgeLength={48} />
+                                        </div>
                                     </div>
                                 )
                             }
-                            <div className="bg-orange-class absolute mt-[-50px] ml-13 text-white flex justify-center items-center py-2 px-5">
+
+                            <div className="bg-gradient absolute bottom-4 rounded-6 text-white flex justify-center items-center py-2 px-5">
                                 LVL: King
                             </div>
                         </div>

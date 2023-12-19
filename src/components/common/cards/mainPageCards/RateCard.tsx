@@ -2,12 +2,13 @@ import Image from "next/image"
 import { useState } from "react"
 import {TUserSmallData} from "@/models/userData";
 import classNames from "classnames";
+import TRIcon from "@/components/common/icon";
 
 export type TCardRate = TUserSmallData & {
     position: number;
     open?: boolean;
     isTop: boolean;
-    setModalData?: any;
+    setModalData: (login: string) => void;
 }
 
 export default function RateCard({
@@ -19,21 +20,13 @@ export default function RateCard({
     isTop,
     setModalData
 }: TCardRate) {
-    const handleClick = (first_name: string, index: number) => {
-        setModalData({
-            first_name,
-            position: (String(index + 1)),
-            open: true,
-            image_url
-        })
-    }
 
     return (
         <div
             className={classNames("w-full duration-100 cursor-pointer hover:border-2 border-white max-w-full h-[52px] items-center p-2 pr-5 rounded-full flex justify-between", {
                 ['bg-gradient']: isTop
             })}
-            onClick={() => handleClick(first_name, position)}
+            onClick={() => setModalData(login)}
         >
             <div className="flex h-[40px] px-3 gap-3 justify-center items-center">
                 <p className={classNames("text-heading-ss", {
@@ -52,8 +45,8 @@ export default function RateCard({
                             alt='person'
                         />
                     ) : (
-                        <div className="w-[36px] h-[36px] rounded-10 bg-bg-gray">
-
+                        <div className="flex justify-center items-center w-[36px] h-[36px] rounded-10 bg-bg-gray">
+                            <TRIcon iconName={'emptyProfile'} edgeLength={18} />
                         </div>
                     )
                 }
@@ -72,6 +65,7 @@ export default function RateCard({
                     {first_name}
                 </h3>
             </div>
+
             <p className={classNames("px-3 py-2 rounded-4 text-text-s", {
                 ['text-black bg-white']: isTop,
                 ['text-white bg-gradient']: !isTop

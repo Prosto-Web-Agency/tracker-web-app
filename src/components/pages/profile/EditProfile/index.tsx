@@ -11,7 +11,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import classNames from "classnames";
 import {editUserDataFetch, editUserImageFetch} from "@/store/thunks/userThunk";
 import TRIcon from "@/components/common/icon";
-import { getUserPersonalData } from "@/store/thunks/userThunk";
 import type { TUserDataState } from "@/store/reducers/userReducer";
 import {compressImage} from "@/utils/compressImage";
 
@@ -56,7 +55,7 @@ export default function EditProfilePage() {
         } else if (imageFile !== userData?.image_url) {
           // todo: переписать ручку
           // @ts-ignore
-          dispatch(editUserImageFetch({ profile_image: await compressImage(imageFile) ?? null }));
+          dispatch(editUserImageFetch({ profile_image: imageFile ?? null }));
         } else if (!nameError) {
             setNameError(true);
             setTimeout(() => setNameError(false), 1000);
@@ -71,19 +70,12 @@ export default function EditProfilePage() {
                     userData ? (
                         <>
                             {
-                                userData?.image_url ? (
-                                    <Image
-                                        className="w-[282px] h-[440px] rounded-4 s_lg:h-[225px] s_lg:w-[169px] object-cover"
-                                        width={282}
-                                        height={441}
-                                        src={userData.image_url}
-                                        alt="man"
-                                    />
-                                ) : (
-                                    <ImagePicker profileImage={imageFile} onSetImage={(uploadedImage) => {
+                                <ImagePicker
+                                    profileImage={userData.image_url ?? ''}
+                                    onSetImage={(uploadedImage) => {
                                         setImage(uploadedImage)
-                                    }} />
-                                )
+                                    }}
+                                />
                             }
                         </>
                     ) : (

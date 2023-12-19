@@ -3,7 +3,7 @@
 import { useSelector } from "react-redux";
 import RateCard from "../../cards/mainPageCards/RateCard";
 import ModalUser from "../../modal/ModalUser";
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import {TUserCommonData, TUserSmallDataArray} from "@/models/userData";
 import TRIcon from "@/components/common/icon";
 
@@ -12,20 +12,16 @@ export type TRateData = {
 }
 
 export type TModalDataUser = {
-    first_name: string;
-    position: string;
+    position: number;
     open: boolean;
-    profile_image?: string;
+    login: string;
 }
 
 export default function RateField({ rateData }: TRateData) {
-    // @ts-ignore
-    const { selectedUserData }: { selectedUserData: TUserCommonData } = useSelector(state => state.mainPage);
-
     const [modalDataUser, setModalDataUser] = useState<TModalDataUser>({
-        first_name: '',
-        position: '',
+        position: 0,
         open: false,
+        login: ''
     });
 
     return (
@@ -39,12 +35,12 @@ export default function RateField({ rateData }: TRateData) {
                     rateData ? (
                         <>
                             {
-                                rateData.map((userSmallData, index) => (
+                                rateData.map((userSmallData, position) => (
                                     <RateCard
-                                        isTop={index < 3}
-                                        setModalData={(data: TModalDataUser) => setModalDataUser(data)}
-                                        key={userSmallData.first_name + index}
-                                        position={index + 1}
+                                        isTop={position < 3}
+                                        setModalData={(login: string) => setModalDataUser({ open: true, position, login })}
+                                        key={userSmallData.first_name + position}
+                                        position={position + 1}
                                         {...userSmallData}
                                     />
                                 ))
@@ -58,27 +54,12 @@ export default function RateField({ rateData }: TRateData) {
                 }
             </div>
 
-            {/*
-                achievement_name: "Написать 1 отчёт"
-                first_name: "lunivilen"
-                hash_tag_header: "#RECsIT"
-                instagram: "@lunivilen"
-                rank_color: "#808080"
-                rank_name: "Новый пользователь"
-                surname: "test"
-                tg_username: "lunivilen"
-            */}
-
             {
-                selectedUserData ? (
+                modalDataUser.login ? (
                     <ModalUser
-                        userAchievements={[]}
-                        name={selectedUserData.first_name + ' ' + selectedUserData.surname}
-                        tg_username={selectedUserData.tg_username}
-                        instagram={selectedUserData.instagram}
-                        userStatus={'AG-Ментор'}
                         position={modalDataUser.position}
                         open={modalDataUser.open}
+                        login={modalDataUser.login}
                         setModalData={setModalDataUser}
                     />
                 ) : null
