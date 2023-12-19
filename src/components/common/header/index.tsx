@@ -3,9 +3,12 @@
 import { motion, useAnimation } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import HeaderMenu from "./HeaderMenu";
 import classNames from "classnames";
+import {TUserDataState} from "@/store/reducers/userReducer";
+import {useSelector} from "react-redux";
+import TRIcon from "@/components/common/icon";
 
 export type TTabs = {
     link: string
@@ -52,6 +55,9 @@ export default function Header({ title, isUnAuth }: { title?: string, isUnAuth?:
     const [openMenu, setOpenMenu] = useState(false);
     const [activeTab, setActiveTab] = useState('Главная');
     const [isOpen, setOpen] = useState(false);
+    //@ts-ignore
+    const { userData }: { userData: TUserDataState } = useSelector(state => state.user);
+
     const path01Controls = useAnimation();
     const path02Controls = useAnimation();
     const path03Controls = useAnimation();
@@ -104,7 +110,21 @@ export default function Header({ title, isUnAuth }: { title?: string, isUnAuth?:
                         </div>
 
                         <Link href={'/profile'}>
-                            <Image className="w-[48px] h-[48px] rounded-10" height={48} width={48} src={'/delete/person.jpeg'} alt='person' />
+                            {
+                                userData?.image_url ? (
+                                    <Image
+                                        className="w-[48px] h-[48px] rounded-10 object-cover"
+                                        height={48}
+                                        width={48}
+                                        src={userData.image_url}
+                                        alt='person'
+                                    />
+                                ) : (
+                                    <div className="flex justify-center items-center w-[48px] h-[48px] rounded-10 bg-bg-gray">
+                                        <TRIcon iconName={'emptyProfile'} />
+                                    </div>
+                                )
+                            }
                         </Link>
                     </div>
 

@@ -28,7 +28,7 @@ export default function PersonalOffice() {
     //@ts-ignore
     const { productivityChart, emotionalChart, holidaysChart } = useSelector(state => state.officePage)
     //@ts-ignore
-    const { userData }: { userData: TUserDataState } = useSelector(state => state.user)
+    const { userData }: { userData: TUserDataState } = useSelector(state => state.user);
 
     useEffect(() => {
         //@ts-ignore

@@ -27,7 +27,8 @@ export default function SubscriptionPage() {
     };
 
     useEffect(() => {
-        if (subscription !== isUserSubscribed) {
+        console.log(Boolean(storage.get(SUBSCRIPTION)), isUserSubscribed)
+        if (Boolean(storage.get(SUBSCRIPTION)) !== isUserSubscribed) {
             router.push('/');
         }
     }, [isUserSubscribed]);

@@ -7,6 +7,6 @@ module.exports = withImages({
         WEBSOCKET: process.env.WEBSOCKET,
     },
     images: {
-        domains: ['storage.yandexcloud.net'],
+        domains: ['storage.yandexcloud.net', 'cdn4.cdn-telegram.org', 'cdn5.cdn-telegram.org'],
     },
 });

@@ -1,15 +1,12 @@
 'use client'
 
-import Script from "next/script";
 import NewsCard from "../../cards/mainPageCards/NewsCard";
-// import TelegramWidget from "../../TgWidget";
-import Head from "next/head";
 import React, {useEffect} from "react";
 import {getNews} from "@/store/thunks/trakerThunk";
 import {useDispatch, useSelector} from "react-redux";
 import TRIcon from "@/components/common/icon";
 
-type TListOfNewsData = { news_data: { title: string, post_text: string }};
+export type TListOfNewsData = { news_data: { title: string, post_text: string, photo_content?: { photo_url: string }[] }};
 
 export default function NewsField() {
     const dispatch = useDispatch();
@@ -22,7 +19,7 @@ export default function NewsField() {
     }, [dispatch])
 
     return (
-        <div className="bg-white rounded-6 h-full w-[calc(100%-384px)] p-6 pt-4 pb-0 overflow-hidden s_lg:w-full s_lg:h-[305px]">
+        <div className="bg-white rounded-6 h-full w-[calc(100%-384px)] p-6 pt-4 pb-6 overflow-hidden s_lg:w-full s_lg:h-[305px]">
             <h3 className="text-rem-heading-xm s_lg:text-heading-ss-bold pb-2">
                 Новости
             </h3>
@@ -33,7 +30,12 @@ export default function NewsField() {
                         <>
                             {
                                 listOfNews.map(({ news_data }: TListOfNewsData) => (
-                                    <NewsCard key={news_data.post_text} header={news_data.title} text={news_data.post_text} />
+                                    <NewsCard
+                                        key={news_data.post_text}
+                                        header={news_data.title}
+                                        text={news_data.post_text}
+                                        images={news_data.photo_content ?? []}
+                                    />
                                 ))
                             }
                         </>

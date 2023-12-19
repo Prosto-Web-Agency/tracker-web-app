@@ -49,7 +49,7 @@ export const editUserDataFetch = (data: TUserData) => (dispatch: any) => {
 export const setUserSubscriptionFetch = (data: boolean) => (dispatch: any) => {
     void new Promise(() => {
         dispatch(setUserSubscription(data));
-        storage.set(SUBSCRIPTION, String(data))
+        setTimeout(() => storage.set(SUBSCRIPTION, String(data)),0)
     })
 }
 

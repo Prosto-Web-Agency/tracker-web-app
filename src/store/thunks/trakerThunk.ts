@@ -36,6 +36,7 @@ export const getSearchUsersThunk = (text: string) => (dispatch: any) => {
 export const getNews = () => (dispatch: any) => {
     mainPageApi.getNews()
         ?.then((response) => {
+            console.log(response.data);
             dispatch(setNewsData(response.data.results))
         })
         .catch(() => {})
