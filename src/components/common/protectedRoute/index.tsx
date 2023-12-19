@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import {useEffect, useState} from 'react';
 import { useSelector } from "react-redux";
 import {TUserCommonData} from "@/models/userData";
 import {handleGetTokenAndLogin} from "@/utils/setterToken";
@@ -22,6 +22,7 @@ function ProtectedRoute({ onlyUnAuth = false, unAuth = false, children }: Protec
         isUserSubscribed: boolean
     //@ts-ignore
     } = useSelector(state => state.user);
+    const [isNeedToRender, setRender] = useState(handleIsFullAuthComplete(isAuthCheck, isUserAuth, userData, isUserSubscribed, Boolean(unAuth)));
     const router = useRouter();
 
     useEffect(() => {
@@ -32,9 +33,11 @@ function ProtectedRoute({ onlyUnAuth = false, unAuth = false, children }: Protec
         } else if (handleUserFinishedAuth()) {
             router.push('/');
         }
+
+        setRender(handleIsFullAuthComplete(isAuthCheck, isUserAuth, userData, isUserSubscribed, Boolean(unAuth)));
     }, [isUserAuth, isAuthCheck, isUserSubscribed, userData, unAuth, router]);
 
-    if (!isAuthCheck || handleIsFullAuthComplete(isAuthCheck, isUserAuth, userData, isUserSubscribed, Boolean(unAuth))) {
+    if (!isAuthCheck || isNeedToRender) {
         return (<></>);
     }
 
