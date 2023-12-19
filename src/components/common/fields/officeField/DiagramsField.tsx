@@ -6,11 +6,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getFirstMetricsData } from "@/store/thunks/officeThunk";
 import TRIcon from "@/components/common/icon";
 import { CHART_COLORS, MOCKS_CHARTS } from "@/consts/chart";
+import {TChart} from "@/store/reducers/OfficeReducer";
 
 export default function DiagramsFieldOffice() {
     const dispatch = useDispatch();
     //@ts-ignore
-    const { firstMetrics } = useSelector(state => state.officePage)
+    const { firstMetrics }: { firstMetrics: TChart | null } = useSelector(state => state.officePage)
 
     useEffect(() => {
         //@ts-ignore
@@ -25,7 +26,8 @@ export default function DiagramsFieldOffice() {
 
             <div className="w-full h-full grid grid-cols-2 gap-3 pt-3">
                 {
-                    firstMetrics.data.length ? (
+                    firstMetrics ?
+                        firstMetrics.data.length ? (
                         <DoughnutChart
                             colors={[CHART_COLORS[0].color1, CHART_COLORS[0].color2]}
                             name={'Занятость по проектам'}
@@ -34,6 +36,10 @@ export default function DiagramsFieldOffice() {
                             labels={firstMetrics.label}
                             data={firstMetrics.data}
                         />
+                    ) : (
+                        <div>
+                            графика сейчас нет (
+                        </div>
                     ) : (
                         <div className="flex justify-center items-center w-full h-full">
                             <TRIcon iconName="loader" edgeLength={48} className="animate-spin" />

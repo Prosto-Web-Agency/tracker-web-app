@@ -22,22 +22,25 @@ function ProtectedRoute({ onlyUnAuth = false, unAuth = false, children }: Protec
         isUserSubscribed: boolean
     //@ts-ignore
     } = useSelector(state => state.user);
-    const [isNeedToRender, setRender] = useState(handleIsFullAuthComplete(isAuthCheck, isUserAuth, userData, isUserSubscribed, Boolean(unAuth)));
+    const [isNeedToRender, setRender] = useState(false);
     const router = useRouter();
 
     useEffect(() => {
         const { token, login } = handleGetTokenAndLogin();
 
-        if (userData !== undefined && handleIsFullAuthComplete(isAuthCheck, isUserAuth, userData, isUserSubscribed, Boolean(unAuth))) {
+        if (
+            !(isUserAuth && userData === undefined) &&
+            handleIsFullAuthComplete(isAuthCheck, isUserAuth, userData, isUserSubscribed, Boolean(unAuth))
+        ) {
             router.push(`/start${token ? '?token=' + token : ''}${login ? '&login=' + login : ''}`);
         } else if (handleUserFinishedAuth()) {
             router.push('/');
         }
 
-        setRender(handleIsFullAuthComplete(isAuthCheck, isUserAuth, userData, isUserSubscribed, Boolean(unAuth)));
+        setRender(!handleIsFullAuthComplete(isAuthCheck, isUserAuth, userData, isUserSubscribed, Boolean(unAuth)));
     }, [isUserAuth, isAuthCheck, isUserSubscribed, userData, unAuth, router]);
 
-    if (!isAuthCheck || isNeedToRender) {
+    if (!isNeedToRender) {
         return (<></>);
     }
 

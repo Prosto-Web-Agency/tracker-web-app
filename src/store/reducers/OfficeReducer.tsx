@@ -16,29 +16,17 @@ type TMetricsType = {
 };
 
 type TOfficePage = {
-    productivityChart: TChart,
-    emotionalChart: TChart,
-    holidaysChart: TChart,
-    firstMetrics: TChart,
+    productivityChart: TChart | null,
+    emotionalChart: TChart | null,
+    holidaysChart: TChart | null,
+    firstMetrics: TChart | null,
 }
 
 const initialState: TOfficePage = {
-    productivityChart: {
-        label: [],
-        data: []
-    },
-    emotionalChart: {
-        label: [],
-        data: []
-    },
-    holidaysChart: {
-        label: [],
-        data: []
-    },
-    firstMetrics: {
-        label: [],
-        data: []
-    }
+    productivityChart: null,
+    emotionalChart: null,
+    holidaysChart: null,
+    firstMetrics: null
 };
 
 let OfficeReducer = (state = initialState, action: any) => {
