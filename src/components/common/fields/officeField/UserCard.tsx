@@ -5,6 +5,7 @@ import TRIcon from "@/components/common/icon";
 import React from "react";
 import {useRouter} from "next/navigation";
 import {TUserDataState} from "@/store/reducers/userReducer";
+import SmallRankComponent from "@/components/common/cards/SmallRankComponent";
 
 type TUserCard = {
     userData: TUserDataState;
@@ -22,7 +23,7 @@ export default function UserCard({ userData }: TUserCard) {
     }
 
     return (
-        <div className="flex w-full min-w-[364px] h-[225px] big_screen_h:h-[calc(40vh-114px)] bg-white rounded-6 ss_lg:min-w-ful">
+        <div className="relative flex w-full min-w-[364px] h-[225px] big_screen_h:h-[calc(40vh-114px)] bg-white rounded-6 ss_lg:min-w-ful">
             {
                 userData ? (
                     <>
@@ -45,8 +46,8 @@ export default function UserCard({ userData }: TUserCard) {
                                 )
                             }
 
-                            <div className="bg-gradient absolute bottom-4 rounded-6 text-white flex justify-center items-center py-2 px-5">
-                                LVL: King
+                            <div className="absolute z-10 bottom-4">
+                                <SmallRankComponent rank={userData.rank_name} onClick={() => {}} active={true} />
                             </div>
                         </div>
 

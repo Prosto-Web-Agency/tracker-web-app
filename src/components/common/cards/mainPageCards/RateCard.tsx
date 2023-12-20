@@ -20,7 +20,6 @@ export default function RateCard({
     isTop,
     setModalData
 }: TCardRate) {
-
     return (
         <div
             className={classNames("w-full duration-100 cursor-pointer hover:border-2 border-white max-w-full h-[52px] items-center p-2 pr-5 rounded-full flex justify-between", {

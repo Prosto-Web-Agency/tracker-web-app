@@ -1,26 +1,34 @@
 import {TInsightCard} from "@/models/traker";
+import TRIcon from "@/components/common/icon";
 
-export type TInsightCardComponent = TInsightCard & {
-    open?: boolean
-    setModalDataInsight?: any
+export type TInsightCardComponent = Omit<TInsightCard, "login" | "is_anon"> & {
+    open?: boolean;
+    setModalDataInsight?: any;
 }
 
-export default function InsightCard({ first_name, text }: TInsightCardComponent) {
+type TInsight = {
+    setModalData: any;
+    login: string | null;
+}
+
+export default function InsightCard({ first_name, text, setModalData, login }: TInsightCardComponent & TInsight ) {
     return (
         <div className="h-[192px] cursor-pointer w-[330px] min-w-[330px] bg-orange-class px-5 pt-4 pb-6 text-white border-2 duration-100 hover:border-0 border-white">
-            <h4 className="text-heading-ss-bold pb-3">
-                {first_name}
-            </h4>
+            <div
+                className="flex gap-2 items-center pb-3 hover:underline transition"
+                onClick={(event) => {
+                    event.stopPropagation();
+                    setModalData(login);
+                }}
+            >
+                <div className="flex justify-center items-center w-[36px] h-[36px] rounded-10 bg-bg-gray">
+                    <TRIcon iconName={'emptyProfile'} edgeLength={18} />
+                </div>
 
-            {/*<div className="py-3 flex gap-1 items-center">*/}
-            {/*    <Image*/}
-            {/*        className="rounded-4 h-[27px] w-[27px] object-cover"*/}
-            {/*        height={27}*/}
-            {/*        width={27}*/}
-            {/*        src={'/delete/person.jpeg'}*/}
-            {/*        alt='person'*/}
-            {/*    />*/}
-            {/*</div>*/}
+                <h4 className="text-text-m-bold">
+                    {first_name}
+                </h4>
+            </div>
 
             <p className="h-[86px] overflow-hidden text-12_500">
                 {text}

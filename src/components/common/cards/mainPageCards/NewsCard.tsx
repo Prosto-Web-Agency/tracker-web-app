@@ -23,42 +23,46 @@ export default function NewsCard({ header, text, images }: TNew) {
                 {text}
             </p>
 
-            <div className="flex items-center gap-2 w-full overflow-x-auto h-[70px]">
-                {
-                    images ? images.map(({ photo_url }, indexOfImage) => (
-                        <div key={photo_url} style={{ position: 'unset' }}>
-                            <Image
-                                onClick={() => setNameOfOpenImage(photo_url + indexOfImage)}
-                                className="w-[110px] h-[65px] object-cover rounded-2 cursor-pointer hover:scale-105 transition-transform"
-                                width={110}
-                                height={65}
-                                src={photo_url}
-                                alt={photo_url}
-                            />
+            {
+                images && images.length ? (
+                    <div className="flex items-center gap-2 w-full overflow-x-auto no-scrollbar h-[135px] px-2">
+                        {
+                            images ? images.map(({ photo_url }, indexOfImage) => (
+                                <div key={photo_url} style={{ position: 'unset' }}>
+                                    <Image
+                                        onClick={() => setNameOfOpenImage(photo_url + indexOfImage)}
+                                        className="min-w-[200px] h-[125px] object-cover rounded-2 cursor-pointer hover:scale-105 transition-transform"
+                                        width={110}
+                                        height={65}
+                                        src={photo_url}
+                                        alt={photo_url}
+                                    />
 
-                            <Modal
-                                sx={{
-                                    display: 'flex',
-                                    justifyContent: 'center',
-                                    alignItems: 'center'
-                                }}
-                                open={(photo_url + indexOfImage) === nameOfOpenImage}
-                                onClose={() => setNameOfOpenImage('')}
-                            >
-                                <Image
-                                    className="w-auto h-[90%] object-contain rounded-2"
-                                    onClick={() => setNameOfOpenImage('')}
-                                    width={2100}
-                                    height={1150}
-                                    key={photo_url}
-                                    src={photo_url}
-                                    alt={photo_url}
-                                />
-                            </Modal>
-                        </div>
-                    )) : null
-                }
-            </div>
+                                    <Modal
+                                        sx={{
+                                            display: 'flex',
+                                            justifyContent: 'center',
+                                            alignItems: 'center'
+                                        }}
+                                        open={(photo_url + indexOfImage) === nameOfOpenImage}
+                                        onClose={() => setNameOfOpenImage('')}
+                                    >
+                                        <Image
+                                            className="w-auto h-[90%] object-contain rounded-2"
+                                            onClick={() => setNameOfOpenImage('')}
+                                            width={2100}
+                                            height={1150}
+                                            key={photo_url}
+                                            src={photo_url}
+                                            alt={photo_url}
+                                        />
+                                    </Modal>
+                                </div>
+                            )) : null
+                        }
+                    </div>
+                ) : null
+            }
         </div>
     )
 }

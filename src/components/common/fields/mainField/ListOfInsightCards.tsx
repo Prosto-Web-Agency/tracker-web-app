@@ -3,11 +3,17 @@
 import InsightCard from "../../cards/mainPageCards/InsightCard";
 import ModalInsight from "../../modal/ModalInsight";
 import React, { useState } from "react";
-import {TInsightCardArray} from "@/models/traker";
+import type { TInsightCardArray } from "@/models/traker";
 import TRIcon from "@/components/common/icon";
+import ModalUser from "@/components/common/modal/ModalUser";
 
 export type TInsightCard = {
     listOfUserInsights: TInsightCardArray | null;
+}
+
+type TModalDataUser = {
+    open: boolean;
+    login: string;
 }
 
 export default function ListOfInsightCards({ listOfUserInsights }: TInsightCard) {
@@ -16,6 +22,11 @@ export default function ListOfInsightCards({ listOfUserInsights }: TInsightCard)
         first_name: '',
         text: '',
         open: false,
+    });
+
+    const [modalDataUser, setModalDataUser] = useState<TModalDataUser>({
+        open: false,
+        login: ''
     });
 
     return (
@@ -36,7 +47,10 @@ export default function ListOfInsightCards({ listOfUserInsights }: TInsightCard)
                                                 open: true
                                             })}
                                     >
-                                        <InsightCard {...insightData} />
+                                        <InsightCard
+                                            setModalData={(login: string) => setModalDataUser({ open: true, login })}
+                                            {...insightData}
+                                        />
                                     </div>
                                 ))
                             }
@@ -55,6 +69,17 @@ export default function ListOfInsightCards({ listOfUserInsights }: TInsightCard)
                 open={modalDataInsight.open}
                 setModalDataInsight={setModalDataInsight}
             />
+
+            {
+                modalDataUser.login ? (
+                    <ModalUser
+                        position={0}
+                        open={modalDataUser.open}
+                        login={modalDataUser.login}
+                        setModalData={setModalDataUser}
+                    />
+                ) : null
+            }
         </div>
     )
 }
