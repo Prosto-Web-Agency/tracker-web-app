@@ -25,12 +25,12 @@ export default function UserSubscriptions() {
                 Ваши подписки
             </h3>
 
-            <div className="flex flex-col overflow-y-auto justify-center items-center w-full h-full">
+            <div className="flex justify-center items-center w-full h-full">
                 {
-                    ['f', 'd'].length ? (
-                        <>
+                    userSubscriptions?.length ? (
+                        <div className="flex flex-col overflow-y-auto w-full h-full">
                             {
-                                ['f', 'd', 'd'].map(() => (
+                                userSubscriptions.map(({ tg_id_streamer, streamer_name, image_url, streamer_is_anon, streamer_login }) => (
                                     <SubscriptionCard
                                         key={''}
                                         tg_id_streamer={123132}
@@ -41,7 +41,7 @@ export default function UserSubscriptions() {
                                     />
                                 ))
                             }
-                        </>
+                        </div>
                     ) : (
                         <div className="flex w-[400px]">
                             <BaseSecondaryCard>

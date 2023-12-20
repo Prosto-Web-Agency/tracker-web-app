@@ -9,6 +9,9 @@ import classNames from "classnames";
 import {TUserDataState} from "@/store/reducers/userReducer";
 import {useSelector} from "react-redux";
 import TRIcon from "@/components/common/icon";
+import PrimaryButton from "@/components/common/buttons/primary";
+import {logout} from "@/utils/logout";
+import {useRouter} from "next/navigation";
 
 export type TTabs = {
     link: string
@@ -56,9 +59,11 @@ const path03Variants = {
 }
 
 export default function Header({ title, isUnAuth }: { title?: string, isUnAuth?: boolean }) {
+    const router = useRouter();
     const [openMenu, setOpenMenu] = useState(false);
     const [activeTab, setActiveTab] = useState('Главная');
     const [isOpen, setOpen] = useState(false);
+    const [isProfilePage, setProfilePage] = useState(false);
     //@ts-ignore
     const { userData }: { userData: TUserDataState } = useSelector(state => state.user);
 
@@ -83,7 +88,13 @@ export default function Header({ title, isUnAuth }: { title?: string, isUnAuth?:
 
     useEffect(() => {
         TABS.map(({link, title}) => link === window.location.pathname && setActiveTab(title));
+        setProfilePage(window.location.pathname === '/profile');
     }, []);
+
+    function handleLogout() {
+        logout();
+        router.push('/');
+    }
 
     return (
         <>
@@ -113,23 +124,29 @@ export default function Header({ title, isUnAuth }: { title?: string, isUnAuth?:
                             }
                         </div>
 
-                        <Link href={'/profile'}>
-                            {
-                                userData?.image_url ? (
-                                    <Image
-                                        className="w-[48px] h-[48px] rounded-10 object-cover"
-                                        height={48}
-                                        width={48}
-                                        src={userData.image_url}
-                                        alt='person'
-                                    />
-                                ) : (
-                                    <div className="flex justify-center items-center w-[48px] h-[48px] rounded-10 bg-bg-gray">
-                                        <TRIcon iconName={'emptyProfile'} />
-                                    </div>
-                                )
-                            }
-                        </Link>
+                        {
+                            isProfilePage ? (
+                                <PrimaryButton size={'small'} text={'выйти'} onClick={handleLogout} />
+                            ) : (
+                                <Link href={'/profile'}>
+                                    {
+                                        userData?.image_url ? (
+                                            <Image
+                                                className="w-[48px] h-[48px] rounded-10 object-cover"
+                                                height={48}
+                                                width={48}
+                                                src={userData.image_url}
+                                                alt='person'
+                                            />
+                                        ) : (
+                                            <div className="flex justify-center items-center w-[48px] h-[48px] rounded-10 bg-bg-gray">
+                                                <TRIcon iconName={'emptyProfile'} />
+                                            </div>
+                                        )
+                                    }
+                                </Link>
+                            )
+                        }
                     </div>
 
 
