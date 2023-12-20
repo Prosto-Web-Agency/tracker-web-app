@@ -13,7 +13,10 @@ export const TRIcons = {
     loader: '/icons/loader.svg',
     data: '/icons/data.svg',
     arrowLeft: '/icons/arrow-left.svg',
-    emptyProfile: '/icons/empty-profile.svg'
+    emptyProfile: '/icons/empty-profile.svg',
+    chartProductive: '/icons/chart-productive.svg',
+    chartRelax: '/icons/chart-relax.svg',
+    chartEmotional: '/icons/chart-emotional.svg',
 }
 
 interface TRIconProps {
@@ -31,7 +34,7 @@ const TRIcon: React.FC<TRIconProps> = ({ iconName, edgeLength = 24, className, .
             }}
             className={className}
         >
-            <img src={TRIcons[iconName]} alt={iconName} {...rest} />
+            <img className={'w-full h-full object-contain'} src={TRIcons[iconName]} alt={iconName} {...rest} />
         </div>
     );
 };

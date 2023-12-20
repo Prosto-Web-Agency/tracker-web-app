@@ -10,9 +10,10 @@ export type TGraphField = {
     color: string;
     params: TChart;
     elementId: string;
+    type: 'chartProductive' | 'chartRelax' | 'chartEmotional';
 }
 
-export default function GraphFieldOffice({ name, params, color, elementId }: TGraphField) {
+export default function GraphFieldOffice({ name, params, color, elementId, type }: TGraphField) {
     return (
         <div className="bg-white h-[230px] big_screen_h:h-[310px] sx_lg:h-[300px] rounded-6 p-6 pt-3">
             <h4 className="text-heading-ss-bold">
@@ -23,8 +24,11 @@ export default function GraphFieldOffice({ name, params, color, elementId }: TGr
                 params?.data.length ? (
                     <ChartComponent params={params} color={color} elementId={elementId} />
                 ) : (
-                    <div className="flex justify-center items-center w-full h-full">
-                        <TRIcon iconName="loader" edgeLength={48} className="animate-spin" />
+                    <div className="flex flex-col gap-2 justify-center items-center w-full h-full">
+                        <TRIcon iconName={type} edgeLength={180} />
+                        <p className="text-text-s">
+                            Чтобы увидеть аналитику, начните пользоваться трекером
+                        </p>
                     </div>
                 )
             }

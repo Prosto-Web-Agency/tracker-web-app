@@ -40,7 +40,7 @@ export const TABS: TTabs[] = [
         title: 'Чекап',
     },
     {
-        link: '/d',
+        link: '/reports',
         title: 'Отчеты'
     }
 ]
