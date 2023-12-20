@@ -26,7 +26,7 @@ export default function RateField({ rateData }: TRateData) {
 
     return (
         <div className="w-[calc(100%-670px)] max-w-[33%] lg:max-w-full lg:w-full h-[300px] bg-white rounded-6 p-6 overflow-hidden">
-            <h3 className="text-heading-s s_lg:text-heading-ss-bold pb-4">
+            <h3 className="text-heading-ss-bold pb-4">
                 Список лидеров
             </h3>
 

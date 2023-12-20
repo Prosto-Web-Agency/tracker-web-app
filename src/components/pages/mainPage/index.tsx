@@ -9,6 +9,7 @@ import { useEffect } from "react";
 import { getListOfUsersInsights, getListOfTopUsers } from "@/store/thunks/trakerThunk";
 import { useDispatch, useSelector } from "react-redux";
 import SearchUsers from "@/components/common/fields/mainField/SearchUsers";
+import UserSubscriptions from "@/components/common/userSubscription";
 
 export default function MainPage() {
     const dispatch = useDispatch();
@@ -32,7 +33,10 @@ export default function MainPage() {
                         <ListOfInsightCards listOfUserInsights={listOfUserInsights} />
                     </div>
 
-                    <NewsField />
+                    <div className="flex flex-col gap-6 w-full">
+                        <NewsField />
+                        <UserSubscriptions />
+                    </div>
                 </div>
 
                 <div className="flex big_screen_h:h-[calc(35vh-40px)] lg:flex-col gap-6 mt-6">

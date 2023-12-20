@@ -12,7 +12,7 @@ export default function RanksTopUser() {
             onMouseLeave={() => setHover(false)}
             className="w-[33%] relative lg:w-full h-[300px] py-6 bg-white overflow-hidden bg-orange-class"
         >
-            <h3 className="text-heading-s px-6 text-white s_lg:text-heading-ss-bold">
+            <h3 className="text-heading-ss-bold px-6 text-white">
                 Ранги
             </h3>
 
