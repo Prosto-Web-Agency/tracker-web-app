@@ -3,7 +3,7 @@
 import BasePrimaryCard from "@/components/common/cards/BasePrimaryCard"
 import BaseSecondaryCard from "@/components/common/cards/BaseSecondaryCard"
 import ScratchedTitle from "@/components/common/titles/ScratchedTitle"
-import {setUserSubscriptionFetch} from "@/store/thunks/userThunk";
+import {setUserSubscriptionPaymentFetch} from "@/store/thunks/userThunk";
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/navigation";
 import {useEffect} from "react";
@@ -23,7 +23,7 @@ export default function SubscriptionPage() {
 
     function handleSubscribe() {
         // @ts-ignore
-        dispatch(setUserSubscriptionFetch(true))
+        dispatch(setUserSubscriptionPaymentFetch(true))
     };
 
     useEffect(() => {

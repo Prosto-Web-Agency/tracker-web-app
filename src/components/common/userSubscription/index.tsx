@@ -1,20 +1,22 @@
 'use client'
 
-import React, {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
+import React, {useEffect, useState } from "react";
+import { useDispatch, useSelector} from "react-redux";
 import BaseSecondaryCard from "@/components/common/cards/BaseSecondaryCard";
+import { getUserSubscriptionsData } from "@/store/thunks/userThunk";
+import type { TUserSubscriptionsArray } from "@/models/userData";
+import SubscriptionCard from "@/components/common/userSubscription/subscriptionCard";
 
 export type TListOfNewsData = { news_data: { title: string, post_text: string, photo_content?: { photo_url: string }[] }};
 
 export default function UserSubscriptions() {
     const dispatch = useDispatch();
     // @ts-ignore
-    // const { listOfNews }: { searchUsers: TListOfNewsData[] } = useSelector(state => state.mainPage)
-    const [userSubscriptions, setUserSubscriptions] = useState(null);
+    const { userSubscriptions }: { userSubscriptions: TUserSubscriptionsArray } = useSelector(state => state.mainPage)
 
     useEffect(() => {
         // @ts-ignore
-        // dispatch(getNews());
+        dispatch(getUserSubscriptionsData());
     }, [dispatch])
 
     return (
@@ -23,10 +25,23 @@ export default function UserSubscriptions() {
                 Ваши подписки
             </h3>
 
-            <div className="flex justify-center items-center w-full h-full">
+            <div className="flex flex-col overflow-y-auto justify-center items-center w-full h-full">
                 {
-                    userSubscriptions ? (
-                        <div></div>
+                    ['f', 'd'].length ? (
+                        <>
+                            {
+                                ['f', 'd', 'd'].map(() => (
+                                    <SubscriptionCard
+                                        key={''}
+                                        tg_id_streamer={123132}
+                                        streamer_name={'Лев Лавров'}
+                                        image_url={'/delete/person.jpeg'}
+                                        streamer_is_anon={'false'}
+                                        streamer_login={'lionarr'}
+                                    />
+                                ))
+                            }
+                        </>
                     ) : (
                         <div className="flex w-[400px]">
                             <BaseSecondaryCard>

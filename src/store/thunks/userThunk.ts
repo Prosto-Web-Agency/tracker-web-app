@@ -2,11 +2,12 @@ import { userApi } from "@/store/api/userApi";
 import {
     editUserData,
     setUserAuth,
-    setUserData, setUserPopupData,
-    setUserSubscription,
-    TUserDataState
+    setUserData,
+    setUserPopupData,
+    setUserSubscriptionPayment, setUserSubscriptions,
+    type TUserDataState
 } from "@/store/reducers/userReducer";
-import { TUserData, TUserPopupData } from "@/models/userData";
+import {TUserData, TUserPopupData, TUserSubscriptionsArray} from "@/models/userData";
 import {storage} from "@/utils/localStorage";
 import {SUBSCRIPTION} from "@/consts/profile";
 
@@ -27,7 +28,7 @@ export const getUserPersonalData = () => (dispatch: any) => {
                 dispatch(setUserData(res));
                 // todo: get subscription status from userData
                 // setUserSubscriptionFetch(true);
-                dispatch(setUserSubscriptionFetch(Boolean(storage.get(SUBSCRIPTION))));
+                dispatch(setUserSubscriptionPaymentFetch(Boolean(storage.get(SUBSCRIPTION))));
             })
             .catch(() => {
                 dispatch(setUserData(null));
@@ -46,9 +47,9 @@ export const editUserDataFetch = (data: TUserData) => (dispatch: any) => {
         .catch(() => {})
 }
 
-export const setUserSubscriptionFetch = (data: boolean) => (dispatch: any) => {
+export const setUserSubscriptionPaymentFetch = (data: boolean) => (dispatch: any) => {
     void new Promise(() => {
-        dispatch(setUserSubscription(data));
+        dispatch(setUserSubscriptionPayment(data));
         setTimeout(() => storage.set(SUBSCRIPTION, String(data)),0)
     })
 }
@@ -70,6 +71,19 @@ export const getUserPopupData = (login: string) => (dispatch: any) => {
             .getUserPopupData(login)
             .then((res: TUserPopupData) => {
                 dispatch(setUserPopupData(res));
+            })
+            .catch(() => {})
+    } catch (e) {
+        console.error('error ', e);
+    }
+}
+
+export const getUserSubscriptionsData = () => (dispatch: any) => {
+    try {
+        userApi
+            .getUserSubscriptions()
+            .then((res: TUserSubscriptionsArray) => {
+                dispatch(setUserSubscriptions(res));
             })
             .catch(() => {})
     } catch (e) {

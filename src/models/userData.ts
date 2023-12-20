@@ -36,3 +36,13 @@ export type TUserSearchData = Omit<TUserData, | "tg_username" | "instagram"> & {
 }
 
 export type TUserSearchDataArray = TUserSearchData[];
+
+export type TUserSubscriptionModal = {
+    tg_id_streamer: number;
+    streamer_name: string;
+    image_url: string | null;
+    streamer_is_anon: string;
+    streamer_login: string;
+}
+
+export type TUserSubscriptionsArray = TUserSubscriptionModal[];

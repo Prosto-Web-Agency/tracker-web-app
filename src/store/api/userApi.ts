@@ -70,6 +70,17 @@ export const userApi = {
 
                 return null;
             })
+    },
+    getUserSubscriptions() {
+        return axios.get(endpoint + 'user_subscriptions', config())
+            .then(res => {
+                if (res.status === 200) {
+                    console.log(res.data);
+                    return res.data
+                }
+
+                return null;
+            })
     }
 }
 

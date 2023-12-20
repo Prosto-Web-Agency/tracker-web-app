@@ -15,11 +15,11 @@ interface ProtectedRoutePropsI {
 }
 
 function ProtectedRoute({ onlyUnAuth = false, unAuth = false, children }: ProtectedRoutePropsI) {
-    const { isUserAuth, isAuthCheck, userData, isUserSubscribed }: {
+    const { isUserAuth, isAuthCheck, userData, isUserPaidSubscription }: {
         isAuthCheck: boolean,
         isUserAuth: boolean,
         userData: TUserDataState,
-        isUserSubscribed: boolean
+        isUserPaidSubscription: boolean
     //@ts-ignore
     } = useSelector(state => state.user);
     const [isNeedToRender, setRender] = useState(false);
@@ -30,15 +30,15 @@ function ProtectedRoute({ onlyUnAuth = false, unAuth = false, children }: Protec
 
         if (
             !(isUserAuth && userData === undefined) &&
-            handleIsFullAuthComplete(isAuthCheck, isUserAuth, userData, isUserSubscribed, Boolean(unAuth))
+            handleIsFullAuthComplete(isAuthCheck, isUserAuth, userData, isUserPaidSubscription, Boolean(unAuth))
         ) {
             router.push(`/start${token ? '?token=' + token : ''}${login ? '&login=' + login : ''}`);
         } else if (handleUserFinishedAuth()) {
             router.push('/');
         }
 
-        setRender(!handleIsFullAuthComplete(isAuthCheck, isUserAuth, userData, isUserSubscribed, Boolean(unAuth)));
-    }, [isUserAuth, isAuthCheck, isUserSubscribed, userData, unAuth, router]);
+        setRender(!handleIsFullAuthComplete(isAuthCheck, isUserAuth, userData, isUserPaidSubscription, Boolean(unAuth)));
+    }, [isUserAuth, isAuthCheck, isUserPaidSubscription, userData, unAuth, router]);
 
     if (!isNeedToRender) {
         return (<></>);

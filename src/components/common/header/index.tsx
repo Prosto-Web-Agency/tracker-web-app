@@ -36,6 +36,10 @@ export const TABS: TTabs[] = [
         link: '/balance',
         title: 'Чекап',
     },
+    {
+        link: '/d',
+        title: 'Отчеты'
+    }
 ]
 
 const path01Variants = {
