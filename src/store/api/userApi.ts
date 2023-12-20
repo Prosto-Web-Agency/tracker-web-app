@@ -75,7 +75,29 @@ export const userApi = {
         return axios.get(endpoint + 'user_subscriptions', config())
             .then(res => {
                 if (res.status === 200) {
-                    console.log(res.data);
+                    return res.data
+                }
+
+                return null;
+            })
+    },
+    subscribeOnUserByLogin(data: { streamer_login: string }) {
+        return axios.post(endpoint + 'subscribe', data, config())
+            .then(res => {
+                if (res.status === 201) {
+                    return res.data
+                } else if (res.status === 200) {
+                    // todo: подписка уже существует
+                    return res.data
+                }
+
+                return null;
+            })
+    },
+    getUserSubscriptionsReports() {
+        return axios.get(endpoint + 'user_subscriptions_reports', config())
+            .then(res => {
+                if (res.status === 200) {
                     return res.data
                 }
 

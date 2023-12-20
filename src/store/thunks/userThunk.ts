@@ -91,4 +91,33 @@ export const getUserSubscriptionsData = () => (dispatch: any) => {
     }
 }
 
+export const getUserSubscriptionsReportsData = () => (dispatch: any) => {
+    try {
+        userApi
+            .getUserSubscriptionsReports()
+            .then((res: TUserSubscriptionsArray) => {
+                console.log(res);
+                // dispatch(setUserSubscriptions(res));
+            })
+            .catch(() => {})
+    } catch (e) {
+        console.error('error ', e);
+    }
+}
+
+
+export const subscribeOnUserByLogin = (streamer_login: string) => (dispatch: any) => {
+    try {
+        userApi
+            .subscribeOnUserByLogin({ streamer_login })
+            .then((res: any) => {
+
+                // dispatch(setUserSubscriptions(res));
+            })
+            .catch(() => {})
+    } catch (e) {
+        console.error('error ', e);
+    }
+}
+
 

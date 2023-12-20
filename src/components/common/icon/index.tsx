@@ -17,6 +17,8 @@ export const TRIcons = {
     chartProductive: '/icons/chart-productive.svg',
     chartRelax: '/icons/chart-relax.svg',
     chartEmotional: '/icons/chart-emotional.svg',
+    plusGradient: '/icons/plus-gradient.svg',
+    subscribedUser: '/icons/subscribed-user.svg'
 }
 
 interface TRIconProps {

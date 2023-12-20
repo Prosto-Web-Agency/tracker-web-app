@@ -3,7 +3,7 @@
 import React, {useEffect, useState } from "react";
 import { useDispatch, useSelector} from "react-redux";
 import BaseSecondaryCard from "@/components/common/cards/BaseSecondaryCard";
-import { getUserSubscriptionsData } from "@/store/thunks/userThunk";
+import {getUserSubscriptionsData, getUserSubscriptionsReportsData} from "@/store/thunks/userThunk";
 import type { TUserSubscriptionsArray } from "@/models/userData";
 import SubscriptionCard from "@/components/common/userSubscription/subscriptionCard";
 
@@ -12,11 +12,13 @@ export type TListOfNewsData = { news_data: { title: string, post_text: string, p
 export default function UserSubscriptions() {
     const dispatch = useDispatch();
     // @ts-ignore
-    const { userSubscriptions }: { userSubscriptions: TUserSubscriptionsArray } = useSelector(state => state.mainPage)
+    const { userSubscriptions }: { userSubscriptions: TUserSubscriptionsArray } = useSelector(state => state.user)
 
     useEffect(() => {
         // @ts-ignore
         dispatch(getUserSubscriptionsData());
+        // @ts-ignore
+        dispatch(getUserSubscriptionsReportsData());
     }, [dispatch])
 
     return (
@@ -27,17 +29,17 @@ export default function UserSubscriptions() {
 
             <div className="flex justify-center items-center w-full h-full">
                 {
-                    userSubscriptions?.length ? (
-                        <div className="flex flex-col overflow-y-auto w-full h-full">
+                    userSubscriptions ? (
+                        <div className="flex flex-col overflow-y-auto overflow-x-visible w-full h-full">
                             {
-                                userSubscriptions.map(({ tg_id_streamer, streamer_name, image_url, streamer_is_anon, streamer_login }) => (
+                                userSubscriptions.map(({ tg_id_streamer, streamer_name, image_url, streamer_is_anon, streamer_login }, index) => (
                                     <SubscriptionCard
-                                        key={''}
+                                        key={streamer_name + index}
                                         tg_id_streamer={123132}
-                                        streamer_name={'Лев Лавров'}
-                                        image_url={'/delete/person.jpeg'}
+                                        streamer_name={streamer_name}
+                                        image_url={image_url}
                                         streamer_is_anon={'false'}
-                                        streamer_login={'lionarr'}
+                                        streamer_login={streamer_login}
                                     />
                                 ))
                             }

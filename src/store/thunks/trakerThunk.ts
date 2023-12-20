@@ -25,6 +25,7 @@ export const getListOfTopUsers = () => (dispatch: any) => {
             })
     } catch (e) {}
 }
+
 export const getSearchUsersThunk = (text: string) => (dispatch: any) => {
     mainPageApi.getSearchUsers(text)
         ?.then((response) => {

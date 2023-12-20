@@ -33,6 +33,7 @@ export type TUserSearchData = Omit<TUserData, | "tg_username" | "instagram"> & {
     image_url: string | null;
     is_anon: number;
     rank_name: TRank['rank'];
+    login: string;
 }
 
 export type TUserSearchDataArray = TUserSearchData[];
