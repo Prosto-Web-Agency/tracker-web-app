@@ -8,6 +8,7 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
+import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { Radar } from 'react-chartjs-2';
 
 ChartJS.register(
@@ -16,7 +17,8 @@ ChartJS.register(
     LineElement,
     Filler,
     Tooltip,
-    Legend
+    Legend,
+    ChartDataLabels
 );
 
 
@@ -36,21 +38,22 @@ export const dataFull = (data: any) => ({
 
 export const options = {
     plugins: {
-        legend: {
-            display: false,
-        },
         datalabels: {
             backgroundColor: function(context) {
                 return context.dataset.borderColor;
             },
-            color: 'white',
+            color: 'black',
             font: {
                 weight: 'bold'
             },
             formatter: Math.round,
             padding: 8
-        }
+        },
+        legend: {
+            display: false,
+        },
     },
+    aspectRatio: 4 / 3,
     elements: {
         point: {
             hoverRadius: 12,
