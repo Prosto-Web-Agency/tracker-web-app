@@ -39,7 +39,14 @@ export const options = {
         legend: {
             display: false,
         },
-    }
+    },
+    scale: {
+        ticks: {
+            beginAtZero: true,
+            max: 10,
+            min: 0,
+        },
+    },
 }
 
 export function WebGraph({ balanceData }: any) {

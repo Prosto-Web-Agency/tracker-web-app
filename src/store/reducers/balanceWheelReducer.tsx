@@ -19,7 +19,7 @@ type TBalance = {
 
 const initialState: TBalance = {
     balanceData: {},
-    balanceIsSet: false,
+    balanceIsSet: true,
     slidersData: {
         "self_development": 0,
         "relationship": 0,

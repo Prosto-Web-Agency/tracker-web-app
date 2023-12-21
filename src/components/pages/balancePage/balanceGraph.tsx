@@ -141,7 +141,7 @@ export default function BalanceWebPage({ balanceData }: any) {
                 <div className="w-[350px] sx_lg:w-full md:w-full sx_lg:min-h-[350px] sx_lg:max-h-[350px] bg-white h-full rounded-6">
                     {
                         visible
-                            ? <div className="flex justify-center items-center w-full h-full">
+                            ? <div className="flex justify-center sx_lg:h-[350px] items-center w-full h-full">
                                 <TRIcon iconName="loader" edgeLength={48} className="animate-spin" />
                             </div>
                             : <div className="w-full h-full">
