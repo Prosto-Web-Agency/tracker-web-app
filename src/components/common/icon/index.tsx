@@ -32,7 +32,9 @@ const TRIcon: React.FC<TRIconProps> = ({ iconName, edgeLength = 24, className, .
         <div
             style={{
                 height: edgeLength,
-                width: edgeLength
+                width: edgeLength,
+                minHeight: edgeLength,
+                minWidth: edgeLength,
             }}
             className={className}
         >

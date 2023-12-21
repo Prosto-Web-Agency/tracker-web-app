@@ -38,7 +38,9 @@ const SecondaryButton: React.FC<SecondaryButtonProps> = ({
             onClick={onClick}
         >
             {leftIcon && <TRIcon edgeLength={edgeLength} iconName={leftIcon}/>}
-            <span className={classNames({
+            <span className={classNames(
+                'text-ellipsis overflow-hidden whitespace-nowrap max-w-[300px]',
+                {
                 ['text-white']: !bg,
                 ['text-black']: bg,
             })}>

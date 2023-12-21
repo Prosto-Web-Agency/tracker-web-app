@@ -85,7 +85,7 @@ export default function PersonalOffice() {
 
                 </div>
 
-                <div className="sx_lg:hidden flex flex-col gap-6 row-span-3 min-w-[384px]">
+                <div className="col-start-3 col-end-4 row-start-1 row-end-4 sx_lg:hidden flex flex-col gap-6 min-w-[384px]">
                     {/*<PrimaryButton text="" type="datePicker" onClick={() => {}} />*/}
                     <GraphFieldOffice
                         type={'chartProductive'}

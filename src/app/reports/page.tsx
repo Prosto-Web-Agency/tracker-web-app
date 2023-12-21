@@ -1,16 +1,15 @@
-'use client'
+'use client';
 
-import Header from "@/components/common/header";
-import PersonalOffice from "@/components/pages/profile";
-import ProtectedRoute from "@/components/common/protectedRoute";
+import Header from '@/components/common/header';
+import { useEffect } from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
 import {checkUserAuth, getUserPersonalData} from "@/store/thunks/userThunk";
 import ReportsPage from "@/components/pages/reports";
 
-export default function Reports() {
+export default function Start() {
     // @ts-ignore
     const { isUserAuth } = useSelector(state => state.user);
+
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -26,9 +25,9 @@ export default function Reports() {
     }, [isUserAuth]);
 
     return (
-        <ProtectedRoute>
+        <div className='w-screen h-screen relative'>
             <Header />
-            <ReportsPage />
-        </ProtectedRoute>
+            <ReportsPage/>
+        </div>
     )
 }
