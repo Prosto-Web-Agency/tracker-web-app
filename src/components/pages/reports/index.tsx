@@ -7,6 +7,7 @@ import {getUserSubscriptionsData, getUserSubscriptionsReportsData} from "@/store
 import {useAppDispatch, useAppSelector} from "@/hooks/store";
 import {TUserSubscriptionsArray, TUserSubscriptionsReportArray} from "@/models/userData";
 import SubscriptionCard from "@/components/common/userSubscription/subscriptionCard";
+import Image from "next/image";
 
 export default function ReportsPage() {
     const dispatch = useAppDispatch();
@@ -34,9 +35,32 @@ export default function ReportsPage() {
                         userSubscriptions.length ? (
                             <>
                                 {
-                                    userSubscriptions.map(() => {
+                                    userSubscriptions.map((user, index) =>
+                                        <div
+                                            className={"flex flex-col justify-between items-start gap-1 w-full cursor-pointer hover:bg-bg-gray transition rounded-4 p-2"}
+                                            key={user.streamer_name + index}
+                                        >
+                                            <div className="flex gap-3 items-center">
+                                                {
+                                                    user.image_url ? (
+                                                        <Image
+                                                            className="w-9 h-9 object-cover rounded-5 hover:scale-105 active:scale-[1.1] scale-1 duration-300"
+                                                            width={30}
+                                                            height={30}
+                                                            src={user.image_url}
+                                                            alt="image_url"
+                                                        />
+                                                    ) : (
+                                                        <div className="w-8 h-8 rounded-4 bg-bg-gray" />
+                                                    )
+                                                }
 
-                                    })
+                                                <p className={"text-13_600"}>
+                                                    {user.streamer_name}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    )
                                 }
                             </>
                         ) : null
