@@ -12,14 +12,15 @@ export type TUserCharts = {
 }
 
 export type TDiagram = {
-    avg: number[];
-    date: string[];
+    data: string[];
     dots: number[];
 }
 
 export type TUserDiagrams = {
     lifeBalance: TDiagram;
     nonLifeBalance: TDiagram;
+    workLifeBalance: TDiagram;
+    notRealise: TDiagram;
 }
 
 export type TMetrics = {

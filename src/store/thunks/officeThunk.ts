@@ -9,19 +9,8 @@ export const getDiagrams = () => (dispatch: any) => {
     OfficeAPI
         .getDiagrams()
         .then((response) => {
-            const { life_balance, non_life_balance_false, life_balance_total, non_life_balance_false_total } = response.data;
-            dispatch(setDiagrams({
-                lifeBalance: {
-                    date: life_balance.project_name__project_name,
-                    dots: life_balance.total_spent_minutes,
-                    avg: life_balance_total
-                },
-                nonLifeBalance: {
-                    date: non_life_balance_false.project_name__project_name,
-                    dots: non_life_balance_false.total_spent_minutes,
-                    avg: non_life_balance_false_total
-                },
-            }))
+            console.log(response.data);
+            dispatch(setDiagrams(response.data))
         })
         .catch(() => {})
 }

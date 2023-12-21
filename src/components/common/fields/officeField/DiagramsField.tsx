@@ -21,7 +21,7 @@ export default function DiagramsFieldOffice({ diagrams }: { diagrams: TUserDiagr
             <div className="w-full h-full grid grid-cols-2 gap-3 pt-3">
                 {
                     diagrams ?
-                        diagrams.lifeBalance?.date?.length ? (
+                        diagrams.lifeBalance?.data?.length ? (
                         <>
                             {
                                 Object.values(diagrams)
@@ -32,7 +32,7 @@ export default function DiagramsFieldOffice({ diagrams }: { diagrams: TUserDiagr
                                         name={'Занятость по проектам'}
                                         percents={'50%'}
                                         id={'80%'}
-                                        labels={diagram.date}
+                                        labels={diagram.data}
                                         data={diagram.dots}
                                     />
                                 ))

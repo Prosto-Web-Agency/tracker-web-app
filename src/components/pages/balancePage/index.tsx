@@ -50,8 +50,7 @@ export default function BalancePage({ }: any) {
     const { slidersData } = useSelector(state => state.balanceWheel);
 
     const [wheelData, setWheelData] = useState<any>(slidersData);
-    console.log(slidersData);
-    
+
     useEffect(() => {
         setWheelData(slidersData)
     }, [slidersData]);
