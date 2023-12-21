@@ -127,7 +127,7 @@ const config: Config = {
           'raw': '(min-height: 900px)'
         },
         sm_min: { min: '518px', max: '639px' },
-        minn: { min: '318px', max: '518px' },
+        minn: { max: '518px' },
       },
       borderRadius: {
         1: '2px',

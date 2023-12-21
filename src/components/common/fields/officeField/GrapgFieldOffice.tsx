@@ -14,7 +14,7 @@ export type TGraphField = {
 
 export default function GraphFieldOffice({ name, params, color, elementId }: TGraphField) {
     return (
-        <div className="bg-white h-[230px] big_screen_h:h-[310px] sx_lg:h-[300px] rounded-6 p-6 pt-3">
+        <div className="bg-white flex-1 rounded-6 p-6 pt-3">
             <h4 className="text-heading-ss-bold">
                 {name}
             </h4>

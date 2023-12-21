@@ -23,7 +23,7 @@ export default function UserCard({ userData }: TUserCard) {
     }
 
     return (
-        <div className="relative flex w-full min-w-[364px] h-[225px] big_screen_h:h-[calc(40vh-114px)] bg-white rounded-6 ss_lg:min-w-ful">
+        <div className="relative overflow-hidden flex w-full h-[225px] big_screen_h:h-[calc(40vh-114px)] bg-white rounded-6 ss_lg:min-w-ful minn:h-full minn:flex-col">
             {
                 userData ? (
                     <>
@@ -38,7 +38,7 @@ export default function UserCard({ userData }: TUserCard) {
                                         alt="man"
                                     />
                                 ) : (
-                                    <div className="flex justify-center items-center w-[200px] h-[225px] big_screen_h:h-[calc(40vh-114px)] rounded-4 bg-bg-gray box-border border-4 border-solid border-white">
+                                    <div className="flex justify-center items-center w-[200px] h-[225px] big_screen_h:h-[calc(40vh-114px)] rounded-6 bg-bg-gray box-border border-4 border-solid border-white">
                                         <div className="flex justify-center items-center w-[100px] h-[100px] rounded-10 bg-bg-gray">
                                             <TRIcon iconName={'emptyProfile'} edgeLength={48} />
                                         </div>
@@ -51,7 +51,7 @@ export default function UserCard({ userData }: TUserCard) {
                             </div>
                         </div>
 
-                        <div className="flex flex-col justify-between p-6">
+                        <div className="flex flex-col gap-5 justify-between p-6 overflow-hidden">
                             <div className="text-heading-ss">
                                 <p>{userData.first_name}</p>
                                 <p>{userData.surname}</p>
