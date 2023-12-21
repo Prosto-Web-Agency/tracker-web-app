@@ -20,7 +20,7 @@ export default function DiagramsFieldOffice({ diagrams }: { diagrams: TUserDiagr
             <div className="w-full h-full grid grid-cols-2 gap-3 pt-3">
                 {
                     diagrams ?
-                        diagrams.lifeBalance.date.length ? (
+                        diagrams.lifeBalance?.date?.length ? (
                         <>
                             {
                                 Object.values(diagrams)
