@@ -21,7 +21,7 @@ export default function NewsField() {
 
     return (
         <div className={classNames(
-            "bg-white rounded-6 h-full w-[calc(100%-384px)] p-6 pt-4 pb-6 overflow-hidden",
+            "bg-white rounded-6 h-full w-full p-6 pt-4 pb-6 overflow-hidden",
             "md:w-full md:min-h-[300px] md:h-[300px]"
         )}>
             <h3 className={classNames(
@@ -32,7 +32,7 @@ export default function NewsField() {
             </h3>
 
             <div className={classNames(
-                "overflow-y-scroll pb-12 s_lg:pb-8 flex flex-col gap-4 scroll-hidden h-full w-full s_lg:gap-2",
+                "overflow-y-scroll pb-12 s_lg:pb-8 flex flex-col gap-4 scroll-hidden h-full w-full relative s_lg:gap-2",
                 "md:h-[350px]"
             )}>
                 {

@@ -25,7 +25,7 @@ export default function UserSubscriptions() {
 
     return (
         <div className={classNames(
-            "bg-white rounded-6 relative min-h-[500px] h-full w-[calc(100%-384px)] p-6 pt-4 pb-6 overflow-hidden",
+            "bg-white rounded-6 relative min-h-[500px] h-full w-full p-6 pt-4 pb-6 overflow-hidden",
             "md:min-h-[272px] md:h-[272px] md:w-full"
             )}>
             <h3 className="text-heading-ss-bold pb-2">

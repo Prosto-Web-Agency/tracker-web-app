@@ -2,7 +2,7 @@
 
 import InsightCard from "../../cards/mainPageCards/InsightCard";
 import ModalInsight from "../../modal/ModalInsight";
-import React, { useState } from "react";
+import React, {useEffect, useState} from "react";
 import type { TInsightCardArray } from "@/models/traker";
 import TRIcon from "@/components/common/icon";
 import ModalUser from "@/components/common/modal/ModalUser";
