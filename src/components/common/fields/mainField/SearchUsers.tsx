@@ -49,7 +49,14 @@ export default function SearchUsers() {
                     ? null
                     : <div className="flex flex-col gap-2 bg-white rounded-4 mt-6 p-6 min-h-[100px] max-h-[240px] w-full absolute">
                         {
-                            searchUsers.map(({ first_name, image_url, is_anon, rank_name, login }, index) => (
+                            searchUsers.map(({
+                                first_name,
+                                image_url,
+                                is_anon,
+                                rank_name,
+                                is_subscribe,
+                                login
+                            }, index) => (
                                 <div
                                     className={"flex justify-between items-center gap-2 w-full cursor-pointer hover:bg-bg-gray transition rounded-4"}
                                     key={first_name + index}
@@ -77,10 +84,11 @@ export default function SearchUsers() {
                                     <div className="h-[26px]">
                                         <SecondaryButton
                                             className="h-[26px]"
+                                            bg={is_subscribe ? 'null' : ''}
                                             size={'none'}
                                             text={''}
                                             onClick={() => handleSubscribeOnUser(login)}
-                                            leftIcon={'plusGradient'}
+                                            leftIcon={is_subscribe ? 'subscribedUser' : 'plusGradient'}
                                             edgeLength={26}
                                         />
                                     </div>

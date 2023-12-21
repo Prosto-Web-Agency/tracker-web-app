@@ -24,18 +24,18 @@ export default function SubscriptionPage() {
     function handleSubscribe() {
         // @ts-ignore
         dispatch(setUserSubscriptionPaymentFetch(true))
+        setTimeout(() => router.push('/'), 1000);
     }
 
-    useEffect(() => {
-        console.log(Boolean(storage.get(SUBSCRIPTION)), isUserSubscribed)
-        if (Boolean(storage.get(SUBSCRIPTION)) !== isUserSubscribed) {
-            router.push('/');
-        }
-    }, [isUserSubscribed]);
+    // useEffect(() => {
+    //     if (Boolean(storage.get(SUBSCRIPTION)) !== isUserSubscribed) {
+    //         router.push('/');
+    //     }
+    // }, [isUserSubscribed]);
 
     return (
-        <section className="flex gap-6 bg-bg-gray p-10 s_lg:rounded-[0px] rounded-9 min-h-[calc(100vh-90px)] lg:flex-col relative mx-auto max-w-[1400px] w-full overflow-hidden">
-            <div className="flex flex-col gap-6 w-[30%] lg:w-full h-[calc(100vh-162px)] relative">
+        <section className="flex justify-center gap-6 bg-bg-gray p-10 s_lg:rounded-[0px] rounded-9 min-h-[calc(100vh-90px)] lg:flex-col relative mx-auto max-w-[1400px] w-full overflow-hidden">
+            <div className="flex flex-col gap-6 w-[35%] lg:w-full h-[calc(100vh-172px)] relative">
                 <BasePrimaryCard title="TRAKERstart" className="min-h-[calc(50%-12px)] justify-between">
                     <ul className="flex flex-col gap-3 list-disc px-3">
                         <li className="w-full pb-3 text-15_600 border-b-[0.5px] border-black">
@@ -83,7 +83,7 @@ export default function SubscriptionPage() {
                 </BasePrimaryCard>
             </div>
 
-            <div className="w-[calc(70%/3)] lg:w-full h-[calc(100vh-162px)]">
+            <div className="w-[35%] lg:w-full h-[calc(100vh-172px)]">
                 <BasePrimaryCard title="smarTraker" className="min-h-[50%] justify-between">
                     <ul className="flex flex-col gap-3 list-disc px-3">
                         <li className="w-full pb-3 text-15_600">
@@ -126,116 +126,6 @@ export default function SubscriptionPage() {
                         </BaseSecondaryCard>
                     </div>
                 </BasePrimaryCard>
-            </div>
-
-            <div className="w-[calc(70%/3)] lg:w-full h-[calc(100vh-162px)]">
-                <BasePrimaryCard title="База RЕСомендаций" className="min-h-[50%] justify-between">
-                    <ul className="flex flex-col gap-3 list-disc px-3">
-                        <li className="w-full pb-3 text-15_600">
-                            Обратная связь от психолога и коуча
-                        </li>
-                        <li className="w-full pb-3 text-15_600">
-                            TRAKER - STATmax Расширенная индивидуальная статистика с Детальным Рейтингом и Рекомендациями на основе Ai
-                        </li>
-                        <li className="w-full pb-3 text-15_600">
-                            Отбор в Эксперты и подключение монетизации за Сессии с Кандидатов в Резиденты
-                        </li>
-                        <li className="w-full pb-3 text-15_600">
-                            Подключение личной визитки Bcards к Базе данных UKNO и получение заказов B2B по рекомендациям
-                        </li>
-                        <li className="w-full pb-3 text-15_600">
-                            Чек-ап сессия с Психологом или Коучем
-                        </li>
-                    </ul>
-
-                    <div className="flex cursor-pointer hover:opacity-80" onClick={handleSubscribe}>
-                        <BaseSecondaryCard>
-                            <div className="flex flex-col gap-2">
-                                <div className="flex flex-col">
-                                    <p className="text-13_500 text-white">Сессия отбора</p>
-                                    <span className="text-heading-s text-white">
-                                        4 900р.
-                                    </span>
-                                </div>
-
-                                <div className="flex flex-col">
-                                    <p className="text-13_500 text-white">Месяц</p>
-                                    <div className="flex gap-2">
-                                        <ScratchedTitle title="19900р. " className="text-heading-s text-white" />
-                                        <span className="text-heading-s text-white">
-                                            13 900р.
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div className="flex flex-col">
-                                    <p className="text-13_500 text-white">Год</p>
-                                    <div className="flex gap-2">
-                                        <ScratchedTitle title="89900р. " className="text-heading-s text-white" />
-                                        <span className="text-heading-s text-white">
-                                            69 900р.
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </BaseSecondaryCard>
-                    </div>
-                </BasePrimaryCard>
-            </div>
-
-            <div className="w-[calc(70%/3)] lg:w-full h-[calc(100vh-162px)]">
-                <BaseSecondaryCard title="Резиденство в REC's" className="min-h-[50%] justify-between">
-                    <ul className="flex flex-col gap-3 list-disc px-3">
-                        <li className="w-full pb-3 text-15_600 text-white">
-                            Обратная связь от психолога и коуча
-                        </li>
-                        <li className="w-full pb-3 text-15_600 text-white">
-                            TRAKER - STATmax Расширенная индивидуальная статистика с Детальным Рейтингом и Рекомендациями на основе Ai
-                        </li>
-                        <li className="w-full pb-3 text-15_600 text-white">
-                            Отбор в Эксперты и подключение монетизации за Сессии с Кандидатов в Резиденты
-                        </li>
-                        <li className="w-full pb-3 text-15_600 text-white">
-                            Подключение личной визитки Bcards к Базе данных UKNO и получение заказов B2B по рекомендациям
-                        </li>
-                        <li className="w-full pb-3 text-15_600 text-white">
-                            Чек-ап сессия с Психологом или Коучем
-                        </li>
-                    </ul>
-
-                    <div className="flex cursor-pointer hover:opacity-80" onClick={handleSubscribe}>
-                        <BasePrimaryCard>
-                            <div className="flex flex-col gap-2">
-                                <div className="flex flex-col">
-                                    <p className="text-13_500 text-black">Сессия отбора</p>
-                                    <span className="text-heading-s text-transparent bg-clip-text bg-gradient-to-r from-[#E01D31] to-[#FEA50F]">
-                                        4 900р.
-                                    </span>
-                                </div>
-
-                                <div className="flex flex-col">
-                                    <p className="text-13_500 text-black">Месяц</p>
-                                    <div className="flex gap-2">
-                                        <ScratchedTitle title="19900р. " className="text-heading-s text-black" />
-                                        <span className="text-heading-s text-transparent bg-clip-text bg-gradient-to-r from-[#E01D31] to-[#FEA50F]">
-                                            13 900р.
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div className="flex flex-col">
-                                    <p className="text-13_500 text-black">Год</p>
-                                    <div className="flex gap-2">
-                                        <ScratchedTitle title="89900р. " className="text-heading-s text-black" />
-                                        <span className="text-heading-s text-transparent bg-clip-text bg-gradient-to-r from-[#E01D31] to-[#FEA50F]">
-                                            69 900р.
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
-                        </BasePrimaryCard>
-                    </div>
-                </BaseSecondaryCard>
             </div>
         </section>
     )

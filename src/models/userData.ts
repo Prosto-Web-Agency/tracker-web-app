@@ -31,11 +31,12 @@ export type TUserSmallData = Omit<TUserData, | "tg_username" | "instagram"> & {
 
 export type TUserSmallDataArray = TUserSmallData[];
 
-export type TUserSearchData = Omit<TUserData, | "tg_username" | "instagram"> & {
+export type TUserSearchData = Omit<TUserData, | "tg_username" | "instagram" | "surname"> & {
     image_url: string | null;
     is_anon: TIsAnon;
-    rank_name: TRank['rank'];
+    is_subscribe: boolean;
     login: string;
+    rank_name: TRank['rank'];
 }
 
 export type TUserSearchDataArray = TUserSearchData[];
