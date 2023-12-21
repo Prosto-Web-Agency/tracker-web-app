@@ -19,7 +19,7 @@ export default function MainBalancePage() {
     return (
         <div className="overflow-y-scroll">
             <Header />
-            <div className="w-full min-h-screen py-10 bg-bg-gray">
+            <div className="w-full min-h-[calc(100vh-90px)] py-10 bg-bg-gray">
                 {
                     balanceIsSet
                         ? <BalanceWebPage balanceData={balanceData} />

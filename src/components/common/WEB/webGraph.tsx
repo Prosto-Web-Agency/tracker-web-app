@@ -10,6 +10,7 @@ import {
 } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { Radar } from 'react-chartjs-2';
+import TRIcon, {TRIcons} from "@/components/common/icon";
 
 ChartJS.register(
     RadialLinearScale,
@@ -28,7 +29,7 @@ export const dataFull = (data: any) => ({
         {
             data: data,
             backgroundColor: 'transparent',
-            borderColor: 'rgba(255, 99, 132, 1)',
+            borderColor: '#E73C2B',
             borderWidth: 1,
             fontSize: 10,
         },
@@ -39,21 +40,21 @@ export const dataFull = (data: any) => ({
 export const options = {
     plugins: {
         datalabels: {
-            backgroundColor: function(context) {
+            backgroundColor: function(context: any) {
                 return context.dataset.borderColor;
             },
-            color: 'black',
+            color: 'white',
             font: {
                 weight: 'bold'
             },
             formatter: Math.round,
-            padding: 8
+            padding: 8,
+            borderRadius: 25
         },
         legend: {
             display: false,
         },
     },
-    aspectRatio: 4 / 3,
     elements: {
         point: {
             hoverRadius: 12,
@@ -70,16 +71,16 @@ export const options = {
     scales: {
         r: {
             grid: {
-                color: 'transparent'
+                color: ['#F4751D', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent', 'transparent']
             },
             angleLines: {
-                color: 'linear-gradient(90deg, #E12131 0%, #FEA310 100%)'
+                color: '#F4751D'
             },
             ticks: {
                 color: 'transparent'
             },
             pointLabels:{
-                color: 'rgb(54, 162, 235)',
+                color: '#F4751D',
             },
             suggestedMin: 0,
             suggestedMax: 10
@@ -90,6 +91,7 @@ export const options = {
 export function WebGraph({ balanceData }: any) {
     return (
         <Radar
+            // @ts-ignore
             options={options}
             data={dataFull(balanceData)}
         />
