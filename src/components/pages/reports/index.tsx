@@ -32,7 +32,7 @@ export default function ReportsPage() {
                 <SearchUsers/>
                 <BasePrimaryCard>
                     {
-                        userSubscriptions.length ? (
+                        !!userSubscriptions.length ? (
                             <>
                                 {
                                     userSubscriptions.map((user, index) =>
