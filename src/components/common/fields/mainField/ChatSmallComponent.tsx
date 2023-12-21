@@ -69,7 +69,10 @@ export default function ChatSmallComponent() {
             {
                 fullScreen ?
                     (
-                        <div className="w-full h-[calc(100vh-80px)] max-h-[calc(100vh-80px)] mt-[80px] flex justify-center lg:mt-[75px] lg:h-[calc(100vh-75px)] items-cente lg:bg-white bg-bg-gray py-10 px-5 z-[900] backdrop-blur-sm fixed top-0 left-0">
+                        <div className={classNames(
+                            "w-full h-[calc(100vh-80px)] max-h-[calc(100vh-80px)] mt-[80px] flex justify-center items-center bg-bg-gray py-10 px-5 z-[900] backdrop-blur-sm fixed top-0 left-0",
+                            "md:mt-0 md:h-screen md:max-h-screen md:px-0"
+                        )}>
                             <div className="flex flex-col min-w-[50%] relative w-[50%] px-10 pb-10 lg:pb-5 lg:px-0box-border rounded-6 lg:w-full h-full bg-white overflow-hidden">
                                 <CardHeader title={'Чат'} iconName={'arrowLeft'} onIconClick={() => setFullScreen(false)} />
 
