@@ -7,16 +7,9 @@ import { getMetrics } from "@/store/thunks/officeThunk";
 import TRIcon from "@/components/common/icon";
 import { CHART_COLORS, MOCKS_CHARTS } from "@/consts/chart";
 import {TChart} from "@/store/reducers/OfficeReducer";
+import {TDiagram, TUserDiagrams} from "@/models/charts";
 
-export default function DiagramsFieldOffice() {
-    const dispatch = useDispatch();
-    //@ts-ignore
-    const { firstMetrics }: { firstMetrics: TChart | null } = useSelector(state => state.officePage)
-
-    useEffect(() => {
-        //@ts-ignore
-        dispatch(getMetrics());
-    }, [dispatch]);
+export default function DiagramsFieldOffice({ diagrams }: { diagrams: TUserDiagrams }) {
 
     return (
         <div className="bg-white rounded-6 big_screen_h:h-[680px] sx_lg:h-[740px] p-6 pt-3">
@@ -26,16 +19,24 @@ export default function DiagramsFieldOffice() {
 
             <div className="w-full h-full grid grid-cols-2 gap-3 pt-3">
                 {
-                    firstMetrics ?
-                        firstMetrics.data.length ? (
-                        <DoughnutChart
-                            colors={[CHART_COLORS[0].color1, CHART_COLORS[0].color2]}
-                            name={'Занятость по проектам'}
-                            percents={'50%'}
-                            id={'80%'}
-                            labels={firstMetrics.label}
-                            data={firstMetrics.data}
-                        />
+                    diagrams ?
+                        diagrams.lifeBalance.date.length ? (
+                        <>
+                            {
+                                Object.values(diagrams)
+                                    .map((diagram: TDiagram, index) => (
+                                    <DoughnutChart
+                                        key={index + 'diagrams'}
+                                        colors={[CHART_COLORS[0].color1, CHART_COLORS[0].color2]}
+                                        name={'Занятость по проектам'}
+                                        percents={'50%'}
+                                        id={'80%'}
+                                        labels={diagram.date}
+                                        data={diagram.dots}
+                                    />
+                                ))
+                            }
+                        </>
                     ) : (
                         <div>
                             графика сейчас нет (
@@ -47,19 +48,19 @@ export default function DiagramsFieldOffice() {
                     )
                 }
 
-                {
-                    MOCKS_CHARTS.map(({ data, labels, name }, index) => (
-                        <DoughnutChart
-                            colors={[CHART_COLORS[index+1].color1, CHART_COLORS[index+1].color2]}
-                            key={name}
-                            name={name}
-                            percents={'50%'}
-                            id={'80%'}
-                            labels={labels}
-                            data={data}
-                        />
-                    ))
-                }
+                {/*{*/}
+                {/*    MOCKS_CHARTS.map(({ data, labels, name }, index) => (*/}
+                {/*        <DoughnutChart*/}
+                {/*            colors={[CHART_COLORS[index+1].color1, CHART_COLORS[index+1].color2]}*/}
+                {/*            key={name}*/}
+                {/*            name={name}*/}
+                {/*            percents={'50%'}*/}
+                {/*            id={'80%'}*/}
+                {/*            labels={labels}*/}
+                {/*            data={data}*/}
+                {/*        />*/}
+                {/*    ))*/}
+                {/*}*/}
             </div>
 
         </div>
