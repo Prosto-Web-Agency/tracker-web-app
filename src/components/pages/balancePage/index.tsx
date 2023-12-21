@@ -100,7 +100,7 @@ export default function BalancePage({ }: any) {
     return (
 
         <div className="w-full h-[calc(100%-80px)] bg-bg-gray flex flex-col gap-6 justify-center items-center">
-            <div className="bg-white rounded-6 h-[600px] w-[600px] flex flex-col p-6">
+            <div className="bg-white rounded-6 max-h-[700px] w-[600px] flex flex-col p-6">
                 <div>
                     <div className="flex flex-col items-center px-6">
                         <div className="flex items-center gap-2">
