@@ -139,7 +139,7 @@ export default function BalanceWebPage({ balanceData }: any) {
 
                 </div>
 
-                <div className="w-[350px] sx_lg:w-full md:w-full sx_lg:min-h-[350px] sx_lg:max-h-[350px] bg-white h-full rounded-6">
+                <div className="w-[350px] sx_lg:w-full h-[700px] md:w-full sx_lg:min-h-[350px] sx_lg:max-h-[350px] bg-white rounded-6">
                     {
                         visible
                             ? <div className="flex justify-center sx_lg:h-[350px] items-center w-full h-full">

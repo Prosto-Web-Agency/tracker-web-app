@@ -10,7 +10,6 @@ import {
 } from 'chart.js';
 import ChartDataLabels from 'chartjs-plugin-datalabels';
 import { Radar } from 'react-chartjs-2';
-import TRIcon, {TRIcons} from "@/components/common/icon";
 
 ChartJS.register(
     RadialLinearScale,
@@ -21,7 +20,6 @@ ChartJS.register(
     Legend,
     ChartDataLabels
 );
-
 
 export const dataFull = (data: any) => ({
     labels: ['Саморазвитие', 'Отношения', 'Карьера', 'Отдых', 'Окружение', 'Доходы', 'Творчество', 'Здоровье'],
