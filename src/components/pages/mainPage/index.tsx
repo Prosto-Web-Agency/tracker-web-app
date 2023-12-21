@@ -31,7 +31,7 @@ export default function MainPage() {
                 "min-h-[calc(100vh-90px)] relative w-full bg-bg-gray rounded-9 p-10 max-w-[1400px] mx-auto",
                 "md:rounded-[0px] md:p-4 md:py-6"
             )}>
-                <div className="max-h-[900px] flex md:flex-col gap-6 w-full relative">
+                <div className="w-full max-h-[900px] flex md:flex-col gap-6 w-full relative">
                     <div className="flex flex-col gap-6">
                         <SearchUsers />
                         <ListOfInsightCards listOfUserInsights={listOfUserInsights} />
@@ -39,7 +39,7 @@ export default function MainPage() {
 
                     <div className={classNames(
                         "flex flex-col min-h-[700px] relative gap-6 w-full max-w-[calc(100%-420px)]",
-                        "md:min-h-[950px] md:h-[950px] md:pb-10"
+                        "md:min-h-[950px] md:h-[950px] md:pb-10 md:max-w-full"
                     )}>
                         <NewsField />
                         <UserSubscriptions />
