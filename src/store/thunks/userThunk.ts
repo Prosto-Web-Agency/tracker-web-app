@@ -131,7 +131,9 @@ export const unsubscribeOnUserByLogin = (streamer_login: string) => (dispatch: a
         userApi
             .unsubscribeOnUserByLogin({ streamer_login })
             .then((res: any) => {
-
+                dispatch(getUserSubscriptionsReportsData());
+                // @ts-ignore
+                dispatch(getUserSubscriptionsData());
                 // dispatch(setUserSubscriptions(res));
             })
             .catch(() => {})
