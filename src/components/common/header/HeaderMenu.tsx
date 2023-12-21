@@ -22,7 +22,7 @@ export default function HeaderMenu() {
     return (
         <div className="w-screen h-screen bg-tr04 z-[100] backdrop-blur-sm fixed top-0 left-0">
             <motion.div
-                className="w-[170px] h-[400px] rounded-l-6 text-white rounded-b-6 bg-white px-4 py-6 absolute s_lg:top-16 top-16 right-5 z-[100] overflow-hidden"
+                className="w-[170px] rounded-l-6 text-white rounded-b-6 bg-white px-4 py-6 absolute s_lg:top-16 top-16 right-5 z-[100] overflow-hidden"
                 variants={headerVariants}
                 initial='hidden'
                 animate='visible'

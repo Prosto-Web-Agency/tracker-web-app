@@ -24,15 +24,24 @@ export const dataFull = (data: any) => ({
     labels: ['Саморазвитие', 'Отношения', 'Карьера', 'Отдых', 'Окружение', 'Доходы', 'Творчество', 'Здоровье'],
     datasets: [
         {
-            label: '',
             data: data,
             backgroundColor: 'rgba(255, 99, 132, 0.2)',
             borderColor: 'rgba(255, 99, 132, 1)',
             borderWidth: 1,
+            fontSize: 10,
         },
     ],
+    
 });
 
-export function WebGraph({balanceData}: any) {
-    return <Radar data={dataFull(balanceData)} />;
+export const options = {
+    plugins: {
+        legend: {
+            display: false,
+        },
+    }
+}
+
+export function WebGraph({ balanceData }: any) {
+    return <Radar options={options} data={dataFull(balanceData)} />;
 }
