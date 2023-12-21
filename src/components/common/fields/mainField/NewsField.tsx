@@ -5,6 +5,7 @@ import React, {useEffect} from "react";
 import {getNews} from "@/store/thunks/trakerThunk";
 import {useDispatch, useSelector} from "react-redux";
 import TRIcon from "@/components/common/icon";
+import classNames from "classnames";
 
 export type TListOfNewsData = { news_data: { title: string, post_text: string, photo_content?: { photo_url: string }[] }};
 
@@ -19,12 +20,21 @@ export default function NewsField() {
     }, [dispatch])
 
     return (
-        <div className="bg-white rounded-6 h-full w-[calc(100%-384px)] p-6 pt-4 pb-6 overflow-hidden s_lg:w-full s_lg:h-[305px]">
-            <h3 className="text-heading-ss-bold pb-2">
+        <div className={classNames(
+            "bg-white rounded-6 h-full w-full p-6 pt-4 pb-6 overflow-hidden",
+            "md:w-full md:min-h-[300px] md:h-[300px]"
+        )}>
+            <h3 className={classNames(
+                "text-heading-ss-bold pb-2",
+                "md:"
+            )}>
                 Новости
             </h3>
 
-            <div className="overflow-y-scroll pb-12 s_lg:pb-8 flex flex-col gap-4 scroll-hidden h-full w-full s_lg:gap-2">
+            <div className={classNames(
+                "overflow-y-scroll pb-12 s_lg:pb-8 flex flex-col gap-4 scroll-hidden h-full w-full relative s_lg:gap-2",
+                "md:h-[350px]"
+            )}>
                 {
                     listOfNews ? (
                         <>

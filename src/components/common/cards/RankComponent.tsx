@@ -1,5 +1,6 @@
 import TRIcon from "../icon";
 import classNames from "classnames";
+import useResponsive from "@/hooks/useResponsive";
 
 export type TRank = {
     rank: "adviser" | "ambassador" | "expert" | "headliner" | "resident" | "new" | "empty";
@@ -20,21 +21,31 @@ type RankComponentProps = {
 }
 
 export default function RankComponent({ rank, onClick, active }: RankComponentProps) {
+    const { isMobile } = useResponsive();
+
     return (
         <div
             className={classNames("w-full flex justify-center relative bg-white items-center py-2 h-[82px] min-h-[82px] rounded-full cursor-pointer", {
                 ['opacity-70 hover:opacity-80']: !active
-            })}
+            },
+                "md:h-[42px] md:min-h-[42px]"
+            )}
             onClick={onClick}
         >
             {
                 (rank !== 'new' && rank !== 'empty') ? (
                     <>
                         <div className="absolute left-2">
-                            <TRIcon iconName={rank} edgeLength={68} />
+                            <TRIcon
+                                iconName={rank}
+                                edgeLength={isMobile ? 40 : 68}
+                            />
                         </div>
 
-                        <h4 className="text-heading-s text-black">
+                        <h4 className={classNames(
+                            "text-heading-s text-black",
+                            "md:text-text-s"
+                        )}>
                             { Ranks[rank] }
                         </h4>
                     </>

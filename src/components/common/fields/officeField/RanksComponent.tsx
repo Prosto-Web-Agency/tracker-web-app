@@ -5,6 +5,7 @@ import ModalAmbassador from "../../modal/ranks/ModalAmbassador";
 import ModalExpert from "../../modal/ranks/ModalExpert";
 import ModalHeadliner from "../../modal/ranks/ModalHeadliner";
 import ModalResident from "../../modal/ranks/ModalResident";
+import classNames from "classnames";
 
 type TRanksComponent = {
     userRank: TRank['rank'];
@@ -40,12 +41,18 @@ export default function RanksComponent({ userRank }: TRanksComponent) {
     };
 
     return (
-        <div className="p-6 h-full max-h-[500px] big_screen_h:h-auto bg-orange-class ss_lg:h-[304px] rounded-4 bg-white overflow-hidden ss_lg:w-full pt-3 ss_lg:p-2">
+        <div className={classNames(
+            "p-6 h-full max-h-[500px] big_screen_h:h-auto bg-orange-class ss_lg:h-[304px] rounded-4 bg-white overflow-hidden",
+            "md:pt-2"
+        )}>
             <h3 className="text-heading-s text-white mt-3 ml-4 s_lg:text-heading-ss-bold pb-2">
                 Ранги
             </h3>
 
-            <div className="flex flex-col pt-8 rounded-t-5 w-full h-full pb-12 s_lg:pb-5 overflow-y-scroll gap-4 scroll-hidden justify-start">
+            <div className={classNames(
+                "flex flex-col pt-8 rounded-t-5 w-full h-full pb-12 overflow-y-scroll gap-4 scroll-hidden justify-start",
+                "md:px-6 md:pt-2"
+            )}>
                 <RankComponent active={USER_RANKS.indexOf(userRank) >= USER_RANKS.indexOf("headliner")} rank="headliner" onClick={() => setHeadlinerModalOpen(true)} />
                 <RankComponent active={USER_RANKS.indexOf(userRank) >= USER_RANKS.indexOf("adviser")} rank="adviser" onClick={() => setAdvizerModalOpen(true)} />
                 <RankComponent active={USER_RANKS.indexOf(userRank) >= USER_RANKS.indexOf("ambassador")} rank="ambassador" onClick={() => setAmbassadorModalOpen(true)} />

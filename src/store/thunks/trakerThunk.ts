@@ -10,7 +10,7 @@ import {TUserSearchDataArray, TUserSmallDataArray} from "@/models/userData";
 export const getListOfUsersInsights = () => (dispatch: any) => {
     mainPageApi.getListOfUserInsightsApi()
         .then((response) => {
-            dispatch(setListOfUserInsights(response.data))
+            dispatch(setListOfUserInsights(response.data.results))
         })
         .catch(() => {})
 }
@@ -19,7 +19,7 @@ export const getListOfTopUsers = () => (dispatch: any) => {
     try {
         mainPageApi.getListOfTopUsersApi()
             ?.then((response) => {
-                dispatch(setListOfTopUsers(response.data as TUserSmallDataArray))
+                dispatch(setListOfTopUsers(response.data.results as TUserSmallDataArray))
             })
             .catch(() => {
             })

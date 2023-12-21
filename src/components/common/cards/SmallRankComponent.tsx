@@ -12,7 +12,7 @@ export enum Ranks {
     headliner = 'Хедлайнер',
     resident = 'Резидент',
     "new" = "Новичок",
-    empty = ""
+    empty = "Участник"
 }
 
 type RankComponentProps = {

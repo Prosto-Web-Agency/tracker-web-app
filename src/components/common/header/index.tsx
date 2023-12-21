@@ -107,7 +107,7 @@ export default function Header({ title, isUnAuth }: { title?: string, isUnAuth?:
                         </h1>
                     </Link>
 
-                    <div className="flex gap-6 pr-6 items-center s_lg:hidden">
+                    <div className="flex gap-6 pr-6 items-center lg:hidden">
                         <div className="flex flex-row gap-6 items-center">
                             {
                                 TABS.map(({ link, title }: TTabs) => (
@@ -152,7 +152,7 @@ export default function Header({ title, isUnAuth }: { title?: string, isUnAuth?:
 
                     <button
                         onClick={() => changeMenuState(!openMenu)}
-                        className="hidden h-[90px] z-[110] justify-center items-center pr-[30px] s_lg:flex">
+                        className="hidden h-[90px] z-[110] justify-center items-center pr-[30px] lg:flex">
 
                         <svg width='25' height='25' viewBox='0 0 24 24'>
                             <motion.path

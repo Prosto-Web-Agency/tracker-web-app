@@ -7,6 +7,7 @@ import {getUserSubscriptionsData, getUserSubscriptionsReportsData} from "@/store
 import type { TUserSubscriptionsArray } from "@/models/userData";
 import SubscriptionCard from "@/components/common/userSubscription/subscriptionCard";
 import {TUserSubscriptionsReportArray} from "@/models/userData";
+import classNames from "classnames";
 
 export type TListOfNewsData = { news_data: { title: string, post_text: string, photo_content?: { photo_url: string }[] }};
 
@@ -23,7 +24,10 @@ export default function UserSubscriptions() {
     }, [dispatch]);
 
     return (
-        <div className="bg-white rounded-6 relative min-h-[500px] h-full w-[calc(100%-384px)] p-6 pt-4 pb-6 overflow-hidden s_lg:w-full s_lg:h-[305px]">
+        <div className={classNames(
+            "bg-white rounded-6 relative min-h-[500px] h-full w-full p-6 pt-4 pb-6 overflow-hidden",
+            "md:min-h-[272px] md:h-[272px] md:w-full"
+            )}>
             <h3 className="text-heading-ss-bold pb-2">
                 Ваши подписки
             </h3>
