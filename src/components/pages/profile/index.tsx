@@ -92,18 +92,21 @@ export default function PersonalOffice() {
                 <div className="col-start-3 col-end-4 row-start-1 row-end-4 sx_lg:hidden flex flex-col gap-6 min-w-[384px]">
                     {/*<PrimaryButton text="" type="datePicker" onClick={() => {}} />*/}
                     <GraphFieldOffice
+                        type={'chartProductive'}
                         color={'#6ABDDB'}
                         name="График продуктивности"
                         params={productivityChart}
                         elementId={'productivityChart'}
                     />
                     <GraphFieldOffice
+                        type={'chartEmotional'}
                         color={'#97C263'}
                         name="График отдыха"
                         params={holidaysChart}
                         elementId={'holidaysChart'}
                     />
                     <GraphFieldOffice
+                        type={'chartRelax'}
                         color={'#F6CC56'}
                         name="Эмоциональное состояние"
                         params={emotionalChart}
@@ -115,18 +118,21 @@ export default function PersonalOffice() {
             <div className="sx_lg:grid grid-cols-2 px-10 bg-bg-gray p-6 pt-0 hidden flex-col gap-6 row-span-3 min-w-[384px] ss_lg:hidden">
                 <MetrisFieldOffice />
                 <GraphFieldOffice
+                    type={'chartProductive'}
                     color={'#6ABDDB'}
                     name="График продуктивности"
                     params={productivityChart}
                     elementId={'productivityChart'}
                 />
                 <GraphFieldOffice
+                    type={'chartEmotional'}
                     color={'#97C263'}
                     name="График отдыха"
                     params={holidaysChart}
                     elementId={'holidaysChart'}
                 />
                 <GraphFieldOffice
+                    type={'chartRelax'}
                     color={'#F6CC56'}
                     name="Эмоциональное состояние"
                     params={emotionalChart}

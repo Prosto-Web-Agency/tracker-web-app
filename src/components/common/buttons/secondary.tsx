@@ -11,7 +11,7 @@ interface SecondaryButtonProps {
     leftIcon?: keyof typeof TRIcons;
     rightIcon?: keyof typeof TRIcons;
     edgeLength?: number;
-    size?: "small" | "default" | "big";
+    size?: "small" | "default" | "big" | "none";
     bg?: string;
 }
 
@@ -28,6 +28,7 @@ const SecondaryButton: React.FC<SecondaryButtonProps> = ({
     return (
         <button
             className={classNames(`w-full rounded-4 hover:opacity-80 transition ${className}`, {
+                ['']: size === 'none',
                 ['h-10']: size === 'small',
                 ['h-[50px]']: size === 'default',
                 ['h-[60px]']: size === 'big',
