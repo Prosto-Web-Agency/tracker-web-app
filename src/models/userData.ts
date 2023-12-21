@@ -1,6 +1,6 @@
 import { TRank } from "@/components/common/cards/RankComponent";
 
-type TIsAnon = number;
+type TIsAnon = boolean;
 
 export type TUserData = {
     first_name: string;

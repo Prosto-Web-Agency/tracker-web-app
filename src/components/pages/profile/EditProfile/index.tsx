@@ -50,7 +50,7 @@ export default function EditProfilePage() {
                 surname: surname,
                 tg_username: telegram,
                 instagram: inst,
-                is_anon: 0
+                is_anon: false
             }));
         } else if (imageFile !== userData?.image_url) {
             // todo: переписать ручку
