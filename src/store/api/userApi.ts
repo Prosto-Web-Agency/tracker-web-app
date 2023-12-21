@@ -95,6 +95,19 @@ export const userApi = {
                 return null;
             })
     },
+    unsubscribeOnUserByLogin(data: { streamer_login: string }) {
+        return axios.post(endpoint + 'unsubscribe', data, config())
+            .then(res => {
+                if (res.status === 201) {
+                    return res.data
+                } else if (res.status === 200) {
+                    // todo: подписка удалена
+                    return res.data
+                }
+
+                return null;
+            })
+    },
     getUserSubscriptionsReports() {
         return axios.get(endpoint + 'user_subscriptions_reports', config())
             .then(res => {

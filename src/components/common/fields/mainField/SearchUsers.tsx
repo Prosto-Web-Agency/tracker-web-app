@@ -7,11 +7,16 @@ import { useDispatch, useSelector } from "react-redux"
 import { getSearchUsersThunk } from "@/store/thunks/trakerThunk"
 import { TUserSearchDataArray } from "@/models/userData";
 import SecondaryButton from "@/components/common/buttons/secondary";
-import {subscribeOnUserByLogin} from "@/store/thunks/userThunk";
+import {subscribeOnUserByLogin, unsubscribeOnUserByLogin} from "@/store/thunks/userThunk";
+import ModalComponent from "@/components/common/modal";
 
 export default function SearchUsers() {
     const dispatch = useDispatch();
-    const [text, setText] = useState<string>("")
+    const [text, setText] = useState<string>("");
+    const [unsubscribeModal, setUnsubscribeModal] = useState({
+        isOpen: false,
+        login: ''
+    });
     //@ts-ignore
     const { searchUsers }: { searchUsers: TUserSearchDataArray } = useSelector(state => state.mainPage)
 
@@ -22,9 +27,22 @@ export default function SearchUsers() {
         dispatch(getSearchUsersThunk(text))
     }
 
-    function handleSubscribeOnUser(login: string) {
+    function handleSubscribeOnUser(login: string, is_subscribe: boolean) {
+        if (is_subscribe) {
+            //@ts-ignore
+            setUnsubscribeModal({
+                isOpen: true,
+                login
+            });
+        } else {
+            //@ts-ignore
+            dispatch(subscribeOnUserByLogin(login));
+        }
+    }
+
+    function handleUnsubscribeOnUser(login: string) {
         //@ts-ignore
-        dispatch(subscribeOnUserByLogin(login));
+        dispatch(unsubscribeOnUserByLogin(login));
     }
 
     return (
@@ -87,7 +105,7 @@ export default function SearchUsers() {
                                             bg={is_subscribe ? 'null' : ''}
                                             size={'none'}
                                             text={''}
-                                            onClick={() => handleSubscribeOnUser(login)}
+                                            onClick={() => handleSubscribeOnUser(login, is_subscribe)}
                                             leftIcon={is_subscribe ? 'subscribedUser' : 'plusGradient'}
                                             edgeLength={26}
                                         />
@@ -98,7 +116,13 @@ export default function SearchUsers() {
                     </div>
             }
 
+            <ModalComponent open={unsubscribeModal.isOpen} onClose={() => {}}>
+                <SecondaryButton
+                    size={'small'}
+                    text={'Отписаться'}
+                    onClick={() => handleUnsubscribeOnUser(unsubscribeModal.login)}
+                />
+            </ModalComponent>
         </div>
-
     )
 }

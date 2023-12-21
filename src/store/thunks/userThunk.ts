@@ -126,4 +126,17 @@ export const subscribeOnUserByLogin = (streamer_login: string) => (dispatch: any
     }
 }
 
+export const unsubscribeOnUserByLogin = (streamer_login: string) => (dispatch: any) => {
+    try {
+        userApi
+            .unsubscribeOnUserByLogin({ streamer_login })
+            .then((res: any) => {
+
+                // dispatch(setUserSubscriptions(res));
+            })
+            .catch(() => {})
+    } catch (e) {
+        console.error('error ', e);
+    }
+}
 
