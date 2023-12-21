@@ -10,10 +10,11 @@ export type TGraphField = {
     color: string;
     params: TChart;
     elementId: string;
+    average: string;
     type: 'chartProductive' | 'chartRelax' | 'chartEmotional';
 }
 
-export default function GraphFieldOffice({ name, params, color, elementId, type }: TGraphField) {
+export default function GraphFieldOffice({ name, params, color, elementId, type, average }: TGraphField) {
     return (
         <div className="bg-white flex-1 rounded-6 p-6 pt-3">
             <h4 className="text-heading-ss-bold">
@@ -21,8 +22,13 @@ export default function GraphFieldOffice({ name, params, color, elementId, type 
             </h4>
 
             {
-                params?.data.length ? (
-                    <ChartComponent params={params} color={color} elementId={elementId} />
+                params?.data.length > 1 ? (
+                    <ChartComponent
+                        params={params}
+                        color={color}
+                        elementId={elementId}
+                        average={average}
+                    />
                 ) : (
                     <div className="flex flex-col gap-2 justify-center items-center w-full h-full">
                         <TRIcon iconName={type} edgeLength={180} />

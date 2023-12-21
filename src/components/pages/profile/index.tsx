@@ -17,29 +17,32 @@ import { useDispatch, useSelector } from "react-redux";
 import { getUserPersonalData } from "@/store/thunks/userThunk";
 import {useRouter} from "next/navigation";
 import HoverGradientButton from "@/components/common/buttons/hoverGradient";
-import {TUserDataState} from "@/store/reducers/userReducer";
+import type { TUserDataState } from "@/store/reducers/userReducer";
+import type { TUserCharts } from "@/models/charts";
 
 export default function PersonalOffice() {
     const dispatch = useDispatch();
     const router = useRouter();
 
     //@ts-ignore
-    const { productivityChart, emotionalChart, holidaysChart } = useSelector(state => state.officePage)
+    const { charts }: { charts: TUserCharts } = useSelector(state => state.officePage)
     //@ts-ignore
     const { userData }: { userData: TUserDataState } = useSelector(state => state.user);
 
     useEffect(() => {
         //@ts-ignore
-        dispatch(getDiagrams())
+        // dispatch(getDiagrams())
         //@ts-ignore
         dispatch(getCharts())
         //@ts-ignore
-        dispatch(getMetrics());
+        // dispatch(getMetrics());
         //@ts-ignore
         dispatch(getUserPersonalData());
     }, [dispatch]);
 
-    useEffect(() => {}, [userData])
+    useEffect(() => {
+        console.log(charts)
+    }, [charts])
 
     function handleEditUserData() {
         router.push('/profile/edit');
@@ -87,53 +90,89 @@ export default function PersonalOffice() {
 
                 <div className="col-start-3 col-end-4 row-start-1 row-end-4 sx_lg:hidden flex flex-col gap-6 min-w-[384px]">
                     {/*<PrimaryButton text="" type="datePicker" onClick={() => {}} />*/}
-                    <GraphFieldOffice
-                        type={'chartProductive'}
-                        color={'#6ABDDB'}
-                        name="График продуктивности"
-                        params={productivityChart}
-                        elementId={'productivityChart'}
-                    />
-                    <GraphFieldOffice
-                        type={'chartEmotional'}
-                        color={'#97C263'}
-                        name="График отдыха"
-                        params={holidaysChart}
-                        elementId={'holidaysChart'}
-                    />
-                    <GraphFieldOffice
-                        type={'chartRelax'}
-                        color={'#F6CC56'}
-                        name="Эмоциональное состояние"
-                        params={emotionalChart}
-                        elementId={'emotionalChart'}
-                    />
+                    {
+                        charts ? (
+                            <>
+                                <GraphFieldOffice
+                                    type={'chartProductive'}
+                                    color={'#6ABDDB'}
+                                    name="График продуктивности"
+                                    params={{
+                                        data: charts.lifeBalance.dots,
+                                        label: charts.lifeBalance.date
+                                    }}
+                                    average={charts.lifeBalance.avg[0].toFixed(2)}
+                                    elementId={'productivityChart'}
+                                />
+                                <GraphFieldOffice
+                                    type={'chartEmotional'}
+                                    color={'#97C263'}
+                                    name="График отдыха"
+                                    params={{
+                                        data: charts.dayReports.dots,
+                                        label: charts.dayReports.date
+                                    }}
+                                    average={charts.dayReports.avg[0].toFixed(2)}
+                                    elementId={'holidaysChart'}
+                                />
+                                <GraphFieldOffice
+                                    type={'chartRelax'}
+                                    color={'#F6CC56'}
+                                    name="Эмоциональное состояние"
+                                    params={{
+                                        data: charts.emotional.dots,
+                                        label: charts.emotional.date
+                                    }}
+                                    average={charts.emotional.avg[0].toFixed(2)}
+                                    elementId={'emotionalChart'}
+                                />
+                            </>
+                        ) : null
+                    }
                 </div>
             </div>
 
             <div className="sx_lg:grid grid-cols-2 px-10 bg-bg-gray p-6 pt-0 hidden flex-col gap-6 row-span-3 min-w-[384px] ss_lg:hidden">
                 <MetrisFieldOffice />
-                <GraphFieldOffice
-                    type={'chartProductive'}
-                    color={'#6ABDDB'}
-                    name="График продуктивности"
-                    params={productivityChart}
-                    elementId={'productivityChart'}
-                />
-                <GraphFieldOffice
-                    type={'chartEmotional'}
-                    color={'#97C263'}
-                    name="График отдыха"
-                    params={holidaysChart}
-                    elementId={'holidaysChart'}
-                />
-                <GraphFieldOffice
-                    type={'chartRelax'}
-                    color={'#F6CC56'}
-                    name="Эмоциональное состояние"
-                    params={emotionalChart}
-                    elementId={'emotionalChart'}
-                />
+                {
+                    charts ? (
+                        <>
+                            <GraphFieldOffice
+                                type={'chartProductive'}
+                                color={'#6ABDDB'}
+                                name="График продуктивности"
+                                params={{
+                                    data: charts.lifeBalance.dots,
+                                    label: charts.lifeBalance.date
+                                }}
+                                average={charts.lifeBalance.avg[0].toFixed(2)}
+                                elementId={'productivityChart'}
+                            />
+                            <GraphFieldOffice
+                                type={'chartEmotional'}
+                                color={'#97C263'}
+                                name="График отдыха"
+                                params={{
+                                    data: charts.dayReports.dots,
+                                    label: charts.dayReports.date
+                                }}
+                                average={charts.dayReports.avg[0].toFixed(2)}
+                                elementId={'holidaysChart'}
+                            />
+                            <GraphFieldOffice
+                                type={'chartRelax'}
+                                color={'#F6CC56'}
+                                name="Эмоциональное состояние"
+                                params={{
+                                    data: charts.emotional.dots,
+                                    label: charts.emotional.date
+                                }}
+                                average={charts.emotional.avg[0].toFixed(2)}
+                                elementId={'emotionalChart'}
+                            />
+                        </>
+                    ) : null
+                }
             </div>
 
             <div className="hidden ss_lg:block bg-bg-gray w-full px-4 pb-6">

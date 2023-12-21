@@ -85,7 +85,17 @@ const CHART_DATASET = (color: string, elementId: string, data: Array<number>, la
   ],
 });
 
-export function ChartComponent({ color, params, elementId }: { color: string, params: TChart, elementId: string }) {
+export function ChartComponent({
+    color,
+    params,
+    elementId,
+    average
+}: {
+    color: string,
+    params: TChart,
+    elementId: string,
+    average: string
+}) {
   const [chartData, setChartData] = useState<any>({ datasets: [] });
   const [chartOptions, setChartOptions] = useState<any>({});
 
@@ -95,8 +105,12 @@ export function ChartComponent({ color, params, elementId }: { color: string, pa
   }, [color, elementId, params.data, params.label]);
 
   return (
-    <section className="relative flex h-full max-h-[574px] min-h-[210px] pb-[70px] w-full shrink items-end justify-center rounded-2 bg-secondary">
+    <section className="relative flex flex-col h-full max-h-[574px] min-h-[210px] pb-[70px] w-full shrink items-end justify-center rounded-2 bg-secondary">
       <Line title={elementId} id={elementId} data={chartData} options={chartOptions} />
+
+      <p className="absolute bottom-8 text-text-m-bold text-transparent bg-clip-text bg-gradient-to-r from-[#E01D31] to-[#FEA50F]">
+        {average}
+      </p>
     </section>
   );
 }
