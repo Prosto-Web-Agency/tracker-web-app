@@ -36,7 +36,7 @@ export default function PersonalOffice() {
         //@ts-ignore
         dispatch(getCharts())
         //@ts-ignore
-        // dispatch(getMetrics());
+        dispatch(getMetrics());
         //@ts-ignore
         dispatch(getUserPersonalData());
     }, [dispatch]);

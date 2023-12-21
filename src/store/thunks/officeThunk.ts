@@ -38,7 +38,7 @@ export const getMetrics = () => (dispatch: any) => {
     OfficeAPI
         .getMetrics()
         .then((response) => {
-            // console.log('metrics - ', response.data)
+            console.log('metrics - ', response.data)
             // const { total_time_spent = [], report_date = [] } = response.data;
             // dispatch(setHolidays({ total_time_spent, report_date }))
         })
