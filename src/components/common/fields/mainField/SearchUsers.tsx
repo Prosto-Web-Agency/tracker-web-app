@@ -9,6 +9,7 @@ import { TUserSearchDataArray } from "@/models/userData";
 import SecondaryButton from "@/components/common/buttons/secondary";
 import {subscribeOnUserByLogin, unsubscribeOnUserByLogin} from "@/store/thunks/userThunk";
 import ModalComponent from "@/components/common/modal";
+import PrimaryButton from "@/components/common/buttons/primary";
 
 export default function SearchUsers() {
     const dispatch = useDispatch();
@@ -116,8 +117,13 @@ export default function SearchUsers() {
                     </div>
             }
 
-            <ModalComponent open={unsubscribeModal.isOpen} onClose={() => {}}>
-                <SecondaryButton
+            <ModalComponent
+                open={unsubscribeModal.isOpen}
+                onClose={() => setUnsubscribeModal({
+                    isOpen: false,
+                    login: ''
+                })}>
+                <PrimaryButton
                     size={'small'}
                     text={'Отписаться'}
                     onClick={() => handleUnsubscribeOnUser(unsubscribeModal.login)}
