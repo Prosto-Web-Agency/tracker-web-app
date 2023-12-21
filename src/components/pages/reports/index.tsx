@@ -3,11 +3,16 @@
 import BasePrimaryCard from "@/components/common/cards/BasePrimaryCard";
 import React, {useEffect} from "react";
 import SearchUsers from "@/components/common/fields/mainField/SearchUsers";
-import {getUserSubscriptionsData, getUserSubscriptionsReportsData} from "@/store/thunks/userThunk";
+import {
+    getUserSubscriptionsData,
+    getUserSubscriptionsReportsData,
+    unsubscribeOnUserByLogin
+} from "@/store/thunks/userThunk";
 import {useAppDispatch, useAppSelector} from "@/hooks/store";
 import {TUserSubscriptionsArray, TUserSubscriptionsReportArray} from "@/models/userData";
 import SubscriptionCard from "@/components/common/userSubscription/subscriptionCard";
 import Image from "next/image";
+import SecondaryButton from "@/components/common/buttons/secondary";
 
 export default function ReportsPage() {
     const dispatch = useAppDispatch();
@@ -26,18 +31,25 @@ export default function ReportsPage() {
         dispatch(getUserSubscriptionsData());
     }, [dispatch]);
 
+    function handleUnsubscribeOnUser(login: string) {
+        //@ts-ignore
+        dispatch(unsubscribeOnUserByLogin(login));
+
+    }
+
+
     return (
         <section className='w-full max-w-[1400px] mx-auto bg-bg-gray h-[calc(100%-90px)] p-10 rounded-t-9 flex gap-6 s_lg:rounded-t-[0px] s_lg:flex-col'>
-            <div className='flex flex-col gap-6 w-full flex-[33%] max-w-[380px] min-w-[290px] s_lg:max-w-full'>
+            <div className='flex flex-col gap-4 w-full flex-[33%] max-w-[380px] min-w-[290px] s_lg:max-w-full'>
                 <SearchUsers/>
                 <BasePrimaryCard>
                     {
-                        !!userSubscriptions.length ? (
+                        !!userSubscriptions.length && (
                             <>
                                 {
                                     userSubscriptions.map((user, index) =>
                                         <div
-                                            className={"flex flex-col justify-between items-start gap-1 w-full cursor-pointer hover:bg-bg-gray transition rounded-4 p-2"}
+                                            className={"flex justify-between items-center gap-1 w-full cursor-pointer hover:bg-bg-gray transition rounded-4 p-2"}
                                             key={user.streamer_name + index}
                                         >
                                             <div className="flex gap-3 items-center">
@@ -59,11 +71,22 @@ export default function ReportsPage() {
                                                     {user.streamer_name}
                                                 </p>
                                             </div>
+                                            <div className="h-[26px]">
+                                                <SecondaryButton
+                                                    className="h-[26px]"
+                                                    bg={'null'}
+                                                    size={'none'}
+                                                    text={''}
+                                                    onClick={() => handleUnsubscribeOnUser(user.streamer_login)}
+                                                    leftIcon={'subscribedUser'}
+                                                    edgeLength={26}
+                                                />
+                                            </div>
                                         </div>
                                     )
                                 }
                             </>
-                        ) : null
+                        )
                     }
                 </BasePrimaryCard>
             </div>
@@ -75,7 +98,7 @@ export default function ReportsPage() {
                         </h3>
 
                         {
-                            userSubscriptionsReports.length &&
+                            !!userSubscriptionsReports.length &&
                             <div className="flex flex-col overflow-y-auto overflow-x-hidden w-full h-full">
                                 {
                                     userSubscriptionsReports.map(({

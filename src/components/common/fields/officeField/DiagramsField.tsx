@@ -8,6 +8,7 @@ import TRIcon from "@/components/common/icon";
 import { CHART_COLORS, MOCKS_CHARTS } from "@/consts/chart";
 import {TChart} from "@/store/reducers/OfficeReducer";
 import {TDiagram, TUserDiagrams} from "@/models/charts";
+import randomColor from "@/utils/randColor";
 
 export default function DiagramsFieldOffice({ diagrams }: { diagrams: TUserDiagrams }) {
 
@@ -27,7 +28,7 @@ export default function DiagramsFieldOffice({ diagrams }: { diagrams: TUserDiagr
                                     .map((diagram: TDiagram, index) => (
                                     <DoughnutChart
                                         key={index + 'diagrams'}
-                                        colors={[CHART_COLORS[0].color1, CHART_COLORS[0].color2]}
+                                        colors={diagram.dots.map(() => randomColor())}
                                         name={'Занятость по проектам'}
                                         percents={'50%'}
                                         id={'80%'}
