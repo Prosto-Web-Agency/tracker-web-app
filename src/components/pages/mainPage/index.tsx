@@ -29,9 +29,12 @@ export default function MainPage() {
         <section className="w-full">
             <div className={classNames(
                 "min-h-[calc(100vh-90px)] relative w-full bg-bg-gray rounded-9 p-10 max-w-[1400px] mx-auto",
-                "md:rounded-[0px] md:p-4 md:py-6"
+                "lg:rounded-[0px] lg:p-4 lg:py-6 lg:gap-6 lg:flex lg:flex-col"
             )}>
-                <div className="max-h-[900px] flex md:flex-col gap-6 w-full relative">
+                <div className={classNames(
+                    "max-h-[900px] flex lg:flex-col gap-6 w-full relative",
+                    "lg:h-auto lg:max-h-fit"
+                )}>
                     <div className="flex flex-col gap-6">
                         <SearchUsers />
                         <ListOfInsightCards listOfUserInsights={listOfUserInsights} />
@@ -39,14 +42,17 @@ export default function MainPage() {
 
                     <div className={classNames(
                         "flex flex-col min-h-[700px] relative gap-6 w-full max-w-[calc(100%-420px)]",
-                        "md:min-h-[950px] md:h-[950px] md:pb-10"
+                        "lg:min-h-auto lg:h-auto lg:max-w-full lg:min-h-0"
                     )}>
                         <NewsField />
                         <UserSubscriptions />
                     </div>
                 </div>
 
-                <div className="flex big_screen_h:h-[calc(35vh-40px)] lg:flex-col gap-6 mt-6">
+                <div className={classNames(
+                    "flex h-[340px] lg:flex-col gap-6 mt-6",
+                    "lg:mt-0 lg:h-auto"
+                )}>
                     <RateField rateData={listOfTopUsers} />
                     <RanksTopUser />
                     <ChatSmallComponent />

@@ -6,6 +6,7 @@ import ModalUser from "../../modal/ModalUser";
 import React, {useEffect, useState} from 'react';
 import {TUserCommonData, TUserSmallDataArray} from "@/models/userData";
 import TRIcon from "@/components/common/icon";
+import classNames from "classnames";
 
 export type TRateData = {
     rateData: TUserSmallDataArray | null
@@ -25,7 +26,10 @@ export default function RateField({ rateData }: TRateData) {
     });
 
     return (
-        <div className="w-[calc(100%-670px)] max-w-[33%] lg:max-w-full lg:w-full h-[300px] bg-white rounded-6 p-6 overflow-hidden">
+        <div className={classNames(
+            "w-[calc(100%-670px)] max-w-[33%] lg:max-w-full lg:w-full h-[300px] bg-white rounded-6 p-6 overflow-hidden",
+            "md:min-h-[300px]"
+        )}>
             <h3 className="text-heading-ss-bold pb-4">
                 Список лидеров
             </h3>

@@ -9,7 +9,6 @@ export const getDiagrams = () => (dispatch: any) => {
     OfficeAPI
         .getDiagrams()
         .then((response) => {
-            console.log(response.data);
             dispatch(setDiagrams(response.data))
         })
         .catch(() => {})

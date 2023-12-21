@@ -6,6 +6,7 @@ import React, {useEffect, useState} from "react";
 import type { TInsightCardArray } from "@/models/traker";
 import TRIcon from "@/components/common/icon";
 import ModalUser from "@/components/common/modal/ModalUser";
+import classNames from "classnames";
 
 export type TInsightCard = {
     listOfUserInsights: TInsightCardArray | null;
@@ -30,7 +31,10 @@ export default function ListOfInsightCards({ listOfUserInsights }: TInsightCard)
     });
 
     return (
-        <div className="bg-white w-[384px] h-[calc(100%-88px)] rounded-6 flex flex-col gap-4 pb-0 p-6 s_lg:w-full s_lg:h-[192px] s_lg:bg-transparent s_lg:p-0">
+        <div className={classNames(
+            "bg-white w-[384px] h-[calc(100%-88px)] rounded-6 flex flex-col gap-4 pb-0 p-6",
+            "lg:flex-col lg:w-full lg:overflow-x-auto no-scrollbar"
+        )}>
             <h3 className="text-heading-ss-bold s_lg:hidden pl-3">
                 Инсайты пользователей
             </h3>
