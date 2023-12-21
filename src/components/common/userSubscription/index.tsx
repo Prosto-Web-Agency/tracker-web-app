@@ -18,8 +18,6 @@ export default function UserSubscriptions() {
 
     useEffect(() => {
         // @ts-ignore
-        dispatch(getUserSubscriptionsData());
-        // @ts-ignore
         dispatch(getUserSubscriptionsReportsData());
     }, [dispatch]);
 

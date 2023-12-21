@@ -24,7 +24,7 @@ export default function SubscriptionPage() {
     function handleSubscribe() {
         // @ts-ignore
         dispatch(setUserSubscriptionPaymentFetch(true))
-    };
+    }
 
     useEffect(() => {
         console.log(Boolean(storage.get(SUBSCRIPTION)), isUserSubscribed)

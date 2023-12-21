@@ -44,7 +44,7 @@ export type TUserSubscriptionModal = {
     tg_id_streamer: number;
     streamer_name: string;
     image_url: string | null;
-    streamer_is_anon: string;
+    streamer_is_anon: TIsAnon;
     streamer_login: string;
 }
 
