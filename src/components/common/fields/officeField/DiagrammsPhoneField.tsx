@@ -3,6 +3,7 @@
 import { DoughnutChart } from "../../diagrams/DoughnutChart";
 import { CHART_COLORS, MOCKS_CHARTS } from "@/consts/chart";
 import React from "react";
+import randomColor from "@/utils/randColor";
 
 export default function DiagrammsPhoneField() {
     return (
@@ -14,7 +15,7 @@ export default function DiagrammsPhoneField() {
                 {
                     [MOCKS_CHARTS[0], MOCKS_CHARTS[1], MOCKS_CHARTS[2]].map(({ data, labels, name }, index) => (
                         <DoughnutChart
-                            colors={[CHART_COLORS[index+1].color1, CHART_COLORS[index+1].color2]}
+                            colors={data.map(() => randomColor())}
                             key={name}
                             name={name}
                             percents={'50%'}
