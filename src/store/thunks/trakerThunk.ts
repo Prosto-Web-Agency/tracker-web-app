@@ -19,7 +19,6 @@ export const getListOfTopUsers = () => (dispatch: any) => {
     try {
         mainPageApi.getListOfTopUsersApi()
             ?.then((response) => {
-                console.log(response.data);
                 dispatch(setListOfTopUsers(response.data.results as TUserSmallDataArray))
             })
             .catch(() => {
