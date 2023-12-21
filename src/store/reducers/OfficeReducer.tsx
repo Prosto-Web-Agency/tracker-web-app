@@ -1,8 +1,9 @@
 import { TUserData } from "@/models/userData";
-import {TUserCharts, TUserDiagrams} from "@/models/charts";
+import {TMetrics, TUserCharts, TUserDiagrams} from "@/models/charts";
 
 const SET_CHARTS = 'SET_CHARTS';
 const SET_DIAGRAMS = 'SET_DIAGRAMS';
+const SET_METRICS = 'SET_METRICS';
 const EDIT_USER_PERSONAL_DATA = 'EDIT_USER_PERSONAL_DATA';
 
 export type TChart = {
@@ -38,6 +39,11 @@ let OfficeReducer = (state = initialState, action: any) => {
                 ...state,
                 diagrams: action.data
             }
+        case SET_METRICS:
+            return {
+                ...state,
+                metrics: action.data
+            }
         default:
             return state
     }
@@ -49,6 +55,10 @@ export const setCharts = (data: TUserCharts) => {
 
 export const setDiagrams = (data: TUserDiagrams) => {
     return { type: SET_DIAGRAMS, data }
+}
+
+export const setMetrics = (data: TMetrics) => {
+    return { type: SET_METRICS, data }
 }
 
 export const editUserPersonalData = (data: TUserData) => ({ type: EDIT_USER_PERSONAL_DATA, data });

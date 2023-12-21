@@ -4,7 +4,7 @@ import RanksComponent from "@/components/common/fields/officeField/RanksComponen
 import DiagrammsPhoneField from "@/components/common/fields/officeField/DiagrammsPhoneField";
 import DiagramsFieldOffice from "@/components/common/fields/officeField/DiagramsField";
 import GraphFieldOffice from "@/components/common/fields/officeField/GrapgFieldOffice";
-import MetrisFieldOffice from "@/components/common/fields/officeField/MetricsField";
+import MetricsComponent from "@/components/common/fields/officeField/MetricsField";
 import UserCard from "@/components/common/fields/officeField/UserCard";
 import SeccessGraphPhoneOffice from "@/components/common/fields/officeField/SuccessGraphOfficePhone";
 import {
@@ -19,14 +19,19 @@ import {useRouter} from "next/navigation";
 import HoverGradientButton from "@/components/common/buttons/hoverGradient";
 import type { TUserDataState } from "@/store/reducers/userReducer";
 import type { TUserCharts } from "@/models/charts";
-import {TUserDiagrams} from "@/models/charts";
+import {TMetrics, TUserDiagrams} from "@/models/charts";
 
 export default function PersonalOffice() {
     const dispatch = useDispatch();
     const router = useRouter();
 
+    const { charts, diagrams, metrics }: {
+        charts: TUserCharts | null,
+        diagrams: TUserDiagrams | null,
+        metrics: TMetrics | null
     //@ts-ignore
-    const { charts, diagrams }: { charts: TUserCharts, diagrams: TUserDiagrams } = useSelector(state => state.officePage)
+    } = useSelector(state => state.officePage);
+
     //@ts-ignore
     const { userData }: { userData: TUserDataState } = useSelector(state => state.user);
 
@@ -70,17 +75,29 @@ export default function PersonalOffice() {
                             <SeccessGraphPhoneOffice />
                         </div>
                         <div>
-                            <MetrisFieldOffice />
+                            {
+                                metrics ? (
+                                    <MetricsComponent metrics={metrics}/>
+                                ) : null
+                            }
                         </div>
                     </div>
                 </div>
 
                 <div className="row-span-3 flex flex-col gap-6 min-w-[384px] ss_lg:hidden">
                     {/*<PrimaryButton text="" type="datePicker" onClick={() => {}} className="py-3" />*/}
-                    <DiagramsFieldOffice diagrams={diagrams} />
+                    {
+                        diagrams ? (
+                            <DiagramsFieldOffice diagrams={diagrams} />
+                        ) : null
+                    }
 
                     <div className="sx_lg:hidden">
-                        <MetrisFieldOffice />
+                        {
+                            metrics ? (
+                                <MetricsComponent metrics={metrics}/>
+                            ) : null
+                        }
                     </div>
 
                 </div>
@@ -130,7 +147,12 @@ export default function PersonalOffice() {
             </div>
 
             <div className="sx_lg:grid grid-cols-2 px-10 bg-bg-gray p-6 pt-0 hidden flex-col gap-6 row-span-3 min-w-[384px] ss_lg:hidden">
-                <MetrisFieldOffice />
+                {
+                    metrics ? (
+                        <MetricsComponent metrics={metrics}/>
+                    ) : null
+                }
+
                 {
                     charts ? (
                         <>

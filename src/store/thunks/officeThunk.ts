@@ -1,8 +1,9 @@
 import { OfficeAPI } from "../api/officePage"
 import {
-    setCharts, setDiagrams
+    setCharts, setDiagrams, setMetrics
 } from "../reducers/OfficeReducer"
 import type { TUserCharts } from "@/models/charts";
+import {TMetrics} from "@/models/charts";
 
 export const getDiagrams = () => (dispatch: any) => {
     OfficeAPI
@@ -38,9 +39,7 @@ export const getMetrics = () => (dispatch: any) => {
     OfficeAPI
         .getMetrics()
         .then((response) => {
-            console.log('metrics - ', response.data)
-            // const { total_time_spent = [], report_date = [] } = response.data;
-            // dispatch(setHolidays({ total_time_spent, report_date }))
+            dispatch(setMetrics(response.data as TMetrics))
         })
         .catch(() => {})
 }
