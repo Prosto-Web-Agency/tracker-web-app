@@ -1,12 +1,10 @@
 'use client'
 
 import { WebGraph } from "@/components/common/WEB/webGraph";
-import SliderBalance, { TSliderBalance } from "@/components/common/slider/SliderBalance";
+import { TSliderBalance } from "@/components/common/slider/SliderBalance";
 import { setSetBalance } from "@/store/reducers/balanceWheelReducer";
-import { Slider, ThemeProvider } from "@mui/material";
 import { createTheme } from '@mui/material/styles';
 import Image from "next/image";
-import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 
 const theme = createTheme({

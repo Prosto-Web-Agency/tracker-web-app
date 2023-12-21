@@ -3,7 +3,7 @@
 import { DoughnutChart } from "../../diagrams/DoughnutChart";
 import React, { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getFirstMetricsData } from "@/store/thunks/officeThunk";
+import { getMetrics } from "@/store/thunks/officeThunk";
 import TRIcon from "@/components/common/icon";
 import { CHART_COLORS, MOCKS_CHARTS } from "@/consts/chart";
 import {TChart} from "@/store/reducers/OfficeReducer";
@@ -15,7 +15,7 @@ export default function DiagramsFieldOffice() {
 
     useEffect(() => {
         //@ts-ignore
-        dispatch(getFirstMetricsData());
+        dispatch(getMetrics());
     }, [dispatch]);
 
     return (

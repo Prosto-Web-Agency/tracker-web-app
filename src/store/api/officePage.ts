@@ -5,31 +5,29 @@ import { storage } from "@/utils/localStorage";
 
 const endpoint = process.env.ENDPOINT
 
-const config: AxiosRequestConfig = {
-    headers: {
-        Authorization: `Token ${storage.get(TOKEN)}`,
-    }
+const config = (): AxiosRequestConfig => {
+    return ({
+        headers: {
+            Authorization: `Token ${storage.get(TOKEN)}`,
+        }
+    })
 };
 
 export const OfficeAPI = {
-    getEmotionalChartData() {
-        return axios.get(endpoint + `get_emotional_growth`, config)
+    getDiagrams() {
+        return axios.get(endpoint + `personal_diagrams`, config())
             .then((response) => (response))
     },
-    getProductivityChartData() {
-        return axios.get(endpoint + `get_productivity_growth`, config)
+    getCharts() {
+        return axios.get(endpoint + `personal_graphics`, config())
             .then((response) => (response))
     },
-    getHolidaysChartData() {
-        return axios.get(endpoint + `get_life_balance_growth`, config)
-            .then((response) => (response))
-    },
-    getFirstMetrics() {
-        return axios.get(endpoint + `get_project_time`, config)
+    getMetrics() {
+        return axios.get(endpoint + `personal_metrics`, config())
             .then((response) => (response))
     },
     editUserPersonalDataApi(data: TUserData) {
-        return axios.post(endpoint + 'change_user_personal_data', config)
+        return axios.post(endpoint + 'change_user_personal_data', config())
             .then(res => {
                 if (res.status === 200) {
                     return res.data

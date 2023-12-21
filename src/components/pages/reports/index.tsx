@@ -1,22 +1,18 @@
 'use client'
 
 import RanksComponent from "@/components/common/fields/officeField/RanksComponent";
-import DiagrammsPhoneField from "@/components/common/fields/officeField/DiagrammsPhoneField";
 import DiagramsFieldOffice from "@/components/common/fields/officeField/DiagramsField";
-import GraphFieldOffice from "@/components/common/fields/officeField/GrapgFieldOffice";
 import MetrisFieldOffice from "@/components/common/fields/officeField/MetricsField";
 import UserCard from "@/components/common/fields/officeField/UserCard";
 import SeccessGraphPhoneOffice from "@/components/common/fields/officeField/SuccessGraphOfficePhone";
 import {
-    getEmotionalChartData,
-    getFirstMetricsData,
-    getHolidaysChartData,
-    getProductivityChartData
+    getCharts,
+    getDiagrams,
+    getMetrics,
 } from "@/store/thunks/officeThunk";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserPersonalData } from "@/store/thunks/userThunk";
-import {TUserCommonData} from "@/models/userData";
 import {useRouter} from "next/navigation";
 import HoverGradientButton from "@/components/common/buttons/hoverGradient";
 import {TUserDataState} from "@/store/reducers/userReducer";
@@ -32,13 +28,11 @@ export default function ReportsPage() {
 
     useEffect(() => {
         //@ts-ignore
-        dispatch(getProductivityChartData())
+        dispatch(getDiagrams())
         //@ts-ignore
-        dispatch(getEmotionalChartData())
+        dispatch(getCharts())
         //@ts-ignore
-        dispatch(getHolidaysChartData())
-        //@ts-ignore
-        dispatch(getFirstMetricsData());
+        dispatch(getMetrics());
         //@ts-ignore
         dispatch(getUserPersonalData());
     }, [dispatch]);

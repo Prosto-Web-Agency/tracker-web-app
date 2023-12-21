@@ -8,41 +8,35 @@ import {
     setFirstMetrics
 } from "../reducers/OfficeReducer"
 
-export const getProductivityChartData = () => (dispatch: any) => {
+export const getDiagrams = () => (dispatch: any) => {
     OfficeAPI
-        .getProductivityChartData()
+        .getDiagrams()
         .then((response) => {
-            const { tasks_count = [], report_date = [] } = response.data;
-            dispatch(setProductivity({ tasks_count, report_date }))
+            // console.log('diagrams - ', response.data)
+            // const { tasks_count = [], report_date = [] } = response.data;
+            // dispatch(setProductivity({ tasks_count, report_date }))
         })
         .catch(() => {})
 }
 
-export const getEmotionalChartData = () => (dispatch: any) => {
+export const getCharts = () => (dispatch: any) => {
     OfficeAPI
-        .getEmotionalChartData()
+        .getCharts()
         .then((response) => {
-            const { report_emotional_condition = [], report_date = [] } = response.data;
-            dispatch(setEmotional({ report_emotional_condition, report_date }))
+            console.log('charts - ', response.data);
+            // const { report_emotional_condition = [], report_date = [] } = response.data;
+            // dispatch(setEmotional({ report_emotional_condition, report_date }))
         })
         .catch(() => {})
 }
 
-export const getHolidaysChartData = () => (dispatch: any) => {
+export const getMetrics = () => (dispatch: any) => {
     OfficeAPI
-        .getHolidaysChartData()
+        .getMetrics()
         .then((response) => {
-            const { total_time_spent = [], report_date = [] } = response.data;
-            dispatch(setHolidays({ total_time_spent, report_date }))
-        })
-        .catch(() => {})
-}
-
-export const getFirstMetricsData = () => (dispatch: any) => {
-    OfficeAPI
-        .getFirstMetrics()
-        .then((response) => {
-            dispatch(setFirstMetrics(response.data))
+            // console.log('metrics - ', response.data)
+            // const { total_time_spent = [], report_date = [] } = response.data;
+            // dispatch(setHolidays({ total_time_spent, report_date }))
         })
         .catch(() => {})
 }
