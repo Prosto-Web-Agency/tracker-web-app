@@ -1,4 +1,10 @@
-import {TUserCommonData, TUserData, TUserPopupData, TUserSubscriptionsArray} from "@/models/userData";
+import {
+    TUserCommonData,
+    TUserData,
+    TUserPopupData,
+    TUserSubscriptionsArray,
+    TUserSubscriptionsReportArray
+} from "@/models/userData";
 
 const SET_USER_AUTH = 'SET_USER_AUTH';
 const SET_USER_DATA = 'SET_USER_DATA';
@@ -7,6 +13,7 @@ const SET_USER_SUBSCRIPTION_PAYMENT = 'SET_USER_SUBSCRIPTION_PAYMENT';
 const SET_USER_IMAGE = 'SET_USER_IMAGE';
 const SET_USER_POPUP_DATA = 'SET_USER_POPUP_DATA';
 const SET_USER_SUBSCRIPTIONS = 'SET_USER_SUBSCRIPTION';
+const SET_USER_SUBSCRIPTIONS_REPORTS = 'SET_USER_SUBSCRIPTIONS_REPORTS';
 
 export type TUserDataState = TUserCommonData | null | undefined;
 
@@ -17,6 +24,7 @@ type TUser = {
     isUserPaidSubscription: boolean;
     userPopupData: TUserPopupData | null;
     userSubscriptions: TUserSubscriptionsArray;
+    userSubscriptionsReports: TUserSubscriptionsReportArray;
 }
 
 const initialState: TUser = {
@@ -25,7 +33,8 @@ const initialState: TUser = {
     userData: undefined,
     isUserPaidSubscription: false,
     userPopupData: null,
-    userSubscriptions: []
+    userSubscriptions: [],
+    userSubscriptionsReports: []
 };
 
 const userReducer = (state = initialState, action: any) => {
@@ -61,6 +70,11 @@ const userReducer = (state = initialState, action: any) => {
                 ...state,
                 userSubscriptions: action.data
             }
+        case SET_USER_SUBSCRIPTIONS_REPORTS:
+            return {
+                ...state,
+                userSubscriptionsReports: action.data
+            }
         default:
             return state
     }
@@ -72,6 +86,7 @@ export const editUserData = (data: TUserData | null) => ({ type: EDIT_USER_DATA,
 export const setUserSubscriptionPayment = (data: boolean) => ({ type: SET_USER_SUBSCRIPTION_PAYMENT, data });
 export const setUserSubscriptions = (data: TUserSubscriptionsArray) => ({ type: SET_USER_SUBSCRIPTIONS, data });
 export const setUserPopupData = (data: TUserPopupData) => ({ type: SET_USER_POPUP_DATA, data })
+export const setUserSubscriptionsReports = (data: TUserSubscriptionsReportArray) => ({ type: SET_USER_SUBSCRIPTIONS_REPORTS, data })
 
 
 export default userReducer;

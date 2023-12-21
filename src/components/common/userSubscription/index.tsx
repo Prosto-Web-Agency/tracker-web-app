@@ -6,20 +6,25 @@ import BaseSecondaryCard from "@/components/common/cards/BaseSecondaryCard";
 import {getUserSubscriptionsData, getUserSubscriptionsReportsData} from "@/store/thunks/userThunk";
 import type { TUserSubscriptionsArray } from "@/models/userData";
 import SubscriptionCard from "@/components/common/userSubscription/subscriptionCard";
+import {TUserSubscriptionsReportArray} from "@/models/userData";
 
 export type TListOfNewsData = { news_data: { title: string, post_text: string, photo_content?: { photo_url: string }[] }};
 
 export default function UserSubscriptions() {
     const dispatch = useDispatch();
     // @ts-ignore
-    const { userSubscriptions }: { userSubscriptions: TUserSubscriptionsArray } = useSelector(state => state.user)
+    const { userSubscriptionsReports }: { userSubscriptionsReports: TUserSubscriptionsReportArray } = useSelector(state => state.user)
 
     useEffect(() => {
         // @ts-ignore
         dispatch(getUserSubscriptionsData());
         // @ts-ignore
         dispatch(getUserSubscriptionsReportsData());
-    }, [dispatch])
+    }, [dispatch]);
+
+    useEffect(() => {
+        console.log(userSubscriptionsReports)
+    }, [userSubscriptionsReports])
 
     return (
         <div className="bg-white rounded-6 relative h-full w-[calc(100%-384px)] p-6 pt-4 pb-6 overflow-hidden s_lg:w-full s_lg:h-[305px]">
@@ -29,17 +34,23 @@ export default function UserSubscriptions() {
 
             <div className="flex justify-center items-center w-full h-full">
                 {
-                    userSubscriptions ? (
+                    userSubscriptionsReports.length ? (
                         <div className="flex flex-col overflow-y-auto overflow-x-visible w-full h-full">
                             {
-                                userSubscriptions.map(({ tg_id_streamer, streamer_name, image_url, streamer_is_anon, streamer_login }, index) => (
+                                userSubscriptionsReports.map(({
+                                    report_text,
+                                    first_name,
+                                    image_url,
+                                    login,
+                                    is_anon
+                                }, index) => (
                                     <SubscriptionCard
-                                        key={streamer_name + index}
+                                        key={first_name + index}
                                         tg_id_streamer={123132}
-                                        streamer_name={streamer_name}
+                                        streamer_name={first_name}
                                         image_url={image_url}
-                                        streamer_is_anon={'false'}
-                                        streamer_login={streamer_login}
+                                        streamer_is_anon={String(is_anon)}
+                                        streamer_login={login}
                                     />
                                 ))
                             }

@@ -4,10 +4,17 @@ import {
     setUserAuth,
     setUserData,
     setUserPopupData,
-    setUserSubscriptionPayment, setUserSubscriptions,
+    setUserSubscriptionPayment,
+    setUserSubscriptions,
+    setUserSubscriptionsReports,
     type TUserDataState
 } from "@/store/reducers/userReducer";
-import {TUserData, TUserPopupData, TUserSubscriptionsArray} from "@/models/userData";
+import type {
+    TUserData,
+    TUserPopupData,
+    TUserSubscriptionsArray,
+    TUserSubscriptionsReportArray
+} from "@/models/userData";
 import {storage} from "@/utils/localStorage";
 import {SUBSCRIPTION} from "@/consts/profile";
 
@@ -95,9 +102,8 @@ export const getUserSubscriptionsReportsData = () => (dispatch: any) => {
     try {
         userApi
             .getUserSubscriptionsReports()
-            .then((res: TUserSubscriptionsArray) => {
-                console.log(res);
-                // dispatch(setUserSubscriptions(res));
+            .then((res: TUserSubscriptionsReportArray) => {
+                dispatch(setUserSubscriptionsReports(res));
             })
             .catch(() => {})
     } catch (e) {

@@ -1,11 +1,13 @@
 import { TRank } from "@/components/common/cards/RankComponent";
 
+type TIsAnon = number;
+
 export type TUserData = {
     first_name: string;
     surname: string | null;
     instagram: string;
     tg_username: string;
-    is_anon: number;
+    is_anon: TIsAnon;
 };
 
 export type TUserCommonData = TUserData & {
@@ -31,7 +33,7 @@ export type TUserSmallDataArray = TUserSmallData[];
 
 export type TUserSearchData = Omit<TUserData, | "tg_username" | "instagram"> & {
     image_url: string | null;
-    is_anon: number;
+    is_anon: TIsAnon;
     rank_name: TRank['rank'];
     login: string;
 }
@@ -47,3 +49,13 @@ export type TUserSubscriptionModal = {
 }
 
 export type TUserSubscriptionsArray = TUserSubscriptionModal[];
+
+export type TUserSubscriptionsReport = {
+    report_text: string;
+    first_name: string;
+    image_url: string | null;
+    login: string;
+    is_anon: TIsAnon;
+}
+
+export type TUserSubscriptionsReportArray = TUserSubscriptionsReport[];

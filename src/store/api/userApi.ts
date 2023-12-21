@@ -98,7 +98,7 @@ export const userApi = {
         return axios.get(endpoint + 'user_subscriptions_reports', config())
             .then(res => {
                 if (res.status === 200) {
-                    return res.data
+                    return res.data.results
                 }
 
                 return null;
