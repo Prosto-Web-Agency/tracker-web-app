@@ -14,13 +14,12 @@ export default function MainBalancePage() {
     useEffect(() => {
         // @ts-ignore
         dispatch(getUserWheelData())
-        console.log(balanceData);
     }, []);
 
     return (
-        <div>
+        <div className="overflow-y-scroll">
             <Header />
-            <div className="w-full h-screen bg-bg-gray">
+            <div className="w-full min-h-screen py-10 bg-bg-gray">
                 {
                     balanceIsSet
                         ? <BalanceWebPage balanceData={balanceData} />
