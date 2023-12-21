@@ -98,7 +98,7 @@ export default function ReportsPage() {
                         </h3>
 
                         {
-                            userSubscriptionsReports.length &&
+                            !!userSubscriptionsReports.length &&
                             <div className="flex flex-col overflow-y-auto overflow-x-hidden w-full h-full">
                                 {
                                     userSubscriptionsReports.map(({
