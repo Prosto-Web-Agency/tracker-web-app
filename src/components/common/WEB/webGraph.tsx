@@ -25,13 +25,13 @@ export const dataFull = (data: any) => ({
     datasets: [
         {
             data: data,
-            backgroundColor: 'rgba(255, 99, 132, 0.2)',
+            backgroundColor: 'transparent',
             borderColor: 'rgba(255, 99, 132, 1)',
             borderWidth: 1,
             fontSize: 10,
         },
     ],
-    
+
 });
 
 export const options = {
@@ -39,6 +39,23 @@ export const options = {
         legend: {
             display: false,
         },
+        datalabels: {
+            backgroundColor: function(context) {
+                return context.dataset.borderColor;
+            },
+            color: 'white',
+            font: {
+                weight: 'bold'
+            },
+            formatter: Math.round,
+            padding: 8
+        }
+    },
+    elements: {
+        point: {
+            hoverRadius: 12,
+            radius: 10
+        }
     },
     scale: {
         ticks: {
@@ -47,8 +64,31 @@ export const options = {
             min: 0,
         },
     },
+    scales: {
+        r: {
+            grid: {
+                color: 'transparent'
+            },
+            angleLines: {
+                color: 'linear-gradient(90deg, #E12131 0%, #FEA310 100%)'
+            },
+            ticks: {
+                color: 'transparent'
+            },
+            pointLabels:{
+                color: 'rgb(54, 162, 235)',
+            },
+            suggestedMin: 0,
+            suggestedMax: 10
+        }
+    },
 }
 
 export function WebGraph({ balanceData }: any) {
-    return <Radar options={options} data={dataFull(balanceData)} />;
+    return (
+        <Radar
+            options={options}
+            data={dataFull(balanceData)}
+        />
+    );
 }

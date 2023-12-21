@@ -1,9 +1,9 @@
 'use client'
 
 import PrimaryButton from "@/components/common/buttons/primary";
-import SliderBalance, { TSliderBalance } from "@/components/common/slider/SliderBalance";
+import SliderBalance from "@/components/common/slider/SliderBalance";
 import { updateUserWheelData } from "@/store/thunks/WheelThunk";
-import { Slider, ThemeProvider } from "@mui/material";
+import { ThemeProvider } from "@mui/material";
 import { createTheme } from '@mui/material/styles';
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -19,26 +19,6 @@ const theme = createTheme({
         },
     },
 });
-
-
-// export const theme = createTheme({
-//     overrides: {
-//         MuiCssBaseline: {
-//             '@global': {
-//                 body: {
-//                     background: 'linear-gradient(45deg, #fe6b8b 30%, #ff8e53 90%)',
-//                     backgroundRepeat: "no-repeat",
-//                     backgroundAttachment: "fixed",
-//                 },
-//             },
-//         },
-//     },
-//     palette: {
-//         type: "dark",
-//     },
-// })
-
-
 
 export default function BalancePage({ }: any) {
     const dispatch = useDispatch();
@@ -105,6 +85,7 @@ export default function BalancePage({ }: any) {
             value: "health"
         }
     ]
+
     return (
 
         <div className="w-full h-[calc(100%-80px)] bg-bg-gray flex flex-col gap-6 justify-center items-center">
@@ -128,7 +109,13 @@ export default function BalancePage({ }: any) {
                     <ThemeProvider theme={theme}>
                         {
                             BALANCE.map((e, index): any => (
-                                <SliderBalance value={wheelData[e.value]} setData={e.handleData} name={e.name} image={e.image} key={e.name + index} />
+                                <SliderBalance
+                                    value={wheelData[e.value]}
+                                    setData={e.handleData}
+                                    name={e.name}
+                                    image={e.image}
+                                    key={e.name + index}
+                                />
                             ))
                         }
                     </ThemeProvider>

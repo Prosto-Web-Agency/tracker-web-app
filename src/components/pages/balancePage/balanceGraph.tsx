@@ -71,7 +71,7 @@ export default function BalanceWebPage({ balanceData }: any) {
     const messagesContainerRef = useRef<HTMLDivElement>(null);
     const [websocket, setWebsocket] = useState<WebSocket | null>(null);
     const [visible, setVisible] = useState<boolean>(true);
-    
+
 
     useEffect(() => {
         setWebsocket(new WebSocket(String(process.env.WEBSOCKET) + storage.get(TOKEN) ?? ''))
@@ -84,10 +84,9 @@ export default function BalanceWebPage({ balanceData }: any) {
     }, []);
 
     useEffect(() => {
-        
         if (websocket) {
             websocket.onmessage = (message) => handleGetMessage(message);
-            
+
             if (messagesContainerRef.current) {
                 messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
             }
@@ -114,7 +113,9 @@ export default function BalanceWebPage({ balanceData }: any) {
     }
 
     return (
-        <div onClick={handleOpenSliders} className="w-full h-[calc(100%-90px)] bg-bg-gray flex justify-center items-center">
+        <div
+            // onClick={handleOpenSliders}
+            className="w-full h-[calc(100%-90px)] bg-bg-gray flex justify-center items-center">
             <div className="flex sx_lg:flex-col w-full sx_lg:h-auto justify-center sx_lg:items-center gap-10 h-[600px] sx_lg:w-[600px] md:px-6">
                 <div className="bg-white rounded-6 h-[600px] md:h-[450px] w-[600px] md:w-full flex flex-col p-6">
                     <div>
