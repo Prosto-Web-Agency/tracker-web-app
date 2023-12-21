@@ -1,12 +1,8 @@
-import { TUserData } from "@/models/userData";
 import { OfficeAPI } from "../api/officePage"
 import {
-    setProductivity,
-    editUserPersonalData,
-    setEmotional,
-    setHolidays,
-    setFirstMetrics
+    setCharts
 } from "../reducers/OfficeReducer"
+import type { TUserCharts } from "@/models/charts";
 
 export const getDiagrams = () => (dispatch: any) => {
     OfficeAPI
@@ -23,9 +19,7 @@ export const getCharts = () => (dispatch: any) => {
     OfficeAPI
         .getCharts()
         .then((response) => {
-            console.log('charts - ', response.data);
-            // const { report_emotional_condition = [], report_date = [] } = response.data;
-            // dispatch(setEmotional({ report_emotional_condition, report_date }))
+            dispatch(setCharts(response.data as TUserCharts))
         })
         .catch(() => {})
 }

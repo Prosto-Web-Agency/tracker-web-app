@@ -126,7 +126,7 @@ export default function Header({ title, isUnAuth }: { title?: string, isUnAuth?:
 
                         {
                             isProfilePage ? (
-                                <PrimaryButton size={'small'} text={'выйти'} onClick={handleLogout} />
+                                <PrimaryButton size={'small'} text={'Выйти'} onClick={handleLogout} />
                             ) : (
                                 <Link href={'/profile'}>
                                     {
