@@ -10,3 +10,14 @@ export type TUserCharts = {
     emotional: TChart;
     dayReports: TChart;
 }
+
+export type TDiagram = {
+    avg: number[];
+    date: string[];
+    dots: number[];
+}
+
+export type TUserDiagrams = {
+    lifeBalance: TDiagram;
+    nonLifeBalance: TDiagram;
+}

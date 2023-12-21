@@ -40,15 +40,9 @@ export default function SmallRankComponent({ rank, onClick }: RankComponentProps
             }}
             onClick={onClick}
         >
-            {
-                (rank !== 'new' && rank !== 'empty') ? (
-                    <>
-                        <h4 className="text-text-sm text-white">
-                            { Ranks[rank] }
-                        </h4>
-                    </>
-                ) : null
-            }
+            <h4 className="text-text-sm text-white">
+                { Ranks[rank] }
+            </h4>
         </div>
     )
 }

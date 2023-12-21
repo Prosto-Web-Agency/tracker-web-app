@@ -19,19 +19,20 @@ import {useRouter} from "next/navigation";
 import HoverGradientButton from "@/components/common/buttons/hoverGradient";
 import type { TUserDataState } from "@/store/reducers/userReducer";
 import type { TUserCharts } from "@/models/charts";
+import {TUserDiagrams} from "@/models/charts";
 
 export default function PersonalOffice() {
     const dispatch = useDispatch();
     const router = useRouter();
 
     //@ts-ignore
-    const { charts }: { charts: TUserCharts } = useSelector(state => state.officePage)
+    const { charts, diagrams }: { charts: TUserCharts, diagrams: TUserDiagrams } = useSelector(state => state.officePage)
     //@ts-ignore
     const { userData }: { userData: TUserDataState } = useSelector(state => state.user);
 
     useEffect(() => {
         //@ts-ignore
-        // dispatch(getDiagrams())
+        dispatch(getDiagrams())
         //@ts-ignore
         dispatch(getCharts())
         //@ts-ignore
@@ -39,10 +40,6 @@ export default function PersonalOffice() {
         //@ts-ignore
         dispatch(getUserPersonalData());
     }, [dispatch]);
-
-    useEffect(() => {
-        console.log(charts)
-    }, [charts])
 
     function handleEditUserData() {
         router.push('/profile/edit');
@@ -80,7 +77,7 @@ export default function PersonalOffice() {
 
                 <div className="row-span-3 flex flex-col gap-6 min-w-[384px] ss_lg:hidden">
                     {/*<PrimaryButton text="" type="datePicker" onClick={() => {}} className="py-3" />*/}
-                    <DiagramsFieldOffice />
+                    <DiagramsFieldOffice diagrams={diagrams} />
 
                     <div className="sx_lg:hidden">
                         <MetrisFieldOffice />
