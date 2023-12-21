@@ -1,9 +1,9 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import {TUserSubscriptionModal} from "@/models/userData";
+import type { TUserSubscriptionsReport } from "@/models/userData";
 
-export default function SubscriptionCard({ image_url, streamer_name }: TUserSubscriptionModal) {
+export default function SubscriptionCard({ report_text, first_name, image_url, login, is_anon }: TUserSubscriptionsReport) {
     const [nameOfOpenImage, setNameOfOpenImage] = useState('');
 
     return (
@@ -22,12 +22,11 @@ export default function SubscriptionCard({ image_url, streamer_name }: TUserSubs
 
             <div className="flex flex-col gap-2">
                 <h5 className="text-text-sm-bold">
-                    {streamer_name}
+                    {first_name}
                 </h5>
 
                 <p className='text-text-sm' style={{ whiteSpace: 'pre-wrap' }}>
-                    Владелец компании «Аброникс» (производство бутилированной воды «Славная»)
-                    Александр Усенок рассказал, сколько стоит начать водный бизнес в Беларуси.
+                    {report_text}
                 </p>
             </div>
         </div>

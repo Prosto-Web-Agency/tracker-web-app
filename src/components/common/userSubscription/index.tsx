@@ -22,10 +22,6 @@ export default function UserSubscriptions() {
         dispatch(getUserSubscriptionsReportsData());
     }, [dispatch]);
 
-    useEffect(() => {
-        console.log(userSubscriptionsReports)
-    }, [userSubscriptionsReports])
-
     return (
         <div className="bg-white rounded-6 relative h-full w-[calc(100%-384px)] p-6 pt-4 pb-6 overflow-hidden s_lg:w-full s_lg:h-[305px]">
             <h3 className="text-heading-ss-bold pb-2">
@@ -46,11 +42,11 @@ export default function UserSubscriptions() {
                                 }, index) => (
                                     <SubscriptionCard
                                         key={first_name + index}
-                                        tg_id_streamer={123132}
-                                        streamer_name={first_name}
+                                        report_text={report_text}
+                                        first_name={first_name}
                                         image_url={image_url}
-                                        streamer_is_anon={String(is_anon)}
-                                        streamer_login={login}
+                                        is_anon={is_anon}
+                                        login={login}
                                     />
                                 ))
                             }
