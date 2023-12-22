@@ -17,13 +17,9 @@ export default function RanksTopUser() {
         dispatch(getRankUpdateList());
     }, []);
 
-    useEffect(() => {
-        console.log('rankUpdateList', rankUpdateList);
-    }, [rankUpdateList]);
-
     return (
         <div
-            onMouseOver={() => setHover(true)}
+            onMouseOver={() => setHover(Array.isArray(rankUpdateList) && rankUpdateList.length > 1)}
             onMouseLeave={() => setHover(false)}
             className="w-[33%] relative lg:w-full h-[300px] py-6 bg-white overflow-hidden bg-orange-class"
         >
