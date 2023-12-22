@@ -126,7 +126,7 @@ export default function ModalUser({
                                             userPopupData.achievements.map(({ achievement_name }, index) => (
                                                 <div
                                                     className="flex justify-center items-center w-full h-[50px] bg-white text-black rounded-6"
-                                                    key={achievement_name + index}
+                                                    key={String(Math.random()) + index}
                                                 >
                                                     {achievement_name}
                                                 </div>

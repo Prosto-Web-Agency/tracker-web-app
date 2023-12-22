@@ -1,3 +1,5 @@
+import {TRank} from "@/components/common/cards/RankComponent";
+
 export type TChart = {
     avg: number[];
     date: string[];
@@ -28,4 +30,13 @@ export type TMetrics = {
     report_streak: number,
     task_amount: number,
     full_time: number
+}
+
+export type TEnableChats = {
+    first_name: string;
+    login: string;
+    image: string | null;
+    rank: TRank['rank'];
+    is_coach: boolean;
+    is_psychologist: boolean;
 }

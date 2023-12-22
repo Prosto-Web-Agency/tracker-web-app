@@ -15,8 +15,8 @@ import type {
     TUserSubscriptionsArray,
     TUserSubscriptionsReportArray
 } from "@/models/userData";
-import {storage} from "@/utils/localStorage";
-import {SUBSCRIPTION} from "@/consts/profile";
+import { storage } from "@/utils/localStorage";
+import { SUBSCRIPTION } from "@/consts/profile";
 
 export const checkUserAuth = () => (dispatch: any) => {
     userApi

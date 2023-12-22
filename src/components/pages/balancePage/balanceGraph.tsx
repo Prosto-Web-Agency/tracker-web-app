@@ -13,6 +13,7 @@ import { createTheme } from '@mui/material/styles';
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
+import {getEnableChatsData} from "@/store/thunks/adminThunk";
 
 const theme = createTheme({
     palette: {
@@ -72,10 +73,15 @@ export default function BalanceWebPage({ balanceData }: any) {
     const [websocket, setWebsocket] = useState<WebSocket | null>(null);
     const [visible, setVisible] = useState<boolean>(true);
 
+    useEffect(() => {
+        // @ts-ignore
+        dispatch(getEnableChatsData());
+    }, [])
 
     useEffect(() => {
         setWebsocket(new WebSocket(String(process.env.WEBSOCKET) + storage.get(TOKEN) ?? ''))
         if (messages.length !== 0) setVisible(false)
+
         return () => {
             if (websocket) {
                 websocket.close();
@@ -91,6 +97,7 @@ export default function BalanceWebPage({ balanceData }: any) {
                 messagesContainerRef.current.scrollTop = messagesContainerRef.current.scrollHeight;
             }
         }
+
         if (messages.length !== 0) setVisible(false)
     }, [websocket, messages]);
 

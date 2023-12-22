@@ -118,27 +118,3 @@ export const userApi = {
             })
     }
 }
-
-type charts = {
-    lifeBalance: {
-        dots: number[];
-        date: string[];
-        avg: string;
-    },
-    nonLifeBalance: {
-        dots: number[];
-        date: string[];
-        avg: string;
-    },
-    emotional: {
-        dots: number[];
-        date: string[];
-        avg: string;
-    },
-    dayReports: {
-        dots: number[];
-        date: string[];
-        avg: string;
-    }
-}
-

@@ -43,7 +43,7 @@ export default function RateField({ rateData }: TRateData) {
                                     <RateCard
                                         isTop={position < 3}
                                         setModalData={(login: string) => setModalDataUser({ open: true, position, login })}
-                                        key={userSmallData.first_name + position}
+                                        key={userSmallData.login + position}
                                         position={position + 1}
                                         {...userSmallData}
                                     />

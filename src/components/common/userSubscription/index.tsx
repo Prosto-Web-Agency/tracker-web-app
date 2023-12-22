@@ -33,7 +33,7 @@ export default function UserSubscriptions() {
             <div className="flex justify-center items-center w-full h-full">
                 {
                     userSubscriptionsReports.length ? (
-                        <div className="flex flex-col overflow-y-auto overflow-x-visible w-full h-full">
+                        <div className="flex flex-col overflow-y-auto no-scrollbar overflow-x-visible w-full h-full">
                             {
                                 userSubscriptionsReports.map(({
                                     report_text,
