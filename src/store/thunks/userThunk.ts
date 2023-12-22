@@ -114,7 +114,7 @@ export const getUserSubscriptionsReportsData = () => (dispatch: any) => {
 
 export const subscribeOnUserByLogin = (streamer_login: string) => (dispatch: any) => {
     try {
-        userApi
+        return userApi
             .subscribeOnUserByLogin({ streamer_login })
             .then((res: any) => {
                 dispatch(getUserSubscriptionsReportsData());
@@ -128,7 +128,7 @@ export const subscribeOnUserByLogin = (streamer_login: string) => (dispatch: any
 
 export const unsubscribeOnUserByLogin = (streamer_login: string) => (dispatch: any) => {
     try {
-        userApi
+        return userApi
             .unsubscribeOnUserByLogin({ streamer_login })
             .then((res: any) => {
                 dispatch(getUserSubscriptionsReportsData());

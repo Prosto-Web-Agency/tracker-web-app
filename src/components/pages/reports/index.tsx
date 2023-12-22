@@ -13,6 +13,7 @@ import {TUserSubscriptionsArray, TUserSubscriptionsReportArray} from "@/models/u
 import SubscriptionCard from "@/components/common/userSubscription/subscriptionCard";
 import Image from "next/image";
 import SecondaryButton from "@/components/common/buttons/secondary";
+import BaseSecondaryCard from "@/components/common/cards/BaseSecondaryCard";
 
 export default function ReportsPage() {
     const dispatch = useAppDispatch();
@@ -98,28 +99,39 @@ export default function ReportsPage() {
                         </h3>
 
                         {
-                            !!userSubscriptionsReports.length &&
-                            <div className="flex flex-col overflow-y-auto overflow-x-hidden w-full h-full">
-                                {
-                                    userSubscriptionsReports.map(({
-                                        report_text,
-                                        first_name,
-                                        image_url,
-                                        login,
-                                        is_anon
-                                    }, index) => (
-                                        <SubscriptionCard
-                                            key={first_name + index}
-                                            report_text={report_text}
-                                            first_name={first_name}
-                                            image_url={image_url}
-                                            is_anon={is_anon}
-                                            login={login}
-                                        />
-                                    ))
-                                }
-                            </div>
-
+                            userSubscriptionsReports.length ? (
+                                <div className="flex flex-col overflow-y-auto no-scrollbar overflow-x-hidden w-full h-full">
+                                    {
+                                        userSubscriptionsReports.map(({
+                                            report_text,
+                                            first_name,
+                                            image_url,
+                                            login,
+                                            is_anon
+                                        }, index) => (
+                                            <SubscriptionCard
+                                                key={first_name + index}
+                                                report_text={report_text}
+                                                first_name={first_name}
+                                                image_url={image_url}
+                                                is_anon={is_anon}
+                                                login={login}
+                                            />
+                                        ))
+                                    }
+                                </div>
+                            ) : (
+                                <div className="h-full flex justify-center items-center">
+                                    <div className="flex w-[400px]">
+                                        <BaseSecondaryCard>
+                                            <p className="text-white text-text-m-bold px-3 py-6 text-center">
+                                                Здесь будут действия людей, <br/>
+                                                на которых вы подписаны
+                                            </p>
+                                        </BaseSecondaryCard>
+                                    </div>
+                                </div>
+                            )
                         }
                     </div>
                 </BasePrimaryCard>

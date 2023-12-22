@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import SearchUsersField from "../../textFields/SearchUsersField"
 import Image from "next/image"
 import { useDispatch, useSelector } from "react-redux"
@@ -37,13 +37,21 @@ export default function SearchUsers() {
             });
         } else {
             //@ts-ignore
-            dispatch(subscribeOnUserByLogin(login));
+            dispatch(subscribeOnUserByLogin(login))
+                .then(() => {
+                    //@ts-ignore
+                    dispatch(getSearchUsersThunk(text));
+                });
         }
     }
 
     function handleUnsubscribeOnUser(login: string) {
         //@ts-ignore
-        dispatch(unsubscribeOnUserByLogin(login));
+        dispatch(unsubscribeOnUserByLogin(login))
+            .then(() => {
+                //@ts-ignore
+                dispatch(getSearchUsersThunk(text));
+            })
     }
 
     return (
@@ -122,12 +130,19 @@ export default function SearchUsers() {
                 onClose={() => setUnsubscribeModal({
                     isOpen: false,
                     login: ''
-                })}>
-                <PrimaryButton
-                    size={'small'}
-                    text={'Отписаться'}
-                    onClick={() => handleUnsubscribeOnUser(unsubscribeModal.login)}
-                />
+                })}
+            >
+                <div className="flex flex-col justify-center gap-16 items-center h-[260px]">
+                    <h2 className="text-center text-heading-s">
+                        Вы точно хотите отписаться от {unsubscribeModal.login} ?
+                    </h2>
+
+                    <PrimaryButton
+                        className={'max-w-[300px]'}
+                        text={'Отписаться'}
+                        onClick={() => handleUnsubscribeOnUser(unsubscribeModal.login)}
+                    />
+                </div>
             </ModalComponent>
         </div>
     )
