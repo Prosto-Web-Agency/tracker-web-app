@@ -17,10 +17,6 @@ export default function RanksTopUser() {
         dispatch(getRankUpdateList());
     }, []);
 
-    useEffect(() => {
-        console.log('rankUpdateList', rankUpdateList);
-    }, [rankUpdateList]);
-
     return (
         <div
             onMouseOver={() => setHover(true)}

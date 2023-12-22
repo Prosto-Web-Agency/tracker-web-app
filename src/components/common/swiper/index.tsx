@@ -19,10 +19,6 @@ export default function SwiperComponent<T>({ swiperCards, cardType }: { swiperCa
             <Swiper
                 // install Swiper modules
                 modules={[Navigation, Pagination, Scrollbar, A11y, Autoplay]}
-                navigation={{
-                    nextEl: '#next-button',
-                    prevEl: '#prev-button'
-                }}
                 autoplay={true}
                 spaceBetween={24}
                 slidesPerView={1}

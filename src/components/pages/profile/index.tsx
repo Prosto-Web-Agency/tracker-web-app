@@ -118,7 +118,7 @@ export default function PersonalOffice() {
                                         data: charts.lifeBalance.dots,
                                         label: charts.lifeBalance.date
                                     }}
-                                    average={charts.lifeBalance.avg[0].toFixed(2)}
+                                    average={charts.lifeBalance?.avg[0].toFixed(2)}
                                     elementId={'productivityChart'}
                                 />
                                 <GraphFieldOffice
@@ -129,7 +129,7 @@ export default function PersonalOffice() {
                                         data: charts.dayReports.dots,
                                         label: charts.dayReports.date
                                     }}
-                                    average={charts.dayReports.avg[0].toFixed(2)}
+                                    average={charts.dayReports?.avg[0].toFixed(2)}
                                     elementId={'holidaysChart'}
                                 />
                                 <GraphFieldOffice
@@ -140,7 +140,7 @@ export default function PersonalOffice() {
                                         data: charts.emotional.dots,
                                         label: charts.emotional.date
                                     }}
-                                    average={charts.emotional.avg[0].toFixed(2)}
+                                    average={charts.emotional?.avg[0].toFixed(2)}
                                     elementId={'emotionalChart'}
                                 />
                             </>
