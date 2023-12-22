@@ -6,13 +6,15 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
     height: 40,
     borderRadius: 20,
     [`&.${linearProgressClasses.colorPrimary}`]: {
-        backgroundColor: 'linear-gradient(90deg, #E12131 0%, #FEA310 100%)',
+        backgroundColor: 'rgba(228, 41, 49, 0.1)',
+        backgroundImage: 'linear-gradient(90deg, rgba(228, 41, 49, 0.3) 0%, rgba(251, 146, 23, 0.3) 100%)',
     },
     [`& .${linearProgressClasses.bar}`]: {
         borderRadius: 5,
-        backgroundColor: 'linear-gradient(90deg, #E12131 0%, #FEA310 100%)',
+        backgroundImage: 'linear-gradient(90deg, #E42931 0%, #FB9217 100%)',
     },
 }));
+
 
 export default function MetricsComponent({ metrics }: { metrics: TMetrics }) {
     const maxMetrics = Math.max(...Object.values(metrics));
@@ -24,62 +26,37 @@ export default function MetricsComponent({ metrics }: { metrics: TMetrics }) {
             </h4>
 
             <div className='flex flex-col gap-4 pt-4'>
-                <div className="relative">
-                    <p className="absolute left-2 z-10 pt-2 text-text-m-bold text-white">
-                        Все затреканное время
-                    </p>
+                {
+                    [
+                        {
+                            title: 'Количество написанных отчетов',
+                            value: metrics.task_amount
+                        },
+                        {
+                            title: 'Время потраченное на life balance',
+                            value: metrics.all_time_report
+                        },
+                        {
+                            title: 'Серия отчетов',
+                            value: metrics.report_streak
+                        }
+                    ].map(({ title, value }) => (
+                        <div key={value + title} className="relative">
+                            <p className="absolute left-2 z-10 pt-2 text-text-m-bold text-white">
+                                {title}
+                            </p>
 
-                    <p className="absolute right-2 z-10 pt-2 text-text-m-bold text-white">
-                        {metrics.full_time}ч
-                    </p>
+                            <p className="absolute right-2 z-10 pt-2 text-text-m-bold text-white">
+                                {value}ч
+                            </p>
 
-                    <BorderLinearProgress
-                        variant="determinate"
-                        value={(metrics.full_time / maxMetrics) * 100}
-                    />
-                </div>
-                <div className="relative">
-                    <p className="absolute left-2 z-10 pt-2 text-text-m-bold text-white">
-                        Время потраченное на life balance
-                    </p>
-
-                    <p className="absolute right-2 z-10 pt-2 text-text-m-bold text-white">
-                        {metrics.all_time_report}ч
-                    </p>
-
-                    <BorderLinearProgress
-                        variant="determinate"
-                        value={(metrics.all_time_report / maxMetrics) * 100}
-                    />
-                </div>
-                <div className="relative">
-                    <p className="absolute left-2 z-10 pt-2 text-text-m-bold text-white">
-                        Серия отчетов
-                    </p>
-
-                    <p className="absolute right-2 z-10 pt-2 text-text-m-bold text-white">
-                        {metrics.report_streak}ч
-                    </p>
-
-                    <BorderLinearProgress
-                        variant="determinate"
-                        value={(metrics.report_streak / maxMetrics) * 100}
-                    />
-                </div>
-                <div className="relative">
-                    <p className="absolute left-2 z-10 pt-2 text-text-m-bold text-white">
-                        Количество написанных отчетов
-                    </p>
-
-                    <p className="absolute right-2 z-10 pt-2 text-text-m-bold text-white">
-                        {metrics.task_amount}ч
-                    </p>
-
-                    <BorderLinearProgress
-                        variant="determinate"
-                        value={(metrics.task_amount / maxMetrics) * 100}
-                    />
-                </div>
+                            <BorderLinearProgress
+                                variant="determinate"
+                                value={(value / maxMetrics) * 100}
+                            />
+                        </div>
+                    ))
+                }
             </div>
         </div>
     )

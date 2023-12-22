@@ -29,7 +29,6 @@ export type TMetrics = {
     all_time_report: number,
     report_streak: number,
     task_amount: number,
-    full_time: number
 }
 
 export type TEnableChats = {

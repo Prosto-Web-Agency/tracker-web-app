@@ -25,7 +25,7 @@ export default function ModalUser({
     const dispatch = useDispatch();
 
     //@ts-ignore
-    const { userPopupData }: { userPopupData: TUserPopupData | null; } = useSelector(state => state.user);
+    const { userPopupData, userData }: { userPopupData: TUserPopupData | null; } = useSelector(state => state.user);
 
     useEffect(() => {
         //@ts-ignore
@@ -151,13 +151,17 @@ export default function ModalUser({
                                 ) : null
                             }
 
-                            <PrimaryButton
-                                text="Подписаться"
-                                onClick={() => {
-                                    handleSubscribeOnUser(login);
-                                    setModalData({position: '', open: false})
-                                }}
-                            />
+                            {
+                                userData.login !== userPopupData.login ? (
+                                    <PrimaryButton
+                                        text={userPopupData.is_subscribe ? "Вы подписаны" : "Подписаться"}
+                                        onClick={() => {
+                                            handleSubscribeOnUser(login);
+                                            setModalData({position: '', open: false})
+                                        }}
+                                    />
+                                ) : null
+                            }
                         </>
                     ) : (
                         <div className="flex justify-center items-center w-full h-full">

@@ -15,49 +15,14 @@ export type TUserCommonData = TUserData & {
     rank_name: TRank['rank'];
 };
 
-achievements
-    :
-    []
-first_name
-    :
-    "Анвар Кайратович"
-hash_tag_header
-    :
-    "#RECs #RECsIT"
-image_url
-    :
-    "https://storage.yandexcloud.net/rec-media/profile_images/Screenshot_2023-12-22_at_14.48.04.png?AWSAccessKeyId=YCAJEy42NPtXKEF8KoTybWbqu&Signature=%2FECYExsTI2QZ6CS9Ne1VMIAb5vE%3D&Expires=1703270693"
-instagram
-    :
-    "@anvar_shaykenov"
-is_anon
-    :
-    false
-is_subscribe
-    :
-    false
-login
-    :
-    "anvarks"
-rank_name
-    :
-    "empty"
-surname
-    :
-    "Шайкено"
-tg_username
-    :
-    "@anvarks"
-
 export type TUserPopupData = TUserData & {
     image_url?: string;
     rank_name: TRank['rank'];
     hash_tag_header?: string;
     achievements: { achievement_name: string }[];
     login: string;
+    is_subscribe: boolean;
 };
-
-
 
 export type TUserSmallData = Omit<TUserData, | "tg_username" | "instagram"> & {
     image_url: string | null;

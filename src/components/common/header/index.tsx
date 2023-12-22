@@ -37,7 +37,7 @@ export const TABS: TTabs[] = [
     },
     {
         link: '/reports',
-        title: 'Отчеты'
+        title: 'Подписки'
     }
 ]
 

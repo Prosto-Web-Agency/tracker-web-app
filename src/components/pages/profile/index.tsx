@@ -1,12 +1,10 @@
 'use client'
 
 import RanksComponent from "@/components/common/fields/officeField/RanksComponent";
-import DiagrammsPhoneField from "@/components/common/fields/officeField/DiagrammsPhoneField";
 import DiagramsFieldOffice from "@/components/common/fields/officeField/DiagramsField";
 import GraphFieldOffice from "@/components/common/fields/officeField/GrapgFieldOffice";
 import MetricsComponent from "@/components/common/fields/officeField/MetricsField";
 import UserCard from "@/components/common/fields/officeField/UserCard";
-import SeccessGraphPhoneOffice from "@/components/common/fields/officeField/SuccessGraphOfficePhone";
 import {
     getCharts,
     getDiagrams,
@@ -80,8 +78,7 @@ export default function PersonalOffice() {
                             <MetricsComponent metrics={metrics ?? {
                                 all_time_report: 0,
                                 report_streak: 0,
-                                task_amount: 0,
-                                full_time: 0
+                                task_amount: 0
                             }}/>
                         </div>
                     </div>
@@ -113,24 +110,13 @@ export default function PersonalOffice() {
                                 <GraphFieldOffice
                                     type={'chartProductive'}
                                     color={'#6ABDDB'}
-                                    name="График продуктивности"
+                                    name="LIFE-BALANCE"
                                     params={{
                                         data: charts.lifeBalance.dots,
                                         label: charts.lifeBalance.date
                                     }}
                                     average={charts.lifeBalance?.avg[0]?.toFixed(2) ?? 0}
                                     elementId={'productivityChart'}
-                                />
-                                <GraphFieldOffice
-                                    type={'chartEmotional'}
-                                    color={'#97C263'}
-                                    name="График отдыха"
-                                    params={{
-                                        data: charts.dayReports.dots,
-                                        label: charts.dayReports.date
-                                    }}
-                                    average={charts.dayReports?.avg[0]?.toFixed(2) ?? 0}
-                                    elementId={'holidaysChart'}
                                 />
                                 <GraphFieldOffice
                                     type={'chartRelax'}
@@ -142,6 +128,17 @@ export default function PersonalOffice() {
                                     }}
                                     average={charts.emotional?.avg[0]?.toFixed(2) ?? 0}
                                     elementId={'emotionalChart'}
+                                />
+                                <GraphFieldOffice
+                                    type={'chartEmotional'}
+                                    color={'#97C263'}
+                                    name="Оценка дня"
+                                    params={{
+                                        data: charts.dayReports.dots,
+                                        label: charts.dayReports.date
+                                    }}
+                                    average={charts.dayReports?.avg[0]?.toFixed(2) ?? 0}
+                                    elementId={'holidaysChart'}
                                 />
                             </>
                         ) : null
