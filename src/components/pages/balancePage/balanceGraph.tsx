@@ -102,9 +102,7 @@ function BalanceWebPage({ balanceData }: any) {
     }
 
     return (
-        <div
-            // onClick={handleOpenSliders}
-            className="w-full h-[calc(100%-90px)] bg-bg-gray flex justify-center items-center">
+        <div className="w-full bg-bg-gray flex justify-center items-center">
             <div className="flex sx_lg:flex-col w-full sx_lg:h-auto justify-center sx_lg:items-center gap-10 h-[600px] sx_lg:w-[600px] md:px-6">
                 <div className="bg-white rounded-6 h-[724px] md:h-[450px] w-[600px] md:w-full flex flex-col p-6">
                     <div>
@@ -144,7 +142,7 @@ function BalanceWebPage({ balanceData }: any) {
                                     "flex w-full h-[724px] relative flex-col px-2 pb-10 rounded-6 bg-white overflow-hidden",
                                     ""
                                 )}>
-                                    <div className="flex gap-4 w-full p-4">
+                                    <div className="flex gap-4 w-full p-4 minn:flex-col">
                                         <PrimaryButton
                                             className={'text-text-s'}
                                             text={'Чат с психологом'}

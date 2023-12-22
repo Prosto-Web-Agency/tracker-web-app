@@ -20,7 +20,7 @@ export default function BalancePage() {
     }, [balanceData]);
 
     return (
-        <div className="w-full min-h-[calc(100vh-90px)] py-10 bg-bg-gray">
+        <div className="w-full min-h-[100vh] py-10 bg-bg-gray">
             {
                 balanceData ? (
                     <BalanceWebPage balanceData={balanceData}/>
