@@ -55,14 +55,14 @@ const StartPage = () => {
         <section className="w-full overflow-hidden">
             <div className="min-h-[calc(100vh-90px)] flex flex-col items-center gap-12 justify-center relative w-full bg-bg-gray rounded-9 p-10 max-w-[1400px] mx-auto s_lg:rounded-t-[0px] s_lg:pt-0 s_lg:p-6 pb-3 s_lg:pb-12">
                 <div className="flex flex-col items-center gap-6">
-                    <Link href={'/'} className="flex items-center gap-2 px-6">
+                    <Link href={'/'} className="flex items-center gap-2 px-6 ss_lg:hidden">
                         <Image className="md:h-[27px] md:w-[27px]" height={48} width={48} src={'/logo.svg'} alt='RECs' />
                         <h1 className="RECsText text-heading-m md:text-text-m-bold">
                             Rec’s Traker
                         </h1>
                     </Link>
 
-                    <div className="flex gap-8">
+                    <div className="flex gap-8 ss_lg:flex-col">
                         <SecondaryButton size="small" className="px-12 whitespace-nowrap" text={'Шаг 1'} onClick={() => {}} />
                         <SecondaryButton bg={step < 1 ? 'bg-white text-black' : ''} size="small" className="px-12 whitespace-nowrap" text={'Шаг 2'} onClick={() => {}} />
                         <SecondaryButton bg={step < 2 ? 'bg-white text-black' : ''} size="small" className="px-12 whitespace-nowrap" text={'Шаг 3'} onClick={() => {}} />
