@@ -52,8 +52,8 @@ export default function PersonalOffice() {
 
     return (
 
-        <section className="min-h-[screen] mx-auto max-w-[1400px] w-full overflow-hidden">
-            <div className="w-full ss_lg:flex ss_lg:flex-col gap-6 min-h-[calc(100vh-90px)] relative bg-bg-gray grid grid-cols-3 sx_lg:grid-cols-2 rounded-9 sx_lg:rounded-[0] sx_lg:rounded-t-9 s_lg: p-6 sx_lg:pb-6 max-w-[1400px] mx-auto s_lg:rounded-t-[0px] s_lg:pt-0 s_lg:p-6 ss_lg:p-4 ss_lg:gap-4">
+        <section className="min-h-[screen] mx-auto max-w-[1400px] w-full overflow-hidden bg-bg-gray rounded-9 sx_lg:rounded-[0]">
+            <div className="w-full sx_lg:max-w-[600px] sx_lg:flex sx_lg:flex-col gap-6 min-h-[calc(100vh-90px)] relative grid grid-cols-3 sx_lg:grid-cols-2 sx_lg:rounded-t-9 s_lg: p-6 sx_lg:pb-6 max-w-[1400px] mx-auto s_lg:rounded-t-[0px] s_lg:pt-0 s_lg:p-6 ss_lg:p-4 ss_lg:gap-4">
                 <div className="row-span-3 flex flex-col gap-6">
                     <div className="w-full">
                         <UserCard userData={userData} />
@@ -72,14 +72,17 @@ export default function PersonalOffice() {
                     </div>
                     <div className="flex flex-col gap-4">
                         <div>
-                            <SeccessGraphPhoneOffice />
+                            {diagrams ? (
+                                <DiagramsFieldOffice diagrams={diagrams}/>
+                            ) : null}
                         </div>
                         <div>
-                            {
-                                metrics ? (
-                                    <MetricsComponent metrics={metrics}/>
-                                ) : null
-                            }
+                            <MetricsComponent metrics={metrics ?? {
+                                all_time_report: 0,
+                                report_streak: 0,
+                                task_amount: 0,
+                                full_time: 0
+                            }}/>
                         </div>
                     </div>
                 </div>
@@ -102,7 +105,7 @@ export default function PersonalOffice() {
 
                 </div>
 
-                <div className="col-start-3 col-end-4 row-start-1 row-end-4 sx_lg:hidden flex flex-col gap-6 min-w-[384px]">
+                <div className="col-start-3 col-end-4 row-start-1 row-end-4 flex flex-col gap-6 min-w-[384px]">
                     {/*<PrimaryButton text="" type="datePicker" onClick={() => {}} />*/}
                     {
                         charts ? (
@@ -144,58 +147,6 @@ export default function PersonalOffice() {
                         ) : null
                     }
                 </div>
-            </div>
-
-            <div className="sx_lg:grid grid-cols-2 px-10 bg-bg-gray p-6 pt-0 hidden flex-col gap-6 row-span-3 min-w-[384px] ss_lg:hidden">
-                {
-                    metrics ? (
-                        <MetricsComponent metrics={metrics}/>
-                    ) : null
-                }
-
-                {
-                    charts ? (
-                        <>
-                            <GraphFieldOffice
-                                type={'chartProductive'}
-                                color={'#6ABDDB'}
-                                name="График продуктивности"
-                                params={{
-                                    data: charts.lifeBalance.dots,
-                                    label: charts.lifeBalance.date
-                                }}
-                                average={charts.lifeBalance.avg[0].toFixed(2)}
-                                elementId={'productivityChart'}
-                            />
-                            <GraphFieldOffice
-                                type={'chartEmotional'}
-                                color={'#97C263'}
-                                name="График отдыха"
-                                params={{
-                                    data: charts.dayReports.dots,
-                                    label: charts.dayReports.date
-                                }}
-                                average={charts.dayReports.avg[0].toFixed(2)}
-                                elementId={'holidaysChart'}
-                            />
-                            <GraphFieldOffice
-                                type={'chartRelax'}
-                                color={'#F6CC56'}
-                                name="Эмоциональное состояние"
-                                params={{
-                                    data: charts.emotional.dots,
-                                    label: charts.emotional.date
-                                }}
-                                average={charts.emotional.avg[0].toFixed(2)}
-                                elementId={'emotionalChart'}
-                            />
-                        </>
-                    ) : null
-                }
-            </div>
-
-            <div className="hidden ss_lg:block bg-bg-gray w-full px-4 pb-6">
-                <DiagrammsPhoneField />
             </div>
         </section>
     )

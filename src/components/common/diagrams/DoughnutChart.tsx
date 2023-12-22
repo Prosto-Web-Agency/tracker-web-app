@@ -7,7 +7,7 @@ import { Doughnut } from 'react-chartjs-2';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 //@ts-ignore
-export function DoughnutChart({ labels, data, name, percents: percents, id, colors }) {
+export function DoughnutChart({ labels, data, name, id, colors }) {
     return (
         <div className='h-[175px] ss_lg:h-[100px] flex justify-center flex-col items-center'>
             <div className='flex justify-center h-[125px] w-[125px]'>
@@ -52,7 +52,7 @@ export function DoughnutChart({ labels, data, name, percents: percents, id, colo
                                 ctx.textBaseline = 'middle';
 
                                 ctx.fillText(
-                                    percents,
+                                    '',
                                     chart.getDatasetMeta(0).data[0].x,
                                     chart.getDatasetMeta(0).data[0].y
                                 )

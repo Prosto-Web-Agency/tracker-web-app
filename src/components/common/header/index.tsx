@@ -32,10 +32,6 @@ export const TABS: TTabs[] = [
         title: 'Трекер',
     },
     {
-        link: '/guides',
-        title: 'Гайды',
-    },
-    {
         link: '/balance',
         title: 'Чекап',
     },

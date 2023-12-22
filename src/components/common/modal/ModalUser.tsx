@@ -6,8 +6,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {TUserPopupData} from "@/models/userData";
 import TRIcon from "@/components/common/icon";
 import React, {useEffect} from "react";
-import {getListOfTopUsers, getListOfUsersInsights} from "@/store/thunks/trakerThunk";
-import {getUserPopupData} from "@/store/thunks/userThunk";
+import {getListOfTopUsers, getListOfUsersInsights, getSearchUsersThunk} from "@/store/thunks/trakerThunk";
+import {getUserPopupData, subscribeOnUserByLogin} from "@/store/thunks/userThunk";
 
 interface IModalUser {
     position: number;
@@ -30,6 +30,11 @@ export default function ModalUser({
         //@ts-ignore
         dispatch(getUserPopupData(login))
     }, [dispatch]);
+
+    function handleSubscribeOnUser(login: string) {
+            //@ts-ignore
+            dispatch(subscribeOnUserByLogin(login))
+    }
 
     return (
         <div
@@ -138,7 +143,10 @@ export default function ModalUser({
 
                             <PrimaryButton
                                 text="Подписаться"
-                                onClick={() => setModalData({ position: '', open: false })}
+                                onClick={() => {
+                                    handleSubscribeOnUser(login);
+                                    setModalData({position: '', open: false})
+                                }}
                             />
                         </>
                     ) : (

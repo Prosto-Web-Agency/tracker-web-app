@@ -9,12 +9,12 @@ import {CHART_COLORS} from "@/consts/chart";
 export default function DiagramsFieldOffice({ diagrams }: { diagrams: TUserDiagrams }) {
 
     return (
-        <div className="bg-white rounded-6 big_screen_h:h-[680px] sx_lg:h-[740px] p-6 pt-3">
+        <div className="bg-white rounded-6 big_screen_h:h-[680px] sx_lg:h-[740px] p-6 pt-3 ss_lg:h-auto">
             <h4 className="text-heading-ss-bold">
                 Диаграммы отчёта
             </h4>
 
-            <div className="w-full h-full grid grid-cols-2 gap-3 pt-3">
+            <div className="w-full h-full flex flex-col ss_lg:gap-[100px] ss_lg:py-15">
                 {
                     diagrams ?
                         diagrams.lifeBalance?.data?.length ? (
@@ -26,7 +26,6 @@ export default function DiagramsFieldOffice({ diagrams }: { diagrams: TUserDiagr
                                         key={index + 'diagrams'}
                                         colors={CHART_COLORS}
                                         name={'Занятость по проектам'}
-                                        percents={'50%'}
                                         id={'80%'}
                                         labels={diagram.data}
                                         data={diagram.dots}
