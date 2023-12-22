@@ -2,11 +2,11 @@ import { mainPageApi } from "../api/trakerApi"
 import {
     setListOfTopUsers,
     setListOfUserInsights,
-    setNewsData, setRankUpdateList,
+    setNewsData,
+    setRankUpdateList,
     setSearchUsersData
 } from "@/store/reducers/trakerReducer";
 import {TRankUpdateList, TUserSearchDataArray, TUserSmallDataArray} from "@/models/userData";
-import {userApi} from "@/store/api/userApi";
 
 export const getListOfUsersInsights = () => (dispatch: any) => {
     mainPageApi.getListOfUserInsightsApi()

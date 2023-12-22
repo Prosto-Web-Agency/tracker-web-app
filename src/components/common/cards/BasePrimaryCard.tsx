@@ -15,7 +15,7 @@ export default function BasePrimaryCard({
         <section className={`flex flex-col gap-6 w-full h-full p-4 bg-white rounded-5 ${className}`}>
             {title && (
                 <div className="flex">
-                    <h2 className="rounded-5 text-white text-16_700 px-4 py-2 bg-gradient">
+                    <h2 className="rounded-5 w-full text-center text-white text-heading-m px-4 py-2 bg-gradient">
                         {title}
                     </h2>
                 </div>

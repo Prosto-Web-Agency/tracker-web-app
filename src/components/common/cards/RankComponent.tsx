@@ -26,7 +26,7 @@ export default function RankComponent({ rank, onClick, active }: RankComponentPr
     return (
         <div
             className={classNames("w-full flex justify-center relative bg-white items-center py-2 h-[82px] min-h-[82px] rounded-full cursor-pointer", {
-                ['opacity-70 hover:opacity-80']: !active
+                ['opacity-40 hover:opacity-80']: !active
             },
                 "md:h-[42px] md:min-h-[42px]"
             )}

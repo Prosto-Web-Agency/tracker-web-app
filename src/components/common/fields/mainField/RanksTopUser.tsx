@@ -1,7 +1,6 @@
 import SwiperComponent from "@/components/common/swiper";
 import {useEffect, useState} from "react";
 import classNames from "classnames";
-import { RANKS_TOP_USER } from "@/consts/ranks";
 import {useAppSelector} from "@/hooks/store";
 import {TRankUpdateList} from "@/models/userData";
 import {getRankUpdateList} from "@/store/thunks/trakerThunk";

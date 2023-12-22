@@ -26,7 +26,7 @@ const ModalAdvizer: React.FC<ModalAdvizerProps> = ({ open, onClose }) => {
                     180 деней Трекинга суммарно
                 </li>
                 <li className="w-full pb-3 text-15_600 border-b-[0.5px] border-white">
-                    100 раз (5Rt) Отработать запросы Резидентов публично из своей экспертности в разделе &quot;Публичная обратная связь&quot;
+                    100 раз Отработать запросы Резидентов публично из своей экспертности в разделе &quot;Публичная обратная связь&quot;
                 </li>
                 <li className="w-full pb-3 text-15_600 border-b-[0.5px] border-white">
                     100 Зафиксированных инсайтов

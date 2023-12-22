@@ -29,6 +29,10 @@ export default function MetricsComponent({ metrics }: { metrics: TMetrics }) {
                         Все затреканное время
                     </p>
 
+                    <p className="absolute right-2 z-10 pt-2 text-text-m-bold text-white">
+                        {metrics.full_time}ч
+                    </p>
+
                     <BorderLinearProgress
                         variant="determinate"
                         value={(metrics.full_time / maxMetrics) * 100}
@@ -37,6 +41,10 @@ export default function MetricsComponent({ metrics }: { metrics: TMetrics }) {
                 <div className="relative">
                     <p className="absolute left-2 z-10 pt-2 text-text-m-bold text-white">
                         Время потраченное на life balance
+                    </p>
+
+                    <p className="absolute right-2 z-10 pt-2 text-text-m-bold text-white">
+                        {metrics.all_time_report}ч
                     </p>
 
                     <BorderLinearProgress
@@ -49,6 +57,10 @@ export default function MetricsComponent({ metrics }: { metrics: TMetrics }) {
                         Серия отчетов
                     </p>
 
+                    <p className="absolute right-2 z-10 pt-2 text-text-m-bold text-white">
+                        {metrics.report_streak}ч
+                    </p>
+
                     <BorderLinearProgress
                         variant="determinate"
                         value={(metrics.report_streak / maxMetrics) * 100}
@@ -57,6 +69,10 @@ export default function MetricsComponent({ metrics }: { metrics: TMetrics }) {
                 <div className="relative">
                     <p className="absolute left-2 z-10 pt-2 text-text-m-bold text-white">
                         Количество написанных отчетов
+                    </p>
+
+                    <p className="absolute right-2 z-10 pt-2 text-text-m-bold text-white">
+                        {metrics.task_amount}ч
                     </p>
 
                     <BorderLinearProgress

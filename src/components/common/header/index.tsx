@@ -98,8 +98,8 @@ export default function Header({ title, isUnAuth }: { title?: string, isUnAuth?:
                 <div className="mx-auto w-full max-w-[1400px] h-full flex justify-between items-center">
                     <Link href={'/'} className="flex items-center gap-2 px-6">
                         <Image className="md:h-[27px] md:w-[27px]" height={48} width={48} src={'/logo.svg'} alt='RECs' />
-                        <h1 className="RECsText text-heading-m md:text-text-m-bold">
-                            Rec’s Traker
+                        <h1 className="RECsText text-text-m-bold">
+                            TRAKER STATS
                         </h1>
                     </Link>
 
@@ -108,13 +108,18 @@ export default function Header({ title, isUnAuth }: { title?: string, isUnAuth?:
                             {
                                 TABS.map(({ link, title }: TTabs) => (
                                     <Link
-                                        className={classNames("py-2 max-h-[36px] duration-300 hover:scale-[1.03] w-[135px] text-heading-ss-bold flex justify-center rounded-full bg-bg-gray hoveredMenu items-center", {
+                                        className={classNames("flex gap-2 py-2 max-h-[36px] duration-300 hover:scale-[1.03] w-[135px] text-heading-ss-bold justify-center rounded-full bg-bg-gray hoveredMenu items-center", {
                                             ['activeMenu']: activeTab === title
                                         })}
                                         key={link + title}
                                         href={`${link}`}
                                     >
                                         {title}
+                                        {
+                                            title === 'Трекер' ? (
+                                                <TRIcon iconName={'tg_gradient'} edgeLength={24} />
+                                            ) : null
+                                        }
                                     </Link>
                                 ))
                             }

@@ -4,6 +4,7 @@ export const TRIcons = {
     tg: '/icons/tg.svg',
     inst: '/icons/inst.svg',
     tg_white: '/icons/tg-white.svg',
+    tg_gradient: '/icons/tg_gradient.svg',
     inst_white: '/icons/inst-white.svg',
     adviser: '/icons/ranks/adviser.svg',
     ambassador: '/icons/ranks/ambassador.svg',
