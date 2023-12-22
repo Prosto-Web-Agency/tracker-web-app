@@ -13,15 +13,22 @@ export default function ListOfChatMessages({ messages }: { messages: TListOfChat
                     username,
                     created_at,
                     first_name,
-                    text
-                }, index) => (
-                    <ChatCard
-                        key={username + created_at + index}
-                        username={first_name}
-                        text={text}
-                        created_at={normDate(created_at)}
-                    />
-                ))
+                    text,
+                    rank,
+                    image
+                }, index) => {
+                    console.log(username);
+                    return (
+                        <ChatCard
+                            key={username + created_at + index}
+                            image={image}
+                            username={first_name}
+                            text={text}
+                            created_at={normDate(created_at)}
+                            rank={rank}
+                        />
+                    )
+                })
             }
         </>
     )

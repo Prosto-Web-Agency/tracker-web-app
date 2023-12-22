@@ -11,6 +11,8 @@ export const TRIcons = {
     expert: '/icons/ranks/expert.svg',
     headliner: '/icons/ranks/headliner.svg',
     resident: '/icons/ranks/resident.svg',
+    'new': '/icons/ranks/new.svg',
+    empty: '/icons/ranks/empty.svg',
     loader: '/icons/loader.svg',
     data: '/icons/data.svg',
     arrowLeft: '/icons/arrow-left.svg',

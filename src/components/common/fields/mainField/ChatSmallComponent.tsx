@@ -9,16 +9,18 @@ import { storage } from "@/utils/localStorage";
 import { TOKEN } from "@/consts/profile";
 import ListOfChatMessages from "@/components/common/fields/mainField/ListOfChatMessages";
 import CardHeader from "@/components/common/header/CardHeader";
+import type { TRank } from "@/components/common/cards/RankComponent";
 
 export type TListOfChatMessages = {
     text: string;
     username: string;
+    image: string | null;
     created_at: string;
     first_name: string;
-    [key: string]: string;
+    rank: TRank['rank'];
 }[];
 
-export default function ChatSmallComponent() {
+function ChatSmallComponent() {
     const [messages, setMessages] = useState<TListOfChatMessages>([])
     const [userMessage, setUserMessage] = useState<string>('')
     const messagesContainerRef = useRef<HTMLDivElement>(null);
@@ -71,6 +73,7 @@ export default function ChatSmallComponent() {
 
     function handleGetMessage(message: MessageEvent<any>) {
         const newMessages = JSON.parse(message.data);
+        console.log(newMessages);
 
         setMessages((prev) => {
             if (newMessages[0]?.text !== prev[0]?.text)
@@ -157,3 +160,5 @@ export default function ChatSmallComponent() {
 
     )
 }
+
+export default React.memo(ChatSmallComponent);
