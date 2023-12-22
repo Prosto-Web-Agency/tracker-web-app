@@ -39,11 +39,17 @@ function getGradient(color: string, elementId: string) {
 
 const options = (color: string) => ({
   plugins: {
-    legend: false,
+    legend: {
+      display: false
+    },
     tooltip: {
       enabled: false,
       position: "nearest",
       external: (context: any) => externalTooltipHandler(context, color),
+    },
+    datalabels: {
+      // display labels for this specific dataset
+      display: false,
     },
   },
   interaction: {
@@ -83,6 +89,9 @@ const CHART_DATASET = (color: string, elementId: string, data: Array<number>, la
       pointRadius: 0.1,
     },
   ],
+  datalabels: {
+    display: false
+  }
 });
 
 export function ChartComponent({
@@ -106,7 +115,7 @@ export function ChartComponent({
 
   return (
     <section className="relative flex flex-col h-full max-h-[574px] min-h-[210px] pb-[70px] w-full shrink items-end justify-center rounded-2 bg-secondary">
-      <Line title={elementId} id={elementId} data={chartData} options={chartOptions} />
+      <Line title={elementId} id={elementId} data={chartData} options={{...chartOptions}} />
 
       <p className="absolute bottom-8 text-text-m-bold text-transparent bg-clip-text bg-gradient-to-r from-[#E01D31] to-[#FEA50F]">
         {average}

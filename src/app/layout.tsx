@@ -21,7 +21,6 @@ export default function RootLayout({
     <html lang="en">
     <head>
         {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-        <script src="https://securepay.tinkoff.ru/html/payForm/js/tinkoff_v2.js"></script>
     </head>
       <Providers>
         <body className={inter.className}>{children}</body>

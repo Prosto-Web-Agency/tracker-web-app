@@ -33,7 +33,11 @@ export function DoughnutChart({ labels, data, name, percents: percents, id, colo
                             legend: {
                                 display: false
                             },
+                            datalabels: {
+                                display: false
+                            }
                         }
+
                     }}
                     plugins={[
                         {
