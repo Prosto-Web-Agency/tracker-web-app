@@ -18,7 +18,6 @@ export default function Guides() {
     }, []);
 
     return (
-        <ProtectedRoute>
             <div className='w-screen h-screen relative'>
                 <Header />
                 <section className="flex justify-center items-center">
@@ -36,6 +35,5 @@ export default function Guides() {
                     </div>
                 </section>
             </div>
-        </ProtectedRoute>
     )
 }
