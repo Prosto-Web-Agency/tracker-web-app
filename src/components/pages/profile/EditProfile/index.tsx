@@ -13,8 +13,10 @@ import { editUserDataFetch, editUserImageFetch } from "@/store/thunks/userThunk"
 import TRIcon from "@/components/common/icon";
 import type { TUserDataState } from "@/store/reducers/userReducer";
 import { compressImage } from "@/utils/compressImage";
+import {useRouter} from "next/navigation";
 
 export default function EditProfilePage() {
+    const router = useRouter();
     // @ts-ignore
     const { userData }: { userData: TUserDataState } = useSelector(state => state.user)
     // @ts-ignore
@@ -51,7 +53,10 @@ export default function EditProfilePage() {
                 tg_username: telegram,
                 instagram: inst,
                 is_anon: false
-            }));
+                    //@ts-ignore
+            }))
+
+            setTimeout(() => router.push('/profile'), 200);
         } else if (imageFile !== userData?.image_url) {
             // todo: переписать ручку
             // @ts-ignore
@@ -119,8 +124,8 @@ export default function EditProfilePage() {
                     value={inst}
                     onChange={(inst) => {
                         if (!inst.includes('@'))
-                            setTelegram('@' + inst);
-                        else setTelegram(inst);
+                            setInst('@' + inst);
+                        else setInst(inst);
                     }}
                 />
 
