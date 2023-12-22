@@ -70,10 +70,13 @@ export default function PersonalOffice() {
                     </div>
                     <div className="flex flex-col gap-4">
                         <div>
-                            {diagrams ? (
-                                <DiagramsFieldOffice diagrams={diagrams}/>
-                            ) : null}
+                            {
+                                diagrams ? (
+                                    <DiagramsFieldOffice diagrams={diagrams} />
+                                ) : null
+                            }
                         </div>
+
                         <div>
                             <MetricsComponent metrics={metrics ?? {
                                 all_time_report: 0,
@@ -110,14 +113,20 @@ export default function PersonalOffice() {
                                 <GraphFieldOffice
                                     type={'chartProductive'}
                                     color={'#6ABDDB'}
-                                    name="LIFE-BALANCE"
+                                    name="LIFE-BALANCE / NON LIFE-BALANCE"
                                     params={{
                                         data: charts.lifeBalance.dots,
                                         label: charts.lifeBalance.date
                                     }}
+                                    param2={{
+                                        data: charts.nonLifeBalance.dots,
+                                        label: charts.nonLifeBalance.date
+                                    }}
+                                    color2={'#E5302E'}
                                     average={charts.lifeBalance?.avg[0]?.toFixed(2) ?? 0}
                                     elementId={'productivityChart'}
                                 />
+
                                 <GraphFieldOffice
                                     type={'chartRelax'}
                                     color={'#F6CC56'}

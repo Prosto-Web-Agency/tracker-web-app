@@ -27,7 +27,7 @@ export const getOrCreateTooltip = (chart: any) => {
   return tooltipEl;
 };
 
-const pointElement = (color: string) => {
+const pointElement = (color: string, type?: 'chartProductive' | 'chartRelax' | 'chartEmotional') => {
   const point = document.createElement("div");
   point.style.width = "18px";
   point.style.height = "18px";
@@ -36,13 +36,13 @@ const pointElement = (color: string) => {
   point.style.border = "2px solid white";
   point.style.background = color;
   point.style.position = "absolute";
-  point.style.top = 62 + "px";
+  point.style.top = type === 'chartProductive' ? '92px' : '62px';
   point.style.left = 80 + "px";
 
   return point;
 };
 
-export const externalTooltipHandler = (context: any, color: string) => {
+export const externalTooltipHandler = (context: any, color: string, type?: 'chartProductive' | 'chartRelax' | 'chartEmotional') => {
   // Tooltip Element
   const { chart, tooltip } = context;
   const tooltipEl = getOrCreateTooltip(chart);
@@ -105,7 +105,7 @@ export const externalTooltipHandler = (context: any, color: string) => {
     tableRoot.appendChild(tableBody);
 
     tableRoot.appendChild(
-      pointElement(color)
+      pointElement(color, type)
     );
   }
 
@@ -114,7 +114,7 @@ export const externalTooltipHandler = (context: any, color: string) => {
   // Display, position, and set styles for font
   tooltipEl.style.opacity = 1;
   tooltipEl.style.left = positionX + tooltip.caretX + "px";
-  tooltipEl.style.top = positionY - 70 + tooltip.caretY + "px";
+  tooltipEl.style.top = positionY - (type === 'chartProductive' ? 100 : 70) + tooltip.caretY + "px";
   tooltipEl.style.font = tooltip.options.bodyFont.string;
   tooltipEl.style.padding =
     tooltip.options.padding + "px " + tooltip.options.padding + "px";

@@ -37,7 +37,7 @@ function getGradient(color: string, elementId: string) {
   return gradient;
 }
 
-const options = (color: string) => ({
+const options = (color: string, type?: 'chartProductive' | 'chartRelax' | 'chartEmotional') => ({
   plugins: {
     legend: {
       display: false
@@ -45,7 +45,7 @@ const options = (color: string) => ({
     tooltip: {
       enabled: false,
       position: "nearest",
-      external: (context: any) => externalTooltipHandler(context, color),
+      external: (context: any) => externalTooltipHandler(context, color, type),
     },
     datalabels: {
       // display labels for this specific dataset
@@ -70,9 +70,8 @@ const options = (color: string) => ({
   },
 });
 
-const CHART_DATASET = (color: string, elementId: string, data: Array<number>, labels: Array<string>) => ({
-  labels,
-  datasets: [
+const CHART_DATASET = (color: string, elementId: string, data: Array<number>, labels: Array<string>, chart2?: TChart, color2?: string, elemtnId2?: string) => {
+  const datasets = [
     {
       data,
       fill: "start",
@@ -88,29 +87,60 @@ const CHART_DATASET = (color: string, elementId: string, data: Array<number>, la
       pointHitDetectionRadius: 20,
       pointRadius: 0.1,
     },
-  ],
-  datalabels: {
-    display: false
-  }
-});
+  ];
 
-export function ChartComponent({
+  if (chart2) {
+    datasets.push({
+      data: chart2.data,
+      fill: "start",
+      pointHoverBackgroundColor: color2 ?? '',
+      pointHoverBorderColor: "rgba(255, 255, 255, 1)",
+      backgroundColor: getGradient(color2 ?? '', elementId),
+      hoverBorderWidth: 0.1,
+      borderColor: color2 ?? '',
+      borderWidth: 1,
+      tension: 0.5,
+      pointDotRadius: 1,
+      pointDotStrokeWidth: 8,
+      pointHitDetectionRadius: 20,
+      pointRadius: 0.1,
+    })
+  }
+
+  return {
+    labels,
+    datasets,
+    datalabels: {
+      display: false
+    }
+  }
+};
+
+function ChartComponent({
     color,
     params,
+    param2,
+    color2,
+    elemtnId2,
     elementId,
-    average
+    average,
+    type
 }: {
     color: string,
     params: TChart,
+    param2?: TChart,
+    color2?: string,
     elementId: string,
-    average: string
+    elemtnId2?: string,
+    average: string,
+    type?: 'chartProductive' | 'chartRelax' | 'chartEmotional';
 }) {
   const [chartData, setChartData] = useState<any>({ datasets: [] });
   const [chartOptions, setChartOptions] = useState<any>({});
 
   useEffect(() => {
-    setChartData(CHART_DATASET(color, elementId, params.data, params.label));
-    setChartOptions(options(color));
+    setChartData(CHART_DATASET(color, elementId, params.data, params.label, param2, color2, elemtnId2));
+    setChartOptions(options(color, type));
   }, [color, elementId, params.data, params.label]);
 
   return (
@@ -123,3 +153,5 @@ export function ChartComponent({
     </section>
   );
 }
+
+export default React.memo(ChartComponent);

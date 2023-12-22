@@ -84,6 +84,11 @@ export default function Header({ title, isUnAuth }: { title?: string, isUnAuth?:
 
     useEffect(() => {
         TABS.map(({link, title}) => link === window.location.pathname && setActiveTab(title));
+
+        if (window.location.pathname === '/profile') {
+            setActiveTab('Профиль')
+        }
+
         setProfilePage(window.location.pathname === '/profile');
     }, []);
 
@@ -111,10 +116,12 @@ export default function Header({ title, isUnAuth }: { title?: string, isUnAuth?:
                                         className={classNames("flex gap-2 py-2 max-h-[36px] duration-300 hover:scale-[1.03] w-[135px] text-heading-ss-bold justify-center rounded-full bg-bg-gray hoveredMenu items-center", {
                                             ['activeMenu']: activeTab === title
                                         })}
+
                                         key={link + title}
                                         href={`${link}`}
                                     >
                                         {title}
+
                                         {
                                             title === 'Трекер' ? (
                                                 <TRIcon iconName={'tg_gradient'} edgeLength={24} />
