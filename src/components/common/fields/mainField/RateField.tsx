@@ -18,7 +18,7 @@ export type TModalDataUser = {
     login: string;
 }
 
-export default function RateField({ rateData }: TRateData) {
+function RateField({ rateData }: TRateData) {
     const [modalDataUser, setModalDataUser] = useState<TModalDataUser>({
         position: 0,
         open: false,
@@ -71,3 +71,5 @@ export default function RateField({ rateData }: TRateData) {
         </div>
     )
 }
+
+export default React.memo(RateField);

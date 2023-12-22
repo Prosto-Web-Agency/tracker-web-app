@@ -167,7 +167,7 @@ export default function EditProfilePage() {
 
                 <Link href="/profile">
                     <PrimaryButton
-                        text="Закрыть"
+                        text="Назад"
                         onClick={() => { }}
                     />
                 </Link>

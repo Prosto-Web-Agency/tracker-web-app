@@ -25,7 +25,7 @@ export const TABS: TTabs[] = [
     },
     {
         link: '/subscription',
-        title: 'Подписка',
+        title: 'Купить',
     },
     {
         link: 'https://t.me/RecsTraker_bot',

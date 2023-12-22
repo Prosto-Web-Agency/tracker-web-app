@@ -87,9 +87,13 @@ export default function ModalUser({
                                     )
                                 }
 
-                                <p className="text-20_700 pt-3">
-                                    {userPopupData?.first_name}
-                                </p>
+                                <div className="flex gap-2 items-end">
+                                    <p className="text-20_700 pt-3 ">
+                                        {userPopupData?.first_name}
+                                    </p>
+
+                                    <TRIcon iconName={userPopupData.rank_name} edgeLength={28} />
+                                </div>
 
                                 <p>
                                     {userPopupData?.hash_tag_header}

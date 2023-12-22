@@ -17,7 +17,6 @@ export default function ListOfChatMessages({ messages }: { messages: TListOfChat
                     rank,
                     image
                 }, index) => {
-                    console.log(username);
                     return (
                         <ChatCard
                             key={username + created_at + index}
