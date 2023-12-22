@@ -2,10 +2,11 @@ import { mainPageApi } from "../api/trakerApi"
 import {
     setListOfTopUsers,
     setListOfUserInsights,
-    setNewsData,
+    setNewsData, setRankUpdateList,
     setSearchUsersData
 } from "@/store/reducers/trakerReducer";
-import {TUserSearchDataArray, TUserSmallDataArray} from "@/models/userData";
+import {TRankUpdateList, TUserSearchDataArray, TUserSmallDataArray} from "@/models/userData";
+import {userApi} from "@/store/api/userApi";
 
 export const getListOfUsersInsights = () => (dispatch: any) => {
     mainPageApi.getListOfUserInsightsApi()
@@ -41,3 +42,18 @@ export const getNews = () => (dispatch: any) => {
         })
         .catch(() => {})
 }
+
+
+export const getRankUpdateList = () => (dispatch: any) => {
+    try {
+        return mainPageApi
+            .getRankUpdateList()
+            .then((res: TRankUpdateList) => {
+                dispatch(setRankUpdateList(res));
+            })
+            .catch(() => {})
+    } catch (e) {
+        console.error('error ', e);
+    }
+}
+

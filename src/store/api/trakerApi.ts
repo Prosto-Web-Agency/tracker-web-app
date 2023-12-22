@@ -34,4 +34,14 @@ export const mainPageApi = {
                 .then((response) => (response))
         } catch (e) {}
     },
+    getRankUpdateList() {
+        return axios.get(endpoint + 'get_rank_update_list', config)
+            .then(res => {
+                if (res.status === 200) {
+                    return res.data.results
+                }
+
+                return null;
+            })
+    }
 }
