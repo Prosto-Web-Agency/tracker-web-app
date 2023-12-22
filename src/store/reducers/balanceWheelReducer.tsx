@@ -1,10 +1,9 @@
-const GET_BALANCE_DATA = 'GET_BALANCE_DATA';
 const SET_BALANCE = 'SET_BALANCE';
 const GET_BALANCE_DATA_SLIDERS = 'GET_BALANCE_DATA_SLIDERS';
 
 type TBalance = {
-    balanceData: {}
-    balanceIsSet: boolean
+    balanceData: {} | null;
+    balanceIsSet: boolean;
     slidersData: {
         "self_development": number,
         "relationship": number,
@@ -18,7 +17,7 @@ type TBalance = {
 }
 
 const initialState: TBalance = {
-    balanceData: {},
+    balanceData: null,
     balanceIsSet: true,
     slidersData: {
         "self_development": 0,
@@ -34,15 +33,10 @@ const initialState: TBalance = {
 
 const BalanceWheelReducer = (state = initialState, action: any) => {
     switch (action.type) {
-        case GET_BALANCE_DATA:
-            return {
-                ...state,
-                balanceData: action.data
-            }
         case SET_BALANCE:
             return {
                 ...state,
-                balanceIsSet: action.data
+                balanceData: action.data
             }
         case GET_BALANCE_DATA_SLIDERS:
             return {
@@ -54,17 +48,9 @@ const BalanceWheelReducer = (state = initialState, action: any) => {
     }
 }
 
-export const setBalanceData = (data: {}) => {
-    let Date: [] = [];
-    for (const [key, value] of Object.entries(data)) {
-        //@ts-ignore
-        Date.push(value)
-    }
-    return { type: GET_BALANCE_DATA, data: Date.slice(0, 8) }
-}
+export const setBalanceData = (data: {}) => ({ type: SET_BALANCE, data: Object.values(data) })
 export const setBalanceDataForSliders = (data: {}) => {
     return { type: GET_BALANCE_DATA_SLIDERS, data }
 }
-export const setSetBalance = (data: {}) => ({ type: SET_BALANCE, data })
 
 export default BalanceWheelReducer;

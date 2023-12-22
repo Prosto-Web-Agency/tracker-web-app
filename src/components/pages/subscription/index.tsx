@@ -35,54 +35,6 @@ export default function SubscriptionPage() {
 
     return (
         <section className="flex justify-center gap-6 bg-bg-gray p-10 s_lg:rounded-[0px] rounded-9 min-h-[calc(100vh-90px)] lg:flex-col relative mx-auto max-w-[1400px] w-full overflow-hidden">
-            <div className="flex flex-col gap-6 w-[35%] lg:w-full h-[calc(100vh-172px)] relative">
-                <BasePrimaryCard title="TRAKERstart" className="min-h-[calc(50%-12px)] justify-between">
-                    <ul className="flex flex-col gap-3 list-disc px-3">
-                        <li className="w-full pb-3 text-15_600 border-b-[0.5px] border-black">
-                            ОНБОРДИНГ самой эффективной формы трекеринга личного прогресса и Баланса
-                        </li>
-                        <li className="w-full pb-3 text-15_600 border-b-[0.5px] border-black">
-                            Курс по эффективному тайм-менеджменту
-                        </li>
-                        <li className="w-full pb-3 text-15_600 border-b-[0.5px] border-black">
-                            Личная умная визитка на платформе Bcard’s
-                        </li>
-                    </ul>
-
-                    <div className="flex cursor-pointer hover:opacity-80" onClick={handleSubscribe}>
-                        <BaseSecondaryCard>
-                            <div className="flex flex-col gap-2">
-                                <p className="text-13_500 text-white">Навсегда</p>
-                                <div className="flex gap-2">
-                                    <ScratchedTitle title="390р. " className="text-heading-s text-white" />
-                                    <p className="text-heading-s text-white">Free</p>
-                                </div>
-                            </div>
-                        </BaseSecondaryCard>
-                    </div>
-                </BasePrimaryCard>
-
-                <BasePrimaryCard title="TRAKERbot" className="min-h-[calc(50%-12px)] justify-between">
-                    <ul className="flex flex-col gap-3 list-disc px-3">
-                        <li className="w-full pb-3 text-15_600">
-                            Автоматический TRAKER-бот с RECомендациями от AI и экспертов
-                        </li>
-                    </ul>
-
-                    <div className="flex cursor-pointer hover:opacity-80" onClick={handleSubscribe}>
-                        <BaseSecondaryCard>
-                            <div className="flex flex-col gap-2">
-                                <p className="text-13_500 text-white">Навсегда</p>
-                                <div className="flex gap-2">
-                                    <ScratchedTitle title="390р. " className="text-heading-s text-white" />
-                                    <p className="text-heading-s text-white">90р.</p>
-                                </div>
-                            </div>
-                        </BaseSecondaryCard>
-                    </div>
-                </BasePrimaryCard>
-            </div>
-
             <div className="w-[35%] lg:w-full h-[calc(100vh-172px)]">
                 <BasePrimaryCard title="smarTraker" className="min-h-[50%] justify-between">
                     <ul className="flex flex-col gap-3 list-disc px-3">

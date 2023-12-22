@@ -3,10 +3,9 @@
 import ProtectedRoute from "@/components/common/protectedRoute";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
-import {checkUserAuth, getUserPersonalData} from "@/store/thunks/userThunk";
-import { getUserWheelData } from "@/store/thunks/WheelThunk";
-import BalancePage from "@/components/pages/balancePage";
+import {checkUserAuth} from "@/store/thunks/userThunk";
 import Header from "@/components/common/header";
+import CheckoutPage from "@/components/pages/checkout";
 
 export default function Balance() {
     // @ts-ignore
@@ -32,10 +31,11 @@ export default function Balance() {
         }
     }, [isUserAuth]);
 
+
     return (
         <ProtectedRoute>
             <Header />
-            <BalancePage />
+            <CheckoutPage />
         </ProtectedRoute>
     )
 }

@@ -4,7 +4,6 @@ import { WebGraph } from "@/components/common/WEB/webGraph";
 import ListOfChatMessages from "@/components/common/fields/mainField/ListOfChatMessages";
 import TRIcon from "@/components/common/icon";
 import ChatTextField from "@/components/common/textFields/ChatTextField";
-import { setSetBalance } from "@/store/reducers/balanceWheelReducer";
 import Image from "next/image";
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
@@ -17,9 +16,6 @@ export type TChatWith = "psychologist" | "coach";
 
 function BalanceWebPage({ balanceData }: any) {
     const dispatch = useDispatch();
-    const handleOpenSliders = () => {
-        dispatch(setSetBalance(false))
-    }
 
     const [chatWith, setChatWith] = useState<TChatWith>('psychologist');
     const [messages, setMessages] = useState<null | []>(null)
@@ -110,7 +106,7 @@ function BalanceWebPage({ balanceData }: any) {
             // onClick={handleOpenSliders}
             className="w-full h-[calc(100%-90px)] bg-bg-gray flex justify-center items-center">
             <div className="flex sx_lg:flex-col w-full sx_lg:h-auto justify-center sx_lg:items-center gap-10 h-[600px] sx_lg:w-[600px] md:px-6">
-                <div className="bg-white rounded-6 h-[700px] md:h-[450px] w-[600px] md:w-full flex flex-col p-6">
+                <div className="bg-white rounded-6 h-[724px] md:h-[450px] w-[600px] md:w-full flex flex-col p-6">
                     <div>
                         <div className="flex flex-col items-center px-6">
                             <div className="flex items-center gap-2">
@@ -126,12 +122,17 @@ function BalanceWebPage({ balanceData }: any) {
                         </div>
                     </div>
 
-                    <div className="flex flex-col w-full h-[750px] md:h-[450px] minn:h-[300px] justify-center items-center">
+                    <div className="flex flex-col w-full h-[724px] pb-6 box-border md:h-[450px] minn:h-[300px] justify-center items-center">
                         <WebGraph balanceData={balanceData} />
+                        <PrimaryButton
+                            text={'Пройти чекап заново'}
+                            onClick={() => handleChangeChat('coach')}
+                            active={chatWith === 'coach'}
+                        />
                     </div>
                 </div>
 
-                <div className="w-[350px] sx_lg:w-full h-[700px] md:w-full sx_lg:min-h-[350px] sx_lg:max-h-[350px] bg-white rounded-6">
+                <div className="w-[350px] sx_lg:w-full h-[724px] md:w-full sx_lg:min-h-[350px] sx_lg:max-h-[350px] bg-white rounded-6">
                     {
                         visible ? (
                             <div className="flex justify-center sx_lg:h-[350px] items-center w-full h-full">
@@ -140,7 +141,7 @@ function BalanceWebPage({ balanceData }: any) {
                         ) : (
                             <div className="w-[400px] h-full">
                                 <div className={classNames(
-                                    "flex w-full h-[700px] relative flex-col px-2 pb-10 rounded-6 bg-white overflow-hidden",
+                                    "flex w-full h-[724px] relative flex-col px-2 pb-10 rounded-6 bg-white overflow-hidden",
                                     ""
                                 )}>
                                     <div className="flex gap-4 w-full p-4">
