@@ -5,7 +5,7 @@ export const getEnableChatsData = () => (dispatch: any) => {
         adminApi
             .getEnableChatsApi()
             .then((res) => {
-                console.log(res);
+                // console.log(res);
             })
             .catch(() => {})
     } catch (e) {

@@ -1,3 +1,6 @@
+import {storage} from "@/utils/localStorage";
+import {TOKEN} from "@/consts/profile";
+
 export const normDate = (d: string) => {
     const date = new Date(d);
     let newMinutes;
@@ -11,4 +14,12 @@ export const normDate = (d: string) => {
     }
 
     return (hours + ":" + newMinutes);
+}
+
+export function getLinkOnChatWithCoach() {
+    return String(process.env.WEBSOCKET_COACHING) + storage.get(TOKEN) ?? '';
+}
+
+export function getLinkOnChatWithPsychologist() {
+    return String(process.env.WEBSOCKET_PSYCHOLOGIST) + storage.get(TOKEN) ?? '';
 }

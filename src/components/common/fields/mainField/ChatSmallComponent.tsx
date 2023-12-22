@@ -5,8 +5,8 @@ import Image from "next/image";
 import ChatTextField from "../../textFields/ChatTextField";
 import classNames from "classnames";
 import TRIcon from "@/components/common/icon";
-import {storage} from "@/utils/localStorage";
-import {TOKEN} from "@/consts/profile";
+import { storage } from "@/utils/localStorage";
+import { TOKEN } from "@/consts/profile";
 import ListOfChatMessages from "@/components/common/fields/mainField/ListOfChatMessages";
 import CardHeader from "@/components/common/header/CardHeader";
 
@@ -48,7 +48,8 @@ export default function ChatSmallComponent() {
 
     const sendMessage = () => {
         if (websocket) {
-            websocket.send(JSON.stringify({'message': userMessage}))
+            websocket.send(JSON.stringify({ 'message': userMessage }))
+
             setUserMessage('')
         }
     }

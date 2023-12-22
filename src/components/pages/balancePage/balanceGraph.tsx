@@ -2,72 +2,27 @@
 
 import { WebGraph } from "@/components/common/WEB/webGraph";
 import ListOfChatMessages from "@/components/common/fields/mainField/ListOfChatMessages";
-import CardHeader from "@/components/common/header/CardHeader";
 import TRIcon from "@/components/common/icon";
-import { TSliderBalance } from "@/components/common/slider/SliderBalance";
 import ChatTextField from "@/components/common/textFields/ChatTextField";
-import { TOKEN } from "@/consts/profile";
 import { setSetBalance } from "@/store/reducers/balanceWheelReducer";
-import { storage } from "@/utils/localStorage";
-import { createTheme } from '@mui/material/styles';
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch } from "react-redux";
-import {getEnableChatsData} from "@/store/thunks/adminThunk";
+import { getEnableChatsData } from "@/store/thunks/adminThunk";
+import classNames from "classnames";
+import PrimaryButton from "@/components/common/buttons/primary";
+import {getLinkOnChatWithCoach, getLinkOnChatWithPsychologist} from "@/utils/chat";
 
-const theme = createTheme({
-    palette: {
-        primary: {
-            main: "#E12131",
-        },
-        secondary: {
-            main: '#FEA310',
-        },
-    },
-});
+export type TChatWith = "psychologist" | "coach";
 
-const BALANCE: TSliderBalance[] = [
-    {
-        name: "Саморазвитие",
-        image: '/balance/education.svg'
-    },
-    {
-        name: "Отношения",
-        image: '/balance/education.svg'
-    },
-    {
-        name: "Карьера",
-        image: '/balance/education.svg'
-    },
-    {
-        name: "Отдых",
-        image: '/balance/education.svg'
-    },
-    {
-        name: "Окружение",
-        image: '/balance/education.svg'
-    },
-    {
-        name: "Доходы",
-        image: '/balance/education.svg'
-    },
-    {
-        name: "Творчество",
-        image: '/balance/education.svg'
-    },
-    {
-        name: "Здоровье",
-        image: '/balance/education.svg'
-    }
-]
-
-export default function BalanceWebPage({ balanceData }: any) {
+function BalanceWebPage({ balanceData }: any) {
     const dispatch = useDispatch();
     const handleOpenSliders = () => {
         dispatch(setSetBalance(false))
     }
 
-    const [messages, setMessages] = useState<any>([])
+    const [chatWith, setChatWith] = useState<TChatWith>('psychologist');
+    const [messages, setMessages] = useState<null | []>(null)
     const [userMessage, setUserMessage] = useState<string>('')
     const messagesContainerRef = useRef<HTMLDivElement>(null);
     const [websocket, setWebsocket] = useState<WebSocket | null>(null);
@@ -76,11 +31,12 @@ export default function BalanceWebPage({ balanceData }: any) {
     useEffect(() => {
         // @ts-ignore
         dispatch(getEnableChatsData());
-    }, [])
+    }, []);
 
     useEffect(() => {
-        setWebsocket(new WebSocket(String(process.env.WEBSOCKET_COACHING) + storage.get(TOKEN) ?? ''))
-        if (messages.length !== 0) setVisible(false)
+        setWebsocket(new WebSocket(getLinkOnChatWithPsychologist()))
+
+        if (messages) setVisible(false)
 
         return () => {
             if (websocket) {
@@ -98,25 +54,55 @@ export default function BalanceWebPage({ balanceData }: any) {
             }
         }
 
-        if (messages.length !== 0) setVisible(false)
+        if (messages) setVisible(false)
     }, [websocket, messages]);
+
+    useEffect(() => {
+        if (websocket && balanceData) {
+            // При первом запуске отправляем данные life balance пользователя
+            // websocket.send(JSON.stringify({
+            //     "self_development": 9,
+            //     "relationship": 6,
+            //     "career": 9,
+            //     "rest": 5,
+            //     "environment": 8,
+            //     "income": 3,
+            //     "creation": 8,
+            //     "health": 4
+            // }))
+        }
+    }, [websocket, balanceData]);
 
     const sendMessage = () => {
         if (websocket) {
-            websocket.send(JSON.stringify({ 'message': userMessage }))
+            websocket.send(JSON.stringify({ 'message': userMessage }));
+
             setUserMessage('')
         }
     }
 
     function handleGetMessage(message: MessageEvent<any>) {
         const newMessages = JSON.parse(message.data);
-        //@ts-ignore
-        setMessages((prev): any => {
-            if (newMessages[0]?.text !== prev[0]?.text)
-                return [...newMessages, ...prev];
+        setMessages((prev: any): any => {
+            if (newMessages[0]?.text !== (prev ?? [])[0]?.text)
+                return [...newMessages, ...(prev ?? [])];
 
-            return [...prev];
+            return [...(prev ?? [])];
         })
+    }
+
+    function handleChangeChat(chatWithValue: TChatWith) {
+        if (chatWithValue === 'psychologist' && chatWith !== chatWithValue) {
+            setChatWith(chatWithValue);
+            setMessages([]);
+            setVisible(false);
+            setWebsocket(new WebSocket(getLinkOnChatWithPsychologist()));
+        } else if (chatWithValue === 'coach' && chatWith !== chatWithValue) {
+            setChatWith(chatWithValue);
+            setMessages([]);
+            setVisible(false);
+            setWebsocket(new WebSocket(getLinkOnChatWithCoach()));
+        }
     }
 
     return (
@@ -143,20 +129,37 @@ export default function BalanceWebPage({ balanceData }: any) {
                     <div className="flex flex-col w-full h-[750px] md:h-[450px] minn:h-[300px] justify-center items-center">
                         <WebGraph balanceData={balanceData} />
                     </div>
-
                 </div>
 
                 <div className="w-[350px] sx_lg:w-full h-[700px] md:w-full sx_lg:min-h-[350px] sx_lg:max-h-[350px] bg-white rounded-6">
                     {
-                        visible
-                            ? <div className="flex justify-center sx_lg:h-[350px] items-center w-full h-full">
+                        visible ? (
+                            <div className="flex justify-center sx_lg:h-[350px] items-center w-full h-full">
                                 <TRIcon iconName="loader" edgeLength={48} className="animate-spin" />
                             </div>
-                            : <div className="w-[400px] h-full">
-                                <div className="flex w-full h-[700px] flex-col px-2 pb-10 lg:pb-5 sx_lg:h-[350px] rounded-6 bg-white overflow-hidden">
+                        ) : (
+                            <div className="w-[400px] h-full">
+                                <div className={classNames(
+                                    "flex w-full h-[700px] relative flex-col px-2 pb-10 rounded-6 bg-white overflow-hidden",
+                                    ""
+                                )}>
+                                    <div className="flex gap-4 w-full p-4">
+                                        <PrimaryButton
+                                            className={'text-text-s'}
+                                            text={'Чат с психологом'}
+                                            onClick={() => (handleChangeChat('psychologist'))}
+                                            active={chatWith === 'psychologist'}
+                                        />
+                                        <PrimaryButton
+                                            className={'text-text-s'}
+                                            text={'Чат с коучем'}
+                                            onClick={() => handleChangeChat('coach')}
+                                            active={chatWith === 'coach'}
+                                        />
+                                    </div>
 
-                                    <div className="px-1 overflow-y-scroll flex flex-col-reverse gap-4 scroll-hidden w-full s_lg:gap-2">
-                                        <ListOfChatMessages messages={messages} />
+                                    <div className="h-full w-full overflow-y-scroll flex flex-col-reverse gap-4 scroll-hidden">
+                                        <ListOfChatMessages messages={messages ?? []} />
                                     </div>
 
                                     <div className="rounded-t-3 relative flex pt-6 px-4 h-[50px] bg-white bottom-0">
@@ -165,6 +168,7 @@ export default function BalanceWebPage({ balanceData }: any) {
                                             value={userMessage}
                                             type="text"
                                         />
+
                                         <button onClick={sendMessage} className="pl-2 flex">
                                             <Image
                                                 className="hover:scale-105 active:scale-[1.1] scale-1 duration-300"
@@ -177,6 +181,7 @@ export default function BalanceWebPage({ balanceData }: any) {
                                     </div>
                                 </div>
                             </div>
+                        )
                     }
                 </div>
             </div>
@@ -185,3 +190,5 @@ export default function BalanceWebPage({ balanceData }: any) {
 
     )
 }
+
+export default React.memo(BalanceWebPage);

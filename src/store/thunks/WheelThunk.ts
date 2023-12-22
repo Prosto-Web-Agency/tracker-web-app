@@ -20,7 +20,7 @@ export const updateUserWheelData = (data: {}) => (dispatch: any) => {
         balanceAPI
             .updateWheelData(data)
             .then((res: { data: {} }) => {
-                
+
                 dispatch(setBalanceData(res.data));
                 dispatch(setBalanceDataForSliders(res.data));
                 dispatch(setSetBalance(true))
