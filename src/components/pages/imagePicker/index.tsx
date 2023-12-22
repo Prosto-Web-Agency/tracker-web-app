@@ -1,10 +1,16 @@
 'use client'
 
-import React from 'react';
+import React, {useEffect} from 'react';
 import ImageUploading, { type ImageListType } from 'react-images-uploading';
 import Image from "next/image";
 
-export default function ImagePicker({ onSetImage, profileImage}: { onSetImage: (image: File) => void, profileImage?: string | File }) {
+export default function ImagePicker({
+    onSetImage,
+    profileImage
+}: {
+    onSetImage: (image: File) => void,
+    profileImage?: string | File
+}) {
     const [image, setImage] = React.useState<{
         url: string | null,
         imageFile: string | File
@@ -25,6 +31,12 @@ export default function ImagePicker({ onSetImage, profileImage}: { onSetImage: (
             });
         }
     };
+
+    useEffect(() => {
+        if (profileImage === '') {
+            setImage({ url: '', imageFile: '' });
+        }
+    }, [profileImage])
 
     return (
         <div className="w-full h-full relative">

@@ -74,7 +74,7 @@ export default function SearchUsers() {
             {
                 text === ""
                     ? null
-                    : <div className="flex flex-col gap-2 bg-white rounded-4 mt-6 p-6 min-h-[100px] max-h-[240px] w-full absolute">
+                    : <div className="flex flex-col gap-2 bg-white rounded-4 shadow-primary mt-4 p-6 min-h-[100px] max-h-[240px] w-full absolute">
                         {
                             searchUsers.map(({
                                 first_name,

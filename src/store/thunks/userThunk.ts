@@ -47,7 +47,7 @@ export const getUserPersonalData = () => (dispatch: any) => {
 }
 
 export const editUserDataFetch = (data: TUserData) => (dispatch: any) => {
-    userApi
+    return userApi
         .editUserPersonalDataApi(data)
         .then((res: TUserData | null) => {
             dispatch(editUserData(res));
@@ -63,7 +63,7 @@ export const setUserSubscriptionPaymentFetch = (data: boolean) => (dispatch: any
 }
 
 export const editUserImageFetch = (data: { profile_image: File | null }) => (dispatch: any) => {
-    userApi
+    return userApi
         .uploadUserImage(data)
         .then((res) => {
             if (res) {

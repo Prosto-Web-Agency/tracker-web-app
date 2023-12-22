@@ -2,18 +2,17 @@
 
 import React, { useEffect, useState } from 'react';
 import TRTextField from "@/components/common/textFields/TRTextField";
-import Image from "next/image";
 import ImagePicker from "../../imagePicker";
 import SecondaryButton from "@/components/common/buttons/secondary";
 import PrimaryButton from "@/components/common/buttons/primary";
 import Link from 'next/link';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from "classnames";
-import { editUserDataFetch, editUserImageFetch } from "@/store/thunks/userThunk";
+import {editUserDataFetch, editUserImageFetch, getUserPersonalData} from "@/store/thunks/userThunk";
 import TRIcon from "@/components/common/icon";
 import type { TUserDataState } from "@/store/reducers/userReducer";
-import { compressImage } from "@/utils/compressImage";
 import {useRouter} from "next/navigation";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 export default function EditProfilePage() {
     const router = useRouter();
@@ -28,6 +27,7 @@ export default function EditProfilePage() {
     const [telegram, setTelegram] = useState<string>('')
     const [inst, setInst] = useState<string>('')
     const [imageFile, setImage] = useState<string | File>('');
+    const [isDataSaved, setDataSaved] = useState(false);
 
     useEffect(() => {
         if (userData) {
@@ -38,6 +38,18 @@ export default function EditProfilePage() {
             setImage(userData.image_url ?? '');
         }
     }, [userData]);
+
+    function removeImage(event: any) {
+        event.stopPropagation();
+        setImage('');
+
+        // @ts-ignore
+        dispatch(editUserImageFetch({ profile_image: imageFile ?? null }))
+            .then(() => {
+                // @ts-ignore
+                dispatch(getUserPersonalData());
+            });
+    }
 
     async function handleSendRequest() {
         if (
@@ -53,14 +65,22 @@ export default function EditProfilePage() {
                 tg_username: telegram,
                 instagram: inst,
                 is_anon: false
-                    //@ts-ignore
             }))
-
-            setTimeout(() => router.push('/profile'), 200);
+                .then(() => {
+                    setDataSaved(true);
+                    setTimeout(() => setDataSaved(false), 2000);
+                    // @ts-ignore
+                    dispatch(getUserPersonalData());
+                });
         } else if (imageFile !== userData?.image_url) {
-            // todo: переписать ручку
             // @ts-ignore
-            dispatch(editUserImageFetch({ profile_image: imageFile ?? null }));
+            dispatch(editUserImageFetch({ profile_image: imageFile ?? null }))
+                .then(() => {
+                    setDataSaved(true);
+                    setTimeout(() => setDataSaved(false), 2000);
+                    // @ts-ignore
+                    dispatch(getUserPersonalData());
+                });
         } else if (!nameError) {
             setNameError(true);
             setTimeout(() => setNameError(false), 1000);
@@ -69,19 +89,28 @@ export default function EditProfilePage() {
 
     return (
 
-        <div className="bg-white rounded-6 w-[588px] h-[441px] flex s_lg:bg-bg-gray s_lg:flex-col s_lg:w-full s_lg:h-full s_lg:p-6">
-            <div className="w-[282px] h-[440px] bg-bg-gray border-4 border-white border-solid box-border rounded-4">
+        <div className="bg-white rounded-6 relative w-[588px] h-[441px] flex s_lg:bg-bg-gray s_lg:flex-col s_lg:w-full s_lg:h-full s_lg:p-6">
+            <div className="w-[282px] h-[440px] bg-bg-gray border-4 border-white border-solid box-border rounded-4 relative">
                 {
                     userData ? (
                         <>
                             {
-                                <ImagePicker
-                                    profileImage={userData.image_url ?? ''}
-                                    onSetImage={(uploadedImage) => {
-                                        setImage(uploadedImage)
-                                    }}
-                                />
+                                userData.image_url ? (
+                                    <div
+                                        onClick={removeImage}
+                                        className="absolute z-10 right-2 top-2 cursor-pointer"
+                                    >
+                                        <DeleteIcon sx={{ color: 'white' }} fontSize="large" />
+                                    </div>
+                                ) : null
                             }
+
+                            <ImagePicker
+                                profileImage={userData.image_url ?? ''}
+                                onSetImage={(uploadedImage) => {
+                                    setImage(uploadedImage)
+                                }}
+                            />
                         </>
                     ) : (
                         <div className="flex w-[282px] h-[440px] border-4 border-white border-solid bg-bg-gray rounded-4 justify-center items-center">
@@ -108,6 +137,7 @@ export default function EditProfilePage() {
                     value={surname}
                     onChange={(surname) => setSurname(surname)}
                 />
+
                 <TRTextField
                     type="text"
                     placeholder="Ник телеграм"
@@ -118,6 +148,7 @@ export default function EditProfilePage() {
                         else setTelegram(tg);
                     }}
                 />
+
                 <TRTextField
                     type="text"
                     placeholder="Ник Инстаграм"
@@ -140,6 +171,16 @@ export default function EditProfilePage() {
                         onClick={() => { }}
                     />
                 </Link>
+            </div>
+
+            <div
+                className={classNames(
+                    "transition absolute -top-15 left-1/2 translate-x-[-50%] z-20 text-[#31BF1A] bg-[#E0EADC] px-6 py-2 rounded-4", {
+                        ['opacity-90']: isDataSaved,
+                        ['opacity-0']: !isDataSaved
+                    }
+                )}>
+                сохранено
             </div>
         </div>
     )

@@ -46,8 +46,23 @@ export default function ChatSmallComponent() {
         }
     }, [websocket, messages]);
 
+    const handleKeyDown = (event: any) => {
+        if (event.key === 'Enter' && fullScreen) {
+            sendMessage();
+        }
+    };
+
+    useEffect(() => {
+        window.addEventListener('keydown', handleKeyDown);
+
+        // Clean up the event listener when the component unmounts
+        return () => {
+            window.removeEventListener('keydown', handleKeyDown);
+        };
+    }, [fullScreen, userMessage]);
+
     const sendMessage = () => {
-        if (websocket) {
+        if (websocket && userMessage) {
             websocket.send(JSON.stringify({ 'message': userMessage }))
 
             setUserMessage('')
