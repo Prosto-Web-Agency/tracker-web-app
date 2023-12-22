@@ -18,7 +18,6 @@ export default function DiagrammsPhoneField() {
                             colors={data.map(() => randomColor())}
                             key={name}
                             name={name}
-                            percents={'50%'}
                             id={'80%'}
                             labels={labels}
                             data={data}
