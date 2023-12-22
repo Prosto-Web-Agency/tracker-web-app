@@ -42,7 +42,7 @@ export default function RanksComponent({ userRank }: TRanksComponent) {
 
     return (
         <div className={classNames(
-            "p-6 h-full max-h-[500px] big_screen_h:h-auto bg-orange-class ss_lg:h-[304px] rounded-4 bg-white overflow-hidden",
+            "p-6 h-full max-h-[600px] big_screen_h:h-auto bg-orange-class ss_lg:h-[304px] rounded-4 bg-white overflow-hidden",
             "md:pt-2"
         )}>
             <h3 className="text-heading-s text-white mt-3 ml-4 s_lg:text-heading-ss-bold pb-2">

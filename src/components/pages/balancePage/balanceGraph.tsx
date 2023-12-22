@@ -79,7 +79,7 @@ export default function BalanceWebPage({ balanceData }: any) {
     }, [])
 
     useEffect(() => {
-        setWebsocket(new WebSocket(String(process.env.WEBSOCKET) + storage.get(TOKEN) ?? ''))
+        setWebsocket(new WebSocket(String(process.env.WEBSOCKET_COACHING) + storage.get(TOKEN) ?? ''))
         if (messages.length !== 0) setVisible(false)
 
         return () => {
