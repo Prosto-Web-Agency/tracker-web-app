@@ -85,7 +85,7 @@ export const setUserData = (data: TUserDataState) => ({ type: SET_USER_DATA, dat
 export const editUserData = (data: TUserData | null) => ({ type: EDIT_USER_DATA, data });
 export const setUserSubscriptionPayment = (data: boolean) => ({ type: SET_USER_SUBSCRIPTION_PAYMENT, data });
 export const setUserSubscriptions = (data: TUserSubscriptionsArray) => ({ type: SET_USER_SUBSCRIPTIONS, data });
-export const setUserPopupData = (data: TUserPopupData) => ({ type: SET_USER_POPUP_DATA, data })
+export const setUserPopupData = (data: TUserPopupData | null) => ({ type: SET_USER_POPUP_DATA, data })
 export const setUserSubscriptionsReports = (data: TUserSubscriptionsReportArray) => ({ type: SET_USER_SUBSCRIPTIONS_REPORTS, data })
 
 

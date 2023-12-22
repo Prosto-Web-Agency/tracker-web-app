@@ -25,17 +25,7 @@ export default function ModalInsight({ first_name, text, open, setModalDataInsig
                     />
                 </div>
 
-                {/*<div className="py-3 flex gap-1 items-center">*/}
-                {/*    <Image*/}
-                {/*        className="rounded-4 h-[27px] w-[27px] object-cover"*/}
-                {/*        height={27}*/}
-                {/*        width={27}*/}
-                {/*        src={'/delete/person.jpeg'}*/}
-                {/*        alt='person'*/}
-                {/*    />*/}
-                {/*</div>*/}
-
-                <p className="h-auto text-text-m h-full max-h-[90%] overflow-y-auto">
+                <p className="h-auto text-text-m max-h-[90%] overflow-y-auto">
                     {text}
                 </p>
             </div>
