@@ -6,16 +6,15 @@ import ListOfInsightCards from "@/components/common/fields/mainField/ListOfInsig
 import NewsField from "@/components/common/fields/mainField/NewsField";
 import RateField from "@/components/common/fields/mainField/RateField";
 import { useEffect } from "react";
-import { getListOfUsersInsights, getListOfTopUsers } from "@/store/thunks/trakerThunk";
+import {getListOfUsersInsights, getListOfTopUsers, getRankUpdateList} from "@/store/thunks/trakerThunk";
 import { useDispatch, useSelector } from "react-redux";
 import SearchUsers from "@/components/common/fields/mainField/SearchUsers";
 import UserSubscriptions from "@/components/common/userSubscription";
 import classNames from "classnames";
-import {useAppSelector} from "@/hooks/store";
+import {useAppDispatch, useAppSelector} from "@/hooks/store";
 
 export default function MainPage() {
     const dispatch = useDispatch();
-
     const { listOfTopUsers, listOfUserInsights } = useAppSelector(state => state.mainPage)
 
     useEffect(() => {

@@ -116,5 +116,5 @@ export const userApi = {
 
                 return null;
             })
-    }
+    },
 }

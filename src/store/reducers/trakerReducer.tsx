@@ -1,4 +1,4 @@
-import type { TUserData, TUserSmallDataArray } from "@/models/userData";
+import type {TRankUpdateList, TUserData, TUserSmallDataArray} from "@/models/userData";
 import type { TInsightCardArray } from "@/models/traker";
 import {TUserSearchData, TUserSearchDataArray} from "@/models/userData";
 
@@ -7,6 +7,7 @@ const SET_LIST_OF_TOP_USES = 'SET_LIST_OF_TOP_USES';
 const SET_SELECTED_USER_DATA = 'SET_SELECTED_USER_DATA';
 const SET_SEARCH_USERS = 'SET_SEARCH_USERS';
 const SET_NEWS_DATA = 'SET_NEWS_DATA';
+const SET_RANK_UPDATE_LIST = 'SET_RANK_UPDATE_LIST';
 
 type TTracker = {
     listOfTopUsers: TUserSmallDataArray | null,
@@ -18,6 +19,7 @@ type TTracker = {
     main_live_chat_flood: object[];
     selectedUserData: TUserData | object;
     searchUsers: TUserSearchDataArray;
+    rankUpdateList?: TRankUpdateList;
 }
 
 const initialState: TTracker = {
@@ -30,6 +32,7 @@ const initialState: TTracker = {
     main_live_chat_flood: [],
     selectedUserData: {},
     searchUsers: [],
+    rankUpdateList: undefined,
 };
 
 const TrakerReducer = (state = initialState, action: any) => {
@@ -59,6 +62,11 @@ const TrakerReducer = (state = initialState, action: any) => {
                 ...state,
                 listOfNews: action.data
             }
+        case SET_RANK_UPDATE_LIST:
+            return {
+                ...state,
+                rankUpdateList: action.data
+            }
         default:
             return state
     }
@@ -69,5 +77,6 @@ export const setListOfTopUsers = (data: TUserSmallDataArray) => ({ type: SET_LIS
 export const setSelectedUserData = (data: TUserData | object) => ({ type: SET_SELECTED_USER_DATA, data })
 export const setSearchUsersData = (data: TUserSearchDataArray) => ({ type: SET_SEARCH_USERS, data })
 export const setNewsData = (data: any) => ({ type: SET_NEWS_DATA, data })
+export const setRankUpdateList = (data: TRankUpdateList) => ({type: SET_RANK_UPDATE_LIST, data})
 
 export default TrakerReducer;

@@ -60,3 +60,17 @@ export type TUserSubscriptionsReport = {
 }
 
 export type TUserSubscriptionsReportArray = TUserSubscriptionsReport[];
+
+export type TRankUpdateList = {
+    count: number;
+    next: string | null;
+    previous: string | null;
+    results: {
+        login: string | null;
+        first_name: string | null;
+        surname: string | null;
+        rank_name: string | null;
+        date_field: string | null;
+        image_url: string | null;
+    }[]
+}

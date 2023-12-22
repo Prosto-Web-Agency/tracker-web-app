@@ -1,10 +1,25 @@
 import SwiperComponent from "@/components/common/swiper";
-import { useState } from "react";
+import {useEffect, useState} from "react";
 import classNames from "classnames";
 import { RANKS_TOP_USER } from "@/consts/ranks";
+import {useAppSelector} from "@/hooks/store";
+import {TRankUpdateList} from "@/models/userData";
+import {getRankUpdateList} from "@/store/thunks/trakerThunk";
+import {useDispatch} from "react-redux";
 
 export default function RanksTopUser() {
+    const dispatch = useDispatch();
     const [hover, setHover] = useState(false);
+    const rankUpdateList: TRankUpdateList['results'] | undefined = useAppSelector(state => state.mainPage?.rankUpdateList);
+
+    useEffect(() => {
+        //@ts-ignore
+        dispatch(getRankUpdateList());
+    }, []);
+
+    useEffect(() => {
+        console.log('rankUpdateList', rankUpdateList);
+    }, [rankUpdateList]);
 
     return (
         <div
@@ -33,7 +48,11 @@ export default function RanksTopUser() {
             />
 
             <SwiperComponent
-                swiperCards={RANKS_TOP_USER}
+                swiperCards={rankUpdateList?.map(update => ({
+                    image: update.image_url,
+                    name: update.first_name + ' ' + (update.surname ?? ''),
+                    achieveName: update.rank_name,
+                })) ?? []}
                 cardType="achievement"
             />
         </div>

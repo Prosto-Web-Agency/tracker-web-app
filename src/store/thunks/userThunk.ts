@@ -17,6 +17,7 @@ import type {
 } from "@/models/userData";
 import { storage } from "@/utils/localStorage";
 import { SUBSCRIPTION } from "@/consts/profile";
+import {TRankUpdateList} from "@/models/userData";
 
 export const checkUserAuth = () => (dispatch: any) => {
     userApi
@@ -129,14 +130,14 @@ export const subscribeOnUserByLogin = (streamer_login: string) => (dispatch: any
 export const unsubscribeOnUserByLogin = (streamer_login: string) => (dispatch: any) => {
     try {
         return userApi
-            .unsubscribeOnUserByLogin({ streamer_login })
+            .unsubscribeOnUserByLogin({streamer_login})
             .then((res: any) => {
                 dispatch(getUserSubscriptionsReportsData());
                 dispatch(getUserSubscriptionsData());
             })
-            .catch(() => {})
+            .catch(() => {
+            })
     } catch (e) {
         console.error('error ', e);
     }
 }
-
