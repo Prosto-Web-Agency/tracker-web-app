@@ -1,13 +1,14 @@
 import Image from "next/image"
 import PrimaryButton from "../buttons/primary"
 import Link from "next/link";
-import {TUserDataState} from "@/store/reducers/userReducer";
+import {setUserPopupData, TUserDataState} from "@/store/reducers/userReducer";
 import {useDispatch, useSelector} from "react-redux";
 import {TUserPopupData} from "@/models/userData";
 import TRIcon from "@/components/common/icon";
 import React, {useEffect} from "react";
 import {getListOfTopUsers, getListOfUsersInsights, getSearchUsersThunk} from "@/store/thunks/trakerThunk";
 import {getUserPopupData, subscribeOnUserByLogin} from "@/store/thunks/userThunk";
+import {handleGetUserLink} from "@/utils/getUserLinks";
 
 interface IModalUser {
     position: number;
@@ -32,13 +33,18 @@ export default function ModalUser({
     }, [dispatch]);
 
     function handleSubscribeOnUser(login: string) {
-            //@ts-ignore
-            dispatch(subscribeOnUserByLogin(login))
+        //@ts-ignore
+        dispatch(subscribeOnUserByLogin(login))
+    }
+
+    function handleCloseModal() {
+        dispatch(setUserPopupData(null));
+        setModalData({ position: 0, open: false, login: '' })
     }
 
     return (
         <div
-            onClick={() => setModalData({ position: 0, open: false, login: '' })}
+            onClick={handleCloseModal}
             className={`p-10 w-screen h-screen bg-tr04 z-[100] backdrop-blur-sm fixed top-0 left-0 ${open ? 'flex' : 'hidden'} justify-center items-center`}
             >
             <div
@@ -55,7 +61,7 @@ export default function ModalUser({
 
                                 <div onClick={() => setModalData({ position: 0, open: false, login: '' })}>
                                     <Image
-                                        className="w-[24px] h-[24px] object-cover"
+                                        className="w-[24px] h-[24px] object-cover cursor-pointer"
                                         height={27}
                                         width={27}
                                         src={'/close.svg'}
@@ -94,7 +100,7 @@ export default function ModalUser({
                                         <div className="flex gap-2 pt-3">
                                             {
                                                 userPopupData?.tg_username ? (
-                                                    <Link href={`https://t.me/${userPopupData?.tg_username}`}>
+                                                    <Link href={handleGetUserLink(userPopupData?.instagram, 'tg')}>
                                                         <PrimaryButton
                                                             text=""
                                                             edgeLength={32}
@@ -108,7 +114,7 @@ export default function ModalUser({
 
                                             {
                                                 userPopupData?.tg_username ? (
-                                                    <Link href={`https://t.me/${userPopupData?.instagram}`}>
+                                                    <Link href={handleGetUserLink(userPopupData?.instagram, 'inst')}>
                                                         <PrimaryButton
                                                             text=""
                                                             edgeLength={32}
