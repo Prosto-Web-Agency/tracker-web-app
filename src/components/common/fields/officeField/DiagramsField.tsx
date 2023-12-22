@@ -1,14 +1,10 @@
 'use client'
 
 import { DoughnutChart } from "../../diagrams/DoughnutChart";
-import React, { useEffect} from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getMetrics } from "@/store/thunks/officeThunk";
+import React from "react";
 import TRIcon from "@/components/common/icon";
-import { CHART_COLORS, MOCKS_CHARTS } from "@/consts/chart";
-import {TChart} from "@/store/reducers/OfficeReducer";
 import {TDiagram, TUserDiagrams} from "@/models/charts";
-import randomColor from "@/utils/randColor";
+import {CHART_COLORS} from "@/consts/chart";
 
 export default function DiagramsFieldOffice({ diagrams }: { diagrams: TUserDiagrams }) {
 
@@ -28,7 +24,7 @@ export default function DiagramsFieldOffice({ diagrams }: { diagrams: TUserDiagr
                                     .map((diagram: TDiagram, index) => (
                                     <DoughnutChart
                                         key={index + 'diagrams'}
-                                        colors={diagram.dots.map(() => randomColor())}
+                                        colors={CHART_COLORS}
                                         name={'Занятость по проектам'}
                                         percents={'50%'}
                                         id={'80%'}

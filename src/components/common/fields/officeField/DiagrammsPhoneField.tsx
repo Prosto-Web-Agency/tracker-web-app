@@ -1,7 +1,7 @@
 'use client'
 
 import { DoughnutChart } from "../../diagrams/DoughnutChart";
-import { CHART_COLORS, MOCKS_CHARTS } from "@/consts/chart";
+import { MOCKS_CHARTS } from "@/consts/chart";
 import React from "react";
 import randomColor from "@/utils/randColor";
 

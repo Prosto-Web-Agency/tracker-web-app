@@ -36,7 +36,7 @@ export default function MetricsComponent({ metrics }: { metrics: TMetrics }) {
                 </div>
                 <div className="relative">
                     <p className="absolute left-2 z-10 pt-2 text-text-m-bold text-white">
-                        all_time_report
+                        Время потраченное на life balance
                     </p>
 
                     <BorderLinearProgress
@@ -46,7 +46,7 @@ export default function MetricsComponent({ metrics }: { metrics: TMetrics }) {
                 </div>
                 <div className="relative">
                     <p className="absolute left-2 z-10 pt-2 text-text-m-bold text-white">
-                        report_streak
+                        Серия отчетов
                     </p>
 
                     <BorderLinearProgress
@@ -56,7 +56,7 @@ export default function MetricsComponent({ metrics }: { metrics: TMetrics }) {
                 </div>
                 <div className="relative">
                     <p className="absolute left-2 z-10 pt-2 text-text-m-bold text-white">
-                        Количество отчетов
+                        Количество написанных отчетов
                     </p>
 
                     <BorderLinearProgress

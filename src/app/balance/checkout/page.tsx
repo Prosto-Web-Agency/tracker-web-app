@@ -1,9 +1,9 @@
 'use client'
 
 import ProtectedRoute from "@/components/common/protectedRoute";
-import {useDispatch, useSelector} from "react-redux";
-import {useEffect} from "react";
-import {checkUserAuth} from "@/store/thunks/userThunk";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { checkUserAuth } from "@/store/thunks/userThunk";
 import Header from "@/components/common/header";
 import CheckoutPage from "@/components/pages/checkout";
 
