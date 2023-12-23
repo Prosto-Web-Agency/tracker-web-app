@@ -11,7 +11,9 @@ export enum Ranks {
     ambassador = 'Амбассадор',
     expert = 'Эксперт',
     headliner = 'Хедлайнер',
-    resident = 'Резидент'
+    resident = 'Резидент',
+    "new" = 'Участник',
+    empty = 'Новичок'
 }
 
 type RankComponentProps = {
@@ -32,25 +34,19 @@ export default function RankComponent({ rank, onClick, active }: RankComponentPr
             )}
             onClick={onClick}
         >
-            {
-                (rank !== 'new' && rank !== 'empty') ? (
-                    <>
-                        <div className="absolute left-2">
-                            <TRIcon
-                                iconName={rank}
-                                edgeLength={isMobile ? 40 : 68}
-                            />
-                        </div>
+            <div className="absolute left-2">
+                <TRIcon
+                    iconName={rank}
+                    edgeLength={isMobile ? 40 : 68}
+                />
+            </div>
 
-                        <h4 className={classNames(
-                            "text-heading-s text-black",
-                            "md:text-text-s"
-                        )}>
-                            { Ranks[rank] }
-                        </h4>
-                    </>
-                ) : null
-            }
+            <h4 className={classNames(
+                "text-heading-s text-black",
+                "md:text-text-s"
+            )}>
+                { Ranks[rank] }
+            </h4>
         </div>
     )
 }

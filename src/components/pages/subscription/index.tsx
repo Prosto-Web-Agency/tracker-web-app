@@ -11,6 +11,7 @@ import {TUserCommonData} from "@/models/userData";
 import {storage} from "@/utils/localStorage";
 import {SUBSCRIPTION} from "@/consts/profile";
 import PrimaryButton from "@/components/common/buttons/primary";
+import classNames from "classnames";
 
 export default function SubscriptionPage() {
     const dispatch = useDispatch();
@@ -25,45 +26,61 @@ export default function SubscriptionPage() {
     function handleSubscribe() {
         // @ts-ignore
         dispatch(setUserSubscriptionPaymentFetch(true))
-        setTimeout(() => router.push('/'), 1000);
+        router.push('https://artkysh.payform.ru/?invoice_id=9670cd9e3daa2ac3feb9c4d40dee1830&paylink=1');
+        // setTimeout(() => router.push('/'), 1000);
     }
 
-    // useEffect(() => {
-    //     if (Boolean(storage.get(SUBSCRIPTION)) !== isUserSubscribed) {
-    //         router.push('/');
-    //     }
-    // }, [isUserSubscribed]);
-
     return (
-        <section className="flex justify-center gap-6 bg-bg-gray p-10 s_lg:rounded-[0px] rounded-9 min-h-[calc(100vh-90px)] lg:flex-col relative mx-auto max-w-[1400px] w-full overflow-hidden">
-            <div className="w-[35%] lg:w-full h-[calc(100vh-172px)]">
+        <section className={classNames(
+            "flex justify-center gap-6 bg-bg-gray p-10 s_lg:rounded-[0px] rounded-9 min-h-[calc(100vh-90px)] lg:flex-col relative mx-auto max-w-[1400px] w-full overflow-hidden",
+            "md:px-4 md:pb-[100px]"
+        )}>
+            <div className="w-[35%] lg:w-full min-h-[calc(100vh-172px)]">
                 <BasePrimaryCard title="SMART TRAKER " className="min-h-[50%] justify-between">
                     <ul className="flex flex-col gap-3 list-disc px-3">
-                        <li className="w-full max-w-[80%] mx-auto pb-3 text-15_600">
+                        <li className={classNames(
+                            "w-full max-w-[80%] mx-auto pb-3 text-15_600",
+                            "md:max-w-[90%]"
+                        )}>
                             TRAKER BOT – это удобный в использовании бот в Telegram, который помогает создавать ежедневные отчеты. Систематический трекинг дает анализ действий, результатов и состояния.
                         </li>
-                        <li className="w-full max-w-[80%] mx-auto pb-3 text-15_600">
+                        <li className={classNames(
+                            "w-full max-w-[80%] mx-auto pb-3 text-15_600",
+                            "md:max-w-[90%]"
+                        )}>
                             TRAKER SUPPORT - команда помогающих специалистов предлагает всестороннюю поддержку от практикующих коучей и психологов. Эти специалисты доступны для поддержки в сложных ситуации. Они помогут найти точки роста участникам, предоставляя своевременную и профессиональную помощь
                         </li>
-                        <li className="w-full max-w-[80%] mx-auto pb-3 text-15_600">
+                        <li className={classNames(
+                            "w-full max-w-[80%] mx-auto pb-3 text-15_600",
+                            "md:max-w-[90%]"
+                        )}>
                             Общайтесь с участниками сообщества в чате, изучайте опыт успешных людей, и получайте поддержку широкого круга профессионалов
                         </li>
-                        <li className="w-full max-w-[80%] mx-auto pb-3 text-15_600">
+                        <li className={classNames(
+                            "w-full max-w-[80%] mx-auto pb-3 text-15_600",
+                            "md:max-w-[90%]"
+                        )}>
                             Надежный VPN-сервис без рекламы и технических проблем для безопасного доступа в интернет
                         </li>
                     </ul>
 
-                    <div className="flex cursor-pointer hover:opacity-80" onClick={handleSubscribe}>
+                    <div className="flex hover:opacity-80">
                         <BaseSecondaryCard>
                             <div className="flex flex-col gap-2">
                                 <div className="flex flex-col">
                                     <p className="text-13_500 text-white">Месяц</p>
-                                    <div className="flex gap-14">
+                                    <div className={classNames(
+                                        "flex gap-14",
+                                        "md:gap-4"
+                                    )}>
                                         <ScratchedTitle title="890р. " className="text-heading-s text-white" />
                                         <span className="text-heading-s text-white">
                                             490р.
                                             {'    '}
-                                            <span className="text-text-m-bold">
+                                            <span className={classNames(
+                                                "text-text-m-bold",
+                                                "md:text-text-sm"
+                                            )}>
                                                 до нового года
                                             </span>
                                         </span>
@@ -72,12 +89,18 @@ export default function SubscriptionPage() {
 
                                 <div className="flex flex-col">
                                     <p className="text-13_500 text-white">Год</p>
-                                    <div className="flex gap-14">
+                                    <div className={classNames(
+                                        "flex gap-14",
+                                        "md:gap-4"
+                                    )}>
                                         <ScratchedTitle title="8900р. " className="text-heading-s text-white" />
                                         <span className="text-heading-s text-white">
                                             890р.
                                             {'    '}
-                                            <span className="text-text-m-bold">
+                                            <span className={classNames(
+                                                "text-text-m-bold",
+                                                "md:text-text-sm"
+                                            )}>
                                                 до нового года
                                             </span>
                                         </span>
@@ -87,7 +110,7 @@ export default function SubscriptionPage() {
                         </BaseSecondaryCard>
                     </div>
 
-                    <PrimaryButton text={'Купить'} onClick={() => {}} />
+                    <PrimaryButton text={'Купить'} onClick={handleSubscribe} />
                 </BasePrimaryCard>
             </div>
         </section>

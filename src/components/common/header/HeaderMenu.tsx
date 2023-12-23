@@ -7,6 +7,8 @@ import { TTabs } from ".";
 import Image from "next/image";
 import TRIcon from "@/components/common/icon";
 import React from "react";
+import { useSelector } from "react-redux";
+import type { TUserDataState } from "@/store/reducers/userReducer";
 
 const headerVariants = {
     hidden: {
