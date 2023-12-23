@@ -17,7 +17,7 @@ import type {
 } from "@/models/userData";
 import { storage } from "@/utils/localStorage";
 import { SUBSCRIPTION } from "@/consts/profile";
-import {TRankUpdateList} from "@/models/userData";
+import {getListOfTopUsers, getListOfUsersInsights} from "@/store/thunks/trakerThunk";
 
 export const checkUserAuth = () => (dispatch: any) => {
     userApi
@@ -58,7 +58,13 @@ export const editUserDataFetch = (data: TUserData) => (dispatch: any) => {
 export const setUserSubscriptionPaymentFetch = (data: boolean) => (dispatch: any) => {
     void new Promise(() => {
         dispatch(setUserSubscriptionPayment(data));
-        setTimeout(() => storage.set(SUBSCRIPTION, String(data)),0)
+        setTimeout(() => {
+            storage.set(SUBSCRIPTION, String(data));
+
+            dispatch(getUserPersonalData())
+            dispatch(getListOfUsersInsights())
+            dispatch(getListOfTopUsers())
+        },0)
     })
 }
 

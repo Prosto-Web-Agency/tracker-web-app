@@ -50,7 +50,13 @@ export default function ChatCard({ username, text, created_at, rank, image }: TC
                                         />
                                     ) : (
                                         <div className="flex justify-center items-center w-[32px] h-[32px] rounded-10 bg-bg-gray">
-                                            <TRIcon iconName={'emptyProfile'} edgeLength={15} />
+                                            <Image
+                                                width={32}
+                                                height={32}
+                                                className={'w-[32px] h-[32px] obj-cover rounded-10'}
+                                                src={'/empty-user-icon.jpeg'}
+                                                alt={'empty profile'}
+                                            />
                                         </div>
                                     )
                                 }

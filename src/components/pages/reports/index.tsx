@@ -14,6 +14,7 @@ import SubscriptionCard from "@/components/common/userSubscription/subscriptionC
 import Image from "next/image";
 import SecondaryButton from "@/components/common/buttons/secondary";
 import BaseSecondaryCard from "@/components/common/cards/BaseSecondaryCard";
+import classNames from "classnames";
 
 export default function ReportsPage() {
     const dispatch = useAppDispatch();
@@ -40,8 +41,14 @@ export default function ReportsPage() {
 
 
     return (
-        <section className='w-full max-w-[1400px] mx-auto bg-bg-gray h-[calc(100%-90px)] p-10 rounded-t-9 flex gap-6 s_lg:rounded-t-[0px] s_lg:flex-col'>
-            <div className='flex flex-col gap-4 w-full flex-[33%] max-w-[380px] min-w-[290px] s_lg:max-w-full'>
+        <section className={classNames(
+            'w-full max-w-[1400px] mx-auto bg-bg-gray h-[calc(100%-90px)] p-10 rounded-t-9 flex gap-6',
+            'lg:rounded-t-[0px] lg:flex-col lg:h-auto lg:px-4'
+        )}>
+            <div className={classNames(
+                'flex flex-col gap-4 w-full flex-[33%] max-w-[380px] min-w-[290px]',
+                'lg:max-w-full'
+            )}>
                 <SearchUsers/>
                 <BasePrimaryCard>
                     {
@@ -91,9 +98,13 @@ export default function ReportsPage() {
                     }
                 </BasePrimaryCard>
             </div>
+
             <div className='flex-[67%]'>
                 <BasePrimaryCard>
-                    <div className='p-7 h-full overflow-hidden'>
+                    <div className={classNames(
+                        'p-7 h-full overflow-hidden',
+                        'lg:px-0'
+                    )}>
                         <h3 className="text-heading-ss-bold pb-2">
                             Отчеты
                         </h3>

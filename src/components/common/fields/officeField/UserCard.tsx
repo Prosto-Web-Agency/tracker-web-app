@@ -39,9 +39,15 @@ export default function UserCard({ userData }: TUserCard) {
                                         alt="man"
                                     />
                                 ) : (
-                                    <div className="flex justify-center items-center w-[200px] h-[225px] big_screen_h:h-[calc(40vh-114px)] rounded-6 bg-bg-gray box-border border-4 border-solid border-white">
-                                        <div className="flex justify-center items-center w-[100px] h-[100px] rounded-10 bg-bg-gray">
-                                            <TRIcon iconName={'emptyProfile'} edgeLength={48} />
+                                    <div className="flex justify-center items-center w-[200px] h-[225px] relative big_screen_h:h-[calc(40vh-114px)] rounded-6 bg-bg-gray box-border border-4 border-solid border-gray">
+                                        <div className="flex justify-center items-center w-full h-full rounded-10">
+                                            <Image
+                                                width={200}
+                                                height={225}
+                                                className={'w-full h-full object-cover rounded-6'}
+                                                src={'/empty-user-icon.jpeg'}
+                                                alt={'empty profile'}
+                                            />
                                         </div>
                                     </div>
                                 )

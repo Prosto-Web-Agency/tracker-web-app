@@ -45,7 +45,13 @@ export default function RateCard({
                         />
                     ) : (
                         <div className="flex justify-center items-center w-[36px] h-[36px] rounded-10 bg-bg-gray">
-                            <TRIcon iconName={'emptyProfile'} edgeLength={18} />
+                            <Image
+                                width={36}
+                                height={36}
+                                className={'w-[36px] h-[36px] obj-cover rounded-10'}
+                                src={'/empty-user-icon.jpeg'}
+                                alt={'empty profile'}
+                            />
                         </div>
                     )
                 }

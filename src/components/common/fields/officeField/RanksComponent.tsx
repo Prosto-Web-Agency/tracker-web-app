@@ -51,7 +51,7 @@ export default function RanksComponent({ userRank }: TRanksComponent) {
 
             <div className={classNames(
                 "flex flex-col pt-8 rounded-t-5 w-full h-[500px] pb-12 overflow-y-auto gap-4 scroll-hidden justify-start",
-                "md:px-6 md:pt-2"
+                "md:px-6 md:pt-2 md:h-[260px]"
             )}>
                 <RankComponent active={USER_RANKS.indexOf(userRank) >= USER_RANKS.indexOf("empty")} rank="empty" onClick={() => {}} />
                 <RankComponent active={USER_RANKS.indexOf(userRank) >= USER_RANKS.indexOf("new")} rank="new" onClick={() => {}} />

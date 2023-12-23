@@ -1,4 +1,7 @@
 import Image from "next/image";
+import RankComponent, {Ranks} from "@/components/common/cards/RankComponent";
+import TRIcon from "@/components/common/icon";
+import classNames from "classnames";
 
 export type TAchievCard = {
     image: string
@@ -17,8 +20,20 @@ export default function AchievmentCard({image, name, achieveName}: TAchievCard) 
                 </div>
             </div>
 
-            <div className="bg-white w-full h-[50px] rounded-full text-17_500 flex justify-center items-center px-9">
-                {achieveName}
+            <div className="bg-white relative w-[250px] h-[50px] rounded-full text-17_500 flex justify-center items-center px-9">
+                <div className="absolute left-2">
+                    <TRIcon
+                        iconName={achieveName ?? 'new'}
+                        edgeLength={40}
+                    />
+                </div>
+
+                <h4 className={classNames(
+                    "text-text-m-bold text-black",
+                    "md:text-text-s"
+                )}>
+                    { Ranks[achieveName] }
+                </h4>
             </div>
         </div>
     )

@@ -148,7 +148,13 @@ export default function Header({ title, isUnAuth }: { title?: string, isUnAuth?:
                                             />
                                         ) : (
                                             <div className="flex justify-center items-center w-[48px] h-[48px] rounded-10 bg-bg-gray">
-                                                <TRIcon iconName={'emptyProfile'} />
+                                                <Image
+                                                    width={48}
+                                                    height={48}
+                                                    className={'w-[48px] h-[48px] obj-cover rounded-20'}
+                                                    src={'/empty-user-icon.jpeg'}
+                                                    alt={'empty profile'}
+                                                />
                                             </div>
                                         )
                                     }

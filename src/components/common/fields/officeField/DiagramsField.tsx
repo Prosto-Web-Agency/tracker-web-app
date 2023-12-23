@@ -5,6 +5,7 @@ import React from "react";
 import TRIcon from "@/components/common/icon";
 import {TDiagram, TUserDiagrams} from "@/models/charts";
 import {CHART_COLORS} from "@/consts/chart";
+import classNames from "classnames";
 
 const DIAGRAMS_TITLE = [
     {
@@ -32,7 +33,10 @@ export default function DiagramsFieldOffice({ diagrams }: { diagrams: TUserDiagr
                 Диаграммы отчёта
             </h4>
 
-            <div className="w-full h-[400px] pt-[100px] justify-center items-center flex flex-wrap gap-10 ss_lg:flex-col ss_lg:gap-[100px] ss_lg:py-15">
+            <div className={classNames(
+                "w-full h-[400px] pt-[100px] justify-center items-center flex flex-wrap gap-10",
+                    "lg:flex-col lg:gap-[30px] lg:pt-10"
+                )}>
                 {
                     diagrams ?
                         diagrams.lifeBalance?.data?.length ? (

@@ -1,5 +1,6 @@
 import {TInsightCard} from "@/models/traker";
 import TRIcon from "@/components/common/icon";
+import Image from "next/image";
 
 export type TInsightCardComponent = Omit<TInsightCard, "login" | "is_anon"> & {
     open?: boolean;
@@ -22,7 +23,13 @@ export default function InsightCard({ first_name, text, setModalData, login }: T
                 }}
             >
                 <div className="flex justify-center items-center w-[36px] h-[36px] rounded-10 bg-bg-gray">
-                    <TRIcon iconName={'emptyProfile'} edgeLength={18} />
+                    <Image
+                        width={36}
+                        height={36}
+                        className={'w-[36px] h-[36px] obj-cover rounded-10'}
+                        src={'/empty-user-icon.jpeg'}
+                        alt={'empty profile'}
+                    />
                 </div>
 
                 <h4 className="text-text-m-bold">

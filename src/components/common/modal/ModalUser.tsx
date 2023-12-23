@@ -77,12 +77,18 @@ export default function ModalUser({
                                             className="rounded-[45px] h-[90px] w-[90px] object-cover"
                                             height={90}
                                             width={90}
-                                            src={userPopupData?.image_url}
+                                            src={userPopupData?.image_url ?? ''}
                                             alt='person'
                                         />
                                     ) : (
                                         <div className="flex justify-center items-center w-[90px] h-[90px] rounded-[45px] bg-bg-gray">
-                                            <TRIcon iconName={'emptyProfile'} edgeLength={32} />
+                                            <Image
+                                                width={90}
+                                                height={90}
+                                                className={'w-[90px] h-[90px] obj-cover rounded-10'}
+                                                src={'/empty-user-icon.jpeg'}
+                                                alt={'empty profile'}
+                                            />
                                         </div>
                                     )
                                 }

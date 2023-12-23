@@ -42,6 +42,7 @@ const config: Config = {
       },
       borderColor: {
         orange: 'rgba(255, 100, 51, 1)',
+        gray: '#8E8E93',
         border: 'rgba(31, 31, 31, 0.1)',
         disabled: 'rgba(31, 31, 31, 0.2)',
         'tag-gray': '#8C8C8C',
