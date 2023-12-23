@@ -26,7 +26,7 @@ export default function SubscriptionPage() {
     function handleSubscribe() {
         // @ts-ignore
         dispatch(setUserSubscriptionPaymentFetch(true))
-        router.push('https://artkysh.payform.ru/?invoice_id=9670cd9e3daa2ac3feb9c4d40dee1830&paylink=1');
+        router.push('https://payform.ru/mi3eLnO/');
         // setTimeout(() => router.push('/'), 1000);
     }
 

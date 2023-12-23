@@ -1,12 +1,12 @@
 import Image from "next/image";
-import RankComponent, {Ranks} from "@/components/common/cards/RankComponent";
+import { TRank, Ranks } from "@/components/common/cards/RankComponent";
 import TRIcon from "@/components/common/icon";
 import classNames from "classnames";
 
 export type TAchievCard = {
     image: string
     name: string
-    achieveName: string
+    achieveName: TRank['rank'];
 }
 
 export default function AchievmentCard({image, name, achieveName}: TAchievCard) {
@@ -23,7 +23,7 @@ export default function AchievmentCard({image, name, achieveName}: TAchievCard) 
             <div className="bg-white relative w-[250px] h-[50px] rounded-full text-17_500 flex justify-center items-center px-9">
                 <div className="absolute left-2">
                     <TRIcon
-                        iconName={achieveName ?? 'new'}
+                        iconName={achieveName}
                         edgeLength={40}
                     />
                 </div>

@@ -1,7 +1,7 @@
 import Image from "next/image"
-import {TUserDataState} from "@/store/reducers/userReducer";
+import type { TUserDataState } from "@/store/reducers/userReducer";
 import {useSelector} from "react-redux";
-import {TRank} from "@/components/common/cards/RankComponent";
+import type { TRank } from "@/components/common/cards/RankComponent";
 import TRIcon from "@/components/common/icon";
 
 export type TChatCard = {
