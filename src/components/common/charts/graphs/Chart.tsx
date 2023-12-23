@@ -63,6 +63,7 @@ const options = (color: string, type?: 'chartProductive' | 'chartRelax' | 'chart
   scales: {
     y: {
       display: false,
+      min: 0
     },
     x: {
       display: false,

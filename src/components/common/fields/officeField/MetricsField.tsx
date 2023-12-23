@@ -30,24 +30,27 @@ export default function MetricsComponent({ metrics }: { metrics: TMetrics }) {
                     [
                         {
                             title: 'Количество написанных отчетов',
-                            value: metrics.task_amount
+                            value: metrics.task_amount,
+                            amount: ''
                         },
                         {
                             title: 'Время потраченное на life balance',
-                            value: metrics.all_time_report
+                            value: metrics.all_time_report,
+                            amount: 'ч'
                         },
                         {
                             title: 'Серия отчетов',
-                            value: metrics.report_streak
+                            value: metrics.report_streak,
+                            amount: ''
                         }
-                    ].map(({ title, value }) => (
+                    ].map(({ title, value, amount }) => (
                         <div key={value + title} className="relative">
                             <p className="absolute left-2 z-10 pt-2 text-text-m-bold text-white">
                                 {title}
                             </p>
 
                             <p className="absolute right-2 z-10 pt-2 text-text-m-bold text-white">
-                                {value}ч
+                                {value}{amount}
                             </p>
 
                             <BorderLinearProgress

@@ -6,6 +6,7 @@ import React from "react";
 import {useRouter} from "next/navigation";
 import {TUserDataState} from "@/store/reducers/userReducer";
 import SmallRankComponent from "@/components/common/cards/SmallRankComponent";
+import {handleGetUserLink} from "@/utils/getUserLinks";
 
 type TUserCard = {
     userData: TUserDataState;
@@ -15,11 +16,11 @@ export default function UserCard({ userData }: TUserCard) {
     const router = useRouter();
 
     function handleGoToInstagram() {
-        router.push(`https://www.instagram.com/${userData?.instagram}`);
+        router.push(handleGetUserLink(userData?.instagram ?? '', 'inst'));
     }
 
     function handleGoToTelegram() {
-        router.push(`https://t.me/${userData?.tg_username}`);
+        router.push(handleGetUserLink(userData?.tg_username ?? '', 'tg'));
     }
 
     return (

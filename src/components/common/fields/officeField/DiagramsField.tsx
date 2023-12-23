@@ -32,7 +32,7 @@ export default function DiagramsFieldOffice({ diagrams }: { diagrams: TUserDiagr
                 Диаграммы отчёта
             </h4>
 
-            <div className="w-full h-full justify-center items-center flex flex-wrap gap-10 ss_lg:flex-col ss_lg:gap-[100px] ss_lg:py-15">
+            <div className="w-full h-[400px] pt-[100px] justify-center items-center flex flex-wrap gap-10 ss_lg:flex-col ss_lg:gap-[100px] ss_lg:py-15">
                 {
                     diagrams ?
                         diagrams.lifeBalance?.data?.length ? (
