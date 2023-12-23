@@ -21,7 +21,11 @@ export const TRIcons = {
     chartRelax: '/icons/chart-relax.svg',
     chartEmotional: '/icons/chart-emotional.svg',
     plusGradient: '/icons/plus-gradient.svg',
-    subscribedUser: '/icons/subscribed-user.svg'
+    subscribedUser: '/icons/subscribed-user.svg',
+    projects: '/icons/metrics/projects.svg',
+    balance: '/icons/metrics/balance.svg',
+    sphears: '/icons/metrics/sphears.svg',
+    time: '/icons/metrics/time.svg'
 }
 
 interface TRIconProps {

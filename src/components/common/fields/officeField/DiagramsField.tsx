@@ -1,12 +1,30 @@
 'use client'
 
-import { DoughnutChart } from "../../diagrams/DoughnutChart";
+import { DoughnutChart } from "@/components/common/charts/diagrams/DoughnutChart";
 import React from "react";
 import TRIcon from "@/components/common/icon";
 import {TDiagram, TUserDiagrams} from "@/models/charts";
 import {CHART_COLORS} from "@/consts/chart";
 
-const DIAGRAMS_TITLE = ['Рабочие проекты', 'Work-Life Balance', 'Life сферы', '4']
+const DIAGRAMS_TITLE = [
+    {
+        name: 'Рабочие проекты',
+        icon: 'projects'
+    },
+    {
+        name: 'Work-Life Balance',
+        icon: 'balance'
+    },
+    {
+        name: 'Life сферы',
+        icon: 'sphears'
+    },
+    {
+        name: 'Потраченное время',
+        icon: 'time'
+    }
+]
+
 export default function DiagramsFieldOffice({ diagrams }: { diagrams: TUserDiagrams }) {
     return (
         <div className="bg-white rounded-6 big_screen_h:h-[680px] sx_lg:h-[740px] p-6 pt-3 ss_lg:h-auto">
@@ -24,8 +42,9 @@ export default function DiagramsFieldOffice({ diagrams }: { diagrams: TUserDiagr
                                     .map((diagram: TDiagram, index) => (
                                     <DoughnutChart
                                         key={index + 'diagrams'}
-                                        colors={CHART_COLORS}
-                                        name={DIAGRAMS_TITLE[index]}
+                                        colors={CHART_COLORS[index]}
+                                        name={DIAGRAMS_TITLE[index].name}
+                                        iconName={DIAGRAMS_TITLE[index].icon}
                                         id={'80%'}
                                         labels={diagram.data}
                                         data={diagram.dots}

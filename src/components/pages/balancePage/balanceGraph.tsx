@@ -1,6 +1,6 @@
 'use client'
 
-import { WebGraph } from "@/components/common/WEB/webGraph";
+import { WebGraph } from "@/components/common/charts/WEB/webGraph";
 import ListOfChatMessages from "@/components/common/fields/mainField/ListOfChatMessages";
 import TRIcon from "@/components/common/icon";
 import ChatTextField from "@/components/common/textFields/ChatTextField";

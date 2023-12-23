@@ -1,5 +1,5 @@
-import { LineChart } from "@/components/common/lineChart";
-import { PieChart } from "@/components/common/pieChart";
+import { LineChart } from "../../common/charts/lineChart";
+import { PieChart } from "../../common/charts/pieChart";
 
 export default function DataAnalysisComponent() {
     return (

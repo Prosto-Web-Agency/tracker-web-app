@@ -3,14 +3,18 @@
 import React from 'react';
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import TRIcon from "@/components/common/icon";
 
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 //@ts-ignore
-export function DoughnutChart({ labels, data, name, id, colors }) {
+export function DoughnutChart({ labels, data, name, id, colors, iconName }) {
     return (
         <div className='h-[175px] ss_lg:h-[100px] flex justify-center flex-col items-center'>
-            <div className='flex justify-center h-[125px] w-[125px]'>
+            <div className='flex justify-center h-[125px] w-[125px] relative'>
+                <div className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]">
+                    <TRIcon iconName={iconName} edgeLength={40} />
+                </div>
                 <Doughnut
                     data={
                         {

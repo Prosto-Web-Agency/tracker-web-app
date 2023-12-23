@@ -3,7 +3,7 @@
 import React from "react";
 import TRIcon from "@/components/common/icon";
 import {TChart} from "@/store/reducers/OfficeReducer";
-import ChartComponent from "@/components/common/graphs/Chart";
+import ChartComponent from "@/components/common/charts/graphs/Chart";
 
 export type TGraphField = {
     name: string;
