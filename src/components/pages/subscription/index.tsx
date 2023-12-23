@@ -3,7 +3,7 @@
 import BasePrimaryCard from "@/components/common/cards/BasePrimaryCard"
 import BaseSecondaryCard from "@/components/common/cards/BaseSecondaryCard"
 import ScratchedTitle from "@/components/common/titles/ScratchedTitle"
-import {setUserSubscriptionPaymentFetch} from "@/store/thunks/userThunk";
+import {getUserPersonalData, setUserSubscriptionPaymentFetch} from "@/store/thunks/userThunk";
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/navigation";
 import {useEffect} from "react";
@@ -12,6 +12,7 @@ import {storage} from "@/utils/localStorage";
 import {SUBSCRIPTION} from "@/consts/profile";
 import PrimaryButton from "@/components/common/buttons/primary";
 import classNames from "classnames";
+import {getListOfTopUsers, getListOfUsersInsights} from "@/store/thunks/trakerThunk";
 
 export default function SubscriptionPage() {
     const dispatch = useDispatch();
@@ -26,6 +27,14 @@ export default function SubscriptionPage() {
     function handleSubscribe() {
         // @ts-ignore
         dispatch(setUserSubscriptionPaymentFetch(true))
+            .then(() => {
+                // @ts-ignore
+                dispatch(getUserPersonalData())
+                // @ts-ignore
+                dispatch(getListOfUsersInsights())
+                // @ts-ignore
+                dispatch(getListOfTopUsers())
+            })
         router.push('https://payform.ru/mi3eLnO/');
         // setTimeout(() => router.push('/'), 1000);
     }

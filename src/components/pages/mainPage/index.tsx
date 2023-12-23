@@ -15,7 +15,10 @@ import { useAppSelector } from "@/hooks/store";
 
 function MainPage() {
     const dispatch = useDispatch();
-    const { listOfTopUsers, listOfUserInsights } = useAppSelector(state => state.mainPage)
+    const {
+        listOfTopUsers,
+        listOfUserInsights
+    } = useAppSelector(state => state.mainPage)
 
     useEffect(() => {
         // @ts-ignore

@@ -56,15 +56,12 @@ export const editUserDataFetch = (data: TUserData) => (dispatch: any) => {
 }
 
 export const setUserSubscriptionPaymentFetch = (data: boolean) => (dispatch: any) => {
-    void new Promise(() => {
+    return new Promise(() => {
         dispatch(setUserSubscriptionPayment(data));
+
         setTimeout(() => {
             storage.set(SUBSCRIPTION, String(data));
-
-            dispatch(getUserPersonalData())
-            dispatch(getListOfUsersInsights())
-            dispatch(getListOfTopUsers())
-        },0)
+        },0);
     })
 }
 
