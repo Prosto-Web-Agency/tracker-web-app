@@ -1,10 +1,11 @@
 import {
-    TUserCommonData,
-    TUserData,
-    TUserPopupData,
-    TUserSubscriptionsArray,
-    TUserSubscriptionsReportArray, TUserSubscriptionsTaskArray
-} from "@/models/userData";
+  TUserCommonData,
+  TUserData,
+  TUserPopupData,
+  TUserSubscriptionsArray,
+  TUserSubscriptionsReportArray,
+  TUserSubscriptionsTaskArray,
+} from '@/models/userData';
 
 const SET_USER_AUTH = 'SET_USER_AUTH';
 const SET_USER_DATA = 'SET_USER_DATA';
@@ -19,83 +20,101 @@ const SET_USER_SUBSCRIPTIONS_TASKS = 'SET_USER_SUBSCRIPTIONS_TASKS';
 export type TUserDataState = TUserCommonData | null | undefined;
 
 type TUser = {
-    isUserAuth: boolean;
-    isAuthCheck: boolean;
-    userData: TUserDataState;
-    isUserPaidSubscription: boolean;
-    userPopupData: TUserPopupData | null;
-    userSubscriptions: TUserSubscriptionsArray;
-    userSubscriptionsReports: TUserSubscriptionsReportArray;
-    userSubscriptionsTasks: TUserSubscriptionsTaskArray;
-}
+  isUserAuth: boolean;
+  isAuthCheck: boolean;
+  userData: TUserDataState;
+  isUserPaidSubscription: boolean;
+  userPopupData: TUserPopupData | null;
+  userSubscriptions: TUserSubscriptionsArray;
+  userSubscriptionsReports: TUserSubscriptionsReportArray;
+  userSubscriptionsTasks: TUserSubscriptionsTaskArray;
+};
 
 const initialState: TUser = {
-    isUserAuth: false,
-    isAuthCheck: false,
-    userData: undefined,
-    isUserPaidSubscription: false,
-    userPopupData: null,
-    userSubscriptions: [],
-    userSubscriptionsReports: [],
-    userSubscriptionsTasks: []
+  isUserAuth: false,
+  isAuthCheck: false,
+  userData: undefined,
+  isUserPaidSubscription: false,
+  userPopupData: null,
+  userSubscriptions: [],
+  userSubscriptionsReports: [],
+  userSubscriptionsTasks: [],
 };
 
 const userReducer = (state = initialState, action: any) => {
-    switch (action.type) {
-        case SET_USER_AUTH:
-            return {
-                ...state,
-                isUserAuth: action.data,
-                isAuthCheck: true
-            }
-        case SET_USER_DATA:
-            return {
-                ...state,
-                userData: action.data
-            }
-        case EDIT_USER_DATA:
-            return {
-                ...state,
-                userPersonalData: action.data
-            }
-        case SET_USER_SUBSCRIPTION_PAYMENT:
-            return {
-                ...state,
-                isUserPaidSubscription: action.data
-            }
-        case SET_USER_POPUP_DATA:
-            return {
-                ...state,
-                userPopupData: action.data
-            }
-        case SET_USER_SUBSCRIPTIONS:
-            return {
-                ...state,
-                userSubscriptions: action.data
-            }
-        case SET_USER_SUBSCRIPTIONS_REPORTS:
-            return {
-                ...state,
-                userSubscriptionsReports: action.data
-            }
-        case SET_USER_SUBSCRIPTIONS_TASKS:
-            return {
-                ...state,
-                userSubscriptionsTasks: action.data
-            }
-        default:
-            return state
-    }
-}
+  switch (action.type) {
+    case SET_USER_AUTH:
+      return {
+        ...state,
+        isUserAuth: action.data,
+        isAuthCheck: true,
+      };
+    case SET_USER_DATA:
+      return {
+        ...state,
+        userData: action.data,
+      };
+    case EDIT_USER_DATA:
+      return {
+        ...state,
+        userPersonalData: action.data,
+      };
+    case SET_USER_SUBSCRIPTION_PAYMENT:
+      return {
+        ...state,
+        isUserPaidSubscription: action.data,
+      };
+    case SET_USER_POPUP_DATA:
+      return {
+        ...state,
+        userPopupData: action.data,
+      };
+    case SET_USER_SUBSCRIPTIONS:
+      return {
+        ...state,
+        userSubscriptions: action.data,
+      };
+    case SET_USER_SUBSCRIPTIONS_REPORTS:
+      return {
+        ...state,
+        userSubscriptionsReports: action.data,
+      };
+    case SET_USER_SUBSCRIPTIONS_TASKS:
+      return {
+        ...state,
+        userSubscriptionsTasks: action.data,
+      };
+    default:
+      return state;
+  }
+};
 
-export const setUserAuth = (data: boolean) => ({ type: SET_USER_AUTH, data })
-export const setUserData = (data: TUserDataState) => ({ type: SET_USER_DATA, data })
-export const editUserData = (data: TUserData | null) => ({ type: EDIT_USER_DATA, data });
-export const setUserSubscriptionPayment = (data: boolean) => ({ type: SET_USER_SUBSCRIPTION_PAYMENT, data });
-export const setUserSubscriptions = (data: TUserSubscriptionsArray) => ({ type: SET_USER_SUBSCRIPTIONS, data });
-export const setUserPopupData = (data: TUserPopupData | null) => ({ type: SET_USER_POPUP_DATA, data })
-export const setUserSubscriptionsReports = (data: TUserSubscriptionsReportArray) => ({ type: SET_USER_SUBSCRIPTIONS_REPORTS, data })
-export const setUserSubscriptionsTasks = (data: TUserSubscriptionsTaskArray) => ({ type: SET_USER_SUBSCRIPTIONS_TASKS, data })
-
+export const setUserAuth = (data: boolean) => ({ type: SET_USER_AUTH, data });
+export const setUserData = (data: TUserDataState) => ({
+  type: SET_USER_DATA,
+  data,
+});
+export const editUserData = (data: TUserData | null) => ({
+  type: EDIT_USER_DATA,
+  data,
+});
+export const setUserSubscriptionPayment = (data: boolean) => ({
+  type: SET_USER_SUBSCRIPTION_PAYMENT,
+  data,
+});
+export const setUserSubscriptions = (data: TUserSubscriptionsArray) => ({
+  type: SET_USER_SUBSCRIPTIONS,
+  data,
+});
+export const setUserPopupData = (data: TUserPopupData | null) => ({
+  type: SET_USER_POPUP_DATA,
+  data,
+});
+export const setUserSubscriptionsReports = (
+  data: TUserSubscriptionsReportArray,
+) => ({ type: SET_USER_SUBSCRIPTIONS_REPORTS, data });
+export const setUserSubscriptionsTasks = (
+  data: TUserSubscriptionsTaskArray,
+) => ({ type: SET_USER_SUBSCRIPTIONS_TASKS, data });
 
 export default userReducer;

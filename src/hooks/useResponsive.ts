@@ -2,55 +2,55 @@ import { useEffect, useState } from 'react';
 import useDebounce from './useDebounce';
 
 interface IUseResponsive {
-    isMobile: boolean;
-    isTablet: boolean;
-    isDesktop: boolean;
+  isMobile: boolean;
+  isTablet: boolean;
+  isDesktop: boolean;
 }
 
 export default function useResponsive(): IUseResponsive {
-    // screen resolutions
-    const [state, setState] = useState({
-        isMobile: false,
-        isTablet: false,
-        isDesktop: false,
-    });
+  // screen resolutions
+  const [state, setState] = useState({
+    isMobile: false,
+    isTablet: false,
+    isDesktop: false,
+  });
 
-    useEffect(() => {
-        // update the state on the initial load
-        onResizeHandler();
+  useEffect(() => {
+    // update the state on the initial load
+    onResizeHandler();
 
-        // assign the event
-        Setup();
+    // assign the event
+    Setup();
 
-        return () => {
-            // remove the event
-            Cleanup();
-        };
-    }, []);
-
-    // update the state on window resize
-    const onResizeHandler = (): void => {
-        if (typeof window !== 'undefined') {
-            const isMobile = window.innerWidth <= 1200;
-            const isTablet = window.innerWidth >= 1200 && window.innerWidth <= 1280;
-            const isDesktop = window.innerWidth > 1280;
-
-            setState({ isMobile, isTablet, isDesktop });
-        }
+    return () => {
+      // remove the event
+      Cleanup();
     };
+  }, []);
 
-    // debounce the resize call
-    const debouncedCall = useDebounce(onResizeHandler, 500);
+  // update the state on window resize
+  const onResizeHandler = (): void => {
+    if (typeof window !== 'undefined') {
+      const isMobile = window.innerWidth <= 1200;
+      const isTablet = window.innerWidth >= 1200 && window.innerWidth <= 1280;
+      const isDesktop = window.innerWidth > 1280;
 
-    // add event listener
-    const Setup = (): void => {
-        window?.addEventListener('resize', debouncedCall, false);
-    };
+      setState({ isMobile, isTablet, isDesktop });
+    }
+  };
 
-    // remove the listener
-    const Cleanup = (): void => {
-        window?.removeEventListener('resize', debouncedCall, false);
-    };
+  // debounce the resize call
+  const debouncedCall = useDebounce(onResizeHandler, 500);
 
-    return state;
+  // add event listener
+  const Setup = (): void => {
+    window?.addEventListener('resize', debouncedCall, false);
+  };
+
+  // remove the listener
+  const Cleanup = (): void => {
+    window?.removeEventListener('resize', debouncedCall, false);
+  };
+
+  return state;
 }

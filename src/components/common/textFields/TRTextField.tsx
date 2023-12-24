@@ -63,7 +63,7 @@ export default function TRTextField({
           transition: '0.5s',
           height: '51px',
           fontSize: '16px',
-          fontWeight: '600'
+          fontWeight: '600',
         },
       }}
       style={style}

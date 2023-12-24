@@ -1,7 +1,3 @@
 export default function ChatModal() {
-    return (
-        <div>
-            
-        </div>
-    )
+  return <div></div>;
 }

@@ -1,4 +1,4 @@
-import type { Config } from 'tailwindcss'
+import type { Config } from 'tailwindcss';
 
 const config: Config = {
   content: [
@@ -37,8 +37,9 @@ const config: Config = {
         'tag-gray': '#8C8C8C',
       },
       backgroundImage: {
-        'card-hover': 'linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8))',
-        gradient: 'linear-gradient(90deg, #E12131 0%, #FEA310 100%)'
+        'card-hover':
+          'linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8))',
+        gradient: 'linear-gradient(90deg, #E12131 0%, #FEA310 100%)',
       },
       borderColor: {
         orange: 'rgba(255, 100, 51, 1)',
@@ -46,7 +47,7 @@ const config: Config = {
         border: 'rgba(31, 31, 31, 0.1)',
         disabled: 'rgba(31, 31, 31, 0.2)',
         'tag-gray': '#8C8C8C',
-        gradient: 'linear-gradient(90deg, #E12131 0%, #FEA310 100%)'
+        gradient: 'linear-gradient(90deg, #E12131 0%, #FEA310 100%)',
       },
       fontSize: {
         'heading-ss': ['18px', { fontWeight: '600' }],
@@ -124,8 +125,8 @@ const config: Config = {
         sm_max: { min: '640px' },
         sm: { max: '639px' },
         smm: { max: '600' },
-        'big_screen_h': {
-          'raw': '(min-height: 900px)'
+        big_screen_h: {
+          raw: '(min-height: 900px)',
         },
         sm_min: { min: '518px', max: '639px' },
         minn: { max: '518px' },
@@ -150,5 +151,5 @@ const config: Config = {
     },
   },
   plugins: [],
-}
-export default config
+};
+export default config;

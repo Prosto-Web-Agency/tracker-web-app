@@ -1,17 +1,19 @@
-import {TUserDataState} from "@/store/reducers/userReducer";
+import { TUserDataState } from '@/store/reducers/userReducer';
 
 export function handleIsFullAuthComplete(
-    isAuthCheck: boolean,
-    isUserAuth: boolean,
-    userData: TUserDataState,
-    isUserSubscribed: boolean,
-    unAuth: boolean
+  isAuthCheck: boolean,
+  isUserAuth: boolean,
+  userData: TUserDataState,
+  isUserSubscribed: boolean,
+  unAuth: boolean,
 ) {
-    return (isAuthCheck && (!isUserAuth || !userData || (!isUserSubscribed && !unAuth)));
+  return (
+    isAuthCheck && (!isUserAuth || !userData || (!isUserSubscribed && !unAuth))
+  );
 }
 
 export function handleUserFinishedAuth() {
-    const pathname = new URL(window.location.href).pathname
+  const pathname = new URL(window.location.href).pathname;
 
-    return pathname === 'start';
+  return pathname === 'start';
 }
