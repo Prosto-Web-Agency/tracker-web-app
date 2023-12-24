@@ -5,15 +5,18 @@ import React, {useEffect, useState} from 'react';
 import { useRouter } from "next/navigation";
 import {storage} from "@/utils/localStorage";
 import {LOGIN, TOKEN} from "@/consts/profile";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import Image from "next/image";
 import Link from "next/link";
 import SecondaryButton from "@/components/common/buttons/secondary";
 import TRIcon from "@/components/common/icon";
 import {TUserDataState} from "@/store/reducers/userReducer";
 import {useAppSelector} from "@/hooks/store";
+import {getListOfTopUsers, getListOfUsersInsights, getNews, getRankUpdateList} from "@/store/thunks/trakerThunk";
+import {getUserSubscriptionsTasksData} from "@/store/thunks/userThunk";
 
 const StartPage = () => {
+    const dispatch = useDispatch();
     const router = useRouter();
 
     const { userData, isUserPaidSubscription } = useAppSelector(state => state.user);
@@ -34,6 +37,16 @@ const StartPage = () => {
     }
 
     function handleGoToMain() {
+        // @ts-ignore
+        dispatch(getListOfUsersInsights())
+        //@ts-ignore
+        dispatch(getListOfTopUsers())
+        // @ts-ignore
+        dispatch(getNews());
+        // @ts-ignore
+        dispatch(getUserSubscriptionsTasksData());
+        //@ts-ignore
+        dispatch(getRankUpdateList());
         router.push('/');
     }
 

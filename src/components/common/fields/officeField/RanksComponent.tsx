@@ -11,7 +11,7 @@ type TRanksComponent = {
     userRank: TRank['rank'];
 }
 
-const USER_RANKS = ["empty", "new", "resident", "expert", "ambassador", "adviser", "headliner",];
+export const USER_RANKS = ["empty", "new", "resident", "expert", "ambassador", "adviser", "headliner",];
 
 export default function RanksComponent({ userRank }: TRanksComponent) {
     const [isExpertModalOpen, setExpertModalOpen] = useState(false);

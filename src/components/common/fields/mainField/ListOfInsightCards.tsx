@@ -71,6 +71,8 @@ export default function ListOfInsightCards({ listOfUserInsights }: TInsightCard)
             </div>
 
             <ModalInsight
+                rank={'empty'}
+                image_url={''}
                 first_name={modalDataInsight.first_name}
                 text={modalDataInsight.text}
                 open={modalDataInsight.open}

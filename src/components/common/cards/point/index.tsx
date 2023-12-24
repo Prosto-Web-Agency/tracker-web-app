@@ -38,6 +38,8 @@ export default function InsaitField({ dataInsaits }: TDataInsights) {
             </div>
 
             <ModalInsight
+                rank={'empty'}
+                image_url={''}
                 first_name={modalDataInsight.name}
                 text={modalDataInsight.text}
                 open={modalDataInsight.open}
