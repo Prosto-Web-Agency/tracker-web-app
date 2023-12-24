@@ -9,6 +9,7 @@ import React, {useEffect} from "react";
 import {getListOfTopUsers, getListOfUsersInsights, getSearchUsersThunk} from "@/store/thunks/trakerThunk";
 import {getUserPopupData, subscribeOnUserByLogin} from "@/store/thunks/userThunk";
 import {handleGetUserLink} from "@/utils/getUserLinks";
+import {useAppSelector} from "@/hooks/store";
 
 interface IModalUser {
     position: number;
@@ -24,8 +25,7 @@ export default function ModalUser({
 }: IModalUser) {
     const dispatch = useDispatch();
 
-    //@ts-ignore
-    const { userPopupData, userData }: { userPopupData: TUserPopupData | null; } = useSelector(state => state.user);
+    const { userPopupData, userData }: { userPopupData: TUserPopupData | null; userData: TUserDataState; } = useAppSelector(state => state.user);
 
     useEffect(() => {
         //@ts-ignore
@@ -85,7 +85,7 @@ export default function ModalUser({
                                             <Image
                                                 width={90}
                                                 height={90}
-                                                className={'w-[90px] h-[90px] obj-cover rounded-10'}
+                                                className={'w-[90px] h-[90px] object-cover rounded-10'}
                                                 src={'/empty-user-icon.jpeg'}
                                                 alt={'empty profile'}
                                             />
@@ -98,7 +98,7 @@ export default function ModalUser({
                                         {userPopupData?.first_name}
                                     </p>
 
-                                    <TRIcon iconName={userPopupData.rank_name} edgeLength={28} />
+                                    <TRIcon iconName={userPopupData.rank} edgeLength={28} />
                                 </div>
 
                                 <p>
@@ -158,7 +158,7 @@ export default function ModalUser({
                             }
 
                             {
-                                userData.login !== userPopupData.login ? (
+                                userData?.login !== userPopupData.login ? (
                                     <PrimaryButton
                                         text={userPopupData.is_subscribe ? "Вы подписаны" : "Подписаться"}
                                         onClick={() => {

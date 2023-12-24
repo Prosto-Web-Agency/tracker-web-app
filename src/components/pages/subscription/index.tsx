@@ -3,40 +3,16 @@
 import BasePrimaryCard from "@/components/common/cards/BasePrimaryCard"
 import BaseSecondaryCard from "@/components/common/cards/BaseSecondaryCard"
 import ScratchedTitle from "@/components/common/titles/ScratchedTitle"
-import {getUserPersonalData, setUserSubscriptionPaymentFetch} from "@/store/thunks/userThunk";
-import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/navigation";
-import {useEffect} from "react";
-import {TUserCommonData} from "@/models/userData";
-import {storage} from "@/utils/localStorage";
-import {SUBSCRIPTION} from "@/consts/profile";
 import PrimaryButton from "@/components/common/buttons/primary";
 import classNames from "classnames";
-import {getListOfTopUsers, getListOfUsersInsights} from "@/store/thunks/trakerThunk";
+import Link from "next/link";
 
 export default function SubscriptionPage() {
-    const dispatch = useDispatch();
     const router = useRouter();
-    const subscription = Boolean(storage.get(SUBSCRIPTION));
-
-    const { isUserSubscribed }: {
-        isUserSubscribed: boolean
-        //@ts-ignore
-    } = useSelector(state => state.user);
 
     function handleSubscribe() {
-        // @ts-ignore
-        dispatch(setUserSubscriptionPaymentFetch(true))
-            .then(() => {
-                // @ts-ignore
-                dispatch(getUserPersonalData())
-                // @ts-ignore
-                dispatch(getListOfUsersInsights())
-                // @ts-ignore
-                dispatch(getListOfTopUsers())
-            })
         router.push('https://payform.ru/mi3eLnO/');
-        // setTimeout(() => router.push('/'), 1000);
     }
 
     return (
@@ -82,36 +58,8 @@ export default function SubscriptionPage() {
                                         "flex gap-14",
                                         "md:gap-4"
                                     )}>
-                                        <ScratchedTitle title="890р. " className="text-heading-s text-white" />
                                         <span className="text-heading-s text-white">
-                                            490р.
-                                            {'    '}
-                                            <span className={classNames(
-                                                "text-text-m-bold",
-                                                "md:text-text-sm"
-                                            )}>
-                                                до нового года
-                                            </span>
-                                        </span>
-                                    </div>
-                                </div>
-
-                                <div className="flex flex-col">
-                                    <p className="text-13_500 text-white">Год</p>
-                                    <div className={classNames(
-                                        "flex gap-14",
-                                        "md:gap-4"
-                                    )}>
-                                        <ScratchedTitle title="8900р. " className="text-heading-s text-white" />
-                                        <span className="text-heading-s text-white">
-                                            890р.
-                                            {'    '}
-                                            <span className={classNames(
-                                                "text-text-m-bold",
-                                                "md:text-text-sm"
-                                            )}>
-                                                до нового года
-                                            </span>
+                                            790р.
                                         </span>
                                     </div>
                                 </div>
@@ -119,7 +67,9 @@ export default function SubscriptionPage() {
                         </BaseSecondaryCard>
                     </div>
 
-                    <PrimaryButton text={'Купить'} onClick={handleSubscribe} />
+                    <Link href="https://payform.ru/mi3eLnO/">
+                        <PrimaryButton text={'Купить'} onClick={handleSubscribe} />
+                    </Link>
                 </BasePrimaryCard>
             </div>
         </section>

@@ -6,7 +6,7 @@ import {
     setUserPopupData,
     setUserSubscriptionPayment,
     setUserSubscriptions,
-    setUserSubscriptionsReports,
+    setUserSubscriptionsReports, setUserSubscriptionsTasks,
     type TUserDataState
 } from "@/store/reducers/userReducer";
 import type {
@@ -17,7 +17,7 @@ import type {
 } from "@/models/userData";
 import { storage } from "@/utils/localStorage";
 import { SUBSCRIPTION } from "@/consts/profile";
-import {getListOfTopUsers, getListOfUsersInsights} from "@/store/thunks/trakerThunk";
+import {TUserSubscriptionsTaskArray} from "@/models/userData";
 
 export const checkUserAuth = () => (dispatch: any) => {
     userApi
@@ -34,9 +34,10 @@ export const getUserPersonalData = () => (dispatch: any) => {
             .getUserPersonalDataApi()
             .then((res: TUserDataState) => {
                 dispatch(setUserData(res));
-                // todo: get subscription status from userData
-                // setUserSubscriptionFetch(true);
-                dispatch(setUserSubscriptionPaymentFetch(Boolean(storage.get(SUBSCRIPTION))));
+
+                if (res && res.current_subscription !== 'empty') {
+                    dispatch(setUserSubscriptionPaymentFetch(true));
+                }
             })
             .catch(() => {
                 dispatch(setUserData(null));
@@ -78,9 +79,10 @@ export const editUserImageFetch = (data: { profile_image: File | null }) => (dis
 
 export const getUserPopupData = (login: string) => (dispatch: any) => {
     try {
-        userApi
+        return userApi
             .getUserPopupData(login)
             .then((res: TUserPopupData) => {
+                console.log(res)
                 dispatch(setUserPopupData(res));
             })
             .catch(() => {})
@@ -115,6 +117,18 @@ export const getUserSubscriptionsReportsData = () => (dispatch: any) => {
     }
 }
 
+export const getUserSubscriptionsTasksData = () => (dispatch: any) => {
+    try {
+        userApi
+            .getUserSubscriptionsTasks()
+            .then((res: TUserSubscriptionsTaskArray) => {
+                dispatch(setUserSubscriptionsTasks(res));
+            })
+            .catch(() => {})
+    } catch (e) {
+        console.error('error ', e);
+    }
+}
 
 export const subscribeOnUserByLogin = (streamer_login: string) => (dispatch: any) => {
     try {

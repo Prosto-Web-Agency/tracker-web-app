@@ -5,10 +5,11 @@ import StartPage from '@/components/pages/startPage'
 import { useEffect } from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {checkUserAuth, getUserPersonalData} from "@/store/thunks/userThunk";
+import {useAppSelector} from "@/hooks/store";
+import {useRouter} from "next/navigation";
 
 export default function Start() {
-    // @ts-ignore
-    const { isUserAuth } = useSelector(state => state.user);
+    const { isUserAuth, isUserPaidSubscription } = useAppSelector(state => state.user);
 
     const dispatch = useDispatch();
 

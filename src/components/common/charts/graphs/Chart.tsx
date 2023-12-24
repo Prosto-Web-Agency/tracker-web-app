@@ -1,29 +1,9 @@
 'use client'
 
 import React, { useEffect, useState } from "react";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Filler,
-} from "chart.js";
 import { Line } from "react-chartjs-2";
 import { externalTooltipHandler } from "./externalTooltipHandler";
 import {TChart} from "@/store/reducers/OfficeReducer";
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Filler
-);
 
 function getGradient(color: string, elementId: string) {
   const canvas = document.getElementById(elementId) as HTMLCanvasElement;
@@ -74,13 +54,13 @@ const options = (color: string, type?: 'chartProductive' | 'chartRelax' | 'chart
 const CHART_DATASET = (color: string, elementId: string, data: Array<number>, labels: Array<string>, chart2?: TChart, color2?: string, elemtnId2?: string) => {
   const datasets = [
     {
-      data,
+      data: data || [],
       fill: "start",
-      pointHoverBackgroundColor: color,
+      pointHoverBackgroundColor: color || [],
       pointHoverBorderColor: "rgba(255, 255, 255, 1)",
       backgroundColor: getGradient(color, elementId),
       hoverBorderWidth: 0.1,
-      borderColor: color,
+      borderColor: color || [],
       borderWidth: 1,
       tension: 0.5,
       pointDotRadius: 1,
@@ -110,7 +90,7 @@ const CHART_DATASET = (color: string, elementId: string, data: Array<number>, la
 
   return {
     labels,
-    datasets,
+    datasets: datasets || [],
     datalabels: {
       display: false
     }

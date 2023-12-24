@@ -52,6 +52,7 @@ export const options = {
         legend: {
             display: false,
         },
+        labels: ['']
     },
     elements: {
         point: {

@@ -6,6 +6,33 @@ import ProtectedRoute from "@/components/common/protectedRoute";
 import {useDispatch, useSelector} from "react-redux";
 import {useEffect} from "react";
 import {checkUserAuth, getUserPersonalData} from "@/store/thunks/userThunk";
+import ChartDataLabels from 'chartjs-plugin-datalabels';
+
+import {
+    ArcElement,
+    CategoryScale,
+    Chart as ChartJS,
+    Filler,
+    Legend,
+    LinearScale,
+    LineElement,
+    PointElement,
+    Title,
+    Tooltip
+} from "chart.js";
+
+ChartJS.register(
+    CategoryScale,
+    LinearScale,
+    ChartDataLabels,
+    PointElement,
+    LineElement,
+    Title,
+    Tooltip,
+    Filler,
+    ArcElement,
+    Legend
+);
 
 export default function Profile() {
     // @ts-ignore

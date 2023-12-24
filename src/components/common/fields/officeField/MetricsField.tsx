@@ -16,9 +16,7 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 }));
 
 
-export default function MetricsComponent({ metrics }: { metrics: TMetrics }) {
-    const maxMetrics = Math.max(...Object.values(metrics));
-
+export default function MetricsComponent({ metrics }: { metrics: TMetrics | null }) {
     return (
         <div className="bg-white h-[300px] rounded-6 p-6 pt-3">
             <h4 className="text-heading-ss-bold ss_lg:text-text-sm-bold">
@@ -27,38 +25,48 @@ export default function MetricsComponent({ metrics }: { metrics: TMetrics }) {
 
             <div className='flex flex-col gap-4 pt-4'>
                 {
-                    [
-                        {
-                            title: 'Количество написанных отчетов',
-                            value: metrics.task_amount,
-                            amount: ''
-                        },
-                        {
-                            title: 'Время потраченное на life balance',
-                            value: metrics.all_time_report,
-                            amount: 'ч'
-                        },
-                        {
-                            title: 'Серия отчетов',
-                            value: metrics.report_streak,
-                            amount: ''
-                        }
-                    ].map(({ title, value, amount }) => (
-                        <div key={value + title} className="relative">
-                            <p className="absolute left-2 z-10 pt-2 text-text-m-bold text-white">
-                                {title}
-                            </p>
+                    metrics ? (
+                        <>
+                            {
+                                [
+                                    {
+                                        title: 'Совершенных успехов',
+                                        value: metrics.task_amount,
+                                        amount: 'действий'
+                                    },
+                                    {
+                                        title: 'Страйк (отчеты без пропуска)',
+                                        value: metrics.all_time_report,
+                                        amount: 'дней'
+                                    },
+                                    {
+                                        title: 'Количество написанных отчетов',
+                                        value: metrics.report_streak,
+                                        amount: ''
+                                    }
+                                ].map(({ title, value, amount }) => (
+                                    <div key={value + title} className="relative">
+                                        <p className="absolute lg:text-text-s lg:pt-3 left-2 z-10 pt-2 text-text-m-bold text-white">
+                                            {title}
+                                        </p>
 
-                            <p className="absolute right-2 z-10 pt-2 text-text-m-bold text-white">
-                                {value}{amount}
-                            </p>
+                                        <p className="absolute right-2 z-10 pt-2 text-text-m-bold text-white">
+                                            {value}{' '}{amount}
+                                        </p>
 
-                            <BorderLinearProgress
-                                variant="determinate"
-                                value={(value / maxMetrics) * 100}
-                            />
-                        </div>
-                    ))
+                                        <BorderLinearProgress
+                                            variant="determinate"
+                                            value={100}
+                                        />
+                                    </div>
+                                ))
+                            }
+                        </>
+                    ) : (
+                        <>
+                            п
+                        </>
+                    )
                 }
             </div>
         </div>

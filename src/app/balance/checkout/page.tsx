@@ -1,16 +1,18 @@
 'use client'
 
 import ProtectedRoute from "@/components/common/protectedRoute";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useEffect } from "react";
-import { checkUserAuth } from "@/store/thunks/userThunk";
+import { checkUserAuth, getUserPersonalData } from "@/store/thunks/userThunk";
 import Header from "@/components/common/header";
 import CheckoutPage from "@/components/pages/checkout";
+import { getUserWheelData } from "@/store/thunks/WheelThunk";
+import { useAppSelector } from "@/hooks/store";
 
 export default function Balance() {
-    // @ts-ignore
-    const { isUserAuth } = useSelector(state => state.user);
     const dispatch = useDispatch();
+
+    const { isUserAuth } = useAppSelector(state => state.user);
 
     useEffect(() => {
         // @ts-ignore

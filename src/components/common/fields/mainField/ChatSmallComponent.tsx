@@ -73,7 +73,6 @@ function ChatSmallComponent() {
 
     function handleGetMessage(message: MessageEvent<any>) {
         const newMessages = JSON.parse(message.data);
-        console.log(newMessages);
 
         setMessages((prev) => {
             if (newMessages[0]?.text !== prev[0]?.text)

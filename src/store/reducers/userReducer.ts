@@ -3,7 +3,7 @@ import {
     TUserData,
     TUserPopupData,
     TUserSubscriptionsArray,
-    TUserSubscriptionsReportArray
+    TUserSubscriptionsReportArray, TUserSubscriptionsTaskArray
 } from "@/models/userData";
 
 const SET_USER_AUTH = 'SET_USER_AUTH';
@@ -14,6 +14,7 @@ const SET_USER_IMAGE = 'SET_USER_IMAGE';
 const SET_USER_POPUP_DATA = 'SET_USER_POPUP_DATA';
 const SET_USER_SUBSCRIPTIONS = 'SET_USER_SUBSCRIPTION';
 const SET_USER_SUBSCRIPTIONS_REPORTS = 'SET_USER_SUBSCRIPTIONS_REPORTS';
+const SET_USER_SUBSCRIPTIONS_TASKS = 'SET_USER_SUBSCRIPTIONS_TASKS';
 
 export type TUserDataState = TUserCommonData | null | undefined;
 
@@ -25,6 +26,7 @@ type TUser = {
     userPopupData: TUserPopupData | null;
     userSubscriptions: TUserSubscriptionsArray;
     userSubscriptionsReports: TUserSubscriptionsReportArray;
+    userSubscriptionsTasks: TUserSubscriptionsTaskArray;
 }
 
 const initialState: TUser = {
@@ -34,7 +36,8 @@ const initialState: TUser = {
     isUserPaidSubscription: false,
     userPopupData: null,
     userSubscriptions: [],
-    userSubscriptionsReports: []
+    userSubscriptionsReports: [],
+    userSubscriptionsTasks: []
 };
 
 const userReducer = (state = initialState, action: any) => {
@@ -75,6 +78,11 @@ const userReducer = (state = initialState, action: any) => {
                 ...state,
                 userSubscriptionsReports: action.data
             }
+        case SET_USER_SUBSCRIPTIONS_TASKS:
+            return {
+                ...state,
+                userSubscriptionsTasks: action.data
+            }
         default:
             return state
     }
@@ -87,6 +95,7 @@ export const setUserSubscriptionPayment = (data: boolean) => ({ type: SET_USER_S
 export const setUserSubscriptions = (data: TUserSubscriptionsArray) => ({ type: SET_USER_SUBSCRIPTIONS, data });
 export const setUserPopupData = (data: TUserPopupData | null) => ({ type: SET_USER_POPUP_DATA, data })
 export const setUserSubscriptionsReports = (data: TUserSubscriptionsReportArray) => ({ type: SET_USER_SUBSCRIPTIONS_REPORTS, data })
+export const setUserSubscriptionsTasks = (data: TUserSubscriptionsTaskArray) => ({ type: SET_USER_SUBSCRIPTIONS_TASKS, data })
 
 
 export default userReducer;

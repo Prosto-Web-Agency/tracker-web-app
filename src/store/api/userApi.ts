@@ -117,4 +117,14 @@ export const userApi = {
                 return null;
             })
     },
+    getUserSubscriptionsTasks() {
+        return axios.get(endpoint + 'user_subscriptions_tasks', config())
+            .then(res => {
+                if (res.status === 200) {
+                    return res.data
+                }
+
+                return null;
+            })
+    },
 }

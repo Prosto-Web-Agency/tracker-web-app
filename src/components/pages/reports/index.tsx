@@ -118,13 +118,15 @@ export default function ReportsPage() {
                                             first_name,
                                             image_url,
                                             login,
-                                            is_anon
+                                            is_anon,
+                                            rank
                                         }, index) => (
                                             <SubscriptionCard
                                                 key={first_name + index}
                                                 report_text={report_text}
                                                 first_name={first_name}
                                                 image_url={image_url}
+                                                rank={rank}
                                                 is_anon={is_anon}
                                                 login={login}
                                             />

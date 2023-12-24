@@ -6,8 +6,12 @@ import { updateUserWheelData } from "@/store/thunks/WheelThunk";
 import { ThemeProvider } from "@mui/material";
 import { createTheme } from '@mui/material/styles';
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {useRouter} from "next/navigation";
+import classNames from "classnames";
+import {useAppSelector} from "@/hooks/store";
+import {TReportCheckup} from "@/store/reducers/balanceWheelReducer";
 
 const theme = createTheme({
     palette: {
@@ -20,76 +24,102 @@ const theme = createTheme({
     },
 });
 
-export default function CheckoutPage({ }: any) {
+const INIT_SLIDES_STATE = {
+    self_development: 0,
+    relationship: 0,
+    career: 0,
+    rest: 0,
+    environment: 0,
+    income: 0,
+    creation: 0,
+    health: 0
+}
+
+function CheckoutPage() {
     const dispatch = useDispatch();
+    const router = useRouter();
+
     const handleBalanceWheel = () => {
         //@ts-ignore
         dispatch(updateUserWheelData(wheelData))
+            .then(() => {
+                router.push('/balance');
+            })
     }
-    //@ts-ignore
-    const { slidersData } = useSelector(state => state.balanceWheel);
 
-    const [wheelData, setWheelData] = useState<any>(slidersData);
+    const { slidersData } = useAppSelector(state => state.balanceWheel);
+    const [wheelData, setWheelData] = useState<TReportCheckup>(slidersData ?? INIT_SLIDES_STATE);
 
     useEffect(() => {
-        setWheelData(slidersData)
+        setWheelData(slidersData ?? INIT_SLIDES_STATE)
     }, [slidersData]);
 
-    const BALANCE: any[] = [
+    const BALANCE: {
+        name: string,
+        image: string,
+        handleData: (value: number) => void,
+        value: keyof TReportCheckup
+    }[] = [
         {
             name: "Саморазвитие",
             image: '/balance/education.svg',
-            handleData: (e: number) => { setWheelData({ ...wheelData, self_development: e }) },
+            handleData: (value: number) => { setWheelData({ ...wheelData, self_development: value }) },
             value: "self_development"
         },
         {
             name: "Отношения",
             image: '/balance/education.svg',
-            handleData: (e: number) => { setWheelData({ ...wheelData, relationship: e }) },
+            handleData: (value: number) => { setWheelData({ ...wheelData, relationship: value }) },
             value: "relationship"
         },
         {
             name: "Карьера",
             image: '/balance/education.svg',
-            handleData: (e: number) => { setWheelData({ ...wheelData, career: e }) },
+            handleData: (value: number) => { setWheelData({ ...wheelData, career: value }) },
             value: "career"
         },
         {
             name: "Отдых",
             image: '/balance/education.svg',
-            handleData: (e: number) => { setWheelData({ ...wheelData, rest: e }) },
+            handleData: (value: number) => { setWheelData({ ...wheelData, rest: value }) },
             value: "rest"
         },
         {
             name: "Окружение",
             image: '/balance/education.svg',
-            handleData: (e: number) => { setWheelData({ ...wheelData, environment: e }) },
+            handleData: (value: number) => { setWheelData({ ...wheelData, environment: value }) },
             value: "environment"
         },
         {
             name: "Доходы",
             image: '/balance/education.svg',
-            handleData: (e: number) => { setWheelData({ ...wheelData, income: e }) },
+            handleData: (value: number) => { setWheelData({ ...wheelData, income: value }) },
             value: "income"
         },
         {
             name: "Творчество",
             image: '/balance/education.svg',
-            handleData: (e: number) => { setWheelData({ ...wheelData, creation: e }) },
+            handleData: (value: number) => { setWheelData({ ...wheelData, creation: value }) },
             value: "creation"
         },
         {
             name: "Здоровье",
             image: '/balance/education.svg',
-            handleData: (e: number) => { setWheelData({ ...wheelData, health: e }) },
+            handleData: (value: number) => { setWheelData({ ...wheelData, health: value }) },
             value: "health"
         }
     ]
 
     return (
 
-        <div className="w-full h-[calc(100%-80px)] bg-bg-gray flex flex-col gap-6 justify-center items-center">
-            <div className="bg-white rounded-6 max-h-[700px] w-[600px] flex flex-col p-6">
+        <div className={classNames(
+            "w-full h-[calc(100%-80px)] bg-bg-gray flex flex-col gap-6 justify-center items-center",
+            "lg:h-auto lg:px-4 lg:pb-[100px]"
+        )}>
+            <div className={classNames(
+                "bg-white rounded-6 max-h-[700px] w-[600px] flex flex-col p-6",
+                "lg:w-full lg:max-h-none lg:px-2"
+            )}>
                 <div>
                     <div className="flex flex-col items-center px-6">
                         <div className="flex items-center gap-2">
@@ -108,13 +138,18 @@ export default function CheckoutPage({ }: any) {
                 <div className="flex flex-col gap-5 p-4 pt-10">
                     <ThemeProvider theme={theme}>
                         {
-                            BALANCE.map((e, index): any => (
+                            BALANCE.map(({
+                                value,
+                                name,
+                                handleData,
+                                image
+                            }, index) => (
                                 <SliderBalance
-                                    value={wheelData[e.value]}
-                                    setData={e.handleData}
-                                    name={e.name}
-                                    image={e.image}
-                                    key={e.name + index}
+                                    value={wheelData[value]}
+                                    setData={handleData}
+                                    name={name}
+                                    image={image}
+                                    key={name + index}
                                 />
                             ))
                         }
@@ -124,7 +159,7 @@ export default function CheckoutPage({ }: any) {
 
             </div>
 
-            <div className="w-[600px]" onClick={handleBalanceWheel}>
+            <div className="w-[600px] lg:w-full" onClick={handleBalanceWheel}>
                 <PrimaryButton
                     text="Далее"
                     className="text-16_700"
@@ -136,3 +171,5 @@ export default function CheckoutPage({ }: any) {
 
     )
 }
+
+export default React.memo(CheckoutPage);

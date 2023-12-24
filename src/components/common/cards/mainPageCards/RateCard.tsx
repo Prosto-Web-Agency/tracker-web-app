@@ -1,5 +1,5 @@
 import Image from "next/image"
-import { useState } from "react"
+import React, { useState } from "react"
 import {TUserSmallData} from "@/models/userData";
 import classNames from "classnames";
 import TRIcon from "@/components/common/icon";
@@ -18,6 +18,7 @@ export default function RateCard({
     task_count,
     position,
     isTop,
+    rank,
     setModalData
 }: TCardRate) {
     return (
@@ -34,27 +35,33 @@ export default function RateCard({
                     {position}
                 </p>
 
-                {
-                    image_url ? (
-                        <Image
-                            className="rounded-10 max-h-[36px] min-h-[36px] min-w-[36px] object-cover"
-                            width={36}
-                            height={36}
-                            src={image_url}
-                            alt='person'
-                        />
-                    ) : (
-                        <div className="flex justify-center items-center w-[36px] h-[36px] rounded-10 bg-bg-gray">
+                <div className="flex h-[36px] pb-1 pr-1 relative">
+                    <div className="absolute z-10 bottom-[2px] right-[2px]">
+                        <TRIcon iconName={rank} edgeLength={12} />
+                    </div>
+
+                    {
+                        image_url ? (
                             <Image
+                                className="rounded-10 max-h-[36px] min-h-[36px] min-w-[36px] object-cover"
                                 width={36}
                                 height={36}
-                                className={'w-[36px] h-[36px] obj-cover rounded-10'}
-                                src={'/empty-user-icon.jpeg'}
-                                alt={'empty profile'}
+                                src={image_url}
+                                alt='person'
                             />
-                        </div>
-                    )
-                }
+                        ) : (
+                            <div className="flex justify-center items-center w-[36px] h-[36px] rounded-10 bg-bg-gray">
+                                <Image
+                                    width={36}
+                                    height={36}
+                                    className={'w-[36px] h-[36px] object-cover rounded-10'}
+                                    src={'/empty-user-icon.jpeg'}
+                                    alt={'empty profile'}
+                                />
+                            </div>
+                        )
+                    }
+                </div>
 
                 <Image
                     className="relative hidden visible"

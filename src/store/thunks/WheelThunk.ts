@@ -3,11 +3,13 @@ import { setBalanceData, setBalanceDataForSliders } from "../reducers/balanceWhe
 
 export const getUserWheelData = () => (dispatch: any) => {
     try {
-        balanceAPI
+        return balanceAPI
             .getWheelData()
             .then((res: any) => {
                 dispatch(setBalanceData(res.data));
                 dispatch(setBalanceDataForSliders(res.data));
+
+                return res.data;
             })
     } catch (e) {
         console.error('error ', e);
@@ -16,11 +18,13 @@ export const getUserWheelData = () => (dispatch: any) => {
 
 export const updateUserWheelData = (data: {}) => (dispatch: any) => {
     try {
-        balanceAPI
+        return balanceAPI
             .updateWheelData(data)
             .then((res: { data: {} }) => {
                 dispatch(setBalanceData(res.data));
                 dispatch(setBalanceDataForSliders(res.data));
+
+                return res.data;
             })
     } catch (e) {
         console.error('error ', e);

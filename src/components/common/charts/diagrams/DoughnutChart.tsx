@@ -1,15 +1,12 @@
 'use client'
 
 import React from 'react';
-import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import TRIcon from "@/components/common/icon";
 import classNames from "classnames";
 
-ChartJS.register(ArcElement, Tooltip, Legend);
-
 //@ts-ignore
-export function DoughnutChart({ labels, data, name, id, colors, iconName }) {
+function DoughnutChart({ labels, data, name, colors, iconName }) {
     return (
         <div className={classNames(
             'h-[175px] flex justify-center flex-col items-center',
@@ -30,12 +27,11 @@ export function DoughnutChart({ labels, data, name, id, colors, iconName }) {
                             datasets: [
                                 {
                                     data,
-                                    backgroundColor: colors,
-                                    borderColor: colors,
+                                    backgroundColor: colors || [],
+                                    borderColor: colors || [],
                                     borderWidth: 1,
-                                    // @ts-ignore
-                                    cutout: "70%"
                                 },
+
                             ],
                         }
                     }
@@ -46,31 +42,9 @@ export function DoughnutChart({ labels, data, name, id, colors, iconName }) {
                             },
                             datalabels: {
                                 display: false
-                            }
+                            },
                         }
-
                     }}
-                    plugins={[
-                        {
-                            id,
-                            //@ts-ignore
-                            beforeDatasetDraw(chart) {
-                                const { ctx } = chart;
-
-                                ctx.save();
-                                ctx.font = 'bolder 15px sans-serif';
-                                ctx.fillStyle = 'black';
-                                ctx.textAlign = 'center';
-                                ctx.textBaseline = 'middle';
-
-                                ctx.fillText(
-                                    '',
-                                    chart.getDatasetMeta(0).data[0].x,
-                                    chart.getDatasetMeta(0).data[0].y
-                                )
-                            }
-                        }
-                    ]}
                 />
             </div>
 
@@ -79,5 +53,6 @@ export function DoughnutChart({ labels, data, name, id, colors, iconName }) {
             </h4>
         </div>
     )
-
 }
+
+export default React.memo(DoughnutChart);

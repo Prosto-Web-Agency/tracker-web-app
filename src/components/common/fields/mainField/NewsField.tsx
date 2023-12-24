@@ -6,6 +6,7 @@ import {getNews} from "@/store/thunks/trakerThunk";
 import {useDispatch, useSelector} from "react-redux";
 import TRIcon from "@/components/common/icon";
 import classNames from "classnames";
+import {useAppSelector} from "@/hooks/store";
 
 export type TListOfNewsData = { news_data: { title: string, post_text: string, photo_content?: { photo_url: string }[] }};
 
@@ -13,11 +14,12 @@ export default function NewsField() {
     const dispatch = useDispatch();
     // @ts-ignore
     const { listOfNews }: { searchUsers: TListOfNewsData[] } = useSelector(state => state.mainPage)
+    const { isUserPaidSubscription } = useAppSelector(state => state.user);
 
     useEffect(() => {
         // @ts-ignore
         dispatch(getNews());
-    }, [dispatch])
+    }, [dispatch, isUserPaidSubscription])
 
     return (
         <div className={classNames(

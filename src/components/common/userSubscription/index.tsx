@@ -3,22 +3,26 @@
 import React, {useEffect, useState } from "react";
 import { useDispatch, useSelector} from "react-redux";
 import BaseSecondaryCard from "@/components/common/cards/BaseSecondaryCard";
-import {getUserSubscriptionsData, getUserSubscriptionsReportsData} from "@/store/thunks/userThunk";
+import {
+    getUserSubscriptionsData,
+    getUserSubscriptionsReportsData,
+    getUserSubscriptionsTasksData
+} from "@/store/thunks/userThunk";
 import type { TUserSubscriptionsArray } from "@/models/userData";
 import SubscriptionCard from "@/components/common/userSubscription/subscriptionCard";
-import {TUserSubscriptionsReportArray} from "@/models/userData";
+import {TUserSubscriptionsReportArray, TUserSubscriptionsTaskArray} from "@/models/userData";
 import classNames from "classnames";
 
 export type TListOfNewsData = { news_data: { title: string, post_text: string, photo_content?: { photo_url: string }[] }};
 
-export default function UserSubscriptions() {
+function UserSubscriptions() {
     const dispatch = useDispatch();
     // @ts-ignore
-    const { userSubscriptionsReports }: { userSubscriptionsReports: TUserSubscriptionsReportArray } = useSelector(state => state.user)
+    const { userSubscriptionsTasks } : { userSubscriptionsTasks: TUserSubscriptionsTaskArray; } = useSelector(state => state.user)
 
     useEffect(() => {
         // @ts-ignore
-        dispatch(getUserSubscriptionsReportsData());
+        dispatch(getUserSubscriptionsTasksData());
     }, [dispatch]);
 
     return (
@@ -32,19 +36,21 @@ export default function UserSubscriptions() {
 
             <div className="flex justify-center items-center w-full h-full">
                 {
-                    userSubscriptionsReports.length ? (
+                    userSubscriptionsTasks.length ? (
                         <div className="flex flex-col overflow-y-auto no-scrollbar overflow-x-visible w-full h-full">
                             {
-                                userSubscriptionsReports.map(({
-                                    report_text,
+                                userSubscriptionsTasks.map(({
+                                    result_task_text,
                                     first_name,
                                     image_url,
                                     login,
-                                    is_anon
+                                    is_anon,
+                                    rank
                                 }, index) => (
                                     <SubscriptionCard
                                         key={first_name + index}
-                                        report_text={report_text}
+                                        report_text={result_task_text}
+                                        rank={rank}
                                         first_name={first_name}
                                         image_url={image_url}
                                         is_anon={is_anon}
@@ -68,3 +74,5 @@ export default function UserSubscriptions() {
         </div>
     )
 }
+
+export default React.memo(UserSubscriptions);

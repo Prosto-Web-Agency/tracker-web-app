@@ -22,7 +22,7 @@ export default function SwiperComponent<T>({ swiperCards, cardType }: { swiperCa
                 autoplay={true}
                 spaceBetween={24}
                 slidesPerView={1}
-                loop={true}
+                loop={swiperCards.length > 1}
                 style={{
                     paddingLeft: '24px',
                     paddingRight: '24px',

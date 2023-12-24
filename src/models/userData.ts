@@ -1,6 +1,6 @@
 import { TRank } from "@/components/common/cards/RankComponent";
 
-type TIsAnon = boolean;
+export type TIsAnon = boolean;
 
 export type TUserData = {
     first_name: string;
@@ -13,11 +13,14 @@ export type TUserData = {
 export type TUserCommonData = TUserData & {
     image_url?: string;
     rank_name: TRank['rank'];
+    login: string;
+    current_subscription: string;
+    subscription_paid_date: string | null;
 };
 
 export type TUserPopupData = TUserData & {
     image_url?: string;
-    rank_name: TRank['rank'];
+    rank: TRank['rank'];
     hash_tag_header?: string;
     achievements: { achievement_name: string }[];
     login: string;
@@ -28,6 +31,7 @@ export type TUserSmallData = Omit<TUserData, | "tg_username" | "instagram"> & {
     image_url: string | null;
     task_count: number;
     login: string;
+    rank: TRank['rank'];
 }
 
 export type TUserSmallDataArray = TUserSmallData[];
@@ -58,7 +62,14 @@ export type TUserSubscriptionsReport = {
     image_url: string | null;
     login: string;
     is_anon: TIsAnon;
+    rank: TRank['rank'];
 }
+
+export type TUserSubscriptionsTask = Omit<TUserSubscriptionsReport, "report_text"> & {
+    result_task_text: string;
+}
+
+export type TUserSubscriptionsTaskArray = TUserSubscriptionsTask[];
 
 export type TUserSubscriptionsReportArray = TUserSubscriptionsReport[];
 

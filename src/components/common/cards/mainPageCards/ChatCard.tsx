@@ -53,7 +53,7 @@ export default function ChatCard({ username, text, created_at, rank, image }: TC
                                             <Image
                                                 width={32}
                                                 height={32}
-                                                className={'w-[32px] h-[32px] obj-cover rounded-10'}
+                                                className={'w-[32px] h-[32px] object-cover rounded-10'}
                                                 src={'/empty-user-icon.jpeg'}
                                                 alt={'empty profile'}
                                             />

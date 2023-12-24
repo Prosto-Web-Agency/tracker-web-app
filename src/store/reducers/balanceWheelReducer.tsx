@@ -1,34 +1,27 @@
 const SET_BALANCE = 'SET_BALANCE';
 const GET_BALANCE_DATA_SLIDERS = 'GET_BALANCE_DATA_SLIDERS';
 
+export type TReportCheckup = {
+    self_development: number,
+    relationship: number,
+    career: number,
+    rest: number,
+    environment: number,
+    income: number,
+    creation: number,
+    health: number
+}
+
 type TBalance = {
-    balanceData: {} | null;
+    balanceData: TReportCheckup | null;
     balanceIsSet: boolean;
-    slidersData: {
-        "self_development": number,
-        "relationship": number,
-        "career": number,
-        "rest": number,
-        "environment": number,
-        "income": number,
-        "creation": number,
-        "health": number
-    }
+    slidersData: TReportCheckup | null;
 }
 
 const initialState: TBalance = {
     balanceData: null,
     balanceIsSet: true,
-    slidersData: {
-        "self_development": 0,
-        "relationship": 0,
-        "career": 0,
-        "rest": 0,
-        "environment": 0,
-        "income": 0,
-        "creation": 0,
-        "health": 0
-    }
+    slidersData: null
 };
 
 const BalanceWheelReducer = (state = initialState, action: any) => {

@@ -86,7 +86,9 @@ export default function Header({ title, isUnAuth }: { title?: string, isUnAuth?:
         TABS.map(({link, title}) => link === window.location.pathname && setActiveTab(title));
 
         if (window.location.pathname === '/profile') {
-            setActiveTab('Профиль')
+            setActiveTab('empty')
+        } else if (window.location.pathname === '/balance/checkout') {
+            setActiveTab('Чекап')
         }
 
         setProfilePage(window.location.pathname === '/profile');
@@ -151,7 +153,7 @@ export default function Header({ title, isUnAuth }: { title?: string, isUnAuth?:
                                                 <Image
                                                     width={48}
                                                     height={48}
-                                                    className={'w-[48px] h-[48px] obj-cover rounded-20'}
+                                                    className={'w-[48px] h-[48px] object-cover rounded-20'}
                                                     src={'/empty-user-icon.jpeg'}
                                                     alt={'empty profile'}
                                                 />

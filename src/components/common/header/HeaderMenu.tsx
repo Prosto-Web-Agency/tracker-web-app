@@ -50,7 +50,7 @@ export default function HeaderMenu() {
                                     <Image
                                         width={48}
                                         height={48}
-                                        className={'w-[48px] h-[48px] obj-cover rounded-20'}
+                                        className={'w-[48px] h-[48px] object-cover rounded-20'}
                                         src={'/empty-user-icon.jpeg'}
                                         alt={'empty profile'}
                                     />

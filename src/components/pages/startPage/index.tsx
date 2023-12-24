@@ -11,18 +11,18 @@ import Link from "next/link";
 import SecondaryButton from "@/components/common/buttons/secondary";
 import TRIcon from "@/components/common/icon";
 import {TUserDataState} from "@/store/reducers/userReducer";
+import {useAppSelector} from "@/hooks/store";
 
 const StartPage = () => {
     const router = useRouter();
 
-    // @ts-ignore
-    const { userData }: { userData: TUserDataState } = useSelector(state => state.user)
+    const { userData, isUserPaidSubscription } = useAppSelector(state => state.user);
     // @ts-ignore
     const { isUserAuth, isAuthCheck } = useSelector(state => state.user);
     const [step, setStep] = useState(0);
 
     function handleGoToAuth() {
-        router.push('https://recs-login-front.vercel.app/login?service=1');
+        router.push('https://auth.recscommunity.ru/login?service=1');
     }
 
     function handleGoToBot() {
@@ -31,6 +31,10 @@ const StartPage = () => {
 
     function handleGoToSubscription() {
         router.push('/subscription');
+    }
+
+    function handleGoToMain() {
+        router.push('/');
     }
 
     useEffect(() => {
@@ -105,10 +109,17 @@ const StartPage = () => {
                         (step === 2 && isAuthCheck) ? (
                             <>
                                 <p className="text-text-m-bold text-center">
-                                    Последний шаг - оплатить подписку
+                                    Последний шаг - оплатить подписку <br/>
+                                    И дождаться пока ее примет Recs
                                 </p>
 
-                                <PrimaryButton text="Выбрать подписку" onClick={handleGoToSubscription} />
+                                {
+                                    isUserPaidSubscription ? (
+                                        <PrimaryButton text="Перейти на главную" onClick={handleGoToMain} />
+                                    ) : (
+                                        <PrimaryButton text="Выбрать подписку" onClick={handleGoToSubscription} />
+                                    )
+                                }
                             </>
                         ) : null
                     }

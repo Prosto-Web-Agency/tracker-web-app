@@ -1,6 +1,6 @@
 'use client'
 
-import { DoughnutChart } from "@/components/common/charts/diagrams/DoughnutChart";
+import DoughnutChart from "@/components/common/charts/diagrams/DoughnutChart";
 import React from "react";
 import TRIcon from "@/components/common/icon";
 import {TDiagram, TUserDiagrams} from "@/models/charts";
@@ -26,9 +26,10 @@ const DIAGRAMS_TITLE = [
     }
 ]
 
-export default function DiagramsFieldOffice({ diagrams }: { diagrams: TUserDiagrams }) {
+
+function DiagramsFieldOffice({ diagrams }: { diagrams: TUserDiagrams | null }) {
     return (
-        <div className="bg-white rounded-6 big_screen_h:h-[680px] sx_lg:h-[740px] p-6 pt-3 ss_lg:h-auto">
+        <div className="bg-white rounded-6 h-[680px] sx_lg:h-[740px] p-6 pt-3 ss_lg:h-auto">
             <h4 className="text-heading-ss-bold">
                 Диаграммы отчёта
             </h4>
@@ -43,17 +44,24 @@ export default function DiagramsFieldOffice({ diagrams }: { diagrams: TUserDiagr
                         <>
                             {
                                 Object.values(diagrams)
-                                    .map((diagram: TDiagram, index) => (
-                                    <DoughnutChart
-                                        key={index + 'diagrams'}
-                                        colors={CHART_COLORS[index]}
-                                        name={DIAGRAMS_TITLE[index].name}
-                                        iconName={DIAGRAMS_TITLE[index].icon}
-                                        id={'80%'}
-                                        labels={diagram.data}
-                                        data={diagram.dots}
-                                    />
-                                ))
+                                    ?.map((diagram: TDiagram, index) => (
+                                        <DoughnutChart
+                                            key={index + 'diagrams'}
+                                            colors={
+                                                (diagram?.dots ?? []).map((_, id) => CHART_COLORS[index][id % 5])
+                                            }
+                                            name={DIAGRAMS_TITLE[index].name}
+                                            iconName={DIAGRAMS_TITLE[index].icon}
+                                            labels={
+                                                (diagram?.data ?? []).length ?
+                                                    (diagram?.data ?? []) :
+                                                    (diagram?.dots ?? [])
+                                                        .map((_, id) => String(id))
+                                            }
+                                            data={diagram?.dots ?? []}
+                                        />
+                                    )
+                                )
                             }
                         </>
                     ) : (
@@ -70,3 +78,14 @@ export default function DiagramsFieldOffice({ diagrams }: { diagrams: TUserDiagr
         </div>
     )
 }
+
+export default React.memo(DiagramsFieldOffice, (prevProps, nextProps) => {
+    if (
+        nextProps !== null &&
+        JSON.stringify(prevProps.diagrams) !== JSON.stringify(nextProps.diagrams)
+    ) {
+        return false
+    }
+
+    return true;
+});

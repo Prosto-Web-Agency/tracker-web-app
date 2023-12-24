@@ -10,24 +10,24 @@ import {
     getDiagrams,
     getMetrics,
 } from "@/store/thunks/officeThunk";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUserPersonalData } from "@/store/thunks/userThunk";
 import {useRouter} from "next/navigation";
 import HoverGradientButton from "@/components/common/buttons/hoverGradient";
 import type { TUserDataState } from "@/store/reducers/userReducer";
-import type { TUserCharts } from "@/models/charts";
+import type {TUserCharts} from "@/models/charts";
 import {TMetrics, TUserDiagrams} from "@/models/charts";
 import classNames from "classnames";
 
-export default function PersonalOffice() {
+function PersonalOffice() {
     const dispatch = useDispatch();
     const router = useRouter();
 
-    const { charts, diagrams, metrics }: {
+    const { charts, metrics, diagrams }: {
         charts: TUserCharts | null,
-        diagrams: TUserDiagrams | null,
         metrics: TMetrics | null
+        diagrams: TUserDiagrams | null,
     //@ts-ignore
     } = useSelector(state => state.officePage);
 
@@ -36,14 +36,14 @@ export default function PersonalOffice() {
 
     useEffect(() => {
         //@ts-ignore
-        dispatch(getDiagrams())
-        //@ts-ignore
         dispatch(getCharts())
+        //@ts-ignore
+        dispatch(getDiagrams());
         //@ts-ignore
         dispatch(getMetrics());
         //@ts-ignore
         dispatch(getUserPersonalData());
-    }, [dispatch]);
+    }, []);
 
     function handleEditUserData() {
         router.push('/profile/edit');
@@ -66,16 +66,26 @@ export default function PersonalOffice() {
                     {
                         diagrams ? (
                             <DiagramsFieldOffice diagrams={diagrams} />
-                        ) : null
+                        ) : (
+                            <div className="bg-white rounded-6 h-[680px] sx_lg:h-[740px] p-6 pt-3 ss_lg:h-auto">
+                                <h4 className="text-heading-ss-bold">
+                                    Диаграммы отчёта
+                                </h4>
+                            </div>
+                        )
                     }
 
-                    <div className="sx_lg:hidden">
-                        {
-                            metrics ? (
-                                <MetricsComponent metrics={metrics}/>
-                            ) : null
-                        }
-                    </div>
+                    {
+                        metrics ? (
+                            <MetricsComponent metrics={metrics} />
+                        ) : (
+                            <div className="bg-white h-[300px] rounded-6 p-6 pt-3">
+                                <h4 className="text-heading-ss-bold ss_lg:text-text-sm-bold">
+                                    Метрики
+                                </h4>
+                            </div>
+                        )
+                    }
                 </div>
 
                 <div className={classNames(
@@ -91,11 +101,11 @@ export default function PersonalOffice() {
                                     name="LIFE-BALANCE / NON LIFE-BALANCE"
                                     params={{
                                         data: charts.lifeBalance.dots,
-                                        label: charts.lifeBalance.date
+                                        label:  charts.lifeBalance?.date
                                     }}
                                     param2={{
                                         data: charts.nonLifeBalance.dots,
-                                        label: charts.nonLifeBalance.date
+                                        label: charts.nonLifeBalance?.date
                                     }}
                                     color2={'#E5302E'}
                                     average={charts.lifeBalance?.avg[0]?.toFixed(2) ?? '0'}
@@ -113,6 +123,7 @@ export default function PersonalOffice() {
                                     average={charts.emotional?.avg[0]?.toFixed(2) ?? '0'}
                                     elementId={'emotionalChart'}
                                 />
+
                                 <GraphFieldOffice
                                     type={'chartEmotional'}
                                     color={'#97C263'}
@@ -125,10 +136,30 @@ export default function PersonalOffice() {
                                     elementId={'holidaysChart'}
                                 />
                             </>
-                        ) : null
+                        ) : (
+                            <>
+                                <div className="bg-white flex-1 rounded-6 p-6 pt-3">
+                                    <h4 className="text-heading-ss-bold">
+                                        LIFE-BALANCE / NON LIFE-BALANCE
+                                    </h4>
+                                </div>
+                                <div className="bg-white flex-1 rounded-6 p-6 pt-3">
+                                    <h4 className="text-heading-ss-bold">
+                                        LIFE-BALANCE / NON LIFE-BALANCE
+                                    </h4>
+                                </div>
+                                <div className="bg-white flex-1 rounded-6 p-6 pt-3">
+                                    <h4 className="text-heading-ss-bold">
+                                        LIFE-BALANCE / NON LIFE-BALANCE
+                                    </h4>
+                                </div>
+                            </>
+                        )
                     }
                 </div>
             </div>
         </section>
     )
 }
+
+export default React.memo(PersonalOffice);

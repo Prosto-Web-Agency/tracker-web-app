@@ -16,7 +16,7 @@ export type TGraphField = {
     type: 'chartProductive' | 'chartRelax' | 'chartEmotional';
 }
 
-export default function GraphFieldOffice({ name, params, param2, color, color2, elementId, type, average }: TGraphField) {
+function GraphFieldOffice({ name, params, param2, color, color2, elementId, type, average }: TGraphField) {
     return (
         <div className="bg-white flex-1 rounded-6 p-6 pt-3">
             <h4 className="text-heading-ss-bold">
@@ -24,7 +24,7 @@ export default function GraphFieldOffice({ name, params, param2, color, color2, 
             </h4>
 
             {
-                params?.data.length > 1 ? (
+                params && params?.data?.length > 1 ? (
                     <ChartComponent
                         params={params}
                         param2={param2}
@@ -48,3 +48,15 @@ export default function GraphFieldOffice({ name, params, param2, color, color2, 
         </div>
     )
 }
+
+export default React.memo(GraphFieldOffice, (prevProps, nextProps) => {
+    if (
+        nextProps !== null &&
+        JSON.stringify(prevProps.params) !== JSON.stringify(nextProps.params)
+    ) {
+        return false
+    }
+
+    return true;
+});
+

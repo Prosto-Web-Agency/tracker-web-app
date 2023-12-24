@@ -7,11 +7,12 @@ import NewsField from "@/components/common/fields/mainField/NewsField";
 import RateField from "@/components/common/fields/mainField/RateField";
 import React, { useEffect } from "react";
 import { getListOfUsersInsights, getListOfTopUsers } from "@/store/thunks/trakerThunk";
-import { useDispatch } from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import SearchUsers from "@/components/common/fields/mainField/SearchUsers";
 import UserSubscriptions from "@/components/common/userSubscription";
 import classNames from "classnames";
 import { useAppSelector } from "@/hooks/store";
+import {TUserDataState} from "@/store/reducers/userReducer";
 
 function MainPage() {
     const dispatch = useDispatch();
@@ -19,13 +20,14 @@ function MainPage() {
         listOfTopUsers,
         listOfUserInsights
     } = useAppSelector(state => state.mainPage)
+    const { isUserPaidSubscription } = useAppSelector(state => state.user);
 
     useEffect(() => {
         // @ts-ignore
         dispatch(getListOfUsersInsights())
         //@ts-ignore
         dispatch(getListOfTopUsers())
-    }, [dispatch]);
+    }, [dispatch, isUserPaidSubscription]);
 
     return (
         <section className="w-full">
