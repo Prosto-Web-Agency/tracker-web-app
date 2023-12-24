@@ -94,7 +94,7 @@ function ChatSmallComponent() {
             'md:mt-0 md:h-screen md:max-h-screen md:px-0',
           )}
         >
-          <div className="flex flex-col min-w-[50%] relative w-[50%] px-10 pb-10 lg:pb-5 lg:px-0box-border rounded-6 lg:w-full h-full bg-white overflow-hidden">
+          <div className="flex flex-col min-w-[50%] justify-between relative w-[50%] px-10 pb-10 lg:pb-5 lg:px-0box-border rounded-6 lg:w-full h-full bg-white overflow-hidden">
             <CardHeader
               title={'Чат'}
               iconName={'arrowLeft'}
