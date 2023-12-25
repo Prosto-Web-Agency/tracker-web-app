@@ -5,8 +5,8 @@ import LinearProgress, {
 } from '@mui/material/LinearProgress';
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
-  height: 40,
-  borderRadius: 20,
+  height: 60,
+  borderRadius: 30,
   [`&.${linearProgressClasses.colorPrimary}`]: {
     backgroundColor: 'rgba(228, 41, 49, 0.1)',
     backgroundImage:
@@ -24,10 +24,10 @@ export default function MetricsComponent({
   metrics: TMetrics | null;
 }) {
   return (
-    <div className="bg-white h-[300px] rounded-6 p-6 pt-3">
+    <div className="bg-white h-[370px] rounded-6 p-6 pt-3 relative">
       <h4 className="text-heading-ss-bold ss_lg:text-text-sm-bold">Метрики</h4>
 
-      <div className="flex flex-col gap-4 pt-4">
+      <div className="flex flex-col gap-4 pt-4 h-full w-full justify-center">
         {metrics ? (
           <>
             {[
@@ -47,12 +47,12 @@ export default function MetricsComponent({
                 amount: '',
               },
             ].map(({ title, value, amount }) => (
-              <div key={value + title} className="relative">
-                <p className="absolute lg:text-text-s lg:pt-3 left-2 z-10 pt-2 text-text-m-bold text-white">
+              <div key={value + title} className="relative h-[60px] w-full">
+                <p className="absolute lg:text-text-s lg:pt-3 left-4 z-10 pt-[18px] text-text-m-bold text-white">
                   {title}
                 </p>
 
-                <p className="absolute right-2 z-10 pt-2 text-text-m-bold text-white">
+                <p className="absolute right-4 z-10 pt-[18px] text-text-m-bold text-white">
                   {value} {amount}
                 </p>
 

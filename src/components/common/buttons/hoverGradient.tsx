@@ -30,7 +30,7 @@ const HoverGradientButton: React.FC<HoverGradientButtonProps> = ({
 
   return (
     <button
-      className={`w-full hoveredMenu duration-300 hover:scale-[1.03] flex justify-center items-center rounded-4 mt-6 ss_lg:mt-4 min-w-[364px] py-5 ss_lg:min-w-full bg-white text-heading-ss-bold ss_lg:py-3 ${className}`}
+      className={`w-full hoveredMenu duration-300 hover:scale-[1.03] flex justify-center items-center rounded-4 ss_lg:mt-4 min-w-[364px] py-5 ss_lg:min-w-full bg-white text-heading-ss-bold ss_lg:py-3 ${className}`}
       onClick={onClick}
     >
       {leftIcon && <TRIcon edgeLength={edgeLength} iconName={leftIcon} />}

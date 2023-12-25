@@ -66,6 +66,7 @@ export default function Header({
   const [activeTab, setActiveTab] = useState('Главная');
   const [isOpen, setOpen] = useState(false);
   const [isProfilePage, setProfilePage] = useState(false);
+  const [hoverTab, setHoverTab] = useState(false);
 
   const { userData }: { userData: TUserDataState } = useSelector(
     //@ts-ignore
@@ -130,8 +131,10 @@ export default function Header({
             <div className="flex flex-row gap-6 items-center">
               {TABS.map(({ link, title }: TTabs) => (
                 <Link
+                  onMouseLeave={() => setHoverTab(false)}
+                  onMouseOver={() => setHoverTab(title === 'Трекер')}
                   className={classNames(
-                    'flex gap-2 py-2 max-h-[36px] duration-300 hover:scale-[1.03] w-[135px] text-heading-ss-bold justify-center rounded-full bg-bg-gray hoveredMenu items-center',
+                    'flex gap-2 py-2 max-h-[36px] hover:scale-[1.03] w-[135px] text-heading-ss-bold justify-center rounded-full bg-bg-gray hoveredMenu items-center',
                     {
                       ['activeMenu']: activeTab === title,
                     },
@@ -141,9 +144,13 @@ export default function Header({
                 >
                   {title}
 
-                  {title === 'Трекер' ? (
-                    <TRIcon iconName={'tg_gradient'} edgeLength={24} />
-                  ) : null}
+                  {title === 'Трекер' ?
+                    hoverTab ? (
+                      <TRIcon iconName={'tg_white'} edgeLength={18} />
+                    ) : (
+                      <TRIcon iconName={'tg_gradient'} edgeLength={18} />
+                    ) : null
+                  }
                 </Link>
               ))}
             </div>

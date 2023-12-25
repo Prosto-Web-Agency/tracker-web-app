@@ -15,6 +15,7 @@ import type { TUserDataState } from '@/store/reducers/userReducer';
 import type { TUserCharts } from '@/models/charts';
 import { TMetrics, TUserDiagrams } from '@/models/charts';
 import classNames from 'classnames';
+import SubscriptionDate from "@/components/common/subscribtionDate";
 
 function PersonalOffice() {
   const dispatch = useDispatch();
@@ -56,10 +57,13 @@ function PersonalOffice() {
       <div className="w-full sx_lg:max-w-[600px] sx_lg:flex sx_lg:flex-col gap-6 min-h-[calc(100vh-90px)] relative grid grid-cols-3 sx_lg:grid-cols-2 sx_lg:rounded-t-9 s_lg: p-6 sx_lg:pb-6 max-w-[1400px] mx-auto s_lg:rounded-t-[0px] s_lg:pt-0 s_lg:p-6 ss_lg:p-4 ss_lg:gap-4">
         <div className="row-span-3 flex flex-col gap-6">
           <UserCard userData={userData} />
-          <HoverGradientButton
-            text={'Редактировать'}
-            onClick={handleEditUserData}
-          />
+          <div className="flex flex-col gap-4">
+            <SubscriptionDate date={userData?.subscription_paid_date ?? ''} />
+            <HoverGradientButton
+                text={'Редактировать'}
+                onClick={handleEditUserData}
+            />
+          </div>
           <RanksComponent userRank={userData?.rank_name ?? 'empty'} />
         </div>
 
@@ -80,7 +84,7 @@ function PersonalOffice() {
           {metrics ? (
             <MetricsComponent metrics={metrics} />
           ) : (
-            <div className="bg-white h-[300px] rounded-6 p-6 pt-3">
+            <div className="bg-white h-[370px] rounded-6 p-6 pt-3">
               <h4 className="text-heading-ss-bold ss_lg:text-text-sm-bold">
                 Метрики
               </h4>

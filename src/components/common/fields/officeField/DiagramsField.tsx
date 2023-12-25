@@ -58,7 +58,7 @@ function DiagramsFieldOffice({ diagrams }: { diagrams: TUserDiagrams | null }) {
               ))}
             </>
           ) : (
-            <div>графика сейчас нет (</div>
+            <TRIcon iconName={'chartDiagrams'} edgeLength={220} />
           )
         ) : (
           <div className="flex justify-center items-center w-full h-full">
