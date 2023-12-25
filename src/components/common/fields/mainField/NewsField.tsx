@@ -60,7 +60,7 @@ export default function NewsField() {
             ))}
           </>
         ) : (
-          <div className="flex justify-center items-center w-full h-full">
+          <div className="flex justify-center items-center w-full h-[calc(100%-100px)]">
             <TRIcon
               iconName="loader"
               edgeLength={48}

@@ -7,6 +7,7 @@ import { useRouter } from 'next/navigation';
 import { TUserDataState } from '@/store/reducers/userReducer';
 import SmallRankComponent from '@/components/common/cards/SmallRankComponent';
 import { handleGetUserLink } from '@/utils/getUserLinks';
+import classNames from "classnames";
 
 type TUserCard = {
   userData: TUserDataState;
@@ -27,10 +28,13 @@ export default function UserCard({ userData }: TUserCard) {
     <div className="relative overflow-hidden flex w-full h-[225px] big_screen_h:h-[calc(40vh-114px)] bg-white rounded-6 ss_lg:min-w-ful minn:h-full minn:flex-col">
       {userData ? (
         <>
-          <div className="w-[193px] relative flex justify-center items-center">
+          <div className={classNames(
+              "w-[193px] relative flex justify-center items-center",
+              "lg:w-full lg:h-[225px]"
+          )}>
             {userData.image_url ? (
               <Image
-                className="w-[200px] h-[225px] big_screen_h:h-[calc(40vh-114px)] object-cover rounded-4"
+                className="w-[200px] h-[180px] big_screen_h:h-[calc(40vh-114px)] object-cover rounded-4"
                 width={193}
                 height={265}
                 src={userData.image_url}

@@ -159,7 +159,7 @@ function ChatSmallComponent() {
             {messages.length ? (
               <ListOfChatMessages messages={messages} />
             ) : (
-              <div className="flex justify-center items-center w-full h-full">
+              <div className="flex justify-center items-center w-full h-full pt-15">
                 <TRIcon
                   iconName="loader"
                   edgeLength={48}

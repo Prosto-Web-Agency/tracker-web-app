@@ -35,7 +35,7 @@ export default function ListOfInsightCards({
   return (
     <div
       className={classNames(
-        'bg-white w-[384px] h-[calc(100%-88px)] rounded-6 flex flex-col gap-4 pb-0 p-6',
+        'bg-white w-[384px] h-[calc(100%-88px)] relative rounded-6 flex flex-col gap-4 pb-0 p-6',
         'lg:flex-col lg:w-full lg:overflow-x-auto no-scrollbar',
       )}
     >
@@ -67,7 +67,7 @@ export default function ListOfInsightCards({
             ))}
           </>
         ) : (
-          <div className="flex justify-center items-center w-full h-full">
+          <div className="flex justify-center items-center w-[calc(100%-60px)] h-full">
             <TRIcon
               iconName="loader"
               edgeLength={48}

@@ -4,9 +4,12 @@ import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import TRIcon from '@/components/common/icon';
 import classNames from 'classnames';
+import useResponsive from "@/hooks/useResponsive";
 
 //@ts-ignore
 function DoughnutChart({ labels, data, name, colors, iconName }) {
+  const { isMobile } = useResponsive();
+
   return (
     <div
       className={classNames(
@@ -21,7 +24,7 @@ function DoughnutChart({ labels, data, name, colors, iconName }) {
         )}
       >
         <div className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%]">
-          <TRIcon iconName={iconName} edgeLength={40} />
+          <TRIcon iconName={iconName} edgeLength={isMobile ? 24 : 40} />
         </div>
 
         <Doughnut

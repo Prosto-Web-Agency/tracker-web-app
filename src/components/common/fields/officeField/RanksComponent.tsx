@@ -55,7 +55,7 @@ export default function RanksComponent({ userRank }: TRanksComponent) {
         'md:pt-2',
       )}
     >
-      <h3 className="text-heading-s text-white mt-3 ml-4 s_lg:text-heading-ss-bold pb-2">
+      <h3 className="text-heading-s text-white mt-3 ml-4 lg:ml-0 s_lg:text-heading-ss-bold pb-2">
         Ранги
       </h3>
 

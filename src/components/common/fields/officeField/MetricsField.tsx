@@ -24,7 +24,7 @@ export default function MetricsComponent({
   metrics: TMetrics | null;
 }) {
   return (
-    <div className="bg-white h-[370px] rounded-6 p-6 pt-3 relative">
+    <div className="bg-white h-[370px] lg:h-[300px] rounded-6 p-6 pt-3 relative">
       <h4 className="text-heading-ss-bold ss_lg:text-text-sm-bold">Метрики</h4>
 
       <div className="flex flex-col gap-4 pt-4 h-full w-full justify-center">
@@ -48,7 +48,7 @@ export default function MetricsComponent({
               },
             ].map(({ title, value, amount }) => (
               <div key={value + title} className="relative h-[60px] w-full">
-                <p className="absolute lg:text-text-s lg:pt-3 left-4 z-10 pt-[18px] text-text-m-bold text-white">
+                <p className="absolute lg:text-text-s lg:pt-6 left-4 z-10 pt-[18px] text-text-m-bold text-white">
                   {title}
                 </p>
 
