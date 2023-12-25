@@ -15,7 +15,7 @@ import type { TUserDataState } from '@/store/reducers/userReducer';
 import type { TUserCharts } from '@/models/charts';
 import { TMetrics, TUserDiagrams } from '@/models/charts';
 import classNames from 'classnames';
-import SubscriptionDate from "@/components/common/subscribtionDate";
+import SubscriptionDate from '@/components/common/subscribtionDate';
 
 function PersonalOffice() {
   const dispatch = useDispatch();
@@ -60,8 +60,8 @@ function PersonalOffice() {
           <div className="flex flex-col gap-4">
             <SubscriptionDate date={userData?.subscription_paid_date ?? ''} />
             <HoverGradientButton
-                text={'Редактировать'}
-                onClick={handleEditUserData}
+              text={'Редактировать'}
+              onClick={handleEditUserData}
             />
           </div>
           <RanksComponent userRank={userData?.rank_name ?? 'empty'} />

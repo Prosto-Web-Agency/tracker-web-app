@@ -144,13 +144,13 @@ export default function Header({
                 >
                   {title}
 
-                  {title === 'Трекер' ?
+                  {title === 'Трекер' ? (
                     hoverTab ? (
                       <TRIcon iconName={'tg_white'} edgeLength={18} />
                     ) : (
                       <TRIcon iconName={'tg_gradient'} edgeLength={18} />
-                    ) : null
-                  }
+                    )
+                  ) : null}
                 </Link>
               ))}
             </div>

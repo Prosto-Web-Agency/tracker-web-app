@@ -4,7 +4,7 @@ import React from 'react';
 import { Doughnut } from 'react-chartjs-2';
 import TRIcon from '@/components/common/icon';
 import classNames from 'classnames';
-import useResponsive from "@/hooks/useResponsive";
+import useResponsive from '@/hooks/useResponsive';
 
 //@ts-ignore
 function DoughnutChart({ labels, data, name, colors, iconName }) {

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Image from 'next/image';
 import type { TUserSubscriptionsReport } from '@/models/userData';
 import TRIcon from '@/components/common/icon';
-import classNames from "classnames";
+import classNames from 'classnames';
 
 function SubscriptionCard({
   report_text,
@@ -15,10 +15,12 @@ function SubscriptionCard({
   const [nameOfOpenImage, setNameOfOpenImage] = useState('');
 
   return (
-    <div className={classNames(
-        "w-full py-4 gap-4 border-b-[0.5px] border-black duration-100 hover:scale-[1.002] scale-1 flex",
-        "lg:flex-col"
-    )}>
+    <div
+      className={classNames(
+        'w-full py-4 gap-4 border-b-[0.5px] border-black duration-100 hover:scale-[1.002] scale-1 flex',
+        'lg:flex-col',
+      )}
+    >
       <div className="flex h-[60px] pb-1 pr-1 relative lg:w-[65px]">
         <div className="absolute z-10 bottom-[2px] right-[2px]">
           <TRIcon iconName={rank} edgeLength={24} />
