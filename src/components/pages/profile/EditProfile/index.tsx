@@ -97,8 +97,14 @@ export default function EditProfilePage() {
   }
 
   return (
-    <div className="bg-white rounded-6 relative w-[588px] h-[441px] flex s_lg:bg-bg-gray s_lg:flex-col s_lg:w-full s_lg:h-full s_lg:p-6">
-      <div className="w-[282px] h-[440px] bg-bg-gray border-4 border-white border-solid box-border rounded-4 relative">
+    <div className={classNames(
+        "bg-white rounded-6 relative w-[588px] h-[441px] flex",
+        "lg:bg-bg-gray lg:flex-col lg:w-full lg:h-auto lg:p-6 lg:pt-[160px]"
+    )}>
+      <div className={classNames(
+          "w-[282px] h-[440px] bg-bg-gray border-4 border-white border-solid box-border rounded-4 relative",
+          "lg:h-[282px] lg:mx-auto"
+      )}>
         {userData ? (
           <>
             {userData.image_url ? (

@@ -116,7 +116,7 @@ export default function Header({
     <>
       <header className="bg-transparent s_lg:bg-bg-gray w-full h-[90px] bg-black sm:h-[75px] overflow-hidden">
         <div className="mx-auto w-full max-w-[1400px] h-full flex justify-between items-center">
-          <Link href={'/'} className="flex items-center gap-2 px-6">
+          <Link href={'/'} className="flex items-center gap-2 px-6 z-[100]">
             <Image
               className="md:h-[27px] md:w-[27px]"
               height={48}
@@ -220,7 +220,14 @@ export default function Header({
         </div>
       </header>
 
-      <>{openMenu ? <HeaderMenu /> : null}</>
+      {
+        openMenu ? (
+            <HeaderMenu setClose={() => {
+              setOpenMenu(false);
+              void changeMenuState(false);
+            }} />
+        ) : null
+      }
     </>
   );
 }

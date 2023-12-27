@@ -55,9 +55,9 @@ export default function ReportsPage() {
         )}
       >
         <SearchUsers />
-        <BasePrimaryCard>
+        <BasePrimaryCard className="max-h-[90%]">
           {!!userSubscriptions.length && (
-            <>
+            <div className="overflow-y-auto h-full flex gap-4 no-scrollbar flex-col">
               {userSubscriptions.map((user, index) => (
                 <div
                   className={
@@ -95,7 +95,7 @@ export default function ReportsPage() {
                   </div>
                 </div>
               ))}
-            </>
+            </div>
           )}
         </BasePrimaryCard>
       </div>

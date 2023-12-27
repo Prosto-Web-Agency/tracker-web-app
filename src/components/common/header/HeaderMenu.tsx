@@ -22,7 +22,7 @@ const headerVariants = {
   },
 };
 
-export default function HeaderMenu() {
+export default function HeaderMenu({ setClose }: { setClose: () => void }) {
   const { userData }: { userData: TUserDataState } = useSelector(
     //@ts-ignore
     (state) => state.user,
@@ -63,6 +63,7 @@ export default function HeaderMenu() {
             <Link
               className="bg-orange-class w-[110px] flex justify-center items-center py-2"
               key={link + title}
+              onClick={setClose}
               href={`${link}`}
             >
               {title}

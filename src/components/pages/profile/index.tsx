@@ -16,6 +16,8 @@ import type { TUserCharts } from '@/models/charts';
 import { TMetrics, TUserDiagrams } from '@/models/charts';
 import classNames from 'classnames';
 import SubscriptionDate from '@/components/common/subscribtionDate';
+import PrimaryButton from "@/components/common/buttons/primary";
+import {logout} from "@/utils/logout";
 
 function PersonalOffice() {
   const dispatch = useDispatch();
@@ -52,12 +54,24 @@ function PersonalOffice() {
     router.push('/profile/edit');
   }
 
+  function handleLogout() {
+    logout();
+    router.push('/');
+  }
+
   return (
     <section className="min-h-[screen] mx-auto max-w-[1400px] w-full overflow-hidden bg-bg-gray rounded-9 sx_lg:rounded-[0]">
       <div className="w-full sx_lg:max-w-[600px] sx_lg:flex sx_lg:flex-col gap-6 min-h-[calc(100vh-90px)] relative grid grid-cols-3 sx_lg:grid-cols-2 sx_lg:rounded-t-9 s_lg: p-6 sx_lg:pb-6 max-w-[1400px] mx-auto s_lg:rounded-t-[0px] s_lg:pt-0 s_lg:p-6 ss_lg:p-4 ss_lg:gap-4">
         <div className="row-span-3 flex flex-col gap-6">
           <UserCard userData={userData} />
           <div className="flex flex-col gap-4">
+            <div className="hidden lg:flex">
+              <PrimaryButton
+                  size={'big'}
+                  text={'Выйти'}
+                  onClick={handleLogout}
+              />
+            </div>
             <SubscriptionDate date={userData?.subscription_paid_date ?? ''} />
             <HoverGradientButton
               text={'Редактировать'}

@@ -144,7 +144,7 @@ function BalanceWebPage() {
         <div
           className={classNames(
             'w-[350px] sx_lg:w-full h-[724px] md:w-full bg-white rounded-6',
-            'lg:w-full lg:max-w-[350px]',
+            'lg:w-full lg:max-w-[350px] lg:h-[600px]',
           )}
         >
           {visible ? (
@@ -160,7 +160,7 @@ function BalanceWebPage() {
               <div
                 className={classNames(
                   'flex w-full h-[724px] relative flex-col px-2 pb-10 rounded-6 bg-white overflow-hidden',
-                  '',
+                  'lg:h-[600px]',
                 )}
               >
                 <div className="flex gap-4 w-full p-4 minn:flex-col">
