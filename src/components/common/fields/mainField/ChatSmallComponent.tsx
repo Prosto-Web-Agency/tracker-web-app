@@ -90,22 +90,25 @@ function ChatSmallComponent() {
       {fullScreen ? (
         <div
           className={classNames(
-            'w-full h-screen flex justify-center items-center bg-bg-gray py-10 px-5 z-[900] backdrop-blur-sm fixed top-0 left-0',
+            'w-full h-screen flex justify-center overscroll-contain items-center bg-bg-gray py-10 px-5 z-[900] backdrop-blur-sm fixed top-0 left-0',
             'md:mt-0 md:h-screen md:max-h-screen md:px-0',
           )}
         >
-          <div className="flex flex-col min-w-[50%] justify-between relative w-[50%] px-10 pb-10 lg:pb-5 lg:px-0box-border rounded-6 lg:w-full h-full bg-white overflow-hidden">
+          <div className={classNames(
+              "flex flex-col min-w-[50%] justify-between relative w-[50%] px-10 pb-10 lg:pb-5 lg:px-2 box-border rounded-6 lg:w-full h-full bg-white overflow-hidden",
+              ""
+          )}>
             <CardHeader
               title={'Чат'}
               iconName={'arrowLeft'}
               onIconClick={() => setFullScreen(false)}
             />
 
-            <div className="px-4 overflow-y-scroll flex flex-col-reverse gap-4 scroll-hidden w-full s_lg:gap-2">
+            <div className="px-4 overflow-y-scroll pt-20 pb-12 box-border flex flex-col-reverse gap-4 scroll-hidden h-full w-full s_lg:gap-2">
               <ListOfChatMessages messages={messages} />
             </div>
 
-            <div className="rounded-t-3 relative flex pt-6 h-[50px] bg-white bottom-0">
+            <div className="rounded-t-3 absolute z-[100] bottom-4 w-[calc(100%-20px)] flex pt-6 h-[50px] bg-white bottom-0">
               <ChatTextField
                 onChange={(mess) => setUserMessage(mess)}
                 value={userMessage}

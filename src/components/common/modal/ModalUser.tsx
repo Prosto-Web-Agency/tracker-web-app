@@ -46,7 +46,7 @@ export default function ModalUser({ open, setModalData, login }: IModalUser) {
 
   function handleCloseModal() {
     dispatch(setUserPopupData(null));
-    setModalData({ position: 0, open: false, login: '' });
+    setTimeout(() => setModalData({ position: 0, open: false, login: '' }), 0);
   }
 
   return (
@@ -115,7 +115,7 @@ export default function ModalUser({ open, setModalData, login }: IModalUser) {
                 <div className="flex gap-2 pt-3">
                   {userPopupData?.tg_username ? (
                     <Link
-                      href={handleGetUserLink(userPopupData?.instagram, 'tg')}
+                      href={handleGetUserLink(userPopupData?.instagram ?? '', 'tg')}
                     >
                       <PrimaryButton
                         text=""
@@ -129,7 +129,7 @@ export default function ModalUser({ open, setModalData, login }: IModalUser) {
 
                   {userPopupData?.tg_username ? (
                     <Link
-                      href={handleGetUserLink(userPopupData?.instagram, 'inst')}
+                      href={handleGetUserLink(userPopupData?.instagram ?? '', 'inst')}
                     >
                       <PrimaryButton
                         text=""

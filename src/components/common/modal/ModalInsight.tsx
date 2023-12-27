@@ -20,7 +20,7 @@ export default function ModalInsight({
         open ? 'flex' : 'hidden'
       } justify-center items-center`}
     >
-      <div className="h-auto min-h-[300px] max-h-[90%] w-[600px] max-w-[600px] min-w-[330px] bg-orange-class px-5 pt-4 pb-6 text-white">
+      <div className="h-auto min-h-[300px] max-h-[90%] overflow-y-auto no-scrollbar relative w-[600px] max-w-[600px] min-w-[330px] bg-orange-class px-5 pt-4 pb-6 text-white">
         <div className="w-full flex justify-between pb-3">
           <h4 className="text-heading-ss-bold flex justify-between">
             {first_name}
@@ -35,7 +35,7 @@ export default function ModalInsight({
           />
         </div>
 
-        <p className="h-auto text-text-m max-h-[90%] overflow-y-auto">{text}</p>
+          <p className="h-full text-text-m max-h-[90%] overflow-y-auto">{text}</p>
       </div>
     </div>
   );

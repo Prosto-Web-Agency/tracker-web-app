@@ -20,7 +20,7 @@ export default function CardHeader({
   return (
     <div
       className={classNames(
-        'absolute flex items-center text-heading-s box-border',
+        'absolute z-[100] flex items-center text-heading-s box-border',
         {
           ['justify-center w-[calc(100%-80px)] min-h-[80px] h-[80px] lg:max-h-[70px] bg-white']:
             size === 'default',

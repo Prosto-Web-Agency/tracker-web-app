@@ -153,8 +153,9 @@ export default function EditProfilePage() {
           placeholder="Ник телеграм"
           value={telegram}
           onChange={(tg) => {
-            if (!tg.includes('@')) setTelegram('@' + tg);
-            else setTelegram(tg);
+            if (tg.length > 0 && !tg.includes('@')) {
+                setTelegram('@' + tg);
+            } else setTelegram(tg);
           }}
         />
 
@@ -163,8 +164,9 @@ export default function EditProfilePage() {
           placeholder="Ник Инстаграм"
           value={inst}
           onChange={(inst) => {
-            if (!inst.includes('@')) setInst('@' + inst);
-            else setInst(inst);
+              if (inst.length > 0 && !inst.includes('@')) {
+                  setInst('@' + inst);
+              } else setTelegram(inst);
           }}
         />
 

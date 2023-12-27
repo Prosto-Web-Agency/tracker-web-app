@@ -28,6 +28,9 @@ function DoughnutChart({ labels, data, name, colors, iconName }) {
         </div>
 
         <Doughnut
+            style={{
+              zIndex: 20
+            }}
           data={{
             labels,
             datasets: [
