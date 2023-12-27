@@ -90,7 +90,7 @@ function ChatSmallComponent() {
       {fullScreen ? (
         <div
           className={classNames(
-            'w-full h-screen flex justify-center overscroll-contain items-center bg-bg-gray py-10 px-5 z-[900] backdrop-blur-sm fixed top-0 left-0',
+            'w-full h-[120vh] flex justify-center overscroll-contain items-center bg-bg-gray py-10 px-5 z-[900] backdrop-blur-sm fixed top-0 left-0',
             'md:mt-0 md:h-screen md:max-h-screen md:px-0',
           )}
         >

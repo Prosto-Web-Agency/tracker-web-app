@@ -188,7 +188,7 @@ export default function Header({
 
           <button
             onClick={() => changeMenuState(!openMenu)}
-            className="hidden h-[90px] z-[110] justify-center items-center pr-[30px] lg:flex"
+            className="hidden h-[90px] z-[210] justify-center items-center pr-[30px] lg:flex"
           >
             <svg width="25" height="25" viewBox="0 0 24 24">
               <motion.path
